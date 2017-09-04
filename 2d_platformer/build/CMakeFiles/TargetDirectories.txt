@@ -1,0 +1,3 @@
+C:/Users/mateu/Documents/GitHub/Demos/2d_platformer/build/CMakeFiles/2d_game.dir
+C:/Users/mateu/Documents/GitHub/Demos/2d_platformer/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/mateu/Documents/GitHub/Demos/2d_platformer/build/CMakeFiles/ZERO_CHECK.dir

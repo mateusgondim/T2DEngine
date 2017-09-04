@@ -1,0 +1,17 @@
+#ifndef _VEC3_HPP
+
+#define _VEC3_HPP	
+namespace cgm {
+	struct vec3 {
+		explicit vec3(float init_x = 0, float init_y = 0, float init_z = 0) : x(init_x), y(init_y), z(init_z) {}
+		vec3 & operator+=(const vec3 & rhs);
+		
+		float x;
+		float y;
+		float z;
+	};
+	
+	vec3 operator+(const vec3 & lhs, const vec3 & rhs);
+}
+
+#endif // !_VEC3_HPP

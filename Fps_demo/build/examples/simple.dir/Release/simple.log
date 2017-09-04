@@ -1,0 +1,6 @@
+﻿  Building Custom Rule C:/glfw-3.2.1/examples/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\Fps_demo\build\examples\CMakeFiles\generate.stamp is up-to-date.
+  simple.c
+  glad.c
+  Generating Code...
+  simple.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\Fps_demo\build\examples\Release\simple.exe
