@@ -1,5 +1,5 @@
 #include "Player.hpp"
-#include "State.hpp"
+#include "Gameplay_state.hpp"
 #include "Player_idle_state.hpp"
 #include "Player_running_state.hpp"
 #include "Timer.hpp"
@@ -28,19 +28,28 @@ Player::Player(const cgm::vec3 & position, const cgm::mat4 orientation, const AA
 
 void Player::handle_input() 
 {
-	const std::vector<std::pair<Button, Command *>> & stream = Input_handler::instance().get_input();
+	//const std::vector<std::pair<Button, Command *>> & stream = Input_handler::instance().get_input();
 
-	State * pstate = get_state() ->handle_input(stream, *this);
+	Gameplay_state * pstate = get_state()->check_transition(*this);
 	if (pstate) {
 		delete get_state();
 		set_state(pstate);
-		get_sprite().update_uv(pstate->get_anim_player().get_frame());//change to the first frame of the new animation
-	}
-}
+		//unsigned curr_frame = get_panim_controller()->get_current_frame();
+		//get_sprite().update_uv(curr_frame);
+		//get_sprite().update_uv(pstate->get_anim_player().get_frame());//change to the first frame of the new animation
+	 }
 
+}
+//Maybe we have a bug here: If the last frame number of the previous animations was 0, then curr_frame == Animator_controller::get_current_frame() when it switches to the next state 
 void Player::update(const float delta_time) 
 {
 	get_state()->update(*this);
+	unsigned curr_frame = get_panim_controller()->get_current_frame();
+	get_panim_controller()->update();
+	if (curr_frame != get_panim_controller()->get_current_frame()) {
+		get_sprite().update_uv(get_panim_controller()->get_current_frame());
+	}
+
 }
 
 void Player::move_left() 

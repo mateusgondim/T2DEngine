@@ -6,10 +6,9 @@
 #include "Game_object.hpp"
 #include "Sprite.hpp"
 
-/*Renderable_game_object : it represents a game object in the world
+/*Renderable_game_object : Abstract Base Class, it represents a game object in the world
  * that has a visual representation in the form of a sprite
  */
-//TODO: Figure out how to make this class so it CANT be instancieted directly, i.e it needts to be used allways has a superclass
 
 class Renderable_game_object : public Game_object {
 public:

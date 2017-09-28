@@ -5,7 +5,7 @@
 /*Command: implementation of the command pattern
  *
  */
-
+class Actor;
 class Command {
 public:
 	virtual void execute(Actor & actor) = 0;

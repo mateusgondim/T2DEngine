@@ -5,6 +5,7 @@
 #include "SOIL.h"
 
 #include <iostream>
+#include <memory>
 #include "Timer.hpp"
 #include "Tile_map.hpp"
 #include "Tile_map_renderer.hpp"
@@ -13,10 +14,10 @@
 #include "tmx_parser.hpp"
 #include "vec3.hpp"
 #include "mat4.hpp"
+#include "Actor.hpp"
 #include "Vertex1P1C1UV.hpp"
 #include "Sprite_batch.hpp"
 #include "Sprite.hpp"
-#include "Player.hpp"
 #include "Input_handler.hpp"
 #include "Button.hpp"
 #include "Move_left_command.hpp"
@@ -25,7 +26,12 @@
 #include "Move_up_command.hpp"
 #include "Player_idle_state.hpp"
 #include "Player_running_state.hpp"
-
+#include "Animation.hpp"
+#include "Animation_player.hpp"
+#include "Animation_state.hpp"
+#include "Transition.hpp"
+#include "Animator_controller.hpp"
+#include "Player.hpp"
 
 #define FRAME_RATE 60.0f
 
@@ -42,6 +48,35 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 {
 	Input_handler::instance().key_callback(window, key, scancode, action, mods);
 }
+
+std::unique_ptr<Animator_controller> get_player_anim_controller() 
+{
+	tgs::Animation_player player_idle_anim({ tgs::Animation({ 0, 1 }, 5) });
+	tgs::Animation_player player_running_anim({ tgs::Animation({3, 4, 5}, 8) });
+
+	Animation_state player_idle_state("player_idle", player_idle_anim);
+	Animation_state player_running_state("player_running", player_running_anim);
+	
+	std::unique_ptr<Animator_controller> upcontroller(new Animator_controller());
+	upcontroller->add_bool_param("is_running");
+
+	upcontroller->add_state(player_idle_state);
+	upcontroller->add_state(player_running_state);
+	
+	Transition start_running("start_running", "player_idle", "player_running");
+	upcontroller->add_transition(start_running);
+	upcontroller->add_bool_condition("start_running", "is_running", true);
+
+	Transition stop_running("stop_running", "player_running", "player_idle");
+	upcontroller->add_transition(stop_running);
+	upcontroller->add_bool_condition("stop_running", "is_running", false);
+	
+	
+
+	std::cout << (*upcontroller);
+	return upcontroller;
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -123,8 +158,11 @@ int main(int argc, char *argv[])
 	glUniform1f(sampler_loc, 0);
 
 	///////////////////--------------------------Initialization code------------------ ///////////////////////////////////////////////////////////////////////////
-	Player_idle_state::switch_anim_frames({ 0, 1 });
-	Player_running_state::switch_anim_frames({ 3, 4, 5 });
+	//Player_idle_state::switch_anim_frames({ 0, 1 });
+	//Player_running_state::switch_anim_frames({ 3, 4, 5 });
+
+	std::unique_ptr<Animator_controller> upanim_controller = get_player_anim_controller();
+
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -136,7 +174,7 @@ int main(int argc, char *argv[])
 	glUniform1f(sprite_shader.get_uniform_location("tileset"), 0);
 
 	Player player(cgm::vec3(6.0f, 6.0f), cgm::mat4(), AABB_2d() ,cgm::vec2(1.5f, 1.0f));
-	
+	player.set_anim_controller(upanim_controller);
 
 	tgs::Sprite_batch batch(12, player.get_sprite().get_atlas()->get_texture() , sprite_shader);
 	batch.add(player.get_sprite());

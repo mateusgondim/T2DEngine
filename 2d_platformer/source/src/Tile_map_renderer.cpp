@@ -57,7 +57,7 @@ void Tile_map_renderer::setup_buffers(const gls::Shader & shader)
 	for (int i = 0; i != m_tmap_ptr->height(); ++i) {
 		for (int j = 0; j != m_tmap_ptr -> width(); ++j) {
 			cgm::vec3 v_pos0, v_pos1, v_pos2, v_pos3;
-			tgs::Rect rect = m_tmap_ptr->tile_wld_space_coord(i, j);
+			tgs::Rect rect = m_tmap_ptr->tile_wld_space_bounds(i, j);
 
 			v_pos0.x = rect.x;
 			v_pos0.y = rect.y;
@@ -204,22 +204,22 @@ void Tile_map_renderer::set_debug_mode(Debug_options option, const gls::Shader &
 		for (int j = 0; j != m_tmap_ptr->width(); ++j ) { // for each column in the first row get the vertical lines of the grid
 			cgm::vec3 v0, v1;
 			
-			tgs::Rect rect = m_tmap_ptr->tile_wld_space_coord(0, j);
+			tgs::Rect rect = m_tmap_ptr->tile_wld_space_bounds(0, j);
 			v0.x = rect.x;
 			v0.y = rect.y;
 
-			rect = m_tmap_ptr->tile_wld_space_coord(m_tmap_ptr->height() - 1, j);
+			rect = m_tmap_ptr->tile_wld_space_bounds(m_tmap_ptr->height() - 1, j);
 			v1.x = rect.x;
 			v1.y = rect.y - rect.height;
 			position.push_back(v0);
 			position.push_back(v1);
 
 			if (j == m_tmap_ptr->width() - 1) { // last vertical line
-				rect = m_tmap_ptr->tile_wld_space_coord(0, j);
+				rect = m_tmap_ptr->tile_wld_space_bounds(0, j);
 				v0.x = rect.x + rect.width;
 				v0.y = rect.y;
 
-				rect = m_tmap_ptr->tile_wld_space_coord(m_tmap_ptr->height() - 1, j);
+				rect = m_tmap_ptr->tile_wld_space_bounds(m_tmap_ptr->height() - 1, j);
 				v1.x = rect.x + rect.width ;
 				v1.y = rect.y - rect.height;
 				position.push_back(v0);
@@ -231,22 +231,22 @@ void Tile_map_renderer::set_debug_mode(Debug_options option, const gls::Shader &
 		for (int i = 0; i != m_tmap_ptr->height(); ++i) {
 			cgm::vec3 v0, v1;
 
-			tgs::Rect rect = m_tmap_ptr->tile_wld_space_coord(i, 0);
+			tgs::Rect rect = m_tmap_ptr->tile_wld_space_bounds(i, 0);
 			v0.x = rect.x;
 			v0.y = rect.y;
 
-			rect = m_tmap_ptr->tile_wld_space_coord(i, m_tmap_ptr->width() - 1);
+			rect = m_tmap_ptr->tile_wld_space_bounds(i, m_tmap_ptr->width() - 1);
 			v1.x = rect.x + rect.width;
 			v1.y = rect.y;
 			position.push_back(v0);
 			position.push_back(v1);
 
 			if (i == m_tmap_ptr -> height() - 1) {
-				rect = m_tmap_ptr->tile_wld_space_coord(i, 0);
+				rect = m_tmap_ptr->tile_wld_space_bounds(i, 0);
 				v0.x = rect.x;
 				v0.y = rect.y - rect.height;
 
-				rect = m_tmap_ptr->tile_wld_space_coord(i, m_tmap_ptr->width() - 1);
+				rect = m_tmap_ptr->tile_wld_space_bounds(i, m_tmap_ptr->width() - 1);
 				v1.x = rect.x + rect.width;
 				v1.y = rect.y - rect.height;
 				position.push_back(v0);
@@ -317,7 +317,7 @@ void Tile_map_renderer::set_debug_mode(Debug_options option, const gls::Shader &
 					if (tile.m_is_obstacle) { // if it has a collider get the vertices position in the map to draw it
 						std::cout << "tile with id = " << id << "is collidable" << std::endl;
 						cgm::vec3 v0, v1, v2, v3;
-						tgs::Rect rect = m_tmap_ptr->tile_wld_space_coord(i, j);
+						tgs::Rect rect = m_tmap_ptr->tile_wld_space_bounds(i, j);
 						
 						v0.x = rect.x;
 						v0.y = rect.y - rect.height;

@@ -4,7 +4,7 @@
 #include <vector>
 #include "Animation.hpp"
 
-/*Animation_player: class that stores a vector of animation and,
+/*Animation_player: class that stores a vector of animations and,
  * plays the current selected animation using the animation's frames_per_second attribute
  */
 
@@ -12,10 +12,13 @@
 namespace tgs {
 	class Animation_player {
 	public:
-		Animation_player(const std::vector<Animation> & animations);
+		Animation_player() : m_playing(false) {}
+		explicit Animation_player(const std::vector<Animation> & animations);
+		void add_animation(const Animation & animation);
 		void update();
 		void pause();
 		void resume();
+		void start_from_beg();
 		unsigned get_frame() const { return (m_current_frame < 0) ?(m_animations[m_current_animation].get_frame(0)) :(m_animations[m_current_animation].get_frame(m_current_frame) ); } //m_current_frame = -1 before first update
 		bool    is_playing() const { return m_playing; }
 	private:

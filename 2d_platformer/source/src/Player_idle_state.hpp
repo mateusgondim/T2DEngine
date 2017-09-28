@@ -1,21 +1,18 @@
 #ifndef _PLAYER_IDLE_STATE_HPP
 #define _PLAYER_IDLE_STATE_HPP
 
-#include "State.hpp"
-#define  IDLE_STATE_FPS 5
+#include "Gameplay_state.hpp"
+#include "Actor.hpp"
+
 #define  BLINK_INTERVAL 2 // in seconds
 
-class Player_idle_state : public State {
+class Player_idle_state : public Gameplay_state {
 public:
-	Player_idle_state(const std::vector<unsigned> frames, float frames_per_second = IDLE_STATE_FPS) : State(tgs::Animation(frames, frames_per_second)) {}
-	Player_idle_state(float frames_per_second = IDLE_STATE_FPS) : State(tgs::Animation(m_state_anim_frames, frames_per_second ) ) {}
-	virtual State * handle_input(const std::vector<std::pair<Button, Command *>> & stream, Actor & actor);
-	virtual void update(Actor & actor);
-	static  void switch_anim_frames(const std::vector<unsigned> frames) { m_state_anim_frames = frames; }
-private:
-	static std::vector<unsigned> m_state_anim_frames;
-	float  m_blink_timer = BLINK_INTERVAL;
-	bool   m_blinked = false;
+	Gameplay_state *  check_transition(Actor & actor) override;
+	void update(Actor & actor) override;
+//private:
+	//float  m_blink_timer = BLINK_INTERVAL;
+	//bool   m_blinked = false;
 };
 
 

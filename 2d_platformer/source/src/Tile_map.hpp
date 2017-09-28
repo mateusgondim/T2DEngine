@@ -39,8 +39,9 @@ public:
 	int tile_height()  const { return m_tile_height; }
 	const std::vector<Tileset> & get_tilesets() const { return m_tilesets; }
 	int get_tile_id(const int layer, const int row, const int column) const { return m_map[layer][row][column]; }
+	Tile get_tile(const unsigned id) const;
 
-	tgs::Rect tile_wld_space_coord(const unsigned row, const unsigned column) const;
+	tgs::Rect tile_wld_space_bounds(const unsigned row, const unsigned column) const;
 	std::pair<float, float> wld_to_tile_space(const cgm::vec3 & pos) const;
 
 private:

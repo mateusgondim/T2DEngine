@@ -17,9 +17,19 @@ void Tile_map::setup_map(const std::vector<std::vector<std::vector<int>>> & laye
 		}
 	}
 }
+//TODO: THROW EXCEPTION OR CHANGE TO TILE* AND RETURN NULLPTR
+Tile Tile_map::get_tile(const unsigned id) const 
+{
+	for (auto iter = m_tilesets.begin(); iter != m_tilesets.end(); ++iter) {
+		if (iter->is_inside_set(id)) {
+			return iter->get_tile(id);
+		}
+	}
+	return Tile();
+}
 
 //TAKE INTO  CONSIDERATION THE PIXELS PER_WORLD UNIT
-tgs::Rect Tile_map::tile_wld_space_coord(const unsigned row, const unsigned column) const
+tgs::Rect Tile_map::tile_wld_space_bounds(const unsigned row, const unsigned column) const
 {	
 	cgm::vec3 map_space_coord(column * m_tile_width / m_pixels_per_word_unit, (m_height * m_tile_height / m_pixels_per_word_unit) - (row * m_tile_height / m_pixels_per_word_unit), 0.0f);
 	cgm::vec3 wld_space_coord = map_space_coord + m_position;
