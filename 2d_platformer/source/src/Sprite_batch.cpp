@@ -3,10 +3,18 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include <vector>
 #include "Sprite_batch.hpp"
+
 #include "Shader.hpp"
 #include "Texture_2d.hpp"
+#include "Vertex1P1C1UV.hpp"
+#include "Sprite.hpp"
+
+#include "vec2.hpp"
+#include "vec3.hpp"
 #include "vec4.hpp"
+
 
 tgs::Sprite_batch::Sprite_batch(const unsigned max_num_vertices, const tgs::Texture_2d & texture, const gls::Shader & shader, const bool is_static) :
 	m_max_num_vertices(max_num_vertices), m_num_used_vertices(0), 

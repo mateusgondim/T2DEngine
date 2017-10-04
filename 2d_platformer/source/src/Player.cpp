@@ -1,23 +1,23 @@
+#include <iostream>
+
 #include "Player.hpp"
+
+#include "vec2.hpp"
+#include "vec3.hpp"
+#include "mat4.hpp"
+#include "AABB_2d.hpp"
 #include "Gameplay_state.hpp"
 #include "Player_idle_state.hpp"
-#include "Player_running_state.hpp"
-#include "Timer.hpp"
-#include "Animation.hpp"
-#include "Animation_player.hpp"
-#include "vec2.hpp"
-#include "Input_handler.hpp"
-#include "Button.hpp"
-#include "Command.hpp"
-#include <iostream>
-#include <vector>
-#include <algorithm>
+
+
+
+
 
 
 
 
 Player::Player(const cgm::vec3 & position, const cgm::mat4 orientation, const AABB_2d & aabb, const cgm::vec2 & velocity) :
-	Actor(position, orientation, PLAYER_ATLAS, new Player_idle_state ,aabb, velocity, false), m_anim_frame(0), m_life(100)
+	Actor(position, orientation, new Player_idle_state ,aabb, velocity, PLAYER_ATLAS, 16, false), m_anim_frame(0), m_life(100)
 {
 	//std::vector<unsigned> running_frames = { 3, 4, 5 }; // running
 	//std::vector<unsigned> idle_frames = { 0, 1 };
@@ -41,14 +41,16 @@ void Player::handle_input()
 
 }
 //Maybe we have a bug here: If the last frame number of the previous animations was 0, then curr_frame == Animator_controller::get_current_frame() when it switches to the next state 
-void Player::update(const float delta_time) 
+void Player::update() 
 {
 	get_state()->update(*this);
-	unsigned curr_frame = get_panim_controller()->get_current_frame();
-	get_panim_controller()->update();
-	if (curr_frame != get_panim_controller()->get_current_frame()) {
-		get_sprite().update_uv(get_panim_controller()->get_current_frame());
-	}
+	get_sprite().update_animation();
+	/*
+	unsigned curr_frame = get_sprite().get_panim_controller()->get_current_frame();
+	get_sprite().get_panim_controller()->update();
+	if (curr_frame != get_sprite().get_panim_controller()->get_current_frame()) {
+		get_sprite().update_uv(get_sprite().get_panim_controller()->get_current_frame());
+	}*/
 
 }
 

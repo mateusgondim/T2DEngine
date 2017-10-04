@@ -6,18 +6,21 @@
 
 #include <iostream>
 #include <memory>
+
+//cgm
+#include "vec3.hpp"
+#include "mat4.hpp"
+#include "matrix_transform.hpp"
+
 #include "Timer.hpp"
+
+
 #include "Tile_map.hpp"
 #include "Tile_map_renderer.hpp"
 #include "Shader.hpp"
-#include "matrix_transform.hpp"
 #include "tmx_parser.hpp"
-#include "vec3.hpp"
-#include "mat4.hpp"
-#include "Actor.hpp"
-#include "Vertex1P1C1UV.hpp"
 #include "Sprite_batch.hpp"
-#include "Sprite.hpp"
+
 #include "Input_handler.hpp"
 #include "Button.hpp"
 #include "Move_left_command.hpp"
@@ -174,7 +177,7 @@ int main(int argc, char *argv[])
 	glUniform1f(sprite_shader.get_uniform_location("tileset"), 0);
 
 	Player player(cgm::vec3(6.0f, 6.0f), cgm::mat4(), AABB_2d() ,cgm::vec2(1.5f, 1.0f));
-	player.set_anim_controller(upanim_controller);
+	player.get_sprite().set_anim_controller(upanim_controller);
 
 	tgs::Sprite_batch batch(12, player.get_sprite().get_atlas()->get_texture() , sprite_shader);
 	batch.add(player.get_sprite());
@@ -211,7 +214,7 @@ int main(int argc, char *argv[])
 		float frame_time = Timer::instance().get_delta();
 		while (frame_time > 0.0f) {
 			float delta_time = (frame_time >= dt) ?dt :frame_time;
-			player.update(delta_time);
+			player.update();
 			frame_time -= delta_time;
 
 		}

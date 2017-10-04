@@ -19,7 +19,7 @@ public:
 	}
 	Type get_type() const override { return Type::BOOLEAN; }
 	Cond_operator get_operator() const override { return Cond_operator::EQUALITY; }
-	const void *get_comp_value() const override { return static_cast<const void *>(&m_comp_value); }
+	const void *get_comp_value() const override { return &m_comp_value; }
 	
 private:
 	bool m_comp_value;

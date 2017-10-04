@@ -3,8 +3,6 @@
 
 #include <string>
 #include <iostream>
-#include "Button.hpp"
-#include "Command.hpp"
 #include "Animation_player.hpp"
 
 

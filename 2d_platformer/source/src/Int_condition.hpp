@@ -18,7 +18,7 @@ public:
 	bool check(const void * pvalue) const override;
 	Type get_type() const override { return Type::INTEGER; }
 	Cond_operator get_operator() const override { return m_op; }
-	const void *get_comp_value() const override { return static_cast<const void *>(&m_comp_value); }
+	const void *get_comp_value() const override { return &m_comp_value; }
 private:
 	Cond_operator m_op;
 	int m_comp_value;

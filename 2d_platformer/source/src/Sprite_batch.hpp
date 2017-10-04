@@ -6,7 +6,7 @@
 #include "Vertex1P1C1UV.hpp"
 #include "Sprite.hpp"
 #include "Texture_2d.hpp"
-#include <memory>
+
 /*Sprite_batch: part of the tile graphics system, this class is responsable for
  * creating a vao for rendering a group of sprites.
  * Every batch has a texture associated with it and a buffer object to store the sprite's 

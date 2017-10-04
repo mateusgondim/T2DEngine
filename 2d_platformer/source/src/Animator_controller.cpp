@@ -34,12 +34,12 @@ void Animator_controller::update()
 						//get the parameter current value
 						 iter_bool = m_bool_parameters.find(param_name);
 						if (iter_bool != m_bool_parameters.end()) { //parameter found, is a boolean
-							expression_value = (*iter_condition)->check(static_cast<const void *>(&(iter_bool->second)));
+							expression_value = (*iter_condition)->check(&(iter_bool->second));
 						}
 						else {
 							auto iter_trigger = m_trigger_parameters.find(param_name);
 							if (iter_trigger != m_trigger_parameters.end()) { //parameter found, is a trigger
-							 expression_value = (*iter_condition)->check(static_cast<const void *>(&(iter_trigger->second)));
+							 expression_value = (*iter_condition)->check(&(iter_trigger->second));
 							}
 							else {
 								//error, parameter not found
@@ -52,7 +52,7 @@ void Animator_controller::update()
 						//get the parameter's current value 
 						iter_int = m_int_parameters.find(param_name);
 						if (iter_int != m_int_parameters.end()) {
-							expression_value = (*iter_condition)->check(static_cast<const void *>(&(iter_int->second)));
+							expression_value = (*iter_condition)->check(&(iter_int->second));
 						}
 						else {
 							std::cerr << __FUNCTION__ << ": Error, int parameter " << param_name << " not found" << std::endl;

@@ -7,7 +7,7 @@
 #include <memory>
 
 
-void Transition::add_integer_condition(const std::string & param_name, const Int_condition::Cond_operator & op, const int icomp_value) 
+void Transition::add_integer_condition(const std::string & param_name, const Condition::Cond_operator & op, const int icomp_value) 
 {
 	m_upconditions.push_back(std::make_shared<Int_condition>(param_name, op, icomp_value));
 }

@@ -13,6 +13,12 @@
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Tile_map_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Renderable_game_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -22,9 +28,6 @@
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Texture_2d_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Sprite_atlas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -32,6 +35,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Animation_player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Int_condition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Transition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Animation_state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Animator_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_idle_state.cpp">
@@ -90,7 +105,25 @@
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Actor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\State.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Condition.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Int_condition.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Bool_condition.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Transition.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Animation_state.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Animator_controller.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Gameplay_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_idle_state.hpp">

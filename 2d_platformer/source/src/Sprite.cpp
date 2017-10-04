@@ -1,8 +1,9 @@
 #include "Sprite.hpp"
 #include "Sprite_atlas_manager.hpp"
 #include "Rect.hpp"
+#include "vec3.hpp"
 #include "vec2.hpp"
-#include "Rect.hpp"
+#include <string>
 #include <iostream>
 #include <fstream>
 
@@ -73,4 +74,38 @@ void tgs::Sprite::update_pos(const cgm::vec3 & pos, const bool facing_left)
 	m_vertices_pos[5] = m_vertices_pos[0];
 
 	m_scale.x = (facing_left) ? (m_scale.x) : (-m_scale.x);
+}
+
+void tgs::Sprite::set_anim_controller(std::unique_ptr<Animator_controller> & upanim_controller)
+{
+	if (!m_upanim_controller) {
+		m_upanim_controller.reset(upanim_controller.release());
+	}
+}
+
+bool tgs::Sprite::is_animated() const 
+{
+	if (m_upanim_controller) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void tgs::Sprite::update_animation() 
+{
+	if (m_upanim_controller) { //if this sprite is associated with a Animator_controller
+		unsigned prev_frame = m_upanim_controller->get_current_frame();
+		m_upanim_controller->update();
+		unsigned curr_frame = m_upanim_controller->get_current_frame();
+		if (curr_frame != prev_frame) {
+			update_uv(curr_frame);
+		}
+	}
+	else {
+#ifndef NDEBUG
+		std::cerr << "ERROR: " << __FUNCTION__ << " This sprite is not associated with a a Animator_controller" << std::endl;
+#endif // !NDEBUG
+	}
 }

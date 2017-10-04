@@ -6,8 +6,7 @@
 #include <memory>
 #include <iostream>
 #include "Condition.hpp"
-#include "Int_condition.hpp"
-#include "Bool_condition.hpp"
+
 
 /* Transition: This class represents a transition from two states on a
  * state machine, each transition have a set of conditions. 

@@ -20,7 +20,7 @@ Gameplay_state * Player_running_state::check_transition(Actor & actor)
 			if ((iter->first).m_state == RELEASED) {
 				std::cout << "chaging state to Player_idle" << std::endl;
 				//set the paramter on the animation state machine to make the transition to the new animation
-				actor.get_panim_controller()->set_bool("is_running", false);
+				actor.get_sprite().get_panim_controller()->set_bool("is_running", false);
 
 				return new Player_idle_state;
 			}
@@ -33,7 +33,7 @@ Gameplay_state * Player_running_state::check_transition(Actor & actor)
 			if ((iter->first).m_state == RELEASED) {
 				std::cout << "changing state to player_idle" << std::endl;
 				//set the paramter on the animation state machine to make the transition to the new animation
-				actor.get_panim_controller()->set_bool("is_running", false);
+				actor.get_sprite().get_panim_controller()->set_bool("is_running", false);
 
 				return new Player_idle_state;
 			}

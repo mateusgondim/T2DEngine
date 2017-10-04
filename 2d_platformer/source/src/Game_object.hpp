@@ -16,7 +16,7 @@ public:
 	cgm::vec3 &	get_position() { return m_position; }
 	cgm::mat4 & object_to_upright() { return m_orientation; }
 	
-	virtual void update(const float delta_time) = 0;
+	virtual void update() = 0;
 private:
 	cgm::vec3						m_position;
 	cgm::mat4						m_orientation;

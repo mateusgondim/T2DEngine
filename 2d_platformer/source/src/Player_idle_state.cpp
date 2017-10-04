@@ -22,7 +22,7 @@ Gameplay_state * Player_idle_state::check_transition(Actor & actor)
 			std::cout << "chaging state to Player_running_state| dir= left" << std::endl;
 			actor.set_facing_direction(true);     //change to running left
 		    //set the parameter on the  animation state machine
-			actor.get_panim_controller()->set_bool("is_running", true);
+			actor.get_sprite().get_panim_controller()->set_bool("is_running", true);
 			return new Player_running_state();
 		}
 	}
@@ -34,7 +34,7 @@ Gameplay_state * Player_idle_state::check_transition(Actor & actor)
 			std::cout << "Changing state to Player_running_state | dir = right" << std::endl;
 			
 			//set the parameter on the animation state machine
-			actor.get_panim_controller()->set_bool("is_running", true);
+			actor.get_sprite().get_panim_controller()->set_bool("is_running", true);
 
 			actor.set_facing_direction(false);///change to running right
 			return new Player_running_state();

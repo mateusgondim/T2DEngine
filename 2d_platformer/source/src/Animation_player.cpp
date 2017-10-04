@@ -1,8 +1,10 @@
+#include <vector>
+#include <iostream>
+
 #include "Animation_player.hpp"
 #include "Animation.hpp"
 #include "Timer.hpp"
-#include <vector>
-#include <iostream>
+
 
 tgs::Animation_player::Animation_player(const std::vector<Animation> & animations) : m_animations(animations), m_current_animation(0), m_playing(true), m_current_frame(-1)
 {
