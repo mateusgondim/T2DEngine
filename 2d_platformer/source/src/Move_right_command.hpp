@@ -7,7 +7,7 @@
 
 class Move_right_command : public Command {
 public:
-	virtual void execute(Actor & actor) { actor.move_right();}
+	virtual void execute(Actor & actor) { ; }
 };
 
 #endif // !_MOVE_RIGHT_COMMAND_HPP

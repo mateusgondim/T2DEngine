@@ -7,7 +7,7 @@
 
 class Move_up_command : public Command {
 public:
-	virtual void execute(Actor & actor) { actor.move_up();}
+	virtual void execute(Actor & actor) { ;}
 
 };
 

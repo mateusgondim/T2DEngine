@@ -270,6 +270,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\source\src\vec4.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\source\src\mat4.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\source\src\matrix_transform.hpp" />
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\source\src\vec2.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\source\src\vec3.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\source\src\mat4.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\source\src\matrix_transform.cpp"  />

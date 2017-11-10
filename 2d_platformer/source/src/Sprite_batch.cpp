@@ -85,7 +85,7 @@ void tgs::Sprite_batch::add(const tgs::Sprite & sprite)
 			<< m_num_used_vertices << " vertices and can only store " << m_max_num_vertices << std::endl;
 	}
 	else {
-		std::vector<Vertex1P1C1UV> vertices;
+		std::vector<Vertex1P1C1UV> vertices; //change this!! it involvers dynamic memory allocation, maybe add a data member to Sprite_batch
 		for (int i = 0; i < position.size(); ++i) {
 			Vertex1P1C1UV vertex(position[i], cgm::vec4(), texture_coord[i]);
 			vertices.push_back(vertex);

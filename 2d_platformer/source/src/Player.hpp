@@ -9,7 +9,7 @@
 #include "AABB_2d.hpp"
 #include "Actor.hpp"
 
-enum Input { MOVE_LEFT, MOVE_RIGHT, MOVE_DOWN, MOVE_UP, RELEASE_LEFT, RELEASE_RIGHT, RELEASE_DOWN, RELEASE_UP, JUMP, DUCK, ATTACK };
+//enum Input { MOVE_LEFT, MOVE_RIGHT, MOVE_DOWN, MOVE_UP, RELEASE_LEFT, RELEASE_RIGHT, RELEASE_DOWN, RELEASE_UP, JUMP, DUCK, ATTACK };
 
 class Player : public Actor {
 public:
@@ -19,10 +19,6 @@ public:
 	void handle_input();
 	void update() override;
 	
-	void move_up();
-	void move_down();
-	void move_left();
-	void move_right();
 
 private:
 	int					m_anim_frame;

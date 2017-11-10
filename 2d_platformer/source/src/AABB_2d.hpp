@@ -4,10 +4,10 @@
 
 struct AABB_2d final {
 	AABB_2d() = default;
-	AABB_2d(const cgm::vec2 & max, const cgm::vec2 & min) : p_max(max), p_min(min)  {}
+	AABB_2d(const cgm::vec2 & min, const cgm::vec2 & max) : p_min(min), p_max(max)  {}
 	
-	cgm::vec2 p_max;
 	cgm::vec2 p_min;
+	cgm::vec2 p_max;
 };
 
 #endif // !_AABB_2D_HPP

@@ -9,15 +9,8 @@
 #include "Gameplay_state.hpp"
 #include "Player_idle_state.hpp"
 
-
-
-
-
-
-
-
 Player::Player(const cgm::vec3 & position, const cgm::mat4 orientation, const AABB_2d & aabb, const cgm::vec2 & velocity) :
-	Actor(position, orientation, new Player_idle_state ,aabb, velocity, PLAYER_ATLAS, 16, false), m_anim_frame(0), m_life(100)
+	Actor(position, orientation, PLAYER_ATLAS, new Player_idle_state ,aabb, velocity, false), m_anim_frame(0), m_life(100)
 {
 	//std::vector<unsigned> running_frames = { 3, 4, 5 }; // running
 	//std::vector<unsigned> idle_frames = { 0, 1 };
@@ -43,8 +36,9 @@ void Player::handle_input()
 //Maybe we have a bug here: If the last frame number of the previous animations was 0, then curr_frame == Animator_controller::get_current_frame() when it switches to the next state 
 void Player::update() 
 {
-	get_state()->update(*this);
 	get_sprite().update_animation();
+	get_state()->update(*this);
+	
 	/*
 	unsigned curr_frame = get_sprite().get_panim_controller()->get_current_frame();
 	get_sprite().get_panim_controller()->update();
@@ -54,25 +48,6 @@ void Player::update()
 
 }
 
-void Player::move_left() 
-{
-	std::cout << "Player: Moving left" << std::endl;
-}
-
-void Player::move_right() 
-{
-	std::cout << "Player: Moving right" << std::endl;
-}
-void Player::move_down() 
-{
-	std::cout << "Player: Moving down" << std::endl;
-
-}
-void Player::move_up() 
-{
-	std::cout << "Player: Moving up" << std::endl;
-
-}
 /*
 //SWITCH ON STATE FIRST!
 void Player::update(const float delta_time) {

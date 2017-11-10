@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <cmath>
 #include "Tile.hpp"
 #include "Tileset.hpp"
 #include "vec3.hpp"
@@ -43,6 +44,9 @@ public:
 
 	tgs::Rect tile_wld_space_bounds(const unsigned row, const unsigned column) const;
 	std::pair<float, float> wld_to_tile_space(const cgm::vec3 & pos) const;
+
+	float world_to_tile_displacement_x(float t_x) const { return t_x / (m_tile_width / m_pixels_per_word_unit) ; }
+	float world_to_tile_displacement_y(float t_y) const { return t_y / (m_tile_height / m_pixels_per_word_unit); }
 
 private:
 	void setup_map(const std::vector<std::vector<std::vector<int>>> & layers);

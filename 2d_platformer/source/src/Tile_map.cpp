@@ -46,8 +46,8 @@ tgs::Rect Tile_map::tile_wld_space_bounds(const unsigned row, const unsigned col
 //get the row and column from a point in world space
 std::pair<float, float> Tile_map::wld_to_tile_space(const cgm::vec3 & pos) const 
 {
-	float rows = (m_height * m_tile_height / m_pixels_per_word_unit) - ((pos.y - m_position.y) / m_tile_height / m_pixels_per_word_unit);
-	float columns =  (pos.x - m_position.x) / m_tile_width / m_pixels_per_word_unit;
+	float rows = (m_height * m_tile_height / m_pixels_per_word_unit) - ((pos.y - m_position.y) / (m_tile_height / m_pixels_per_word_unit));
+	float columns =  (pos.x - m_position.x) / (m_tile_width / m_pixels_per_word_unit);
 
 	return{ rows, columns };
 }

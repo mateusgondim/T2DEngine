@@ -21,12 +21,16 @@
 #include "tmx_parser.hpp"
 #include "Sprite_batch.hpp"
 
-#include "Input_handler.hpp"
+//physics
+#include "Body_2d.hpp"
+#include "Collision_listener.hpp"
+#include "Game_coll_listener.hpp"
+#include "World.hpp"
+#include "Physics_manager.hpp"
+
 #include "Button.hpp"
-#include "Move_left_command.hpp"
-#include "Move_right_command.hpp"
-#include "Move_down_command.hpp"
-#include "Move_up_command.hpp"
+#include "Input_manager.hpp"
+
 #include "Player_idle_state.hpp"
 #include "Player_running_state.hpp"
 #include "Animation.hpp"
@@ -42,6 +46,11 @@ float curr_time;
 float last_time;
 float dt = 1.0F / FRAME_RATE;
 
+// Engine subsystems singletons
+physics_2d::Physics_manager g_physics_manager;
+Timer                       g_timer;
+Input_manager               g_input_manager;
+
 void error_callback(int error, const char * descr)
 {
 	std::cerr << "GLFW ERROR: " << descr << std::endl;
@@ -49,23 +58,27 @@ void error_callback(int error, const char * descr)
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	Input_handler::instance().key_callback(window, key, scancode, action, mods);
+	g_input_manager.key_callback(window, key, scancode, action, mods);
 }
 
 std::unique_ptr<Animator_controller> get_player_anim_controller() 
 {
 	tgs::Animation_player player_idle_anim({ tgs::Animation({ 0, 1 }, 5) });
 	tgs::Animation_player player_running_anim({ tgs::Animation({3, 4, 5}, 8) });
+	tgs::Animation_player player_jumping_anim({ tgs::Animation({7}, 1) });
 
 	Animation_state player_idle_state("player_idle", player_idle_anim);
 	Animation_state player_running_state("player_running", player_running_anim);
+	Animation_state player_jumping_state("player_jumping", player_jumping_anim);
 	
 	std::unique_ptr<Animator_controller> upcontroller(new Animator_controller());
 	upcontroller->add_bool_param("is_running");
+	upcontroller->add_bool_param("is_jumping");
 
 	upcontroller->add_state(player_idle_state);
 	upcontroller->add_state(player_running_state);
-	
+	upcontroller->add_state(player_jumping_state);
+
 	Transition start_running("start_running", "player_idle", "player_running");
 	upcontroller->add_transition(start_running);
 	upcontroller->add_bool_condition("start_running", "is_running", true);
@@ -73,6 +86,25 @@ std::unique_ptr<Animator_controller> get_player_anim_controller()
 	Transition stop_running("stop_running", "player_running", "player_idle");
 	upcontroller->add_transition(stop_running);
 	upcontroller->add_bool_condition("stop_running", "is_running", false);
+
+	Transition start_jumping_from_idle("start_jumping_from_idle", "player_idle", "player_jumping");
+	upcontroller->add_transition(start_jumping_from_idle);
+	upcontroller->add_bool_condition("start_jumping_from_idle", "is_jumping", true);
+
+	Transition stop_jumping_to_idle("stop_jumping_to_idle", "player_jumping", "player_idle");
+	upcontroller->add_transition(stop_jumping_to_idle);
+	upcontroller->add_bool_condition("stop_jumping_to_idle", "is_jumping", false);
+	upcontroller->add_bool_condition("stop_jumping_to_idle", "is_running", false);
+
+	Transition start_jumping_from_running("start_jumping_from_running", "player_running", "player_jumping");
+	upcontroller->add_transition(start_jumping_from_running);
+	upcontroller->add_bool_condition("start_jumping_from_running", "is_jumping", true);
+	//upcontroller->add_booll_condition("start_jumping_from_running", "is_running", true);
+
+	Transition stop_jumping_to_running("stop_jumping_to_running", "player_jumping", "player_running");
+	upcontroller->add_transition(stop_jumping_to_running);
+	upcontroller->add_bool_condition("stop_jumping_to_running", "is_jumping", false);
+	upcontroller->add_bool_condition("stop_jumping_to_running", "is_running", true);
 	
 	
 
@@ -106,16 +138,7 @@ int main(int argc, char *argv[])
 		std::cerr << "Failed to initialize GLEW" << std::endl;
 		return -1;
 	}
-	Move_left_command	m_left_command;
-	Move_right_command	m_right_command;
-	Move_down_command	m_down_command;
-	Move_up_command		m_up_command;
-	
 
-	Input_handler::instance().add_button_n_cmd(Button(KEY_A), &m_left_command);
-	Input_handler::instance().add_button_n_cmd(Button(KEY_D), &m_right_command);
-	Input_handler::instance().add_button_n_cmd(Button(KEY_S), &m_down_command);
-	Input_handler::instance().add_button_n_cmd(Button(KEY_W), &m_up_command);
 	
 	glfwSetKeyCallback(window, key_callback);
 
@@ -124,6 +147,7 @@ int main(int argc, char *argv[])
 
 	glViewport(0, 0, vport_width, vport_height);
 
+	// Load tile map
 	Tile_map tile_map;
 
 	std::string path = argv[1];
@@ -161,11 +185,23 @@ int main(int argc, char *argv[])
 	glUniform1f(sampler_loc, 0);
 
 	///////////////////--------------------------Initialization code------------------ ///////////////////////////////////////////////////////////////////////////
+	//initialize physics engine
+	Game_coll_listener game_coll_listener;
+	g_physics_manager.init(&tile_map);
+	g_physics_manager.get_world()->set_collision_listener(&game_coll_listener);
+	//Initialize timmer
+	g_timer.init();
+	// Initialize Input_manager
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_LEFT, Button(Input_manager::KEYS::KEY_A));
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::JUMP, Button(Input_manager::KEYS::KEY_W));
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_RIGHT, Button(Input_manager::KEYS::KEY_D));
+	
 	//Player_idle_state::switch_anim_frames({ 0, 1 });
 	//Player_running_state::switch_anim_frames({ 3, 4, 5 });
 
 	std::unique_ptr<Animator_controller> upanim_controller = get_player_anim_controller();
 
+	
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -176,9 +212,22 @@ int main(int argc, char *argv[])
 	glUniformMatrix4fv(sprite_shader.get_uniform_location("P"), 1, GL_FALSE, P.value_ptr());
 	glUniform1f(sprite_shader.get_uniform_location("tileset"), 0);
 
+	/// Player setup
 	Player player(cgm::vec3(6.0f, 6.0f), cgm::mat4(), AABB_2d() ,cgm::vec2(1.5f, 1.0f));
-	player.get_sprite().set_anim_controller(upanim_controller);
+	
+	AABB_2d p_aabb(cgm::vec2(-0.75f, -0.75f), cgm::vec2(0.75f, 0.75f));
+	cgm::vec2 pos(player.get_position().x, player.get_position().y);
+	p_aabb.p_max += pos;
+	p_aabb.p_min += pos;
+	physics_2d::Body_2d *pbody = g_physics_manager.get_world()->create_body_2d(physics_2d::Body_2d::Entity_types::DYNAMIC, pos, 1.0f, p_aabb);
+	
+	pbody->set_velocity_threshold(cgm::vec2(6.0f, 12.0f));
+	player.set_body_2d(pbody);
+	pbody->set_user_data(static_cast<Game_object*>(&player));
+	std::cout << "player aabb in world space: max = " << p_aabb.p_max.x << ", " << p_aabb.p_max.y  << " min = " << p_aabb.p_min.x << ", " << p_aabb.p_min.y << std::endl;
 
+	player.get_sprite().set_anim_controller(upanim_controller);
+	/////////////////////////////////////////////////////////////////////
 	tgs::Sprite_batch batch(12, player.get_sprite().get_atlas()->get_texture() , sprite_shader);
 	batch.add(player.get_sprite());
 	
@@ -203,23 +252,64 @@ int main(int argc, char *argv[])
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	curr_time = last_time = glfwGetTime();
+	
+	//last_time = glfwGetTime();
+	float lag = 0.0f;
+	//float elapsed; // is delta
+	//g_timer.init();
+	
+	float bigger_dt = -1;
+	float smmalest_dt = 100;
+	unsigned c = 0;
+	bool on_ground = false;
 	while (!glfwWindowShouldClose(window)) {
-		
+		//int i = 0;
+		//float physics_update_dt;
 		//last_time = curr_time;
 		//curr_time = glfwGetTime();
-		Timer::instance().update();
-		player.handle_input();
+		//elapsed = curr_time - last_time;
+		//last_time = curr_time;
+		
 		//float frame_time = curr_time - last_time;
-		float frame_time = Timer::instance().get_delta();
-		while (frame_time > 0.0f) {
-			float delta_time = (frame_time >= dt) ?dt :frame_time;
-			player.update();
-			frame_time -= delta_time;
+		g_timer.update();
+		lag += g_timer.get_dt();
 
+		float frame_time = g_timer.get_dt();
+		//std::cout << "delta time shold be " << dt << " | dt = " << frame_time << std::endl;
+		
+		player.handle_input();
+		
+		bool  lagging = (frame_time > dt) ? true :false;
+		if (lagging) {
+			std::cout << "WE ARE BEHIND SCHEDULE by !!!!!" << frame_time - dt << std::endl;
 		}
-		
-		
+		else {
+			std::cout << "WE ARE ON SCHEDULE" << std::endl;
+		}
+
+		if (lag >= bigger_dt) {
+			bigger_dt = frame_time;
+		}
+
+		if (frame_time < smmalest_dt && (c > 0)) {
+			smmalest_dt = frame_time;
+		}
+		else {
+			c = 1;
+		}
+		while (lag >= dt) {
+			//++i;
+			//float delta_time = (frame_time >= dt) ?dt :frame_time;
+			g_physics_manager.get_world()->update();
+			
+			//std::cout << "frame time = " << frame_time << " | delta_time = " << delta_time << std::endl;
+			//frame_time -= delta_time;
+			lag -= dt;
+			
+ 		}
+		//std::cout <<  "RENDERING AFTER " << i << " world.update() calls" << std::endl;
+		player.update();
+		//std::cout << "PLAYER WLD SPACE POS = (" << player.get_body_2d()->get_position().x << ", " << player.get_body_2d()->get_position().y << ")" << std::endl;
 		glfwGetFramebufferSize(window, &vport_width, &vport_height);
 
 		glViewport(0, 0, vport_width, vport_height);
@@ -234,6 +324,10 @@ int main(int argc, char *argv[])
 
 		batch.add(player.get_sprite());
 	}
+
+	std::wcout << "[min dt, max dt] = [" << smmalest_dt << ", " << bigger_dt << "]" << std::endl;
+
+	g_physics_manager.shut_down();
 	glfwTerminate();
 	return 0;
 }

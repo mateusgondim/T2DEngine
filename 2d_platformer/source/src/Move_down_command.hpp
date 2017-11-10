@@ -6,7 +6,7 @@
 
 class Move_down_command : public Command {
 public:
-	virtual void execute(Actor & actor) { actor.move_down(); }
+	virtual void execute(Actor & actor) { ; }
 };
 
 #endif // !_MOVE_DOWN_COMMAND_HPP

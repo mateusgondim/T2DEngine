@@ -2,6 +2,8 @@
 #define _GAMEPLAY_STATE_HPP
 
 #include "Actor.hpp"
+#include "Body_2d.hpp"
+#include "AABB_2d.hpp"
 
 
 //------------------------------------------------------------------------
@@ -16,8 +18,14 @@ class Gameplay_state {
 public:
 	Gameplay_state() = default;
 	virtual ~Gameplay_state() {}
+	
 	virtual Gameplay_state *  check_transition(Actor & actor) = 0;
 	virtual void update(Actor & actor) = 0;
+	
+	//virtual void begin_body_collision(physics_2d::Body_2d & body) const = 0;
+	//virtual void end_body_collision(physics_2d::Body_2d & body) const = 0;
+	virtual void begin_tile_collision(Actor & actor, const AABB_2d & tile_aabb) = 0;
+	virtual void end_tile_collision(Actor & actor, const AABB_2d & tile_aabb) = 0;
 };
 
 

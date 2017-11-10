@@ -16,9 +16,6 @@
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Renderable_game_object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -55,6 +52,18 @@
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_running_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_jumping_state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Game_coll_listener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Body_2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -64,7 +73,7 @@
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Input_handler.cpp">
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Input_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player.cpp">
@@ -99,7 +108,7 @@
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Game_object.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Renderable_game_object.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Ren_coll_game_object.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Actor.hpp">
@@ -132,19 +141,25 @@
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_running_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Command.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_jumping_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Move_left_command.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Collision_listener.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Move_right_command.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Game_coll_listener.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Move_up_command.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Body_2d.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Move_down_command.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Tile_contact.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Physics_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player.hpp">
@@ -165,7 +180,7 @@
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Button.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Input_handler.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Input_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Sprite.hpp">
