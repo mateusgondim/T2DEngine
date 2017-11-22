@@ -12,7 +12,7 @@ namespace physics_2d {
 		~Physics_manager() {}
 		
 		World * get_world() { return m_pworld; }
-		void init(Tile_map *pmap, const cgm::vec2 & gravity = cgm::vec2(0.0f, -26.0f)) 
+		void init(Tile_map *pmap, const cgm::vec2 & gravity = cgm::vec2(0.0f, -1.30f)) 
 		{ 
 			m_pworld = new World(gravity); 
 			m_pworld->set_tile_map(pmap);

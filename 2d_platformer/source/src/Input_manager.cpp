@@ -188,6 +188,30 @@ void Input_manager::key_callback(GLFWwindow* window, int key, int scancode, int 
 #endif // !NDEBUG
 		button.m_bound_key = KEY_Q;
 		break;
+	case GLFW_KEY_LEFT:
+#ifndef NDEBUG
+		key_name = "LEFT";
+#endif // !NDEBUG
+		button.m_bound_key = KEY_LEFT;
+		break;
+	case GLFW_KEY_RIGHT:
+#ifndef NDEBUG
+		key_name = "RIGHT";
+#endif // !NDEBUG
+		button.m_bound_key = KEY_RIGHT;
+		break;
+	case GLFW_KEY_DOWN:
+#ifndef NDEBUG
+		key_name = "DOWN";
+#endif // !NDEBUG
+		button.m_bound_key = KEY_DOWN;
+		break;
+	case GLFW_KEY_UP:
+#ifndef NDEBUG
+		key_name = "UP";
+#endif // !NDEBUG
+		button.m_bound_key = KEY_UP;
+		break;
 	default:
 		std::cerr << __FUNCTION__ << " : unkown keycode" << std::endl;
 		return;
@@ -217,7 +241,7 @@ void Input_manager::key_callback(GLFWwindow* window, int key, int scancode, int 
 	}
 
 #ifndef NDEBUG
-	std::cout << __FUNCTION__ << " DEBUG: " << "key: " << key_name << " | action: " << action_name << std::endl;
+	//std::cout << __FUNCTION__ << " DEBUG: " << "key: " << key_name << " | action: " << action_name << std::endl;
 #endif // !NDEBUG
 
 	m_buttons[button.m_bound_key].update(new_action);

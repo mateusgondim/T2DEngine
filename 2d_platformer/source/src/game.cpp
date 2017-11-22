@@ -192,9 +192,12 @@ int main(int argc, char *argv[])
 	//Initialize timmer
 	g_timer.init();
 	// Initialize Input_manager
-	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_LEFT, Button(Input_manager::KEYS::KEY_A));
-	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::JUMP, Button(Input_manager::KEYS::KEY_W));
-	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_RIGHT, Button(Input_manager::KEYS::KEY_D));
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_LEFT, Button(Input_manager::KEYS::KEY_LEFT));
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::JUMP, Button(Input_manager::KEYS::KEY_S));
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_RIGHT, Button(Input_manager::KEYS::KEY_RIGHT));
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::CLIMB, Button(Input_manager::KEYS::KEY_UP));
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_UP, Button(Input_manager::KEYS::KEY_UP));
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_DOWN, Button(Input_manager::KEYS::KEY_DOWN));
 	
 	//Player_idle_state::switch_anim_frames({ 0, 1 });
 	//Player_running_state::switch_anim_frames({ 3, 4, 5 });
@@ -215,7 +218,7 @@ int main(int argc, char *argv[])
 	/// Player setup
 	Player player(cgm::vec3(6.0f, 6.0f), cgm::mat4(), AABB_2d() ,cgm::vec2(1.5f, 1.0f));
 	
-	AABB_2d p_aabb(cgm::vec2(-0.75f, -0.75f), cgm::vec2(0.75f, 0.75f));
+	AABB_2d p_aabb(cgm::vec2(-0.5f, -0.75f), cgm::vec2(0.5f, 0.75f));
 	cgm::vec2 pos(player.get_position().x, player.get_position().y);
 	p_aabb.p_max += pos;
 	p_aabb.p_min += pos;
@@ -271,6 +274,8 @@ int main(int argc, char *argv[])
 		//last_time = curr_time;
 		
 		//float frame_time = curr_time - last_time;
+		std::cout << "FPS: " << g_timer.get_fps() << std::endl;
+
 		g_timer.update();
 		lag += g_timer.get_dt();
 
@@ -281,7 +286,7 @@ int main(int argc, char *argv[])
 		
 		bool  lagging = (frame_time > dt) ? true :false;
 		if (lagging) {
-			std::cout << "WE ARE BEHIND SCHEDULE by !!!!!" << frame_time - dt << std::endl;
+			std::cout << "WE ARE BEHIND SCHEDULE by !!!!! " << (frame_time - dt) * 1000.0f << std::endl;
 		}
 		else {
 			std::cout << "WE ARE ON SCHEDULE" << std::endl;
@@ -325,7 +330,7 @@ int main(int argc, char *argv[])
 		batch.add(player.get_sprite());
 	}
 
-	std::wcout << "[min dt, max dt] = [" << smmalest_dt << ", " << bigger_dt << "]" << std::endl;
+	std::wcout << "[min dt, max dt] = [" << smmalest_dt * 1000.0f << ", " << bigger_dt * 1000.0f << "]" << std::endl;
 
 	g_physics_manager.shut_down();
 	glfwTerminate();

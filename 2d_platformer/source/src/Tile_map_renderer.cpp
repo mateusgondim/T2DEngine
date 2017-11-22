@@ -396,14 +396,14 @@ void Tile_map_renderer::switch_debug_option(Debug_options option, const bool val
 void Tile_map_renderer::render(const gls::Shader & shader) 
 {
 	shader.use();
-	glCheckError();
+	//glCheckError();
 	
 	(m_tmap_ptr->get_tilesets())[0].get_texture().use();
 	
 	glBindVertexArray(m_VAO);
-	glCheckError();
+	//glCheckError();
 	glDrawArrays(GL_TRIANGLES, 0 ,m_vertices_pos.size());
-	glCheckError();
+	//glCheckError();
 
 	glBindVertexArray(0);
 	
@@ -415,18 +415,18 @@ void Tile_map_renderer::render(const gls::Shader & shader)
 	if (m_debug_flags[DISPLAY_GRID] && (glIsVertexArray(m_debug_VAOS[DISPLAY_GRID]) == GL_TRUE) ) {
 		m_debug_pshaders[DISPLAY_GRID]->use();
 		glBindVertexArray(m_debug_VAOS[DISPLAY_GRID]);
-		glCheckError();
+		//glCheckError();
 		glDrawArrays(GL_LINES, 0, (m_tmap_ptr-> width() + m_tmap_ptr-> height() + 2 ) * 2 );
-		glCheckError();
+		//glCheckError();
 		glBindVertexArray(0);
 
 	}
 	if (m_debug_flags[DISPLAY_COLLIDERS] && (glIsVertexArray(m_debug_VAOS[DISPLAY_COLLIDERS]) == GL_TRUE) && (m_debug_num_colliders > 0) ) {
 		m_debug_pshaders[DISPLAY_COLLIDERS]->use();
 		glBindVertexArray(m_debug_VAOS[DISPLAY_COLLIDERS]);
-		glCheckError();
+		//glCheckError();
 		glDrawArrays(GL_TRIANGLES, 0, 6 * m_debug_num_colliders);
-		glCheckError();
+		//glCheckError();
 		glBindVertexArray(0);
 	}
 #endif

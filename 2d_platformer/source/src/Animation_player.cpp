@@ -42,7 +42,7 @@ void tgs::Animation_player::update()
 	}
 	m_next_frame_time = g_timer.get_time() + m_seconds_per_frame; //calculate when to switch to next frame
 
-	std::cout << "current frame: " << m_current_frame << "  next frame time: " << m_next_frame_time << std::endl;
+	//std::cout << "current frame: " << m_current_frame << "  next frame time: " << m_next_frame_time << std::endl;
 }
 
 //pauses the current animation

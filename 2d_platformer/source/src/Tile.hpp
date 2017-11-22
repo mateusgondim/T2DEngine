@@ -11,6 +11,8 @@ struct Tile {
 	unsigned    m_tileset_coord   =   0;
 	//TODO: sound, is_obstacle, is_stairs etc
 	bool	    m_is_obstacle     = false;
+	bool        m_is_ladder       = false;
+	bool        m_is_one_way      = false;
 };
 
 #endif // !_TILE_HPP

@@ -336,6 +336,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_idle_state.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_running_state.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_jumping_state.hpp" />
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_climbing_state.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Collision_listener.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Game_coll_listener.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Body_2d.hpp" />
@@ -376,6 +377,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_idle_state.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_running_state.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_jumping_state.cpp"  />
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Player_climbing_state.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Game_coll_listener.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Body_2d.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp"  />

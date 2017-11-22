@@ -183,6 +183,12 @@ int load_tileset(const std::string & map_file_dir ,const std::string & header, T
 						if (property_name == "is_obstacle") {
 							ptiles[tile_id - firstgid].m_is_obstacle = bvalue;
 						}
+						else if (property_name == "is_ladder") {
+							ptiles[tile_id - firstgid].m_is_ladder = bvalue;
+						}
+						else if (property_name == "is_one_way") {
+							ptiles[tile_id - firstgid].m_is_one_way = bvalue;
+						}
 						else {
 							std::cerr << __FUNCTION__ << ": Unknow tile no." << tile_id <<  " bool property ' " << property_name << "'" << std::endl;
 						}

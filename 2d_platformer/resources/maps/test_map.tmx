@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="2017.05.26" orientation="orthogonal" renderorder="right-down" width="16" height="15" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="2017.05.26" orientation="orthogonal" renderorder="right-down" width="16" height="15" tilewidth="16" tileheight="16" nextobjectid="5">
  <tileset firstgid="1" source="../tilesets/mega_man_tileset.tsx"/>
  <tileset firstgid="37" source="../tilesets/mega-man-itens.tsx"/>
  <layer name="background" width="16" height="15">
@@ -10,7 +10,7 @@
 10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
 26,27,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
 35,36,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
-15,15,11,15,10,10,15,15,15,15,15,15,15,11,15,15,
+15,15,11,15,10,10,15,15,15,15,15,15,15,9,15,15,
 10,10,11,10,10,10,10,10,13,13,13,13,13,11,13,13,
 10,10,26,27,10,10,10,10,16,16,16,14,14,11,8,14,
 10,10,35,36,10,10,10,10,17,17,17,14,14,11,14,14,

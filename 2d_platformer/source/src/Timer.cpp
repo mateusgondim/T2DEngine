@@ -18,4 +18,16 @@ void Timer::update()
 	m_last_time = m_current_time;
 	// the overall time elapsed since init
 	m_time			+=   m_delta_time;
+#ifndef NDEBUG
+	m_fps_time += m_delta_time;
+	if (m_fps_time > 0.9999f) {
+		m_curr_fps = m_fps_cnt;
+		m_fps_time -= 0.9999f;
+		m_fps_cnt = 1;
+	}
+	else {
+		++m_fps_cnt;
+	}
+#endif // !NDEBUG
+
 }

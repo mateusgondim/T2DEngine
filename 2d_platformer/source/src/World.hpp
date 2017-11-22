@@ -39,6 +39,8 @@ namespace physics_2d {
 		void     set_tile_map(const Tile_map * pmap) { m_pmap = pmap; }
 		void     update();
 		bool     is_body_2d_on_ground(const Body_2d * pbody) const;
+		bool     try_climbing_ladder(Body_2d * pbody);
+		bool     is_body_on_ladder(Body_2d *   pbody);
 	private:
 		static bool compare(const Tile_contact & lhs, const Tile_contact & rhs) { return lhs.m_pbody < rhs.m_pbody; }
 		void check_n_solve_map_collision(Body_2d *pbody) ;

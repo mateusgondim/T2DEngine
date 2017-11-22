@@ -59,7 +59,7 @@ void tgs::Sprite::update_uv(const int sprite_no)
 	m_vertices_uv[4] =   cgm::vec2(rect.x, rect.y); // uv0
 	m_vertices_uv[5] =   m_vertices_uv[0]; //uv1	
 
-	std::cout << "updating uv coordinate to " << sprite_no << std::endl;
+	//std::cout << "updating uv coordinate to " << sprite_no << std::endl;
 }
 
 void tgs::Sprite::update_pos(const cgm::vec3 & pos, const bool facing_left) 

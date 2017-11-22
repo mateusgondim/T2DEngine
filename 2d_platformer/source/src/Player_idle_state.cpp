@@ -2,6 +2,7 @@
 #include "Player_idle_state.hpp"
 #include "Player_running_state.hpp"
 #include "Player_jumping_state.hpp"
+#include "Player_climbing_state.hpp"
 #include "Actor.hpp"
 #include "Input_manager.hpp"
 #include "Button.hpp"
@@ -26,7 +27,7 @@ Gameplay_state * Player_idle_state::check_transition(Actor & actor)
 	const Button & move_left_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
 
 	if (move_left_button.m_state == PRESSED) {
-		std::cout << "chaging state to Player_running_state| dir= left" << std::endl;
+		//std::cout << "chaging state to Player_running_state| dir= left" << std::endl;
 		actor.set_facing_direction(true);     //change to running left
 		 //set the parameter on the  animation state machine
 		actor.get_sprite().get_panim_controller()->set_bool("is_running", true);
@@ -36,7 +37,7 @@ Gameplay_state * Player_idle_state::check_transition(Actor & actor)
 	const Button & move_right_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
 	
 	if (move_right_button.m_state == PRESSED) {
-		std::cout << "Changing state to Player_running_state | dir = right" << std::endl;
+		//std::cout << "Changing state to Player_running_state | dir = right" << std::endl;
 			
 		//set the parameter on the animation state machine
 		actor.get_sprite().get_panim_controller()->set_bool("is_running", true);
@@ -47,11 +48,26 @@ Gameplay_state * Player_idle_state::check_transition(Actor & actor)
 	if (on_ground) {
 		const Button & jump_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
 		if ( jump_button.m_state == PRESSED ) {
-			std::cout << "Changing to Player_jumping_state" << std::endl;
+			//std::cout << "Changing to Player_jumping_state" << std::endl;
 			actor.get_sprite().get_panim_controller()->set_bool("is_jumping", true);
 			return new Player_jumping_state(actor);
 		}
 	}
+
+	const Button & climb_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB);
+
+	if (climb_button.m_state == PRESSED) {
+		bool climbing = g_physics_manager.get_world()->try_climbing_ladder(actor.get_body_2d());
+		if (climbing) {
+			std::cout << "CAN CLIMB NOW!!!" << std::endl;
+			actor.get_body_2d()->apply_gravity(false);
+			return new Player_climbing_state();
+		}
+		else {
+			std::cout << "CANNOT CLIMB NOW :( " << std::endl;
+		}
+	}
+
 	return nullptr;
 }
 

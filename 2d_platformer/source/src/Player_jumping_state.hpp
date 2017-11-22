@@ -7,7 +7,7 @@
 
 class Player_jumping_state : public Gameplay_state {
 public:
-	Player_jumping_state(Actor & actor, float y_acceleration = 12.75f, float x_vel = 2.0f);
+	Player_jumping_state(Actor & actor, float y_acceleration = 0.35f, float x_vel = 2.0f);
 
 	Gameplay_state *  check_transition(Actor & actor) override;
     void update(Actor & actor) override;

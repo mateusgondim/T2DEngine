@@ -11,6 +11,22 @@
    <property name="is_obstacle" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="8">
+  <properties>
+   <property name="is_ladder" type="bool" value="true"/>
+   <property name="is_one_way" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="10">
+  <properties>
+   <property name="is_ladder" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="14">
+  <properties>
+   <property name="is_obstacle" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="25">
   <properties>
    <property name="is_obstacle" type="bool" value="true"/>

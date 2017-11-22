@@ -35,6 +35,75 @@ void physics_2d::World::destroy_body_2d(physics_2d::Body_2d *pbody)
 	}
 }
 
+bool physics_2d::World::try_climbing_ladder(physics_2d::Body_2d * pbody) 
+{
+	assert(pbody != nullptr && "NULL Body_2d pointer");
+
+	//world space bottom left and top right coordinates of the body's aabb
+	cgm::vec2 bottom_left = pbody->m_aabb.p_min;
+	cgm::vec2 top_right   = pbody->m_aabb.p_max;
+
+	// tile map space coordinates, [row, column] of aabb bottom left and top right
+	std::pair<float, float> tile_bottom_left_coord =  m_pmap->wld_to_tile_space(bottom_left);
+	std::pair<float, float> tile_top_right_coord   =  m_pmap->wld_to_tile_space(top_right);
+
+	//if the row does not have fractional part, decrement so it does not count one extra row
+	//if (tile_bottom_left_coord.first == (int)tile_bottom_left_coord.first) {
+	//	--tile_bottom_left_coord.first;
+	//}
+
+	Tile tile;
+	unsigned id;	
+	for (int row = tile_bottom_left_coord.first; row >= tile_top_right_coord.first; --row) {
+		for (int column = tile_bottom_left_coord.second; column <= tile_top_right_coord.second; ++column) {
+			id = m_pmap->get_tile_id(0, row, column);
+			tile = m_pmap->get_tile(id);
+			if(tile.m_is_ladder) {
+				//reposition the character to be inside the ladder
+				tgs::Rect ladder_tile_bounds = m_pmap->tile_wld_space_bounds(row, column);
+				if (top_right.x < ladder_tile_bounds.x + ladder_tile_bounds.width ) { // on the right
+					float x_offset = ladder_tile_bounds.x + ladder_tile_bounds.width - top_right.x;
+					pbody->m_aabb.p_max.x += x_offset;
+					pbody->m_aabb.p_min.x += x_offset;
+					pbody->m_position.x += x_offset;
+					std::cout << "RIGHT-------------------------------" << std::endl;
+				}
+				else if (bottom_left.x > ladder_tile_bounds.x) { // on the left
+					float x_offset = ladder_tile_bounds.x - bottom_left.x;
+					pbody->m_aabb.p_max.x += x_offset;
+					pbody->m_aabb.p_min.x += x_offset;
+					pbody->m_position.x += x_offset;
+					std::cout << "LEFT--------------------------" << std::endl;
+				}
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool physics_2d::World::is_body_on_ladder(physics_2d::Body_2d * pbody) 
+{
+	assert(pbody != nullptr && "NULL Body_2d pointer");
+	
+	// get the bottom left and bottom right AABB world space coords
+	cgm::vec2 upper_center;
+	upper_center.x = (pbody->m_aabb.p_min.x + pbody->m_aabb.p_max.x) / 2.0f;
+	upper_center.y = (pbody->m_aabb.p_min.y * 0.3f + pbody->m_aabb.p_max.y * 0.7f);
+
+	//get the tile map space coordinates, i.e [row, column] of the AABB bottom left and bottom right
+	std::pair<float, float>  upper_tile_coord = m_pmap->wld_to_tile_space(upper_center);
+	//std::pair<float, float> tile_bottom_left_coord = m_pmap->wld_to_tile_space(bottom_left);
+	//std::pair<float, float> tile_bottom_right_coord = m_pmap->wld_to_tile_space(bottom_right);
+
+	unsigned id = m_pmap->get_tile_id(0, upper_tile_coord.first, upper_tile_coord.second);
+	Tile tile = m_pmap->get_tile(id);
+	if (tile.m_is_ladder) {
+		return true;
+	}
+	return false;
+}
+
 bool physics_2d::World::is_body_2d_on_ground(const physics_2d::Body_2d * pbody) const 
 {
 	assert(pbody != nullptr && "NULL Body_2d pointer");
@@ -223,6 +292,11 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		//get the rows and columns that need to be checked against collision
 		std::pair<float, float> tile_up_left_coord  =  m_pmap->wld_to_tile_space(up_left);
 		std::pair<float, float> tile_up_right_coord = m_pmap->wld_to_tile_space(up_right);
+		
+		if (tile_up_right_coord.second == (int)tile_up_right_coord.second) {
+			--tile_up_right_coord.second;
+		}
+
 		//std::cout << "------------------------------------------IN MOVING UP TILE COLLISION DETECTION--------------------------------------------------------------" << std::endl;
 		//std::cout << "tile_up_left_coord = [" << tile_up_left_coord.first << ", " << tile_up_left_coord.second << "]" << std::endl;
 		//std::cout << "tile_up_right_coord = [" << tile_up_right_coord.first << ", " << tile_up_right_coord.second << "]" << std::endl;
@@ -235,7 +309,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 				//std::cout << "column = " << column << std::endl;
 				unsigned  id     =  m_pmap->get_tile_id(0, row, column);
 				Tile      tile   =  m_pmap->get_tile(id);
-				if (tile.m_is_obstacle) {
+				if (tile.m_is_obstacle) {// || one way
 					if ( (row > closest_obstacle_row) && (column >= closest_obstacle_column)) {
 						closest_obstacle_row = row;
 						closest_obstacle_column = column;
@@ -246,12 +320,14 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		//get the world coordinates of the bounds of the closest vertical obstacle
 		tgs::Rect obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 
+		//if (tile.m_is_one_way && (obstacle_border.y < pbody->m_aabb.p_min.y) ) // treat has a obstacle
+
 		//update the position the as the minimun of the obstacle up facing edge and the desidered posiiton
-		float      desired_y_position = pbody->m_aabb.p_max.y + pbody->m_velocity.y * g_timer.get_fixed_dt();
+		float      desired_y_position = pbody->m_aabb.p_max.y + pbody->m_velocity.y; //* g_timer.get_fixed_dt();
 		//pbody->m_position.y = (obstacle_border.y - obstacle_border.height < desired_y_position) ? (obstacle_border.y - obstacle_border.height) : (desired_y_position);
 
 		if (obstacle_border.y - obstacle_border.height < desired_y_position) {//collided
-			//std::cout << "Body collided with tile [" << closest_obstacle_row << ", " << closest_obstacle_column << "]" << std::endl;
+			std::cout << "Body collided with tile [" << closest_obstacle_row << ", " << closest_obstacle_column << "]" << std::endl;
 
 			float y_offset = obstacle_border.y - obstacle_border.height - pbody->m_aabb.p_max.y;
 
@@ -264,11 +340,11 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 			pbody->m_aabb.p_max.y += y_offset;
 		}
 		else {
-			pbody->m_position.y  += pbody->m_velocity.y * g_timer.get_fixed_dt();
+			pbody->m_position.y  += pbody->m_velocity.y ;
 			
 			//update the righd body's aabb
-			pbody->m_aabb.p_min.y += pbody->m_velocity.y * g_timer.get_fixed_dt();
-			pbody->m_aabb.p_max.y += pbody->m_velocity.y * g_timer.get_fixed_dt();
+			pbody->m_aabb.p_min.y += pbody->m_velocity.y ;
+			pbody->m_aabb.p_max.y += pbody->m_velocity.y ;
 		}
 	//	std::cout << "------------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
 	}
@@ -351,33 +427,40 @@ void physics_2d::World::update()
 	for (auto iter = m_bodies.begin(); iter != m_bodies.end(); ++iter) {
 		switch ((*iter)->get_type()) {
 		case Body_2d::DYNAMIC:
-			(*iter)->m_velocity.x += ((*iter)->m_acceleration.x + m_gravity.x) * g_timer.get_fixed_dt();
-			(*iter)->m_velocity.y += ((*iter)->m_acceleration.y +  m_gravity.y) * g_timer.get_fixed_dt();
-			//std::cout << "m_velocity.y = " << (*iter)->m_velocity.y << std::endl;
-			std::cout << "m_velocity.x = " << (*iter)->m_velocity.x << std::endl;
-			
-			/*
-			if ((*iter)->m_vel_threshold.x != 0.0f) {
-				if (std::fabs((*iter)->m_velocity.x) > (*iter)->m_vel_threshold.x) {
-					(*iter)->m_velocity.x = ((*iter)->m_velocity.x > 0.0f)  ?((*iter)->m_vel_threshold.x) :(- (*iter)->m_vel_threshold.x) ;
-				}
-			}*/
-			if ((*iter)->m_vel_threshold.y != 0.0f) {
-				if ((*iter)->m_velocity.y < -0.40f) {
-					(*iter)->m_velocity.y = -0.40f;
-					
-				}
+			if ((*iter)->m_apply_gravity) {
+				(*iter)->m_velocity.x += ((*iter)->m_acceleration.x + m_gravity.x) * g_timer.get_fixed_dt();
+				(*iter)->m_velocity.y += ((*iter)->m_acceleration.y + m_gravity.y) * g_timer.get_fixed_dt();
+				//std::cout << "m_velocity.y = " << (*iter)->m_velocity.y << std::endl;
+				//std::cout << "m_velocity.x = " << (*iter)->m_velocity.x << std::endl;
+
 				/*
-				if ( std::fabs((*iter)->m_velocity.y) > (*iter)->m_vel_threshold.y) {
-					(*iter)->m_velocity.y = ((*iter)->m_velocity.y > 0.0f) ? ((*iter)->m_vel_threshold.y) : (-(*iter)->m_vel_threshold.y);
-										std::cout << "--------------hit velocity treshold------------------------------" << std::endl;
+				if ((*iter)->m_vel_threshold.x != 0.0f) {
+					if (std::fabs((*iter)->m_velocity.x) > (*iter)->m_vel_threshold.x) {
+						(*iter)->m_velocity.x = ((*iter)->m_velocity.x > 0.0f)  ?((*iter)->m_vel_threshold.x) :(- (*iter)->m_vel_threshold.x) ;
+					}
 				}*/
+				if ((*iter)->m_vel_threshold.y != 0.0f) {
+					if ((*iter)->m_velocity.y < -0.22f) {
+						(*iter)->m_velocity.y = -0.22f;
+
+					}
+					/*
+					if ( std::fabs((*iter)->m_velocity.y) > (*iter)->m_vel_threshold.y) {
+						(*iter)->m_velocity.y = ((*iter)->m_velocity.y > 0.0f) ? ((*iter)->m_vel_threshold.y) : (-(*iter)->m_vel_threshold.y);
+											std::cout << "--------------hit velocity treshold------------------------------" << std::endl;
+					}*/
+				}
+
+
+				//(*iter)->m_position.x += (*iter)->m_velocity.x * Timer::instance().get_delta();
+				//(*iter)->m_position.y += (*iter)->m_velocity.y * Timer::instance().get_delta();
 			}
-
-
-			//(*iter)->m_position.x += (*iter)->m_velocity.x * Timer::instance().get_delta();
-			//(*iter)->m_position.y += (*iter)->m_velocity.y * Timer::instance().get_delta();
-			
+			else {
+				(*iter)->m_velocity.x += (*iter)->m_acceleration.x * g_timer.get_fixed_dt();
+				(*iter)->m_velocity.y += (*iter)->m_acceleration.y * g_timer.get_fixed_dt();
+				std::cout << "m_velocity.y = " << (*iter)->m_velocity.y << std::endl;
+				//std::cout << "m_velocity.x = " << (*iter)->m_velocity.x << std::endl;
+			}
 			if ( ( (*iter)->m_velocity.x != 0.0f) || ((*iter)->m_velocity.y != 0.0f) ) {
 				check_n_solve_map_collision(*iter);
 			}
