@@ -49,6 +49,8 @@ public:
 	//int  get_int_param(const std::string & name)      const;
 	//bool get_trigger_param(const std::string & name)  const;
 	unsigned get_current_frame() const;
+	unsigned get_current_anim() const;
+	void     switch_curr_state_anim_clip(const std::vector<tgs::Animation>::size_type next_anim);
 private:
 	std::map<std::string, Transition>       m_transitions;
 	std::map<std::string, Animation_state>  m_state_machine;

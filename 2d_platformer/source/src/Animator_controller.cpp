@@ -204,6 +204,22 @@ unsigned Animator_controller::get_current_frame() const
 	}
 }
 
+unsigned Animator_controller::get_current_anim() const 
+{
+	auto iter = m_state_machine.find(m_current_state);
+	if (iter != m_state_machine.end()) {
+		return (iter->second).get_anim();
+	}
+}
+
+void Animator_controller::switch_curr_state_anim_clip(const std::vector<tgs::Animation>::size_type next_anim)
+{
+	auto iter = m_state_machine.find(m_current_state);
+	if (iter != m_state_machine.end()) {
+		return (iter->second).switch_anim_clip(next_anim);
+	}
+}
+
 std::ostream & operator<<(std::ostream & os, const Animator_controller & anim_controller) 
 {
 	os << "---------------Animator Controller--------------------" << std::endl;

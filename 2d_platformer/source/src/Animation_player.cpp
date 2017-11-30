@@ -69,3 +69,12 @@ void tgs::Animation_player::start_from_beg()
 		//update();
 	}
 }
+
+void tgs::Animation_player::switch_animation(const std::vector<tgs::Animation>::size_type next_anim) 
+{
+	m_current_animation = next_anim;
+
+	m_current_frame = -1;
+	m_seconds_per_frame = 1.0f / m_animations[m_current_animation].frames_per_second();
+	m_next_frame_time = g_timer.get_time();
+}

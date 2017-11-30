@@ -37,6 +37,7 @@ namespace tgs {
 		cgm::vec2                           m_scale;           // scale taking into account the pixels per world unit
 		std::shared_ptr<const Sprite_atlas>	m_atlas;
 		std::unique_ptr<Animator_controller>  m_upanim_controller;
+		unsigned                           m_controller_curr_anim;
 		//TODO: SCALE THE VERTICES IN THE POSITION VECTOR WHEN CHANGING THE CURRENT VERTEX UV COORDINATES
 		//std::vector<unsigned> m_elements
 	};

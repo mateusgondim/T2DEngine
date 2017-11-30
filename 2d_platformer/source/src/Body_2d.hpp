@@ -18,9 +18,11 @@ namespace physics_2d {
 
 		Entity_types		get_type()		const { return m_type;}
 		cgm::vec2			get_position()      const { return m_position;}
+		cgm::vec2        &  get_position()			  { return m_position; }
 		cgm::vec2			get_velocity()      const { return m_velocity;}
 		cgm::vec2			get_acceleration()  const { return m_acceleration;}
 		AABB_2d				get_aabb_2d()       const { return m_aabb; }
+		AABB_2d          &  get_aabb_2d()			 { return m_aabb; }
 
 		void               *get_user_data()     const { return m_user_data; }
 		void                set_user_data(void * pdata) { m_user_data = pdata; }

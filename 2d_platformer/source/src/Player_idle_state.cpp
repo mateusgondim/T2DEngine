@@ -54,17 +54,30 @@ Gameplay_state * Player_idle_state::check_transition(Actor & actor)
 		}
 	}
 
-	const Button & climb_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB);
+	const Button & climb_up_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_UP);
 
-	if (climb_button.m_state == PRESSED) {
-		bool climbing = g_physics_manager.get_world()->try_climbing_ladder(actor.get_body_2d());
+	if (climb_up_button.m_state == PRESSED) {
+		bool climbing = g_physics_manager.get_world()->try_climbing_ladder(actor.get_body_2d(), true);
 		if (climbing) {
 			std::cout << "CAN CLIMB NOW!!!" << std::endl;
+			//animation set up
+			actor.get_sprite().get_panim_controller()->set_bool("is_climbing", true);
 			actor.get_body_2d()->apply_gravity(false);
 			return new Player_climbing_state();
 		}
 		else {
 			std::cout << "CANNOT CLIMB NOW :( " << std::endl;
+		}
+	}
+
+	const Button & climb_down_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_DOWN);
+	if (climb_down_button.m_state == PRESSED) {
+		bool climbing = g_physics_manager.get_world()->try_climbing_ladder(actor.get_body_2d(), false);// climb_down = tru
+		if (climbing) {
+			//animation set up
+			actor.get_sprite().get_panim_controller()->set_bool("is_climbing", true);
+			actor.get_body_2d()->apply_gravity(false);
+			return new Player_climbing_state(true);
 		}
 	}
 

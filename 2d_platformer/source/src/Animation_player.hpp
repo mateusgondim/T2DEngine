@@ -19,8 +19,11 @@ namespace tgs {
 		void pause();
 		void resume();
 		void start_from_beg();
+		void switch_animation(const std::vector<Animation>::size_type next_anim);
 		unsigned get_frame() const { return (m_current_frame < 0) ?(m_animations[m_current_animation].get_frame(0)) :(m_animations[m_current_animation].get_frame(m_current_frame) ); } //m_current_frame = -1 before first update
+		unsigned get_anim() const { return m_current_animation; }
 		bool    is_playing() const { return m_playing; }
+
 	private:
 		std::vector<Animation>			   m_animations;
 		std::vector<Animation>::size_type  m_current_animation;

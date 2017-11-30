@@ -96,10 +96,16 @@ bool tgs::Sprite::is_animated() const
 void tgs::Sprite::update_animation() 
 {
 	if (m_upanim_controller) { //if this sprite is associated with a Animator_controller
+		unsigned curr_anim = m_upanim_controller->get_current_anim();
+		
 		unsigned prev_frame = m_upanim_controller->get_current_frame();
 		m_upanim_controller->update();
 		unsigned curr_frame = m_upanim_controller->get_current_frame();
 		if (curr_frame != prev_frame) {
+			update_uv(curr_frame);
+		}
+		else if (m_controller_curr_anim != curr_anim) {
+			m_controller_curr_anim = curr_anim;
 			update_uv(curr_frame);
 		}
 	}

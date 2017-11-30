@@ -66,18 +66,22 @@ std::unique_ptr<Animator_controller> get_player_anim_controller()
 	tgs::Animation_player player_idle_anim({ tgs::Animation({ 0, 1 }, 5) });
 	tgs::Animation_player player_running_anim({ tgs::Animation({3, 4, 5}, 8) });
 	tgs::Animation_player player_jumping_anim({ tgs::Animation({7}, 1) });
+	tgs::Animation_player player_climbing_anim({ tgs::Animation({ 8 }, 1),  tgs::Animation({ 9 }, 1) });
 
 	Animation_state player_idle_state("player_idle", player_idle_anim);
 	Animation_state player_running_state("player_running", player_running_anim);
 	Animation_state player_jumping_state("player_jumping", player_jumping_anim);
+	Animation_state player_climbing_state("player_climbing", player_climbing_anim);
 	
 	std::unique_ptr<Animator_controller> upcontroller(new Animator_controller());
 	upcontroller->add_bool_param("is_running");
 	upcontroller->add_bool_param("is_jumping");
+	upcontroller->add_bool_param("is_climbing");
 
 	upcontroller->add_state(player_idle_state);
 	upcontroller->add_state(player_running_state);
 	upcontroller->add_state(player_jumping_state);
+	upcontroller->add_state(player_climbing_state);
 
 	Transition start_running("start_running", "player_idle", "player_running");
 	upcontroller->add_transition(start_running);
@@ -95,6 +99,7 @@ std::unique_ptr<Animator_controller> get_player_anim_controller()
 	upcontroller->add_transition(stop_jumping_to_idle);
 	upcontroller->add_bool_condition("stop_jumping_to_idle", "is_jumping", false);
 	upcontroller->add_bool_condition("stop_jumping_to_idle", "is_running", false);
+	upcontroller->add_bool_condition("stop_jumping_to_idle", "is_climbing", false);
 
 	Transition start_jumping_from_running("start_jumping_from_running", "player_running", "player_jumping");
 	upcontroller->add_transition(start_jumping_from_running);
@@ -106,7 +111,25 @@ std::unique_ptr<Animator_controller> get_player_anim_controller()
 	upcontroller->add_bool_condition("stop_jumping_to_running", "is_jumping", false);
 	upcontroller->add_bool_condition("stop_jumping_to_running", "is_running", true);
 	
-	
+	Transition climbing_from_idle("climbing_from_idle", "player_idle", "player_climbing");
+	upcontroller->add_transition(climbing_from_idle);
+	upcontroller->add_bool_condition("climbing_from_idle", "is_climbing", true);
+
+	//this transition is gonna go, should be from ending climb
+	Transition idle_from_climbing("idle_from_climbing", "player_climbing", "player_idle");
+	upcontroller->add_transition(idle_from_climbing);
+	upcontroller->add_bool_condition("idle_from_climbing", "is_climbing", false);
+	upcontroller->add_bool_condition("idle_from_climbing", "is_jumping", false);
+
+	Transition jumping_from_climbing("jumping_from_climbing", "player_climbing", "player_jumping");
+	upcontroller->add_transition(jumping_from_climbing);
+	upcontroller->add_bool_condition("jumping_from_climbing", "is_climbing", false);
+	upcontroller->add_bool_condition("jumping_from_climbing", "is_jumping", true);
+
+	Transition climbing_from_jumping("climbing_from_jumping", "player_jumping", "player_climbing");
+	upcontroller->add_transition(climbing_from_jumping);
+	upcontroller->add_bool_condition("climbing_from_jumping", "is_climbing", true);
+	upcontroller->add_bool_condition("climbing_from_jumping", "is_jumping", false);
 
 	std::cout << (*upcontroller);
 	return upcontroller;
@@ -195,7 +218,8 @@ int main(int argc, char *argv[])
 	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_LEFT, Button(Input_manager::KEYS::KEY_LEFT));
 	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::JUMP, Button(Input_manager::KEYS::KEY_S));
 	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_RIGHT, Button(Input_manager::KEYS::KEY_RIGHT));
-	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::CLIMB, Button(Input_manager::KEYS::KEY_UP));
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::CLIMB_UP, Button(Input_manager::KEYS::KEY_UP));
+	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::CLIMB_DOWN, Button(Input_manager::KEYS::KEY_DOWN));
 	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_UP, Button(Input_manager::KEYS::KEY_UP));
 	g_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_DOWN, Button(Input_manager::KEYS::KEY_DOWN));
 	
@@ -216,7 +240,7 @@ int main(int argc, char *argv[])
 	glUniform1f(sprite_shader.get_uniform_location("tileset"), 0);
 
 	/// Player setup
-	Player player(cgm::vec3(6.0f, 6.0f), cgm::mat4(), AABB_2d() ,cgm::vec2(1.5f, 1.0f));
+	Player player(cgm::vec3(10.0f, 6.0f), cgm::mat4(), AABB_2d() ,cgm::vec2(1.5f, 1.0f));
 	
 	AABB_2d p_aabb(cgm::vec2(-0.5f, -0.75f), cgm::vec2(0.5f, 0.75f));
 	cgm::vec2 pos(player.get_position().x, player.get_position().y);

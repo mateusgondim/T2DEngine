@@ -1,6 +1,7 @@
 #include <algorithm>
 #include "Player_jumping_state.hpp"
 #include "Player_idle_state.hpp"
+#include "Player_climbing_state.hpp"
 #include "Actor.hpp"
 #include "Gameplay_state.hpp"
 #include "vec2.hpp"
@@ -27,6 +28,19 @@ Gameplay_state * Player_jumping_state::check_transition(Actor & actor)
 		actor.get_sprite().get_panim_controller()->set_bool("is_jumping", false);
 		actor.get_body_2d()->stop_movement_x();
 		return new Player_idle_state;
+	}
+
+	const Button & climb_up_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_UP);
+	if (climb_up_button.m_state == PRESSED) {
+		bool is_on_ladder = g_physics_manager.get_world()->try_climbing_ladder(actor.get_body_2d(), true);
+		if (is_on_ladder) {
+			actor.get_sprite().get_panim_controller()->set_bool("is_jumping", false);
+			actor.get_sprite().get_panim_controller()->set_bool("is_climbing", true);
+			actor.get_body_2d()->stop_movement_x();
+			actor.get_body_2d()->stop_movement_y();
+			actor.get_body_2d()->apply_gravity(false);
+			return new Player_climbing_state;
+		}
 	}
 
 	const Button & move_left_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);

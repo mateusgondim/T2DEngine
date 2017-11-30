@@ -31,12 +31,14 @@ public:
 
 	void update();
 	//std::string check_transition(); //return the name of the state to transition
+	void switch_anim_clip(const std::vector<tgs::Animation>::size_type next_anim) { m_animation_player.switch_animation(next_anim); }
 	
 	void stop_animation()  { m_animation_player.pause(); }
 	void start_animation() { m_animation_player.start_from_beg(); }
 	std::string get_name() const { return m_name; }
 	//tgs::Animation_player & get_anim_player() { return m_animation_player; }
 	unsigned get_frame() const { return m_animation_player.get_frame(); }
+	unsigned get_anim()  const { return m_animation_player.get_anim(); }
 private:
 	//void clear_transitions();
 
