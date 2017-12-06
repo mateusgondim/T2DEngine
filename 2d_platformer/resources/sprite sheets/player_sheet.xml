@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:81f96091b92335428ceff71476dc8ed6:6f884e233c23b19495f8060b9c0a735f:644e28753e54cc07fd62925d10991689$ -->
+<!-- $TexturePacker:SmartUpdate:0cde27a386d9e2ab8a6da4c9d74122e0:dbe7e967d45eadb133fd3c9fd7f5d94d:644e28753e54cc07fd62925d10991689$ -->
 <!--Format:
 n  => name of the sprite
 x  => sprite x pos in texture
@@ -29,19 +29,21 @@ triangles  => sprite triangulation, 3 vertex indices per triangle
     <sprite n="m_f7.png" x="24" y="24" w="32" h="24" pX="0.5" pY="0.5"/>
     <sprite n="m_f8.png" x="56" y="24" w="32" h="32" pX="0.5" pY="0.5"/>
     <sprite n="m_f9.png" x="88" y="24" w="16" h="32" pX="0.5" pY="0.5"/>
-    <sprite n="m_f10.png" x="104" y="24" w="16" h="24" pX="0.5" pY="0.5"/>
-    <sprite n="m_f11.png" x="0" y="56" w="32" h="32" pX="0.5" pY="0.5"/>
-    <sprite n="m_f12.png" x="32" y="56" w="32" h="24" pX="0.5" pY="0.5"/>
-    <sprite n="m_f13.png" x="64" y="56" w="32" h="24" pX="0.5" pY="0.5"/>
-    <sprite n="m_f14.png" x="96" y="56" w="32" h="24" pX="0.5" pY="0.5"/>
-    <sprite n="m_f15.png" x="0" y="88" w="32" h="24" pX="0.5" pY="0.5"/>
-    <sprite n="m_f16.png" x="32" y="88" w="32" h="32" pX="0.5" pY="0.5"/>
-    <sprite n="m_f17.png" x="64" y="88" w="24" h="32" pX="0.5" pY="0.5"/>
-    <sprite n="m_f18.png" x="88" y="88" w="32" h="24" pX="0.5" pY="0.5"/>
-    <sprite n="m_f19.png" x="0" y="120" w="32" h="24" pX="0.5" pY="0.5"/>
-    <sprite n="m_f20.png" x="32" y="120" w="32" h="24" pX="0.5" pY="0.5"/>
-    <sprite n="m_f21.png" x="64" y="120" w="32" h="24" pX="0.5" pY="0.5"/>
-    <sprite n="m_f22.png" x="96" y="120" w="32" h="32" pX="0.5" pY="0.5"/>
-    <sprite n="m_f23.png" x="0" y="152" w="24" h="32" pX="0.5" pY="0.5"/>
-    <sprite n="m_f24.png" x="24" y="152" w="8" h="8" pX="0.5" pY="0.5"/>
+    <sprite n="m_f10.png" x="104" y="24" w="16" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="m_f11.png" x="0" y="56" w="16" h="24" pX="0.5" pY="0.5"/>
+    <sprite n="m_f12.png" x="16" y="56" w="16" h="24" pX="0.5" pY="0.5"/>
+    <sprite n="m_f13.png" x="32" y="56" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="m_f14.png" x="64" y="56" w="32" h="24" pX="0.5" pY="0.5"/>
+    <sprite n="m_f15.png" x="96" y="56" w="32" h="24" pX="0.5" pY="0.5"/>
+    <sprite n="m_f16.png" x="0" y="88" w="32" h="24" pX="0.5" pY="0.5"/>
+    <sprite n="m_f17.png" x="32" y="88" w="32" h="24" pX="0.5" pY="0.5"/>
+    <sprite n="m_f18.png" x="64" y="88" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="m_f19.png" x="96" y="88" w="24" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="m_f20.png" x="0" y="120" w="32" h="24" pX="0.5" pY="0.5"/>
+    <sprite n="m_f21.png" x="32" y="120" w="32" h="24" pX="0.5" pY="0.5"/>
+    <sprite n="m_f22.png" x="64" y="120" w="32" h="24" pX="0.5" pY="0.5"/>
+    <sprite n="m_f23.png" x="96" y="120" w="32" h="24" pX="0.5" pY="0.5"/>
+    <sprite n="m_f24.png" x="0" y="144" w="32" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="m_f25.png" x="32" y="144" w="24" h="32" pX="0.5" pY="0.5"/>
+    <sprite n="m_f26.png" x="56" y="144" w="8" h="8" pX="0.5" pY="0.5"/>
 </TextureAtlas>

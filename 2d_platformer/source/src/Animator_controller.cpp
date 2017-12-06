@@ -204,6 +204,14 @@ unsigned Animator_controller::get_current_frame() const
 	}
 }
 
+Animation_state & Animator_controller::get_current_state() 
+{
+	auto iter = m_state_machine.find(m_current_state);
+	if (iter != m_state_machine.end()) {
+		return (iter->second);
+	}
+}
+
 unsigned Animator_controller::get_current_anim() const 
 {
 	auto iter = m_state_machine.find(m_current_state);

@@ -39,6 +39,7 @@ public:
 	//tgs::Animation_player & get_anim_player() { return m_animation_player; }
 	unsigned get_frame() const { return m_animation_player.get_frame(); }
 	unsigned get_anim()  const { return m_animation_player.get_anim(); }
+	tgs::Animation_player & get_anim_player() { return m_animation_player; }
 private:
 	//void clear_transitions();
 

@@ -55,7 +55,7 @@ void tgs::Animation_player::resume()
 {
 	if (!m_playing) {
 		m_playing = true;
-		m_next_frame_time = g_timer.get_time() + m_seconds_per_frame;
+		m_next_frame_time = g_timer.get_time();// +m_seconds_per_frame;
 		//update();
 	}
 }

@@ -23,7 +23,7 @@ Gameplay_state * Player_jumping_state::check_transition(Actor & actor)
 	bool on_ground = g_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d());
 
 	if (on_ground) {
-		//std::cout << "changing state to player_idle" << std::endl;
+		std::cout << "changing state to player_idle" << std::endl;
 		//set the paramter on the animation state machine to make the transition to the new animation
 		actor.get_sprite().get_panim_controller()->set_bool("is_jumping", false);
 		actor.get_body_2d()->stop_movement_x();

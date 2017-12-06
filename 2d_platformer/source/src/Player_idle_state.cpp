@@ -48,7 +48,7 @@ Gameplay_state * Player_idle_state::check_transition(Actor & actor)
 	if (on_ground) {
 		const Button & jump_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
 		if ( jump_button.m_state == PRESSED ) {
-			//std::cout << "Changing to Player_jumping_state" << std::endl;
+			std::cout << "Changing to Player_jumping_state" << std::endl;
 			actor.get_sprite().get_panim_controller()->set_bool("is_jumping", true);
 			return new Player_jumping_state(actor);
 		}
@@ -59,15 +59,15 @@ Gameplay_state * Player_idle_state::check_transition(Actor & actor)
 	if (climb_up_button.m_state == PRESSED) {
 		bool climbing = g_physics_manager.get_world()->try_climbing_ladder(actor.get_body_2d(), true);
 		if (climbing) {
-			std::cout << "CAN CLIMB NOW!!!" << std::endl;
+			//std::cout << "CAN CLIMB NOW!!!" << std::endl;
 			//animation set up
 			actor.get_sprite().get_panim_controller()->set_bool("is_climbing", true);
 			actor.get_body_2d()->apply_gravity(false);
 			return new Player_climbing_state();
 		}
-		else {
-			std::cout << "CANNOT CLIMB NOW :( " << std::endl;
-		}
+		//else {
+		//	std::cout << "CANNOT CLIMB NOW :( " << std::endl;
+		//}
 	}
 
 	const Button & climb_down_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_DOWN);

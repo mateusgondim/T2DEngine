@@ -64,9 +64,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 std::unique_ptr<Animator_controller> get_player_anim_controller() 
 {
 	tgs::Animation_player player_idle_anim({ tgs::Animation({ 0, 1 }, 5) });
-	tgs::Animation_player player_running_anim({ tgs::Animation({3, 4, 5}, 8) });
+	tgs::Animation_player player_running_anim({ tgs::Animation({3, 4, 5}, 9) });
 	tgs::Animation_player player_jumping_anim({ tgs::Animation({7}, 1) });
-	tgs::Animation_player player_climbing_anim({ tgs::Animation({ 8 }, 1),  tgs::Animation({ 9 }, 1) });
+	tgs::Animation_player player_climbing_anim({ tgs::Animation({ 8, 9 }, 6),  tgs::Animation({ 10, 11 }, 6) });
 
 	Animation_state player_idle_state("player_idle", player_idle_anim);
 	Animation_state player_running_state("player_running", player_running_anim);
@@ -240,9 +240,9 @@ int main(int argc, char *argv[])
 	glUniform1f(sprite_shader.get_uniform_location("tileset"), 0);
 
 	/// Player setup
-	Player player(cgm::vec3(10.0f, 6.0f), cgm::mat4(), AABB_2d() ,cgm::vec2(1.5f, 1.0f));
+	Player player(cgm::vec3(10.0f, 12.0f), cgm::mat4(), AABB_2d() ,cgm::vec2(1.5f, 1.0f));
 	
-	AABB_2d p_aabb(cgm::vec2(-0.5f, -0.75f), cgm::vec2(0.5f, 0.75f));
+	AABB_2d p_aabb(cgm::vec2(-0.45f, -0.75f), cgm::vec2(0.45f, 0.75f));
 	cgm::vec2 pos(player.get_position().x, player.get_position().y);
 	p_aabb.p_max += pos;
 	p_aabb.p_min += pos;
