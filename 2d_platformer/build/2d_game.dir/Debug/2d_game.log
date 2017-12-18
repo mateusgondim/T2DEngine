@@ -1,27 +1,3 @@
-﻿  World.cpp
-c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(72): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(73): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(119): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(143): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(144): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(147): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(173): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(213): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(225): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(231): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(232): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(292): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(299): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(304): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(305): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(363): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(365): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(370): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(375): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(376): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(441): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(446): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(448): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+﻿SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   2d_game.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\build\Debug\2d_game.exe

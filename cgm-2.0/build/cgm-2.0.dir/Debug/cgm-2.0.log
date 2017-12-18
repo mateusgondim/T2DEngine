@@ -1,6 +1,2 @@
 ﻿  mat4.cpp
-  matrix_transform.cpp
-  vec2.cpp
-  vec3.cpp
-  Generating Code...
   cgm-2.0.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\build\Debug\cgm-2.0.lib

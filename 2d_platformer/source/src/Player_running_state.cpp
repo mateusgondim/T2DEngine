@@ -25,37 +25,45 @@ Gameplay_state * Player_running_state::check_transition(Actor & actor)
 {
 	//auto stream = Input_handler::instance().get_input();
 	bool on_ground = g_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d());
-	if (actor.get_facing_direction()) {
-		const Button & move_left_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
-		if ( move_left_button.m_state == RELEASED) {
-			//std::cout << "chaging state to Player_idle" << std::endl;
-			//set the paramter on the animation state machine to make the transition to the new animation
-			actor.get_sprite().get_panim_controller()->set_bool("is_running", false);
-			actor.get_body_2d()->stop_movement_x();
-			return new Player_idle_state;
-		}
-	}
-	else {
-		const Button & move_right_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
-		if ( move_right_button.m_state == RELEASED) {
-			//std::cout << "changing state to player_idle" << std::endl;
-			//set the paramter on the animation state machine to make the transition to the new animation
-			actor.get_sprite().get_panim_controller()->set_bool("is_running", false);
-			actor.get_body_2d()->stop_movement_x();
-			return new Player_idle_state;
-		}
-	}
-
-	const Button & jump_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
-	if ( (	jump_button.m_state == PRESSED) && on_ground ) {
-		//std::cout << "Changing  to player_jumping_state " << std::endl;
-		//set the paramter on the animation state machine to make the transition to the new animation
+	
+	if (!on_ground) { //player fell
 		actor.get_sprite().get_panim_controller()->set_bool("is_running", false);
 		actor.get_sprite().get_panim_controller()->set_bool("is_jumping", true);
 		//actor.get_body_2d()->stop_movement_x();
-		return new Player_jumping_state(actor);
+		return new Player_jumping_state(actor, 0.0f);
 	}
-	
+	else {
+		if (actor.get_facing_direction()) {
+			const Button & move_left_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
+			if (move_left_button.m_state == RELEASED) {
+				//std::cout << "chaging state to Player_idle" << std::endl;
+				//set the paramter on the animation state machine to make the transition to the new animation
+				actor.get_sprite().get_panim_controller()->set_bool("is_running", false);
+				actor.get_body_2d()->stop_movement_x();
+				return new Player_idle_state;
+			}
+		}
+		else {
+			const Button & move_right_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
+			if (move_right_button.m_state == RELEASED) {
+				//std::cout << "changing state to player_idle" << std::endl;
+				//set the paramter on the animation state machine to make the transition to the new animation
+				actor.get_sprite().get_panim_controller()->set_bool("is_running", false);
+				actor.get_body_2d()->stop_movement_x();
+				return new Player_idle_state;
+			}
+		}
+
+		const Button & jump_button = g_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
+		if ((jump_button.m_state == PRESSED) && on_ground) {
+			//std::cout << "Changing  to player_jumping_state " << std::endl;
+			//set the paramter on the animation state machine to make the transition to the new animation
+			actor.get_sprite().get_panim_controller()->set_bool("is_running", false);
+			actor.get_sprite().get_panim_controller()->set_bool("is_jumping", true);
+			//actor.get_body_2d()->stop_movement_x();
+			return new Player_jumping_state(actor);
+		}
+	}
 	return nullptr;
 }
 void Player_running_state::begin_tile_collision(Actor & actor, const AABB_2d & tile_aabb)  

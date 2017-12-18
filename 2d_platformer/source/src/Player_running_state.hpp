@@ -9,7 +9,7 @@
 
 class Player_running_state : public Gameplay_state {
 public:
-	Player_running_state(Actor & actor, const float acceleration = 3.0f);
+	Player_running_state(Actor & actor, const float acceleration = 3.5f);
 	Gameplay_state * check_transition(Actor & actor) override;
 	void update(Actor & actor) override;
 

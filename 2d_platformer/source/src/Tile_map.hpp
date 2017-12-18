@@ -41,6 +41,7 @@ public:
 	const std::vector<Tileset> & get_tilesets() const { return m_tilesets; }
 	int get_tile_id(const int layer, const int row, const int column) const { return m_map[layer][row][column]; }
 	Tile get_tile(const unsigned id) const;
+	float pixels_per_world_unit() const { return m_pixels_per_word_unit; }
 
 	tgs::Rect tile_wld_space_bounds(const unsigned row, const unsigned column) const;
 	std::pair<float, float> wld_to_tile_space(const cgm::vec3 & pos) const;

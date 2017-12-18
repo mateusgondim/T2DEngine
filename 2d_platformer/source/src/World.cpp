@@ -9,7 +9,8 @@
 #include <cassert>
 #include "game.hpp"
 
-physics_2d::World::World(const cgm::vec2 & gravity) : m_gravity(gravity), m_pmap(nullptr), m_pcoll_listener(nullptr) {}
+physics_2d::World::World(const cgm::vec2 & gravity, const cgm::vec2 & solid_tile_sensor_line) : 
+	m_gravity(gravity), m_solid_tile_sensor_line(solid_tile_sensor_line) ,m_pmap(nullptr), m_pcoll_listener(nullptr) {}
 
 physics_2d::World::~World() 
 {
@@ -63,9 +64,9 @@ bool physics_2d::World::try_climbing_ladder(physics_2d::Body_2d * pbody, const b
 			--tile_bottom_left_coord.first;
 		}
 	}
-	else {
-		tile_bottom_left_coord.first += FLOAT_ROUNDOFF;
-	}
+	//else {
+		//tile_bottom_left_coord.first += FLOAT_ROUNDOFF;
+	//}
 
 	Tile tile;
 	unsigned id;	
@@ -76,14 +77,11 @@ bool physics_2d::World::try_climbing_ladder(physics_2d::Body_2d * pbody, const b
 		if(tile.m_is_ladder) {
 			//reposition the character to be inside the ladder
 			tgs::Rect ladder_tile_bounds = m_pmap->tile_wld_space_bounds(row, column);
-			if (top_right.x < ladder_tile_bounds.x + ladder_tile_bounds.width ) { // on the right
-				float x_offset = ladder_tile_bounds.x + ladder_tile_bounds.width - pbody->m_aabb.p_max.x;
-				pbody->m_aabb.p_max.x += x_offset;
-				pbody->m_aabb.p_min.x += x_offset;
-				pbody->m_position.x += x_offset;
-			}
-			else if (bottom_left.x > ladder_tile_bounds.x) { // on the left
-				float x_offset = ladder_tile_bounds.x - pbody->m_aabb.p_min.x;
+			
+			float aabb_center_x = (pbody->m_aabb.p_max.x + pbody->m_aabb.p_min.x) / 2.0f;
+			float tile_center_x = (ladder_tile_bounds.x + (ladder_tile_bounds.x + ladder_tile_bounds.width)) / 2.0f;
+			float  x_offset = tile_center_x - aabb_center_x;
+			if ( (top_right.x < ladder_tile_bounds.x + ladder_tile_bounds.width ) || (bottom_left.x > ladder_tile_bounds.x)) { // on the right
 				pbody->m_aabb.p_max.x += x_offset;
 				pbody->m_aabb.p_min.x += x_offset;
 				pbody->m_position.x += x_offset;
@@ -185,6 +183,8 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 	//compute the direction the body moved according to the velocity magnitude
 	bool is_moving_right =  (pbody->m_velocity.x > 0.0f) ? (true) : (false);
 	bool is_moving_up	= (pbody->m_velocity.y > 0.0f) ? (true) : (false);
+	float sensor_line_width  =  m_solid_tile_sensor_line.x / m_pmap->pixels_per_world_unit();
+	float sensor_line_height = m_solid_tile_sensor_line.y / m_pmap->pixels_per_world_unit();
 	//std::cout << "PLAYER WLD SPACE POS = (" << pbody->get_position().x << ", " << pbody->get_position().y << ")" << std::endl;
 	//Attempt to move horizontally
 	if (is_moving_right) {
@@ -197,12 +197,13 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		std::pair<float, float> tile_bottom_right_coord = m_pmap->wld_to_tile_space(bottom_right);
 		
 		//adjust if it has no fractional part
+		/*
 		if (tile_up_right_coord.first == (int) tile_up_right_coord.first) {
 			++tile_up_right_coord.first;
 		}
 		if (tile_bottom_right_coord.first == (int)tile_bottom_right_coord.first) {
 			--tile_bottom_right_coord.first;
-		}
+		}*/
 		//std::cout << "------------------------------------------IN MOVING RIGHT TILE COLLISION DETECTION--------------------------------------------------------------" << std::endl;
 		//std::cout << "AABB min = (" << pbody->m_aabb.p_min.x << ", " << pbody->m_aabb.p_min.y << ")" << std::endl;
 		//std::cout << "AABB max = (" << pbody->m_aabb.p_max.x << ", " << pbody->m_aabb.p_max.y << ")" << std::endl;
@@ -211,7 +212,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 
 		//find the closest horizontal obstacle
 		unsigned closest_obstacle_row = tile_up_right_coord.first;
-		unsigned closest_obstacle_column = m_pmap->width() - 1;
+		unsigned closest_obstacle_column = m_pmap->width() ;
 		Tile closest_obstacle_tile;
 		//std::cout << "row =" << (unsigned)tile_up_right_coord.first << " row <= " << (unsigned)tile_bottom_right_coord.first << std::endl;
 		//std::cout << "column =" << m_pmap->height() - 1 << " column >= " << (unsigned)tile_up_right_coord.second << std::endl;
@@ -220,7 +221,8 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 	//	int count = 0;
 		
 		for (float row = tile_up_right_coord.first; row <= tile_bottom_right_coord.first; ++row) {
-			for (float column = MIN(tile_up_right_coord.second + maximum_x_tiles_disp, closest_obstacle_column); column >= tile_up_right_coord.second; --column) {
+			for (float column = tile_up_right_coord.second + maximum_x_tiles_disp; column >= tile_up_right_coord.second; --column) {
+				//std::cout << "[" << row << ", " << column << "]" << std::endl;
 				Tile tile;
 				unsigned id = m_pmap->get_tile_id(0, row, column);
 				 tile = m_pmap->get_tile(id);
@@ -242,11 +244,11 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		float      desired_x_position = pbody->m_aabb.p_max.x + pbody->m_velocity.x * g_timer.get_fixed_dt();
 		//pbody->m_position.x = (obstacle_border.x < desired_x_position) ? (obstacle_border.x) : (desired_x_position);
 
-		if (obstacle_border.x < desired_x_position && closest_obstacle_tile.m_is_obstacle ) { // if collided with the map
+		if ( (obstacle_border.x - sensor_line_width) < desired_x_position && closest_obstacle_tile.m_is_obstacle ) { // if collided with the map
 		//	std::cout << "Body collided with tile [" << closest_obstacle_row << ", " << closest_obstacle_column << "]" << std::endl;
 			
-			float x_offset = obstacle_border.x - pbody->m_aabb.p_max.x;
-			x_offset -= AABB_COLL_OFFSET; // so is not touching the collider
+			float x_offset = (obstacle_border.x - sensor_line_width) - pbody->m_aabb.p_max.x;
+			//x_offset -= AABB_COLL_OFFSET; // so is not touching the collider
 			pbody->m_position.x      += x_offset;
 			pbody->m_velocity.x      =  0.0f;
 			pbody->m_acceleration.x  =  0.0f;
@@ -273,16 +275,16 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		std::pair<float, float> tile_up_left_coord		=  m_pmap->wld_to_tile_space(up_left);
 		std::pair<float, float> tile_bottom_left_coord  = m_pmap->wld_to_tile_space(bottom_left);
 		
-		//std::cout << "tile_up_left_coord = [" << tile_up_left_coord.first << ", " << tile_up_left_coord.second << "]" << std::endl;
-		//std::cout << "tile_bottom_left_coord = [" << tile_bottom_left_coord.first << ", " << tile_bottom_left_coord.second << "]" << std::endl;
+		/*
 		//adjust if it has no fractional part if we at the line beetwen two tiles
 		if (tile_up_left_coord.first == (int)tile_up_left_coord.first) {
 			++tile_up_left_coord.first;
 		}
 		if (tile_bottom_left_coord.first == (int)tile_bottom_left_coord.first) {
 			--tile_bottom_left_coord.first;
-		}
-
+		}*/
+		//std::cout << "tile_up_left_coord = [" << tile_up_left_coord.first << ", " << tile_up_left_coord.second << "]" << std::endl;
+		//std::cout << "tile_bottom_left_coord = [" << tile_bottom_left_coord.first << ", " << tile_bottom_left_coord.second << "]" << std::endl;
 		//ceil
 
 		// get the maximun number of tiles this object can traverse in one update
@@ -294,7 +296,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		Tile closest_obstacle_tile;
 		for (float row = tile_up_left_coord.first; row <= tile_bottom_left_coord.first; ++row) {
 			for (float column = tile_up_left_coord.second + maximum_x_tiles_disp; column <= tile_up_left_coord.second; ++column) {
-				//std::cout << "[" << row << ", " << column << "]" << std::endl;
+		//		std::cout << "[" << row << ", " << column << "]" << std::endl;
 				Tile tile;
 				unsigned id = m_pmap->get_tile_id(0, row, column);
 					tile = m_pmap->get_tile(id);
@@ -314,11 +316,11 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		float      desired_x_position = pbody->m_aabb.p_min.x + pbody->m_velocity.x * g_timer.get_fixed_dt();
 		//pbody->m_position.x = (obstacle_border.x + obstacle_border.width > desired_x_position) ? (obstacle_border.x + obstacle_border.width) : (desired_x_position);
 		//std::cout << obstacle_border.x + obstacle_border.width + FLOAT_ROUNDOFF << " and " << desired_x_position - FLOAT_ROUNDOFF << std::endl;
-		if ( (obstacle_border.x + obstacle_border.width > desired_x_position ) && closest_obstacle_tile.m_is_obstacle){ //collided
+		if ( (obstacle_border.x + obstacle_border.width + sensor_line_width > desired_x_position ) && closest_obstacle_tile.m_is_obstacle){ //collided
 		//	std::cout << "Body collided with tile [" << closest_obstacle_row << ", " << closest_obstacle_column << "]" << std::endl;
 			
-			float  x_offset = obstacle_border.x + obstacle_border.width - pbody->m_aabb.p_min.x;
-			x_offset += AABB_COLL_OFFSET;
+			float  x_offset = (obstacle_border.x + obstacle_border.width + sensor_line_width) - pbody->m_aabb.p_min.x;
+			//x_offset += AABB_COLL_OFFSET;
 			pbody->m_position.x		+= x_offset;
 			pbody->m_velocity.x      =  0.0f;
 			pbody->m_acceleration.x  =  0.0f;
@@ -363,9 +365,11 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		int      maximum_y_tiles_disp = m_pmap->world_to_tile_displacement_y(pbody->m_velocity.y * g_timer.get_fixed_dt());
 		unsigned closest_obstacle_row = 0;
 		unsigned closest_obstacle_column = tile_up_left_coord.second;
+		float dist = MIN(1.0F, tile_up_right_coord.second - tile_up_left_coord.second);
 		Tile closest_tile;
 		for (float row = tile_up_left_coord.first - maximum_y_tiles_disp; row <= tile_up_left_coord.first; ++row ) {
-			for (float column = tile_up_left_coord.second; column <= tile_up_right_coord.second; ++column) {
+			for (float column = tile_up_left_coord.second; column <= tile_up_right_coord.second; column += dist) {
+			//	std::cout << "[" << row << ", " << column << "]" << std::endl;
 				//std::cout << "column = " << column << std::endl;
 				unsigned  id     =  m_pmap->get_tile_id(0, row, column);
 				Tile      tile   =  m_pmap->get_tile(id);
@@ -388,7 +392,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 			//pbody->m_position.y = (obstacle_border.y - obstacle_border.height < desired_y_position) ? (obstacle_border.y - obstacle_border.height) : (desired_y_position);
 
 			if (obstacle_border.y - obstacle_border.height < desired_y_position) {//collided
-				std::cout << "Body collided with tile [" << closest_obstacle_row << ", " << closest_obstacle_column << "]" << std::endl;
+			//	std::cout << "Body collided with tile [" << closest_obstacle_row << ", " << closest_obstacle_column << "]" << std::endl;
 
 				float y_offset = obstacle_border.y - obstacle_border.height - pbody->m_aabb.p_max.y;
 
@@ -446,7 +450,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		for (unsigned row = MIN(tile_bottom_left_coord.first + maximum_y_tiles_disp, closest_obstacle_row); row >= tile_bottom_left_coord.first; --row) {
 			//std::cout << "in row loop" << std::endl;
 			for (unsigned column = tile_bottom_left_coord.second; column <= tile_bottom_right_coord.second; ++column) {
-				//std::cout << "[" << row << ", " << column << "]" << std::endl;
+			//	std::cout << "[" << row << ", " << column << "]" << std::endl;
 				//	count++;
 				Tile     tile;
 				unsigned id    =  m_pmap->get_tile_id(0, row, column);
@@ -513,7 +517,7 @@ void physics_2d::World::update()
 				(*iter)->m_velocity.x += ((*iter)->m_acceleration.x + m_gravity.x) * g_timer.get_fixed_dt();
 				(*iter)->m_velocity.y += ((*iter)->m_acceleration.y + m_gravity.y) * g_timer.get_fixed_dt();
 			//	std::cout << "m_velocity.y = " << (*iter)->m_velocity.y << std::endl;
-				//std::cout << "m_velocity.x = " << (*iter)->m_velocity.x << std::endl;
+			//	std::cout << "m_velocity.x = " << (*iter)->m_velocity.x << std::endl;
 
 				/*
 				if ((*iter)->m_vel_threshold.x != 0.0f) {
@@ -522,8 +526,8 @@ void physics_2d::World::update()
 					}
 				}*/
 				if ((*iter)->m_vel_threshold.y != 0.0f) {
-					if ((*iter)->m_velocity.y < -0.22f) {
-						(*iter)->m_velocity.y = -0.22f;
+					if ((*iter)->m_velocity.y < -0.19f) {
+						(*iter)->m_velocity.y = -0.19f;
 
 					}
 					/*

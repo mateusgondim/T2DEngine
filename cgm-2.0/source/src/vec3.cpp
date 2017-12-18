@@ -16,3 +16,13 @@ cgm::vec3 cgm::operator+(const cgm::vec3 & lhs, const cgm::vec3 & rhs)
 
 	return sum;
 }
+
+cgm::vec3 cgm::operator-(const cgm::vec3 & v) 
+{
+	cgm::vec3 r = v;
+	r.x = -r.x;
+	r.y = -r.y;
+	r.z = -r.z;
+
+	return r;
+}

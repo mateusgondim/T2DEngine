@@ -323,6 +323,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Tile_map.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Tile_map_renderer.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\AABB_2d.hpp" />
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Camera_2d.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Game_object.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Ren_coll_game_object.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Actor.hpp" />
@@ -365,6 +366,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Tile_map_renderer.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Sprite.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Actor.cpp"  />
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Camera_2d.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Texture_2d.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Texture_2d_manager.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Sprite_atlas.cpp"  />

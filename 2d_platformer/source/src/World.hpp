@@ -20,13 +20,13 @@
 
 #define MIN(a, b) ((a < b) ?(a) :(b))
 #define FLOAT_ROUNDOFF 0.001f
-#define AABB_COLL_OFFSET 0.1f
+#define AABB_COLL_OFFSET 0.05f
 namespace physics_2d {
 	class World final {
 	public:
 		enum Solver_methods { DISPLACE, ELASTIC };
 		
-		explicit World(const cgm::vec2 & gravity);
+		explicit World(const cgm::vec2 & gravity, const cgm::vec2 & solid_tile_sensor_line = cgm::vec2(3.2f, 2.0f) );
 		World(const World &) = delete;
 		//World(World &&) implement
 		//World & operator=(World &&) implement
@@ -46,6 +46,7 @@ namespace physics_2d {
 		static bool compare(const Tile_contact & lhs, const Tile_contact & rhs) { return lhs.m_pbody < rhs.m_pbody; }
 		void check_n_solve_map_collision(Body_2d *pbody) ;
 		
+		cgm::vec2										 m_solid_tile_sensor_line; // ofsset in pixels, against solid tiles for collision detection  
 		cgm::vec2										 m_gravity;
 		const Tile_map									*m_pmap;
 		Collision_listener								*m_pcoll_listener;

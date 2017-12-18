@@ -14,7 +14,7 @@
 
 #include "Timer.hpp"
 
-
+#include "Camera_2d.hpp"
 #include "Tile_map.hpp"
 #include "Tile_map_renderer.hpp"
 #include "Shader.hpp"
@@ -64,7 +64,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 std::unique_ptr<Animator_controller> get_player_anim_controller() 
 {
 	tgs::Animation_player player_idle_anim({ tgs::Animation({ 0, 1 }, 5) });
-	tgs::Animation_player player_running_anim({ tgs::Animation({3, 4, 5}, 9) });
+	tgs::Animation_player player_running_anim({ tgs::Animation({3, 4, 5}, 10) });
 	tgs::Animation_player player_jumping_anim({ tgs::Animation({7}, 1) });
 	tgs::Animation_player player_climbing_anim({ tgs::Animation({ 8, 9 }, 6),  tgs::Animation({ 10, 11 }, 6) });
 
@@ -188,23 +188,29 @@ int main(int argc, char *argv[])
 
 	Tile_map_renderer map_renderer(tile_map, shader);
 
-	cgm::mat4 V, P;
+	cgm::mat4 V;
 	GLint v_loc, p_loc;
 	GLint sampler_loc;
 	
-	cgm::vec3 t(-floor(tile_map.width() / (float)2), -floor(tile_map.height() / (float)2), 0.0f);
+	tgs::Camera_2d camera(1.0f, 1.0f, 16, 15);
+
+	//cgm::vec3 t(-floor(tile_map.width() / (float)2), -floor(tile_map.height() / (float)2), 0.0f);
     //V = cgm::rotate_y(180.0f);
 	//V.transpose();
-	V = cgm::mat4(cgm::mat4(), t);
+	//V = cgm::mat4(cgm::mat4(), t);
 
-	P = cgm::ortho(-floor(tile_map.width() / (float)2),  ceil(tile_map.width() / (float)2), -floor(tile_map.height() / (float)2), ceil(tile_map.height() / (float)2), -1.0, 1.0f);
+	//P = cgm::ortho(-floor(tile_map.width() / (float)2),  ceil(tile_map.width() / (float)2), -floor(tile_map.height() / (float)2), ceil(tile_map.height() / (float)2), -1.0, 1.0f);
+	cgm::vec3 p = camera.get_position();
+	p.x = -p.x;
+	p.y = -p.y;
+	V = cgm::mat4(cgm::mat4(), p);
 
 	v_loc = shader.get_uniform_location("V");
 	p_loc = shader.get_uniform_location("P");
 	sampler_loc = shader.get_uniform_location("tileset1");
 
 	glUniformMatrix4fv(v_loc, 1, GL_FALSE, V.value_ptr());
-	glUniformMatrix4fv(p_loc, 1, GL_FALSE, P.value_ptr());
+	glUniformMatrix4fv(p_loc, 1, GL_FALSE, camera.projection().value_ptr());
 	glUniform1f(sampler_loc, 0);
 
 	///////////////////--------------------------Initialization code------------------ ///////////////////////////////////////////////////////////////////////////
@@ -236,13 +242,13 @@ int main(int argc, char *argv[])
 	gls::Shader sprite_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_platformer/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_platformer/source/shaders/sprite.frag");
 	sprite_shader.use();
 	glUniformMatrix4fv(sprite_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
-	glUniformMatrix4fv(sprite_shader.get_uniform_location("P"), 1, GL_FALSE, P.value_ptr());
+	glUniformMatrix4fv(sprite_shader.get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
 	glUniform1f(sprite_shader.get_uniform_location("tileset"), 0);
 
 	/// Player setup
 	Player player(cgm::vec3(10.0f, 12.0f), cgm::mat4(), AABB_2d() ,cgm::vec2(1.5f, 1.0f));
 	
-	AABB_2d p_aabb(cgm::vec2(-0.45f, -0.75f), cgm::vec2(0.45f, 0.75f));
+	AABB_2d p_aabb(cgm::vec2(-0.40f, -0.75f), cgm::vec2(0.40f, 0.75f));
 	cgm::vec2 pos(player.get_position().x, player.get_position().y);
 	p_aabb.p_max += pos;
 	p_aabb.p_min += pos;
@@ -264,13 +270,13 @@ int main(int argc, char *argv[])
 		gls::Shader display_grid_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_platformer/source/shaders/d_display_tile_grid.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_platformer/source/shaders/d_display_tile_grid.frag");
 		display_grid_shader.use();
 		glUniformMatrix4fv(display_grid_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
-		glUniformMatrix4fv(display_grid_shader.get_uniform_location("P"), 1, GL_FALSE, P.value_ptr());
+		glUniformMatrix4fv(display_grid_shader.get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
 		map_renderer.set_debug_mode(Tile_map_renderer::Debug_options::DISPLAY_GRID, display_grid_shader);
 
 		gls::Shader display_colliders_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_platformer/source/shaders/d_display_colliders.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_platformer/source/shaders/d_display_colliders.frag");
 		display_colliders_shader.use();
 		glUniformMatrix4fv(display_colliders_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
-		glUniformMatrix4fv(display_colliders_shader.get_uniform_location("P"), 1, GL_FALSE, P.value_ptr());
+		glUniformMatrix4fv(display_colliders_shader.get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
 		
 		map_renderer.set_debug_mode(Tile_map_renderer::Debug_options::DISPLAY_COLLIDERS, display_colliders_shader);
 	/////////////////////////////////////////////////////////////////////////////////////////
@@ -338,6 +344,20 @@ int main(int argc, char *argv[])
  		}
 		//std::cout <<  "RENDERING AFTER " << i << " world.update() calls" << std::endl;
 		player.update();
+		
+		camera.follow(player.get_body_2d()->get_position());
+	
+		V = camera.get_view();
+
+		shader.use();
+		glUniformMatrix4fv(v_loc, 1, GL_FALSE, V.value_ptr());
+		
+		display_grid_shader.use();
+		glUniformMatrix4fv(display_grid_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
+
+		display_colliders_shader.use();
+		glUniformMatrix4fv(display_colliders_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
+
 		//std::cout << "PLAYER WLD SPACE POS = (" << player.get_body_2d()->get_position().x << ", " << player.get_body_2d()->get_position().y << ")" << std::endl;
 		glfwGetFramebufferSize(window, &vport_width, &vport_height);
 
@@ -346,6 +366,7 @@ int main(int argc, char *argv[])
 		map_renderer.render(shader);
 		
 		sprite_shader.use();
+		glUniformMatrix4fv(sprite_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 		batch.render();
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glfwPollEvents();

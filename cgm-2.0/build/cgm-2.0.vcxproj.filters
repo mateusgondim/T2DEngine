@@ -30,6 +30,9 @@
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\source\src\matrix_transform.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\source\src\Transform.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\source\CMakeLists.txt" />
