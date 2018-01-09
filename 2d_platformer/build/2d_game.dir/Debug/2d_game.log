@@ -1,3 +1,72 @@
-﻿SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+﻿  Body_2d.cpp
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+  Input_manager.cpp
+  Player_climbing_state.cpp
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Sprite.hpp(23): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+  Player_idle_state.cpp
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Sprite.hpp(23): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+  Player_jumping_state.cpp
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Sprite.hpp(23): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+  Player_running_state.cpp
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Sprite.hpp(23): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+  Tile_map.cpp
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\Tile_map.cpp(60): warning C4018: '<': signed/unsigned mismatch
+  Tile_map_renderer.cpp
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+  World.cpp
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(73): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(74): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(117): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(141): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(142): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(145): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(171): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(214): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(227): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(233): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(234): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(262): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(263): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(310): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(317): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(322): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(323): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(352): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(353): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(399): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(406): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(411): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(412): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(477): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(482): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\World.cpp(484): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+  game.cpp
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Sprite.hpp(23): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+  tmx_parser.cpp
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\source\src\tmx_parser.cpp(226): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+c:\users\mateu\documents\github\demos\2d_platformer\source\src\input_manager.cpp(101): warning C4172: returning address of local variable or temporary
   2d_game.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_platformer\build\Debug\2d_game.exe

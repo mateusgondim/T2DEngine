@@ -113,9 +113,9 @@ Gameplay_state * Player_climbing_state::check_transition(Actor & actor)
 			if (center_y > bounds.y) {
 				float y_displacement = bounds.y - actor.get_body_2d()->get_aabb_2d().p_min.y;
 
-				actor.get_body_2d()->get_position().y += y_displacement + FLOAT_ROUNDOFF;
-				actor.get_body_2d()->get_aabb_2d().p_max.y += y_displacement + FLOAT_ROUNDOFF;
-				actor.get_body_2d()->get_aabb_2d().p_min.y += y_displacement + FLOAT_ROUNDOFF;
+				actor.get_body_2d()->get_position().y += y_displacement;		// + FLOAT_ROUNDOFF;
+				actor.get_body_2d()->get_aabb_2d().p_max.y += y_displacement;	// +FLOAT_ROUNDOFF;
+				actor.get_body_2d()->get_aabb_2d().p_min.y += y_displacement;	// +FLOAT_ROUNDOFF;
 
 				actor.get_body_2d()->stop_movement_y();
 				actor.get_body_2d()->apply_gravity(true);

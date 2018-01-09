@@ -19,14 +19,15 @@
 //TODO: COPY CONTROLL
 
 #define MIN(a, b) ((a < b) ?(a) :(b))
-#define FLOAT_ROUNDOFF 0.001f
-#define AABB_COLL_OFFSET 0.05f
+#define MAX(a, b) ((a > b) ?(a) :(b))
+//#define FLOAT_ROUNDOFF 0.001f
+//#define AABB_COLL_OFFSET 0.05f
 namespace physics_2d {
 	class World final {
 	public:
 		enum Solver_methods { DISPLACE, ELASTIC };
 		
-		explicit World(const cgm::vec2 & gravity, const cgm::vec2 & solid_tile_sensor_line = cgm::vec2(3.2f, 2.0f) );
+		explicit World(const cgm::vec2 & gravity, const cgm::vec2 & solid_tile_sensor_line = cgm::vec2(3.2f, 3.5f) );
 		World(const World &) = delete;
 		//World(World &&) implement
 		//World & operator=(World &&) implement
