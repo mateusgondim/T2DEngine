@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\e3a47b3e54facc114381fc76641dbdf8\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{6378B001-1317-3E27-A23B-2E27E7E73891}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
