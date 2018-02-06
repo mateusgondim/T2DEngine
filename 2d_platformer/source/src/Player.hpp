@@ -1,7 +1,7 @@
 #ifndef _PLAYER_HPP
 #define _PLAYER_HPP
 
-#define  PLAYER_ATLAS "C:/Users/mateu/Documents/GitHub/Demos/2d_platformer/resources/sprite sheets/player_sheet.xml"
+#define  PLAYER_ATLAS "C:/Users/mateu/Documents/GitHub/Demos/2d_game/resources/sprite sheets/character.xml"
 
 #include "vec2.hpp"
 #include "vec3.hpp"

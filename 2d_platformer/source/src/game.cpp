@@ -63,10 +63,10 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 std::unique_ptr<Animator_controller> get_player_anim_controller() 
 {
-	tgs::Animation_player player_idle_anim({ tgs::Animation({ 0, 1 }, 5) });
-	tgs::Animation_player player_running_anim({ tgs::Animation({3, 4, 5}, 10) });
-	tgs::Animation_player player_jumping_anim({ tgs::Animation({7}, 1) });
-	tgs::Animation_player player_climbing_anim({ tgs::Animation({ 8, 9 }, 6),  tgs::Animation({ 10, 11 }, 6) });
+	tgs::Animation_player player_idle_anim({ tgs::Animation({5}, 5) });
+	tgs::Animation_player player_running_anim({ tgs::Animation({8, 10, 9}, 8) });
+	tgs::Animation_player player_jumping_anim({ tgs::Animation({6}, 1) });
+	tgs::Animation_player player_climbing_anim({ tgs::Animation({ 1, 2 }, 6),  tgs::Animation({ 3 }, 6) });
 
 	Animation_state player_idle_state("player_idle", player_idle_anim);
 	Animation_state player_running_state("player_running", player_running_anim);
@@ -335,7 +335,7 @@ int main(int argc, char *argv[])
 		while (lag >= dt) {
 			//++i;
 			//float delta_time = (frame_time >= dt) ?dt :frame_time;
-			g_physics_manager.get_world()->update();
+			g_physics_manager.get_world()->update(g_timer.get_fixed_dt());
 			
 			//std::cout << "frame time = " << frame_time << " | delta_time = " << delta_time << std::endl;
 			//frame_time -= delta_time;

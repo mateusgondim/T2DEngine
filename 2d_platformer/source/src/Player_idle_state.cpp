@@ -15,7 +15,7 @@
 
 
 //TODO: SWITCH ON ACTION BUTTONS, I.E. ATTACK, RUN_RIGHT, ETC
-Gameplay_state * Player_idle_state::check_transition(Actor & actor)
+Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 {
 	//auto stream = Input_handler::instance().get_input();
 
@@ -129,31 +129,9 @@ void Player_idle_state::end_tile_collision(Actor & actor, const AABB_2d & tile_a
 		std::cerr << " unknow tile aabb coordinate..." << std::endl;
 	}
 }
-
+/*
 void Player_idle_state::update(Actor & actor) 
 {
-	//if (!get_anim_player().is_playing()) {
-	//	if (m_blink_timer < Timer::instance().get_time()) {
-	//		get_anim_player().resume();
-	//	}
-	//}
-
-	//the only behavior of idle is playing the idle animation
-//	unsigned curr_frame = get_anim_player().get_frame();
-//	get_anim_player().update();
-//	if (curr_frame != get_anim_player().get_frame()) {
-		///change texture coordinates
-		//PUT THIS ON A DIFFERENT FUCTION, I.E, NOT PLAYER'S UPDATE FUNCTION, IT IS A RENDERING FUCTNIO!!!!!
-	//	actor.get_sprite().update_uv(get_anim_player().get_frame());
-	//	if (get_anim_player().get_frame() == 1) { //blinked
-	//		m_blinked = true;
-	//	}
-//		else if ((get_anim_player().get_frame() == 0) && ( m_blinked) ) {
-//			get_anim_player().pause();
-//			m_blink_timer = Timer::instance().get_time() + BLINK_INTERVAL;
-//			m_blinked = false;
-//		}
-//	}
 	actor.get_sprite().update_pos(actor.get_body_2d()->get_position(), actor.get_facing_direction());
 	return;
-}
+}*/

@@ -11,7 +11,7 @@
 Player_climbing_state::Player_climbing_state(const bool climbing_from_top, const cgm::vec2 & climbing_vel) :
 	Gameplay_state(), m_from_top(climbing_from_top), m_climbing_vel(climbing_vel), m_anim_clip(0) {}
 
-Gameplay_state * Player_climbing_state::check_transition(Actor & actor) 
+Gameplay_state * Player_climbing_state::handle_input(Actor & actor)
 {
 	tgs::Rect bounds;
 	
@@ -127,12 +127,12 @@ Gameplay_state * Player_climbing_state::check_transition(Actor & actor)
 		}
 	}
 }
-
+/*
 void Player_climbing_state::update(Actor & actor) 
 {
 	actor.get_sprite().update_pos(actor.get_body_2d()->get_position(), actor.get_facing_direction());
 	return;
-}
+}*/
 
 
 void Player_climbing_state::begin_tile_collision(Actor & actor, const AABB_2d & tile_aabb)

@@ -1,2 +1,6 @@
 ﻿  Engine.cpp
-C:\Users\mateu\Documents\GitHub\Demos\game_utility\source\src\Timer.hpp(5): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite.hpp(24): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+  engine.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib

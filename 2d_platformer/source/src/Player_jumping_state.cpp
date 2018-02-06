@@ -15,7 +15,7 @@ Player_jumping_state::Player_jumping_state(Actor & actor, float y_acceleration, 
 	actor.get_body_2d()->add_force(cgm::vec2(0.0f, m_y_acceleration));
 }
 
-Gameplay_state * Player_jumping_state::check_transition(Actor & actor) 
+Gameplay_state * Player_jumping_state::handle_input(Actor & actor) 
 {
 	bool on_ground = g_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d());
 
@@ -64,10 +64,10 @@ Gameplay_state * Player_jumping_state::check_transition(Actor & actor)
 	return nullptr;
 }
 
-void Player_jumping_state::update(Actor & actor) 
+/*void Player_jumping_state::update(Actor & actor) 
 {
 	actor.get_sprite().update_pos(actor.get_body_2d()->get_position(), actor.get_facing_direction());
-}
+}*/
 
 void Player_jumping_state::begin_tile_collision(Actor & actor, const AABB_2d & tile_aabb) 
 {

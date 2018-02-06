@@ -1,6 +1,0 @@
-﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/game_utility/source/CMakeLists.txt
-  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\game_utility\build\CMakeFiles\generate.stamp is up-to-date.
-  Timer.cpp
-C:\Users\mateu\Documents\GitHub\Demos\game_utility\source\src\Timer.cpp(11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\game_utility\source\src\Timer.cpp(16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  g_utility.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\game_utility\build\Debug\g_utility.lib

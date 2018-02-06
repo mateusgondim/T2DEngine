@@ -1,3 +1,0 @@
-C:/Users/mateu/Documents/GitHub/Demos/tgs/build/CMakeFiles/tgs.dir
-C:/Users/mateu/Documents/GitHub/Demos/tgs/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/mateu/Documents/GitHub/Demos/tgs/build/CMakeFiles/ZERO_CHECK.dir

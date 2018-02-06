@@ -8,9 +8,10 @@
 #include "AABB_2d.hpp"
 #include "Gameplay_state.hpp"
 #include "Player_idle_state.hpp"
+#include "game.hpp"
 
 Player::Player(const cgm::vec3 & position, const cgm::mat4 orientation, const AABB_2d & aabb, const cgm::vec2 & velocity) :
-	Actor(position, orientation, PLAYER_ATLAS, new Player_idle_state ,aabb, velocity, false), m_anim_frame(0), m_life(100)
+	Actor(position, orientation, PLAYER_ATLAS, new Player_idle_state ,aabb, velocity, true), m_anim_frame(0), m_life(100)
 {
 	//std::vector<unsigned> running_frames = { 3, 4, 5 }; // running
 	//std::vector<unsigned> idle_frames = { 0, 1 };
@@ -21,82 +22,18 @@ Player::Player(const cgm::vec3 & position, const cgm::mat4 orientation, const AA
 
 void Player::handle_input() 
 {
-	//const std::vector<std::pair<Button, Command *>> & stream = Input_handler::instance().get_input();
-
-	Gameplay_state * pstate = get_state()->check_transition(*this);
+	Gameplay_state * pstate = get_state()->handle_input(*this);
 	if (pstate) {
 		delete get_state();
 		set_state(pstate);
-		//unsigned curr_frame = get_panim_controller()->get_current_frame();
-		//get_sprite().update_uv(curr_frame);
-		//get_sprite().update_uv(pstate->get_anim_player().get_frame());//change to the first frame of the new animation
 	 }
-
 }
-//Maybe we have a bug here: If the last frame number of the previous animations was 0, then curr_frame == Animator_controller::get_current_frame() when it switches to the next state 
+
 void Player::update() 
 {
-	get_sprite().update_animation();
-	get_state()->update(*this);
-	
-	/*
-	unsigned curr_frame = get_sprite().get_panim_controller()->get_current_frame();
-	get_sprite().get_panim_controller()->update();
-	if (curr_frame != get_sprite().get_panim_controller()->get_current_frame()) {
-		get_sprite().update_uv(get_sprite().get_panim_controller()->get_current_frame());
-	}*/
-
+	get_sprite().update_animation(g_timer.get_dt());
+	get_sprite().update_pos(get_body_2d()->get_position(), !get_facing_direction());
+	//get_state()->update(*this);
 }
 
-/*
-//SWITCH ON STATE FIRST!
-void Player::update(const float delta_time) {
-	get_velocity() = cgm::vec2(3.0f, 3.0f);
-
-	const std::vector<std::pair<Button, Command *>> & stream = Input_handler::instance().get_input();
-	
-	auto iter = std::find_if(stream.begin(), stream.end(), 
-		[](const std::pair<Button, Command*> & p) {return p.first.m_bound_key == KEY_A; });
-	if (iter != stream.end()) {
-		if ( (iter->first).m_state == PRESSED) {
-			iter->second->execute(*this);
-		}
-	}
-
-	iter = std::find_if(stream.begin(), stream.end(),
-		[](const std::pair<Button, Command*> & p) {return p.first.m_bound_key == KEY_D; });
-	if (iter != stream.end()) {
-		if ((iter->first).m_state == PRESSED) {
-			iter->second->execute(*this);
-		}
-	}
-
-	iter = std::find_if(stream.begin(), stream.end(),
-		[](const std::pair<Button, Command*> & p) {return p.first.m_bound_key == KEY_W; });
-	if (iter != stream.end()) {
-		if ((iter->first).m_state == PRESSED) {
-			iter->second->execute(*this);
-		}
-	}
-
-	iter = std::find_if(stream.begin(), stream.end(),
-		[](const std::pair<Button, Command*> & p) {return p.first.m_bound_key == KEY_S; });
-	if (iter != stream.end()) {
-		if ((iter->first).m_state == PRESSED) {
-			iter->second->execute(*this);
-		}
-	}
-
-	m_upanim_player->update();
-	if (m_anim_frame != m_upanim_player->get_frame()) {
-		m_anim_frame = m_upanim_player->get_frame();
-		///change texture coordinates
-		//PUT THIS ON A DIFFERENT FUCTION, I.E, NOT PLAYER'S UPDATE FUNCTION, IT IS A RENDERING FUCTNIO!!!!!
-		get_sprite().update_uv(m_anim_frame);
-	}
-
-	get_sprite().update_pos(get_position(), m_facing_left);
-	//change the position buffer
-
-}*/
 

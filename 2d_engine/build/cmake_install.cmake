@@ -27,6 +27,18 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/cgm-2.0/source/cmake_install.cmake")
+  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_utility/source/cmake_install.cmake")
+  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/io/source/cmake_install.cmake")
+  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tgs/source/cmake_install.cmake")
+  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tmap/source/cmake_install.cmake")
+  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/cmake_install.cmake")
+  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_object_model/source/cmake_install.cmake")
+
+endif()
+
 if(CMAKE_INSTALL_COMPONENT)
   set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
 else()

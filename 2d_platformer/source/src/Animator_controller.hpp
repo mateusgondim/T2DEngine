@@ -20,7 +20,7 @@ friend std::ostream & operator<<(std::ostream & os, const Animator_controller & 
 public:
 	Animator_controller() = default;
 
-	void update();
+	void update(const float dt);
 	void add_state(const Animation_state & anim_state);
 	void set_initial_state(const std::string & name);
 	

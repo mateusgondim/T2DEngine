@@ -1,0 +1,6 @@
+﻿  game.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite.hpp(24): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+  game.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\Debug\game.exe

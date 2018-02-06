@@ -1,13 +1,13 @@
 #include "World.hpp"
 #include "Body_2d.hpp"
 #include "AABB_2d.hpp"
-#include "Timer.hpp"
+
 #include <algorithm>
 #include <vector>
 #include <utility>
 #include <cmath>
 #include <cassert>
-#include "game.hpp"
+
 
 physics_2d::World::World(const cgm::vec2 & gravity, const cgm::vec2 & solid_tile_sensor_line) : 
 	m_gravity(gravity), m_solid_tile_sensor_line(solid_tile_sensor_line) ,m_pmap(nullptr), m_pcoll_listener(nullptr) {}
@@ -178,7 +178,7 @@ bool physics_2d::World::is_body_2d_on_ground(const physics_2d::Body_2d * pbody) 
 	return false;
 }
 
-void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody) 
+void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, const float dt) 
 {
 	//compute the direction the body moved according to the velocity magnitude
 	bool is_moving_right =  (pbody->m_velocity.x > 0.0f) ? (true) : (false);
@@ -217,7 +217,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		//std::cout << "row =" << (unsigned)tile_up_right_coord.first << " row <= " << (unsigned)tile_bottom_right_coord.first << std::endl;
 		//std::cout << "column =" << m_pmap->height() - 1 << " column >= " << (unsigned)tile_up_right_coord.second << std::endl;
 		
-		float      maximum_x_tiles_disp = m_pmap->world_to_tile_displacement_x(pbody->m_velocity.x * g_timer.get_fixed_dt());
+		float      maximum_x_tiles_disp = m_pmap->world_to_tile_displacement_x(pbody->m_velocity.x * dt);
 	//	int count = 0;
 		maximum_x_tiles_disp = MAX(maximum_x_tiles_disp, 1.0f); // CHECK AT LEAST ONE TILE AHEAD
 		for (float row = tile_up_right_coord.first; row <= tile_bottom_right_coord.first; ++row) {
@@ -241,7 +241,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		tgs::Rect  obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 		
 		//update the position of the aabb the as the minimun of the obstacle left facing edge and the desidered posiiton
-		float      desired_x_position = pbody->m_aabb.p_max.x + pbody->m_velocity.x * g_timer.get_fixed_dt();
+		float      desired_x_position = pbody->m_aabb.p_max.x + pbody->m_velocity.x * dt;
 		//pbody->m_position.x = (obstacle_border.x < desired_x_position) ? (obstacle_border.x) : (desired_x_position);
 
 		if ( (obstacle_border.x - sensor_line_width) < desired_x_position && closest_obstacle_tile.m_is_obstacle ) { // if collided with the map
@@ -272,9 +272,9 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 			}
 		}
 		else {
-			pbody->m_position.x    +=  pbody->m_velocity.x * g_timer.get_fixed_dt();
-			pbody->m_aabb.p_min.x  +=  pbody->m_velocity.x * g_timer.get_fixed_dt();
-			pbody->m_aabb.p_max.x  +=  pbody->m_velocity.x * g_timer.get_fixed_dt();
+			pbody->m_position.x    +=  pbody->m_velocity.x * dt;
+			pbody->m_aabb.p_min.x  +=  pbody->m_velocity.x * dt;
+			pbody->m_aabb.p_max.x  +=  pbody->m_velocity.x * dt;
 		}
 		//std::cout << "------------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
 	}
@@ -303,7 +303,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		//ceil
 
 		// get the maximun number of tiles this object can traverse in one update
-		float      maximum_x_tiles_disp = m_pmap->world_to_tile_displacement_x(pbody->m_velocity.x * g_timer.get_fixed_dt());
+		float      maximum_x_tiles_disp = m_pmap->world_to_tile_displacement_x(pbody->m_velocity.x * dt);
 		maximum_x_tiles_disp = MIN(maximum_x_tiles_disp, -1.0f); // check at least one tile ahead
 		//std::cout << "maximun tiles fucking disp " << maximum_x_tiles_disp << std::endl;
 		//find the closest horizontal obstacle
@@ -329,7 +329,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		tgs::Rect  obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 		
 		//update the position the as the minimun of the obstacle left facing edge and the desidered posiiton
-		float      desired_x_position = pbody->m_aabb.p_min.x + pbody->m_velocity.x * g_timer.get_fixed_dt();
+		float      desired_x_position = pbody->m_aabb.p_min.x + pbody->m_velocity.x * dt;
 		//pbody->m_position.x = (obstacle_border.x + obstacle_border.width > desired_x_position) ? (obstacle_border.x + obstacle_border.width) : (desired_x_position);
 		//std::cout << obstacle_border.x + obstacle_border.width + FLOAT_ROUNDOFF << " and " << desired_x_position - FLOAT_ROUNDOFF << std::endl;
 		if ( (obstacle_border.x + obstacle_border.width + sensor_line_width > desired_x_position ) && closest_obstacle_tile.m_is_obstacle){ //collided
@@ -362,10 +362,10 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 			}
 		}
 		else {
-			pbody->m_position.x  += pbody->m_velocity.x * g_timer.get_fixed_dt();
+			pbody->m_position.x  += pbody->m_velocity.x * dt;
 
-			pbody->m_aabb.p_min.x += pbody->m_velocity.x * g_timer.get_fixed_dt();
-			pbody->m_aabb.p_max.x += pbody->m_velocity.x * g_timer.get_fixed_dt();
+			pbody->m_aabb.p_min.x += pbody->m_velocity.x * dt;
+			pbody->m_aabb.p_max.x += pbody->m_velocity.x * dt;
 		//	std::cout << "no collision" << std::endl;
 		}
 		//std::cout << "------------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
@@ -393,7 +393,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		//std::cout << "tile_up_left_coord = [" << tile_up_left_coord.first << ", " << tile_up_left_coord.second << "]" << std::endl;
 		//std::cout << "tile_up_right_coord = [" << tile_up_right_coord.first << ", " << tile_up_right_coord.second << "]" << std::endl;
 		//find the closest vertical obstacle
-		float      maximum_y_tiles_disp = m_pmap->world_to_tile_displacement_y(pbody->m_velocity.y * g_timer.get_fixed_dt());
+		float      maximum_y_tiles_disp = m_pmap->world_to_tile_displacement_y(pbody->m_velocity.y * dt);
 		maximum_y_tiles_disp = MAX(maximum_y_tiles_disp, 1.0f);
 		unsigned closest_obstacle_row = 0;
 		unsigned closest_obstacle_column = tile_up_left_coord.second;
@@ -475,7 +475,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 		
 		unsigned closest_obstacle_row = m_pmap->height() - 1;
 		unsigned closest_obstacle_column = tile_bottom_left_coord.second;
-		float      maximum_y_tiles_disp = std::ceil( m_pmap->world_to_tile_displacement_y(-pbody->m_velocity.y * g_timer.get_fixed_dt()));
+		float      maximum_y_tiles_disp = std::ceil( m_pmap->world_to_tile_displacement_y(-pbody->m_velocity.y * dt));
 		//std::cout << "maximun fucking tile disp =" << maximum_y_tiles_disp << std::endl;
 		//std::cout << "tile_bottom_left_coord.first + maximum_y_tiles_disp = " << tile_bottom_left_coord.first + maximum_y_tiles_disp << std::endl;
 		Tile closest_tile;
@@ -538,7 +538,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody)
 	}
 }
 
-void physics_2d::World::update() 
+void physics_2d::World::update(const float dt) 
 {
 	 //update positions, check and solve map collision logic
 
@@ -546,8 +546,8 @@ void physics_2d::World::update()
 		switch ((*iter)->get_type()) {
 		case Body_2d::DYNAMIC:
 			if ((*iter)->m_apply_gravity) {
-				(*iter)->m_velocity.x += ((*iter)->m_acceleration.x + m_gravity.x) * g_timer.get_fixed_dt();
-				(*iter)->m_velocity.y += ((*iter)->m_acceleration.y + m_gravity.y) * g_timer.get_fixed_dt();
+				(*iter)->m_velocity.x += ((*iter)->m_acceleration.x + m_gravity.x) * dt;
+				(*iter)->m_velocity.y += ((*iter)->m_acceleration.y + m_gravity.y) * dt;
 			//	std::cout << "m_velocity.y = " << (*iter)->m_velocity.y << std::endl;
 			//	std::cout << "m_velocity.x = " << (*iter)->m_velocity.x << std::endl;
 
@@ -574,19 +574,19 @@ void physics_2d::World::update()
 				//(*iter)->m_position.y += (*iter)->m_velocity.y * Timer::instance().get_delta();
 			}
 			else {
-				(*iter)->m_velocity.x += (*iter)->m_acceleration.x * g_timer.get_fixed_dt();
-				(*iter)->m_velocity.y += (*iter)->m_acceleration.y * g_timer.get_fixed_dt();
+				(*iter)->m_velocity.x += (*iter)->m_acceleration.x * dt;
+				(*iter)->m_velocity.y += (*iter)->m_acceleration.y * dt;
 				//std::cout << "m_velocity.y = " << (*iter)->m_velocity.y << std::endl;
 				//std::cout << "m_velocity.x = " << (*iter)->m_velocity.x << std::endl;
 			}
 			if ( ( (*iter)->m_velocity.x != 0.0f) || ((*iter)->m_velocity.y != 0.0f) ) {
-				check_n_solve_map_collision(*iter);
+				check_n_solve_map_collision(*iter, dt);
 			}
 
 			break;
 		case Body_2d::KINEMATIC:
-			(*iter)->m_velocity.x += (*iter)->m_acceleration.x * g_timer.get_fixed_dt();
-			(*iter)->m_velocity.y += (*iter)->m_acceleration.y * g_timer.get_fixed_dt();
+			(*iter)->m_velocity.x += (*iter)->m_acceleration.x * dt;
+			(*iter)->m_velocity.y += (*iter)->m_acceleration.y * dt;
 			
 			if ((*iter)->m_vel_threshold.x != 0.0f) {
 				if (std::fabs((*iter)->m_velocity.x) > (*iter)->m_vel_threshold.x) {

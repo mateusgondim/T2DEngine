@@ -1,2 +1,8 @@
-﻿  mat4.cpp
+﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/cgm-2.0/source/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\build\CMakeFiles\generate.stamp is up-to-date.
+  vec2.cpp
+  vec3.cpp
+  mat4.cpp
+  matrix_transform.cpp
+  Generating Code...
   cgm-2.0.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\cgm-2.0\build\Debug\cgm-2.0.lib

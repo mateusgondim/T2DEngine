@@ -10,8 +10,8 @@
 class Player_running_state : public Gameplay_state {
 public:
 	Player_running_state(Actor & actor, const float acceleration = 3.5f);
-	Gameplay_state * check_transition(Actor & actor) override;
-	void update(Actor & actor) override;
+	Gameplay_state * handle_input(Actor & actor) override;
+	//void update(Actor & actor) override;
 
 	void begin_tile_collision(Actor & actor, const  AABB_2d & tile_aabb)  override;
 	void end_tile_collision(Actor & actor, const AABB_2d & tile_aabb)  override;

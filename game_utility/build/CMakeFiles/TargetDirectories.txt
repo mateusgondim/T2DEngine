@@ -1,3 +1,0 @@
-C:/Users/mateu/Documents/GitHub/Demos/game_utility/build/CMakeFiles/g_utility.dir
-C:/Users/mateu/Documents/GitHub/Demos/game_utility/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/mateu/Documents/GitHub/Demos/game_utility/build/CMakeFiles/ZERO_CHECK.dir

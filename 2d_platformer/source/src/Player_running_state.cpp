@@ -21,7 +21,7 @@ Player_running_state::Player_running_state(Actor & actor, const float accelerati
 	}
 }
 
-Gameplay_state * Player_running_state::check_transition(Actor & actor)
+Gameplay_state * Player_running_state::handle_input(Actor & actor)
 {
 	//auto stream = Input_handler::instance().get_input();
 	bool on_ground = g_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d());
@@ -111,17 +111,8 @@ void Player_running_state::end_tile_collision(Actor & actor, const AABB_2d & til
 	}
 }
 
+/*
 void Player_running_state::update(Actor & actor) 
 {
-	//cgm::vec2 & vel = actor.get_velocity();
-
-	//update the position accordly to the running direction
-	//if (actor.get_facing_direction()) { // true if is facing left
-	//	actor.get_position() += cgm::vec3(-(vel.x * Timer::instance().get_delta()), 0.0f, 0.0f);
-	//}
-	//else {
-	//	actor.get_position() += cgm::vec3(vel.x * Timer::instance().get_delta(), 0.0f, 0.0f);
-	//}
-
 	actor.get_sprite().update_pos(actor.get_body_2d()->get_position(), actor.get_facing_direction());
-}
+}*/

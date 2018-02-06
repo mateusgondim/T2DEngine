@@ -1,0 +1,8 @@
+﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\generate.stamp is up-to-date.
+  Engine.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite.hpp(24): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+  engine.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\Release\engine.lib

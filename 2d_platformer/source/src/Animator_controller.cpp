@@ -12,7 +12,7 @@ void Animator_controller::add_state(const Animation_state & anim_state)
 	m_state_machine.insert({ anim_state.get_name() , anim_state}); 
 }
 
-void Animator_controller::update() 
+void Animator_controller::update(const float dt) 
 {
 	//check if a parameter was changed
 	if (m_param_val_changed) {
@@ -88,7 +88,7 @@ void Animator_controller::update()
 		m_param_val_changed = false;
 	}
 	auto iter_state = m_state_machine.find(m_current_state);
-	(iter_state->second).update();
+	(iter_state->second).update(dt);
 	//m_state_machine[m_current_state].update();
 }
 
