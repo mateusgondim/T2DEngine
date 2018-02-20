@@ -71,6 +71,12 @@
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\Timer.obj">
       <Filter>Object Libraries</Filter>
     </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\memory_allocator.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\Pool_allocator.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\Tileset.obj">
       <Filter>Object Libraries</Filter>
     </Object>

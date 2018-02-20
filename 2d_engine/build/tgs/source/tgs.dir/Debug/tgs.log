@@ -19,6 +19,6 @@ c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite.hpp
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite_batch.cpp(89): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
 c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\animator_controller.cpp(233): warning C4715: 'Animator_controller::get_current_frame': not all control paths return a value
-c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\animator_controller.cpp(249): warning C4715: 'Animator_controller::get_current_anim': not all control paths return a value
 c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\animator_controller.cpp(241): warning C4715: 'Animator_controller::get_current_state': not all control paths return a value
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\animator_controller.cpp(249): warning C4715: 'Animator_controller::get_current_anim': not all control paths return a value
   tgs.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\Debug\tgs.lib

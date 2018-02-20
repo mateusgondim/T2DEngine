@@ -8,8 +8,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 #Using c++11
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-SET(INCLUDE_FILES src/Timer.hpp src/Rect.hpp)
-SET(SOURCE_FILES  src/Timer.cpp)
+SET(INCLUDE_FILES src/Timer.hpp src/Rect.hpp src/memory_allocator.hpp src/Pool_allocator.hpp)
+SET(SOURCE_FILES  src/Timer.cpp src/memory_allocator.cpp src/Pool_allocator.cpp)
 
 INCLUDE_DIRECTORIES( ${GLFW3_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR})
 ADD_LIBRARY(g_utility OBJECT ${INCLUDE_FILES} ${SOURCE_FILES})

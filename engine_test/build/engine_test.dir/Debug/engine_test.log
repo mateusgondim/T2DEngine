@@ -1,0 +1,7 @@
+﻿  Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x86
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /IC:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src /IC:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"engine_test.dir\Debug\\" /Fd"engine_test.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt C:\Users\mateu\Documents\GitHub\Demos\engine_test\source\src\test.cpp
+  
+  test.cpp
+  engine_test.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\engine_test\build\Debug\engine_test.exe
