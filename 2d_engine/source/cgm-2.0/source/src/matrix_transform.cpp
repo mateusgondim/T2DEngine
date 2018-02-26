@@ -1,7 +1,9 @@
 #include "matrix_transform.hpp"
+
 #include "vec3.hpp"
 #include "vec4.hpp"
 #include "mat4.hpp"
+
 #include <cmath>
 
 cgm::mat4 cgm::translate(const cgm::vec3 & t_vec) 

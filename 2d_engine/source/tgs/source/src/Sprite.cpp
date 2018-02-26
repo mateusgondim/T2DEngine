@@ -1,5 +1,6 @@
 #include "Sprite.hpp"
 #include "Sprite_atlas_manager.hpp"
+#include "Animator_controller.hpp"
 #include "Rect.hpp"
 #include "vec3.hpp"
 #include "vec2.hpp"
@@ -78,6 +79,7 @@ void tgs::Sprite::update_pos(const cgm::vec3 & pos, const bool facing_left)
 	m_scale.x = (facing_left) ? (m_scale.x) : (-m_scale.x);
 }
 
+/*
 void tgs::Sprite::set_anim_controller(std::unique_ptr<Animator_controller> & upanim_controller)
 {
 	if (!m_upanim_controller) {
@@ -94,12 +96,12 @@ bool tgs::Sprite::is_animated() const
 		return false;
 	}
 }
+*/
 
-void tgs::Sprite::update_animation(const float dt) 
+void tgs::Sprite::update_animation(const float dt, Animator_controller *pcontroller) 
 {
-	if (m_upanim_controller) { //if this sprite is associated with a Animator_controller
-		m_upanim_controller->update(dt);
-		std::pair<unsigned, unsigned> anim_n_frame = m_upanim_controller->get_current_state().get_anim_player().get_anim_n_frame();
+	if (pcontroller) { 
+		std::pair<unsigned, unsigned> anim_n_frame = pcontroller->get_current_state().get_anim_player().get_anim_n_frame();
 
 		if (m_curr_anim_n_frame != anim_n_frame) {
 			update_uv(anim_n_frame.second);
@@ -122,7 +124,7 @@ void tgs::Sprite::update_animation(const float dt)
 	}
 	else {
 #ifndef NDEBUG
-		std::cerr << "ERROR: " << __FUNCTION__ << " This sprite is not associated with a a Animator_controller" << std::endl;
+		std::cerr << "WARNING: " << __FUNCTION__ << " This sprite is not animated" << std::endl;
 #endif // !NDEBUG
 	}
 }

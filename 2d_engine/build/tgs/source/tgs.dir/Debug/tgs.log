@@ -1,24 +1,5 @@
-﻿  Animation_player.cpp
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Animation_player.cpp(46): warning C4018: '>=': signed/unsigned mismatch
-  Animation_state.cpp
-  Animator_controller.cpp
-  Sprite.cpp
+﻿  Sprite_batch.cpp
 c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite.hpp(24): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-  Sprite_atlas.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite_atlas.cpp(56): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite_atlas.cpp(59): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite_atlas.cpp(66): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite_atlas.cpp(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite_atlas.cpp(70): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite_atlas.cpp(72): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Sprite_batch.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite.hpp(24): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite_batch.cpp(89): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\animator_controller.cpp(233): warning C4715: 'Animator_controller::get_current_frame': not all control paths return a value
-c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\animator_controller.cpp(241): warning C4715: 'Animator_controller::get_current_state': not all control paths return a value
-c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\animator_controller.cpp(249): warning C4715: 'Animator_controller::get_current_anim': not all control paths return a value
   tgs.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\Debug\tgs.lib

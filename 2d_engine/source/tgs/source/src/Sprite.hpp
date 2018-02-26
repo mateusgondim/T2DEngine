@@ -4,7 +4,7 @@
 #include "vec2.hpp"
 #include "vec3.hpp"
 #include "Sprite_atlas.hpp"
-#include "Animator_controller.hpp"
+
 #include <vector>
 #include <memory>
 #include <string>
@@ -14,6 +14,8 @@
  *
  */
 //TODO: Maybe add a change direction function
+class Animator_controller;
+
 namespace tgs {
 	class Sprite {
 	public:
@@ -24,21 +26,19 @@ namespace tgs {
 				unsigned                 get_pixels_per_unit()	   const {return m_pixels_per_unit;}
 		std::shared_ptr<const Sprite_atlas> get_atlas()		       const {return m_atlas;}
 
-		void       set_anim_controller(std::unique_ptr<Animator_controller> & uptr_anim_controller);
-		Animator_controller *get_panim_controller() { return m_upanim_controller.get(); }
-
 		void   update_pos(const cgm::vec3 & position, const bool facing_left = true);
 		void   update_uv(const int sprite_no);
-		bool   is_animated() const;
-		void   update_animation(const float dt);
+		//bool   is_animated() const;
+		void   update_animation(const float dt, Animator_controller *pcontroller);
 	private:
 		std::vector<cgm::vec3>				m_vertices_pos;
 		std::vector<cgm::vec2>				m_vertices_uv;
 		float								m_pixels_per_unit; // number of pixels per game world's unit
 		cgm::vec2                           m_scale;           // scale taking into account the pixels per world unit
 		std::shared_ptr<const Sprite_atlas>	m_atlas;
-		std::unique_ptr<Animator_controller>  m_upanim_controller;
+	
 		std::pair<unsigned, unsigned>		m_curr_anim_n_frame;
+		
 		//unsigned                           m_controller_curr_anim;
 		//TODO: SCALE THE VERTICES IN THE POSITION VECTOR WHEN CHANGING THE CURRENT VERTEX UV COORDINATES
 		//std::vector<unsigned> m_elements

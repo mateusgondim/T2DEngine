@@ -5,6 +5,8 @@
 //  Created by Mateus_Gondim on 15/06/16.
 //
 //
+#include "Shader.hpp"
+
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -12,7 +14,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "Shader.hpp"
+
 
 using std::string;
 using std::ifstream;

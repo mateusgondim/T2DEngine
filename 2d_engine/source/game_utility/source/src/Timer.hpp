@@ -1,10 +1,6 @@
 #ifndef _TIMER_HPP
 #define _TIMER_HPP
 
-#define GLEW_STATIC
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
 //The global clock of the engine, every system that needs to acess the time, should do it through this class
 
 #define DEFAULT_MS_PER_UPDATE 1/60.0F

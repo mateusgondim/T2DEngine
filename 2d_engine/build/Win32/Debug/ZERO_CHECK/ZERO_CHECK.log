@@ -1,1 +1,10 @@
-﻿
+﻿  Checking Build System
+  CMake does not need to re-run because C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/cgm-2.0/source/CMakeFiles/generate.stamp is up-to-date.
+  CMake is re-running because C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeFiles/generate.stamp is out-of-date.
+    the file 'C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/game_utility/source/CMakeLists.txt'
+    is newer than 'C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeFiles/generate.stamp.depend'
+    result='-1'
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build

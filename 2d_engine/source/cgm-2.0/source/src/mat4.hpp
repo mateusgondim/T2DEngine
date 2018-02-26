@@ -1,8 +1,7 @@
 #ifndef _MAT4_HPP
 
 #define _MAT4_HPP
-#include "vec3.hpp"
-#include "vec4.hpp"
+namespace cgm { struct vec3; struct vec4; }
 
 namespace cgm {
 	class mat4 {

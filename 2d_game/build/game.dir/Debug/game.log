@@ -1,6 +1,66 @@
-﻿  game.cpp
+﻿  Game_coll_listener.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+  Player.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\matrix_transform.hpp(5): warning C4099: 'cgm::mat4': type name first seen using 'class' now seen using 'struct'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): note: see declaration of 'cgm::mat4'
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+  Player_climbing_state.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(25): warning C4150: deletion of pointer to incomplete type 'Gameplay_state'; no destructor called
+  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(16): note: see declaration of 'Gameplay_state'
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\matrix_transform.hpp(5): warning C4099: 'cgm::mat4': type name first seen using 'class' now seen using 'struct'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): note: see declaration of 'cgm::mat4'
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+  Player_ducking_state.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(25): warning C4150: deletion of pointer to incomplete type 'Gameplay_state'; no destructor called
+  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(16): note: see declaration of 'Gameplay_state'
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\matrix_transform.hpp(5): warning C4099: 'cgm::mat4': type name first seen using 'class' now seen using 'struct'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): note: see declaration of 'cgm::mat4'
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+  Player_idle_state.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(25): warning C4150: deletion of pointer to incomplete type 'Gameplay_state'; no destructor called
+  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(16): note: see declaration of 'Gameplay_state'
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\matrix_transform.hpp(5): warning C4099: 'cgm::mat4': type name first seen using 'class' now seen using 'struct'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): note: see declaration of 'cgm::mat4'
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+  Player_jumping_state.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(25): warning C4150: deletion of pointer to incomplete type 'Gameplay_state'; no destructor called
+  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(16): note: see declaration of 'Gameplay_state'
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\matrix_transform.hpp(5): warning C4099: 'cgm::mat4': type name first seen using 'class' now seen using 'struct'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): note: see declaration of 'cgm::mat4'
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+  Player_running_state.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(25): warning C4150: deletion of pointer to incomplete type 'Gameplay_state'; no destructor called
+  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(16): note: see declaration of 'Gameplay_state'
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\matrix_transform.hpp(5): warning C4099: 'cgm::mat4': type name first seen using 'class' now seen using 'struct'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): note: see declaration of 'cgm::mat4'
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+  game.cpp
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\matrix_transform.hpp(5): warning C4099: 'cgm::mat4': type name first seen using 'class' now seen using 'struct'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): note: see declaration of 'cgm::mat4'
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
 c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-c:\users\mateu\documents\github\demos\2d_engine\source\tgs\source\src\Sprite.hpp(24): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tgs\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(25): warning C4150: deletion of pointer to incomplete type 'Gameplay_state'; no destructor called
+  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(16): note: see declaration of 'Gameplay_state'
+  Generating Code...
   game.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\Debug\game.exe

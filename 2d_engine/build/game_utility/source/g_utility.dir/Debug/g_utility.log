@@ -1,6 +1,9 @@
-﻿  Pool_allocator.cpp
-  Timer.cpp
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.cpp(11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.cpp(16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  Timer.cpp
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.cpp(13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.cpp(18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  crc32.cpp
+  string_id.cpp
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\string_id.cpp(16): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h(552): note: see declaration of 'strdup'
   Generating Code...
   g_utility.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\Debug\g_utility.lib

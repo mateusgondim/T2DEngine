@@ -1,8 +1,10 @@
+#include "Timer.hpp"
+
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "Timer.hpp"
+
 
 
 void Timer::init(float ms_per_update) 

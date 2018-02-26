@@ -7,7 +7,7 @@
 #include "AABB_2d.hpp"
 
 #include "Actor.hpp"
-#include "Ren_coll_game_object.hpp"
+#include "Sprite.hpp"
 #include "Gameplay_state.hpp"
 #include "Animator_controller.hpp"
 
@@ -15,11 +15,16 @@
 //Actor::Actor(const cgm::vec3 & pos, const cgm::mat4 & orientation, const std::string & texture_file, State *pstate, const AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left)
 //	: Renderable_game_object(pos, orientation, texture_file), m_pstate(pstate), m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) {}
 
-Actor::Actor(const std::string & texture_file, const AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left) :
-	Ren_coll_game_object(texture_file), m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) {}
+Actor::Actor(const std::string & texture_file, const AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left) :  m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) 
+{
+	m_psprite = new tgs::Sprite(texture_file, 16.0f);
+}
 
 Actor::Actor(const cgm::vec3 & pos, const cgm::mat4 & orientation, const std::string & texture_file, Gameplay_state *pstate, const AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left) :
-	Ren_coll_game_object(pos, orientation, texture_file), m_pstate(pstate) ,m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) {}
+	Game_object(pos), m_pstate(pstate) ,m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) 
+{
+	m_psprite = new tgs::Sprite(texture_file, 16.0f);
+}
 
 void Actor::begin_tile_collision(const AABB_2d & tile_aabb)  
 {

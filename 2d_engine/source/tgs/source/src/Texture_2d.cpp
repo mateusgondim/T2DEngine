@@ -1,8 +1,10 @@
+#include "Texture_2d.hpp"
+
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "SOIL.h"
-#include "Texture_2d.hpp"
+
 #include <string>
 #include <iostream>
 

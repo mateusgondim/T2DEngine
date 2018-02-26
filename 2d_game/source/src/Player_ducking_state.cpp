@@ -8,7 +8,7 @@
 Gameplay_state * Player_ducking_state::handle_input(Actor & actor) 
 {
 	//check if is attacking, if so, return
-	bool is_attacking = actor.get_sprite().get_panim_controller()->get_trigger("is_attacking");
+	bool is_attacking = actor.get_anim_controller_component()->get_trigger("is_attacking");
 	if (is_attacking) {
 		return nullptr;
 	}
@@ -17,7 +17,7 @@ Gameplay_state * Player_ducking_state::handle_input(Actor & actor)
 	const Button & move_down_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_DOWN);
 	if (move_down_button.m_state == RELEASED) {
 		//ANIMATION
-		actor.get_sprite().get_panim_controller()->set_bool("is_ducking", false);
+		actor.get_anim_controller_component()->set_bool("is_ducking", false);
 		//Gameplay
 		return new Player_idle_state;
 	}
@@ -42,7 +42,7 @@ Gameplay_state * Player_ducking_state::handle_input(Actor & actor)
 
 	if (attacking_button.m_state == PRESSED) {
 		//ANIMATION
-		actor.get_sprite().get_panim_controller()->set_trigger("is_attacking");
+		actor.get_anim_controller_component()->set_trigger("is_attacking");
 		//gameplay
 		//throw projectile...
 	}

@@ -1,14 +1,15 @@
+#include "Input_manager.hpp"
+#include "Button.hpp"
+
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include <iostream>
-#include <algorithm>
 #include <map>
-#include <utility>
 #include <cassert>
 #include <string>
-#include "Input_manager.hpp"
+
 
 
 void Input_manager::map_action_to_button(const int action, const Button & button) 

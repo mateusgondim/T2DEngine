@@ -3,36 +3,50 @@
 
 #include "vec3.hpp"
 #include "mat4.hpp" //chage to mat3!!!
+#include "Transform.hpp"
+#include "Sprite.hpp"
+#include "Animator_controller.hpp"
+#include "Body_2d.hpp"
+#include "string_id.hpp"
 #include <string>
 
-/*Game_object: The base class for all the entities
- *  in the game world, it represents a object that exists in
- *  the game world, updates itself and can clone itself using the prototype pattern
+/* Game_object: The base class for all the entities in the game world. 
+ * This engine uses a component approach to its object model,
+ * so the game object class works as a hub of components, each providing a specific functionallity
+ * to the object, classes that inherent from this class, should initialize the needed components and,
+ * add new ones if necessary.
  */
 //TODO: CHANGE THE ORIENTATION TO BE A 3X3 MATRIX!
+//TODO: MANAGE COPY CONTROLL!!!!
 class Game_object {
 public:
-	Game_object() = default;
-	Game_object(const cgm::vec3 & position, const cgm::mat4 & orientation) : m_position(position), m_orientation(orientation) {}
-	
-	virtual ~Game_object() = default;
-	cgm::vec3 &	get_position() { return m_position; }
-	cgm::mat4 & object_to_upright() { return m_orientation; }
+	Game_object() : m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+	Game_object(const cgm::Transform & transform) : m_transform(transform), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+	Game_object(const cgm::vec3 & position) : m_transform(position), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+	//MISSING COPY CONTROLL!!!!!!!!
+
+	virtual ~Game_object() 
+	{
+		delete m_psprite;
+		delete m_panimator_controller;
+		//delete m_pbody_2d; // need to delete through the physic_2d's world object 
+	}
+
+	cgm::Transform     & get_transform_component()		  { return m_transform; }
+	tgs::Sprite          *get_sprite_component()		  { return m_psprite; }
+	Animator_controller  *get_anim_controller_component() { return m_panimator_controller; }
+	physics_2d::Body_2d  *get_body_2d_component()		  { return m_pbody_2d;}
 	
 	virtual std::string get_type() const = 0;
 	virtual void update() = 0;
-private:
-	cgm::vec3						m_position;
-	cgm::mat4						m_orientation;
+protected:
+	cgm::Transform			 m_transform;
+	tgs::Sprite				*m_psprite;
+	Animator_controller		*m_panimator_controller;
+	physics_2d::Body_2d     *m_pbody_2d;
+	string_id                m_type;
 	
-	/*
-	const tgs::Sprite & get_sprite() const { return *m_psprite; }
-	std::shared_ptr<tgs::Sprite>	m_psprite;
-	Box_collider_2d					m_box_col;
-	cgm::vec2						m_velocity;
-	float							m_anim_frame;
-	float							m_life;
-	*/
+	
 	//TODO: PERHAPS ADD A MAP COLLISION FUNCTION!!
 };
 

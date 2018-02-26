@@ -1,1 +1,7 @@
-﻿  cgm-2.0.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\cgm-2.0\source\cgm-2.0.dir\Debug\cgm-2.0.lib
+﻿  mat4.cpp
+  matrix_transform.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): warning C4099: 'cgm::mat4': type name first seen using 'struct' now seen using 'class'
+  c:\users\mateu\documents\github\demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): note: see declaration of 'cgm::mat4'
+  vec3.cpp
+  Generating Code...
+  cgm-2.0.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\cgm-2.0\source\cgm-2.0.dir\Debug\cgm-2.0.lib

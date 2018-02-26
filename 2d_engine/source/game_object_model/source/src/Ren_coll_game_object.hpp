@@ -11,8 +11,8 @@
 
 class Ren_coll_game_object : public Game_object {
 public:
-	Ren_coll_game_object(const cgm::vec3 & position, const cgm::mat4 & orientation, const std::string & file_name, const float pixels_per_unit = 16) : 
-		Game_object(position, orientation), m_sprite(file_name, pixels_per_unit), m_pbody(nullptr) {}
+	//Ren_coll_game_object(const cgm::vec3 & position, const cgm::mat4 & orientation, const std::string & file_name, const float pixels_per_unit = 16) : 
+	//	Game_object(position, orientation), m_sprite(file_name, pixels_per_unit), m_pbody(nullptr) {}
 	
 	Ren_coll_game_object(const std::string & file_name, const float pixels_per_unit = 16) : m_sprite(file_name, pixels_per_unit) {}
 	

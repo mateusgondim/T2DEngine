@@ -1,5 +1,6 @@
 #include "mat4.hpp"
 #include "vec3.hpp"
+#include "vec4.hpp"
 
 cgm::mat4::mat4() 
 {

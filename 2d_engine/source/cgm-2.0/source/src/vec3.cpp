@@ -1,4 +1,7 @@
 #include "vec3.hpp"
+#include "vec2.hpp"
+
+cgm::vec3::vec3(const cgm::vec2 & v) : x(v.x), y(v.y), z(0.0f) {}
 
 cgm::vec3 & cgm::vec3::operator+=(const cgm::vec3 & rhs) 
 {

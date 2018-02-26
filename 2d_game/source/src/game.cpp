@@ -65,7 +65,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	g_engine.m_input_manager.key_callback(window, key, scancode, action, mods);
 }
 
-std::unique_ptr<Animator_controller> get_player_anim_controller() 
+Animator_controller *get_player_anim_controller() 
 {
 	tgs::Animation_player player_idle_anim({ tgs::Animation({5}, 5) });
 	tgs::Animation_player player_running_anim({ tgs::Animation({8, 10, 9}, 10) });
@@ -83,113 +83,113 @@ std::unique_ptr<Animator_controller> get_player_anim_controller()
 	Animation_state player_ducking_idle_state("player_ducking_idle", player_ducking_idle_anim);
 	Animation_state player_ducking_attacking_state("player_ducking_attacking", player_ducking_attacking_anim);
 
-	std::unique_ptr<Animator_controller> upcontroller(new Animator_controller());
-	upcontroller->add_bool_param("is_running");
-	upcontroller->add_bool_param("is_jumping");
-	upcontroller->add_bool_param("is_climbing");
-	upcontroller->add_bool_param("is_ducking");
-	upcontroller->add_trigger_param("is_attacking");
+	Animator_controller *pcontroller(new Animator_controller());
+	pcontroller->add_bool_param("is_running");
+	pcontroller->add_bool_param("is_jumping");
+	pcontroller->add_bool_param("is_climbing");
+	pcontroller->add_bool_param("is_ducking");
+	pcontroller->add_trigger_param("is_attacking");
 
-	upcontroller->add_state(player_idle_state);
-	upcontroller->add_state(player_running_state);
-	upcontroller->add_state(player_jumping_state);
-	upcontroller->add_state(player_climbing_state);
-	upcontroller->add_state(player_attacking_state);
-	upcontroller->add_state(player_ducking_idle_state);
-	upcontroller->add_state(player_ducking_attacking_state);
+	pcontroller->add_state(player_idle_state);
+	pcontroller->add_state(player_running_state);
+	pcontroller->add_state(player_jumping_state);
+	pcontroller->add_state(player_climbing_state);
+	pcontroller->add_state(player_attacking_state);
+	pcontroller->add_state(player_ducking_idle_state);
+	pcontroller->add_state(player_ducking_attacking_state);
 
 	Transition idle_to_ducking_idle("idle_to_ducking_idle", "player_idle", "player_ducking_idle");
-	upcontroller->add_transition(idle_to_ducking_idle);
-	upcontroller->add_bool_condition("idle_to_ducking_idle", "is_ducking", true);
+	pcontroller->add_transition(idle_to_ducking_idle);
+	pcontroller->add_bool_condition("idle_to_ducking_idle", "is_ducking", true);
 
 	Transition ducking_idle_to_idle("ducking_idle_to_idle", "player_ducking_idle", "player_idle");
-	upcontroller->add_transition(ducking_idle_to_idle);
-	upcontroller->add_bool_condition("ducking_idle_to_idle", "is_ducking", false);
+	pcontroller->add_transition(ducking_idle_to_idle);
+	pcontroller->add_bool_condition("ducking_idle_to_idle", "is_ducking", false);
 
 	Transition ducking_idle_to_ducking_attacking("ducking_idle_to_ducking_attacking", "player_ducking_idle", "player_ducking_attacking");
-	upcontroller->add_transition(ducking_idle_to_ducking_attacking);
-	upcontroller->add_trigger_condition("ducking_idle_to_ducking_attacking", "is_attacking", true);
+	pcontroller->add_transition(ducking_idle_to_ducking_attacking);
+	pcontroller->add_trigger_condition("ducking_idle_to_ducking_attacking", "is_attacking", true);
 
 	Transition ducking_attacking_to_ducking_idle("ducking_attacking_to_ducking_idle", "player_ducking_attacking", "player_ducking_idle");
-	upcontroller->add_transition(ducking_attacking_to_ducking_idle);
-	upcontroller->add_trigger_condition("ducking_attacking_to_ducking_idle", "is_attacking", false);
+	pcontroller->add_transition(ducking_attacking_to_ducking_idle);
+	pcontroller->add_trigger_condition("ducking_attacking_to_ducking_idle", "is_attacking", false);
 
 
 	Transition attack_from_idle("idle_to_attack", "player_idle", "player_attacking");
-	upcontroller->add_transition(attack_from_idle);
-	upcontroller->add_trigger_condition("idle_to_attack", "is_attacking", true);
+	pcontroller->add_transition(attack_from_idle);
+	pcontroller->add_trigger_condition("idle_to_attack", "is_attacking", true);
 
 	Transition idle_from_attacking("attack_to_idle", "player_attacking", "player_idle");
-	upcontroller->add_transition(idle_from_attacking);
-	upcontroller->add_trigger_condition("attack_to_idle", "is_attacking", false);
-	upcontroller->add_bool_condition("attack_to_idle", "is_jumping", false);
+	pcontroller->add_transition(idle_from_attacking);
+	pcontroller->add_trigger_condition("attack_to_idle", "is_attacking", false);
+	pcontroller->add_bool_condition("attack_to_idle", "is_jumping", false);
 
 	Transition running_to_attack("running_to_attack", "player_running", "player_attacking");
-	upcontroller->add_transition(running_to_attack);
-	upcontroller->add_trigger_condition("running_to_attack", "is_attacking", true);
+	pcontroller->add_transition(running_to_attack);
+	pcontroller->add_trigger_condition("running_to_attack", "is_attacking", true);
 
 	
 	Transition jumping_to_attack("jumping_to_attack", "player_jumping", "player_attacking");
-	upcontroller->add_transition(jumping_to_attack);
-	upcontroller->add_trigger_condition("jumping_to_attack", "is_attacking", true);
+	pcontroller->add_transition(jumping_to_attack);
+	pcontroller->add_trigger_condition("jumping_to_attack", "is_attacking", true);
 
 	Transition attack_to_jumping("attack_to_jumping", "player_attacking", "player_jumping");
-	upcontroller->add_transition(attack_to_jumping);
-	upcontroller->add_trigger_condition("attack_to_jumping", "is_attacking", false);
-	upcontroller->add_bool_condition("attack_to_jumping", "is_jumping", true);
+	pcontroller->add_transition(attack_to_jumping);
+	pcontroller->add_trigger_condition("attack_to_jumping", "is_attacking", false);
+	pcontroller->add_bool_condition("attack_to_jumping", "is_jumping", true);
 
 
 	Transition start_running("start_running", "player_idle", "player_running");
-	upcontroller->add_transition(start_running);
-	upcontroller->add_bool_condition("start_running", "is_running", true);
+	pcontroller->add_transition(start_running);
+	pcontroller->add_bool_condition("start_running", "is_running", true);
 
 	Transition stop_running("stop_running", "player_running", "player_idle");
-	upcontroller->add_transition(stop_running);
-	upcontroller->add_bool_condition("stop_running", "is_running", false);
-	upcontroller->add_trigger_condition("stop_running", "is_attacking", false);
+	pcontroller->add_transition(stop_running);
+	pcontroller->add_bool_condition("stop_running", "is_running", false);
+	pcontroller->add_trigger_condition("stop_running", "is_attacking", false);
 
 	Transition start_jumping_from_idle("start_jumping_from_idle", "player_idle", "player_jumping");
-	upcontroller->add_transition(start_jumping_from_idle);
-	upcontroller->add_bool_condition("start_jumping_from_idle", "is_jumping", true);
+	pcontroller->add_transition(start_jumping_from_idle);
+	pcontroller->add_bool_condition("start_jumping_from_idle", "is_jumping", true);
 
 	Transition stop_jumping_to_idle("stop_jumping_to_idle", "player_jumping", "player_idle");
-	upcontroller->add_transition(stop_jumping_to_idle);
-	upcontroller->add_bool_condition("stop_jumping_to_idle", "is_jumping", false);
-	upcontroller->add_bool_condition("stop_jumping_to_idle", "is_running", false);
-	upcontroller->add_bool_condition("stop_jumping_to_idle", "is_climbing", false);
+	pcontroller->add_transition(stop_jumping_to_idle);
+	pcontroller->add_bool_condition("stop_jumping_to_idle", "is_jumping", false);
+	pcontroller->add_bool_condition("stop_jumping_to_idle", "is_running", false);
+	pcontroller->add_bool_condition("stop_jumping_to_idle", "is_climbing", false);
 
 	Transition start_jumping_from_running("start_jumping_from_running", "player_running", "player_jumping");
-	upcontroller->add_transition(start_jumping_from_running);
-	upcontroller->add_bool_condition("start_jumping_from_running", "is_jumping", true);
+	pcontroller->add_transition(start_jumping_from_running);
+	pcontroller->add_bool_condition("start_jumping_from_running", "is_jumping", true);
 	//upcontroller->add_booll_condition("start_jumping_from_running", "is_running", true);
 
 	Transition stop_jumping_to_running("stop_jumping_to_running", "player_jumping", "player_running");
-	upcontroller->add_transition(stop_jumping_to_running);
-	upcontroller->add_bool_condition("stop_jumping_to_running", "is_jumping", false);
-	upcontroller->add_bool_condition("stop_jumping_to_running", "is_running", true);
+	pcontroller->add_transition(stop_jumping_to_running);
+	pcontroller->add_bool_condition("stop_jumping_to_running", "is_jumping", false);
+	pcontroller->add_bool_condition("stop_jumping_to_running", "is_running", true);
 	
 	Transition climbing_from_idle("climbing_from_idle", "player_idle", "player_climbing");
-	upcontroller->add_transition(climbing_from_idle);
-	upcontroller->add_bool_condition("climbing_from_idle", "is_climbing", true);
+	pcontroller->add_transition(climbing_from_idle);
+	pcontroller->add_bool_condition("climbing_from_idle", "is_climbing", true);
 
 	//this transition is gonna go, should be from ending climb
 	Transition idle_from_climbing("idle_from_climbing", "player_climbing", "player_idle");
-	upcontroller->add_transition(idle_from_climbing);
-	upcontroller->add_bool_condition("idle_from_climbing", "is_climbing", false);
-	upcontroller->add_bool_condition("idle_from_climbing", "is_jumping", false);
+	pcontroller->add_transition(idle_from_climbing);
+	pcontroller->add_bool_condition("idle_from_climbing", "is_climbing", false);
+	pcontroller->add_bool_condition("idle_from_climbing", "is_jumping", false);
 
 	Transition jumping_from_climbing("jumping_from_climbing", "player_climbing", "player_jumping");
-	upcontroller->add_transition(jumping_from_climbing);
-	upcontroller->add_bool_condition("jumping_from_climbing", "is_climbing", false);
-	upcontroller->add_bool_condition("jumping_from_climbing", "is_jumping", true);
+	pcontroller->add_transition(jumping_from_climbing);
+	pcontroller->add_bool_condition("jumping_from_climbing", "is_climbing", false);
+	pcontroller->add_bool_condition("jumping_from_climbing", "is_jumping", true);
 
 	Transition climbing_from_jumping("climbing_from_jumping", "player_jumping", "player_climbing");
-	upcontroller->add_transition(climbing_from_jumping);
-	upcontroller->add_bool_condition("climbing_from_jumping", "is_climbing", true);
-	upcontroller->add_bool_condition("climbing_from_jumping", "is_jumping", false);
+	pcontroller->add_transition(climbing_from_jumping);
+	pcontroller->add_bool_condition("climbing_from_jumping", "is_climbing", true);
+	pcontroller->add_bool_condition("climbing_from_jumping", "is_jumping", false);
 
-	std::cout << (*upcontroller);
-	return upcontroller;
+	std::cout << (*pcontroller);
+	return pcontroller;
 }
 
 
@@ -296,7 +296,7 @@ int main(int argc, char *argv[])
 	//Player_idle_state::switch_anim_frames({ 0, 1 });
 	//Player_running_state::switch_anim_frames({ 3, 4, 5 });
 
-	std::unique_ptr<Animator_controller> upanim_controller = get_player_anim_controller();
+	Animator_controller *panim_controller = get_player_anim_controller();
 
 	
 
@@ -310,24 +310,24 @@ int main(int argc, char *argv[])
 	glUniform1f(sprite_shader.get_uniform_location("tileset"), 0);
 
 	/// Player setup
-	Player player(cgm::vec3(10.0f, 12.0f), cgm::mat4(), AABB_2d() ,cgm::vec2(1.5f, 1.0f));
+	cgm::vec3 player_pos(10.0f, 12.0f);
 	
 	AABB_2d p_aabb(cgm::vec2(-0.40f, -0.75f), cgm::vec2(0.40f, 0.75f));
-	cgm::vec2 pos(player.get_position().x, player.get_position().y);
+	cgm::vec2 pos(player_pos.x, player_pos.y);
 	p_aabb.p_max += pos;
 	p_aabb.p_min += pos;
+
 	physics_2d::Body_2d *pbody = g_engine.m_physics_manager.get_world()->create_body_2d(physics_2d::Body_2d::Entity_types::DYNAMIC, pos, 1.0f, p_aabb);
-	//physics_2d::Body_2d *pbody = g_physics_manager.get_world()->create_body_2d(physics_2d::Body_2d::Entity_types::DYNAMIC, pos, 1.0f, p_aabb);
-	
 	pbody->set_velocity_threshold(cgm::vec2(6.0f, 12.0f));
-	player.set_body_2d(pbody);
+	
+	Player player(panim_controller, pbody, cgm::vec3(10.0f, 12.0f), cgm::mat4(), AABB_2d(), cgm::vec2(1.5f, 1.0f));
+	
 	pbody->set_user_data(static_cast<Game_object*>(&player));
 	std::cout << "player aabb in world space: max = " << p_aabb.p_max.x << ", " << p_aabb.p_max.y  << " min = " << p_aabb.p_min.x << ", " << p_aabb.p_min.y << std::endl;
 
-	player.get_sprite().set_anim_controller(upanim_controller);
 	/////////////////////////////////////////////////////////////////////
-	tgs::Sprite_batch batch(12, player.get_sprite().get_atlas()->get_texture() , sprite_shader);
-	batch.add(player.get_sprite());
+	tgs::Sprite_batch batch(12, player.get_sprite_component()->get_atlas()->get_texture() , sprite_shader);
+	batch.add(*player.get_sprite_component());
 	
 	/////////////////////////////////////////////////////////////////////////
 
@@ -362,7 +362,7 @@ int main(int argc, char *argv[])
 	bool on_ground = false;
 	tgs::Rect bounds;
 	float pixel_width, pixel_height;
-	player.get_sprite().get_atlas()->get_text_coord(13, &bounds, &pixel_width, &pixel_height);
+	player.get_sprite_component()->get_atlas()->get_text_coord(13, &bounds, &pixel_width, &pixel_height);
 	std::cout << "TEXTURE COORDINATES X = " << bounds.x << ", Y = " << bounds.y << ", WIDTH = " << bounds.width << ", HEIGHT = " << bounds.height << ", IM_HEIGHT = " << pixel_height<< std::endl;
 
 	while (!glfwWindowShouldClose(window)) {
@@ -415,7 +415,7 @@ int main(int argc, char *argv[])
 		//std::cout <<  "RENDERING AFTER " << i << " world.update() calls" << std::endl;
 		player.update();
 		
-		camera.follow(player.get_body_2d()->get_position());
+		camera.follow(player.get_body_2d_component()->get_position());
 	
 		V = camera.get_view();
 
@@ -442,7 +442,7 @@ int main(int argc, char *argv[])
 		glfwPollEvents();
 		glfwSwapBuffers(window);
 
-		batch.add(player.get_sprite());
+		batch.add(*player.get_sprite_component());
 	}
 
 	std::wcout << "[min dt, max dt] = [" << smmalest_dt * 1000.0f << ", " << bigger_dt * 1000.0f << "]" << std::endl;

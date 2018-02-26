@@ -2,9 +2,7 @@
 
 #define _MATRIX_TRANSFORM_HPP
 
-#include "mat4.hpp"
-#include "vec3.hpp"
-#include "vec4.hpp"
+namespace cgm { struct vec3; struct vec4; struct mat4; } //forward declaration to avoid includes
 
 namespace cgm {
 	mat4 translate(const vec3 & t_vec);

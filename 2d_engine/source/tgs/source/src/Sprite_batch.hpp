@@ -2,9 +2,7 @@
 
 #define _SPRITE_BATCH_HPP
 #include <vector>
-#include "Shader.hpp"
 #include "Vertex1P1C1UV.hpp"
-#include "Sprite.hpp"
 #include "Texture_2d.hpp"
 
 /*Sprite_batch: part of the tile graphics system, this class is responsable for
@@ -12,6 +10,11 @@
  * Every batch has a texture associated with it and a buffer object to store the sprite's 
  * vertex data
  */
+//Forward declaration to prevent includes
+namespace gls {class Shader;}
+namespace tgs { class Sprite;}
+
+
 namespace tgs {
 	class Sprite_batch {
 	public:

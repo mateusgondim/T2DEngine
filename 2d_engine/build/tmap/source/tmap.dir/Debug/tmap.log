@@ -1,1 +1,13 @@
-﻿  tmap.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\Debug\tmap.lib
+﻿  Tile_map.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.cpp(60): warning C4018: '<': signed/unsigned mismatch
+  Tile_map_renderer.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+  tmx_parser.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(33): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\tmx_parser.cpp(226): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  tmap.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\Debug\tmap.lib
