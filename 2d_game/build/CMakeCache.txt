@@ -154,6 +154,9 @@ ENGINE_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/s
 //Path to a library.
 ENGINE_LIBRARY:FILEPATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/Debug/engine.lib
 
+//Path to a file.
+GFX_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/gfx/source/src
+
 //The directory where GL/glew.h resides
 GLEW_INCLUDE_DIR:PATH=C:/Program Files (x86)/glew/include
 

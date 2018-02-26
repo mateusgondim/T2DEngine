@@ -101,7 +101,7 @@ Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 	return nullptr;
 }
 
-void Player_idle_state::begin_tile_collision(Actor & actor, const AABB_2d & tile_aabb) 
+void Player_idle_state::begin_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	std::cout << "PLAYER IDLE STATE " << __FUNCTION__ << ": with ";
 
@@ -124,7 +124,7 @@ void Player_idle_state::begin_tile_collision(Actor & actor, const AABB_2d & tile
 	}
 }
 
-void Player_idle_state::end_tile_collision(Actor & actor, const AABB_2d & tile_aabb) 
+void Player_idle_state::end_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	std::cout << "PLAYER IDLE STATE " << __FUNCTION__ << ": with ";
 

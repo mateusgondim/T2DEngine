@@ -81,12 +81,12 @@ Gameplay_state * Player_jumping_state::handle_input(Actor & actor)
 	actor.get_sprite().update_pos(actor.get_body_2d()->get_position(), actor.get_facing_direction());
 }*/
 
-void Player_jumping_state::begin_tile_collision(Actor & actor, const AABB_2d & tile_aabb) 
+void Player_jumping_state::begin_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	std::cout << __FUNCTION__ << std::endl;
 }
 
-void Player_jumping_state::end_tile_collision(Actor & actor, const AABB_2d & tile_aabb)
+void Player_jumping_state::end_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	std::cout << __FUNCTION__ << std::endl;
 }

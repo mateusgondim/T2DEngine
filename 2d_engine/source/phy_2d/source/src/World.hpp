@@ -3,9 +3,6 @@
 #define _WORLD_HPP
 
 #include "Body_2d.hpp"
-//#include "Tile_contact.hpp"
-#include "Collision_listener.hpp"
-#include "Tile_map.hpp"
 #include "vec2.hpp"
 #include <vector>
 #include <set>
@@ -17,6 +14,11 @@
  */
 
 //TODO: COPY CONTROLL
+
+class Tile_map;
+class Rect;
+
+namespace physics_2d { class Collision_listener; }
 
 #define MIN(a, b) ((a < b) ?(a) :(b))
 #define MAX(a, b) ((a > b) ?(a) :(b))
@@ -42,7 +44,7 @@ namespace physics_2d {
 		bool     is_body_2d_on_ground(const Body_2d * pbody) const;
 		bool     try_climbing_ladder(Body_2d * pbody, const bool is_climbing_up);
 		bool     is_body_on_ladder(Body_2d *   pbody);
-		bool     is_on_ladder_top_tile(const Body_2d * pbody, tgs::Rect & ladder_bounds) const;
+		bool     is_on_ladder_top_tile(const Body_2d * pbody, Rect & ladder_bounds) const;
 	private:
 		//static bool compare(const Tile_contact & lhs, const Tile_contact & rhs) { return lhs.m_pbody < rhs.m_pbody; }
 		void check_n_solve_map_collision(Body_2d *pbody, const float dt) ;

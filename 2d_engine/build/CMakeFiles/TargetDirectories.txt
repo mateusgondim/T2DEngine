@@ -7,8 +7,8 @@ C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeF
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/io/source/CMakeFiles/io.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/io/source/CMakeFiles/ALL_BUILD.dir
-C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tgs/source/CMakeFiles/tgs.dir
-C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tgs/source/CMakeFiles/ALL_BUILD.dir
+C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/gfx/source/CMakeFiles/gfx.dir
+C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/gfx/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tmap/source/CMakeFiles/tmap.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tmap/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/CMakeFiles/phy_2d.dir

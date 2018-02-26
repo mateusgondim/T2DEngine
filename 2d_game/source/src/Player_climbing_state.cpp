@@ -13,7 +13,7 @@ Player_climbing_state::Player_climbing_state(const bool climbing_from_top, const
 
 Gameplay_state * Player_climbing_state::handle_input(Actor & actor)
 {
-	tgs::Rect bounds;
+	Rect bounds;
 	
 	bool is_on_ladder = g_engine.m_physics_manager.get_world()->is_body_on_ladder(actor.get_body_2d_component());
 	bool is_on_ladder_top = g_engine.m_physics_manager.get_world()->is_on_ladder_top_tile(actor.get_body_2d_component(), bounds);
@@ -135,12 +135,12 @@ void Player_climbing_state::update(Actor & actor)
 }*/
 
 
-void Player_climbing_state::begin_tile_collision(Actor & actor, const AABB_2d & tile_aabb)
+void Player_climbing_state::begin_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	std::cout << __FUNCTION__ << std::endl;
 }
 
-void Player_climbing_state::end_tile_collision(Actor & actor, const AABB_2d & tile_aabb)
+void Player_climbing_state::end_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	std::cout << __FUNCTION__ << std::endl;
 }

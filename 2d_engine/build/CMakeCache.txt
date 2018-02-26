@@ -148,6 +148,9 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=OFF
 
+//Path to a file.
+GFX_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/gfx/source/src
+
 //The directory where GL/glew.h resides
 GLEW_INCLUDE_DIR:PATH=C:/Program Files (x86)/glew/include
 
@@ -207,6 +210,12 @@ g_utility_BINARY_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/buil
 
 //Value Computed by CMake
 g_utility_SOURCE_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/game_utility/source
+
+//Value Computed by CMake
+gfx_BINARY_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/gfx/source
+
+//Value Computed by CMake
+gfx_SOURCE_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/gfx/source
 
 //Value Computed by CMake
 gom_BINARY_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_object_model/source

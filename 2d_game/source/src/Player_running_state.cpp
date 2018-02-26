@@ -80,7 +80,7 @@ Gameplay_state * Player_running_state::handle_input(Actor & actor)
 	}
 	return nullptr;
 }
-void Player_running_state::begin_tile_collision(Actor & actor, const AABB_2d & tile_aabb)  
+void Player_running_state::begin_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	std::cout << "PLAYER RUNNING STATE " << __FUNCTION__ << ": with ";
 
@@ -102,7 +102,7 @@ void Player_running_state::begin_tile_collision(Actor & actor, const AABB_2d & t
 		std::cerr << " unknow tile aabb coordinate..." << std::endl;
 	}
 }
-void Player_running_state::end_tile_collision(Actor & actor, const AABB_2d & tile_aabb)  
+void Player_running_state::end_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	std::cout << "PLAYER RUNNING STATE " << __FUNCTION__ << ": with ";
 

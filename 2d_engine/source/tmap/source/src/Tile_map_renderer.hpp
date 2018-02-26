@@ -8,23 +8,25 @@
 #include <vector>
 #include "vec2.hpp"
 #include "vec3.hpp"
-#include "Tile_map.hpp"
-#include "Shader.hpp"
+
 
 #define TILE_MAP_DEBUG_OPTIONS 2
 
 
 #define glCheckError() glCheckError_(__FILE__, __LINE__) 
 
+namespace gfx { class Shader; }
+class Tile_map;
+
 class Tile_map_renderer {
 public:
 	enum Debug_options {DISPLAY_GRID = 0, DISPLAY_COLLIDERS = 1};
-	Tile_map_renderer(const Tile_map & tile_map,const gls::Shader & shader);
-	void render(const gls::Shader & shader);
-	void set_debug_mode(Debug_options option, const gls::Shader & shader);
+	Tile_map_renderer(const Tile_map & tile_map,const gfx::Shader & shader);
+	void render(const gfx::Shader & shader);
+	void set_debug_mode(Debug_options option, const gfx::Shader & shader);
 	void switch_debug_option(Debug_options option, const bool value);
 private:
-	void setup_buffers(const gls::Shader & shader);
+	void setup_buffers(const gfx::Shader & shader);
 	const Tile_map *m_tmap_ptr;
 	
 	std::vector<cgm::vec3> m_vertices_pos;
@@ -43,7 +45,7 @@ private:
 	GLuint  m_debug_VAOS[TILE_MAP_DEBUG_OPTIONS];
 	GLuint  m_debug_VBOS[TILE_MAP_DEBUG_OPTIONS];
 	int     m_debug_num_colliders;
-	const  gls::Shader *m_debug_pshaders[TILE_MAP_DEBUG_OPTIONS];
+	const  gfx::Shader *m_debug_pshaders[TILE_MAP_DEBUG_OPTIONS];
 	
 #endif // !NTILE_MAP_DEBUG
 

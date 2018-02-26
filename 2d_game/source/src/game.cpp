@@ -65,25 +65,25 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	g_engine.m_input_manager.key_callback(window, key, scancode, action, mods);
 }
 
-Animator_controller *get_player_anim_controller() 
+gfx::Animator_controller *get_player_anim_controller() 
 {
-	tgs::Animation_player player_idle_anim({ tgs::Animation({5}, 5) });
-	tgs::Animation_player player_running_anim({ tgs::Animation({8, 10, 9}, 10) });
-	tgs::Animation_player player_jumping_anim({ tgs::Animation({6}, 1) });
-	tgs::Animation_player player_climbing_anim({ tgs::Animation({ 1, 2 }, 6),  tgs::Animation({3 }, 6) });
-	tgs::Animation_player player_attacking_anim({ tgs::Animation({ 13, 14 }, 10, false) }); 
-	tgs::Animation_player player_ducking_idle_anim({ tgs::Animation({4}, 1) });
-	tgs::Animation_player player_ducking_attacking_anim({ tgs::Animation({ 11, 12 }, 10, false) });
+	gfx::Animation_player player_idle_anim({ gfx::Animation({5}, 5) });
+	gfx::Animation_player player_running_anim({ gfx::Animation({8, 10, 9}, 10) });
+	gfx::Animation_player player_jumping_anim({ gfx::Animation({6}, 1) });
+	gfx::Animation_player player_climbing_anim({ gfx::Animation({ 1, 2 }, 6),  gfx::Animation({3 }, 6) });
+	gfx::Animation_player player_attacking_anim({ gfx::Animation({ 13, 14 }, 10, false) });
+	gfx::Animation_player player_ducking_idle_anim({ gfx::Animation({4}, 1) });
+	gfx::Animation_player player_ducking_attacking_anim({ gfx::Animation({ 11, 12 }, 10, false) });
 
-	Animation_state player_idle_state("player_idle", player_idle_anim);
-	Animation_state player_running_state("player_running", player_running_anim);
-	Animation_state player_jumping_state("player_jumping", player_jumping_anim);
-	Animation_state player_climbing_state("player_climbing", player_climbing_anim);
-	Animation_state player_attacking_state("player_attacking", player_attacking_anim);
-	Animation_state player_ducking_idle_state("player_ducking_idle", player_ducking_idle_anim);
-	Animation_state player_ducking_attacking_state("player_ducking_attacking", player_ducking_attacking_anim);
+	gfx::Animation_state player_idle_state("player_idle", player_idle_anim);
+	gfx::Animation_state player_running_state("player_running", player_running_anim);
+	gfx::Animation_state player_jumping_state("player_jumping", player_jumping_anim);
+	gfx::Animation_state player_climbing_state("player_climbing", player_climbing_anim);
+	gfx::Animation_state player_attacking_state("player_attacking", player_attacking_anim);
+	gfx::Animation_state player_ducking_idle_state("player_ducking_idle", player_ducking_idle_anim);
+	gfx::Animation_state player_ducking_attacking_state("player_ducking_attacking", player_ducking_attacking_anim);
 
-	Animator_controller *pcontroller(new Animator_controller());
+	gfx::Animator_controller *pcontroller(new gfx::Animator_controller());
 	pcontroller->add_bool_param("is_running");
 	pcontroller->add_bool_param("is_jumping");
 	pcontroller->add_bool_param("is_climbing");
@@ -98,92 +98,92 @@ Animator_controller *get_player_anim_controller()
 	pcontroller->add_state(player_ducking_idle_state);
 	pcontroller->add_state(player_ducking_attacking_state);
 
-	Transition idle_to_ducking_idle("idle_to_ducking_idle", "player_idle", "player_ducking_idle");
+	gfx::Transition idle_to_ducking_idle("idle_to_ducking_idle", "player_idle", "player_ducking_idle");
 	pcontroller->add_transition(idle_to_ducking_idle);
 	pcontroller->add_bool_condition("idle_to_ducking_idle", "is_ducking", true);
 
-	Transition ducking_idle_to_idle("ducking_idle_to_idle", "player_ducking_idle", "player_idle");
+	gfx::Transition ducking_idle_to_idle("ducking_idle_to_idle", "player_ducking_idle", "player_idle");
 	pcontroller->add_transition(ducking_idle_to_idle);
 	pcontroller->add_bool_condition("ducking_idle_to_idle", "is_ducking", false);
 
-	Transition ducking_idle_to_ducking_attacking("ducking_idle_to_ducking_attacking", "player_ducking_idle", "player_ducking_attacking");
+	gfx::Transition ducking_idle_to_ducking_attacking("ducking_idle_to_ducking_attacking", "player_ducking_idle", "player_ducking_attacking");
 	pcontroller->add_transition(ducking_idle_to_ducking_attacking);
 	pcontroller->add_trigger_condition("ducking_idle_to_ducking_attacking", "is_attacking", true);
 
-	Transition ducking_attacking_to_ducking_idle("ducking_attacking_to_ducking_idle", "player_ducking_attacking", "player_ducking_idle");
+	gfx::Transition ducking_attacking_to_ducking_idle("ducking_attacking_to_ducking_idle", "player_ducking_attacking", "player_ducking_idle");
 	pcontroller->add_transition(ducking_attacking_to_ducking_idle);
 	pcontroller->add_trigger_condition("ducking_attacking_to_ducking_idle", "is_attacking", false);
 
 
-	Transition attack_from_idle("idle_to_attack", "player_idle", "player_attacking");
+	gfx::Transition attack_from_idle("idle_to_attack", "player_idle", "player_attacking");
 	pcontroller->add_transition(attack_from_idle);
 	pcontroller->add_trigger_condition("idle_to_attack", "is_attacking", true);
 
-	Transition idle_from_attacking("attack_to_idle", "player_attacking", "player_idle");
+	gfx::Transition idle_from_attacking("attack_to_idle", "player_attacking", "player_idle");
 	pcontroller->add_transition(idle_from_attacking);
 	pcontroller->add_trigger_condition("attack_to_idle", "is_attacking", false);
 	pcontroller->add_bool_condition("attack_to_idle", "is_jumping", false);
 
-	Transition running_to_attack("running_to_attack", "player_running", "player_attacking");
+	gfx::Transition running_to_attack("running_to_attack", "player_running", "player_attacking");
 	pcontroller->add_transition(running_to_attack);
 	pcontroller->add_trigger_condition("running_to_attack", "is_attacking", true);
 
 	
-	Transition jumping_to_attack("jumping_to_attack", "player_jumping", "player_attacking");
+	gfx::Transition jumping_to_attack("jumping_to_attack", "player_jumping", "player_attacking");
 	pcontroller->add_transition(jumping_to_attack);
 	pcontroller->add_trigger_condition("jumping_to_attack", "is_attacking", true);
 
-	Transition attack_to_jumping("attack_to_jumping", "player_attacking", "player_jumping");
+	gfx::Transition attack_to_jumping("attack_to_jumping", "player_attacking", "player_jumping");
 	pcontroller->add_transition(attack_to_jumping);
 	pcontroller->add_trigger_condition("attack_to_jumping", "is_attacking", false);
 	pcontroller->add_bool_condition("attack_to_jumping", "is_jumping", true);
 
 
-	Transition start_running("start_running", "player_idle", "player_running");
+	gfx::Transition start_running("start_running", "player_idle", "player_running");
 	pcontroller->add_transition(start_running);
 	pcontroller->add_bool_condition("start_running", "is_running", true);
 
-	Transition stop_running("stop_running", "player_running", "player_idle");
+	gfx::Transition stop_running("stop_running", "player_running", "player_idle");
 	pcontroller->add_transition(stop_running);
 	pcontroller->add_bool_condition("stop_running", "is_running", false);
 	pcontroller->add_trigger_condition("stop_running", "is_attacking", false);
 
-	Transition start_jumping_from_idle("start_jumping_from_idle", "player_idle", "player_jumping");
+	gfx::Transition start_jumping_from_idle("start_jumping_from_idle", "player_idle", "player_jumping");
 	pcontroller->add_transition(start_jumping_from_idle);
 	pcontroller->add_bool_condition("start_jumping_from_idle", "is_jumping", true);
 
-	Transition stop_jumping_to_idle("stop_jumping_to_idle", "player_jumping", "player_idle");
+	gfx::Transition stop_jumping_to_idle("stop_jumping_to_idle", "player_jumping", "player_idle");
 	pcontroller->add_transition(stop_jumping_to_idle);
 	pcontroller->add_bool_condition("stop_jumping_to_idle", "is_jumping", false);
 	pcontroller->add_bool_condition("stop_jumping_to_idle", "is_running", false);
 	pcontroller->add_bool_condition("stop_jumping_to_idle", "is_climbing", false);
 
-	Transition start_jumping_from_running("start_jumping_from_running", "player_running", "player_jumping");
+	gfx::Transition start_jumping_from_running("start_jumping_from_running", "player_running", "player_jumping");
 	pcontroller->add_transition(start_jumping_from_running);
 	pcontroller->add_bool_condition("start_jumping_from_running", "is_jumping", true);
 	//upcontroller->add_booll_condition("start_jumping_from_running", "is_running", true);
 
-	Transition stop_jumping_to_running("stop_jumping_to_running", "player_jumping", "player_running");
+	gfx::Transition stop_jumping_to_running("stop_jumping_to_running", "player_jumping", "player_running");
 	pcontroller->add_transition(stop_jumping_to_running);
 	pcontroller->add_bool_condition("stop_jumping_to_running", "is_jumping", false);
 	pcontroller->add_bool_condition("stop_jumping_to_running", "is_running", true);
 	
-	Transition climbing_from_idle("climbing_from_idle", "player_idle", "player_climbing");
+	gfx::Transition climbing_from_idle("climbing_from_idle", "player_idle", "player_climbing");
 	pcontroller->add_transition(climbing_from_idle);
 	pcontroller->add_bool_condition("climbing_from_idle", "is_climbing", true);
 
 	//this transition is gonna go, should be from ending climb
-	Transition idle_from_climbing("idle_from_climbing", "player_climbing", "player_idle");
+	gfx::Transition idle_from_climbing("idle_from_climbing", "player_climbing", "player_idle");
 	pcontroller->add_transition(idle_from_climbing);
 	pcontroller->add_bool_condition("idle_from_climbing", "is_climbing", false);
 	pcontroller->add_bool_condition("idle_from_climbing", "is_jumping", false);
 
-	Transition jumping_from_climbing("jumping_from_climbing", "player_climbing", "player_jumping");
+	gfx::Transition jumping_from_climbing("jumping_from_climbing", "player_climbing", "player_jumping");
 	pcontroller->add_transition(jumping_from_climbing);
 	pcontroller->add_bool_condition("jumping_from_climbing", "is_climbing", false);
 	pcontroller->add_bool_condition("jumping_from_climbing", "is_jumping", true);
 
-	Transition climbing_from_jumping("climbing_from_jumping", "player_jumping", "player_climbing");
+	gfx::Transition climbing_from_jumping("climbing_from_jumping", "player_jumping", "player_climbing");
 	pcontroller->add_transition(climbing_from_jumping);
 	pcontroller->add_bool_condition("climbing_from_jumping", "is_climbing", true);
 	pcontroller->add_bool_condition("climbing_from_jumping", "is_jumping", false);
@@ -241,7 +241,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	// CHANGE ABSOLUTE PATH!!!!!!!
-	gls::Shader shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/vertex.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/fragment.frag");
+	gfx::Shader shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/vertex.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/fragment.frag");
 
 	Tile_map_renderer map_renderer(tile_map, shader);
 
@@ -249,7 +249,7 @@ int main(int argc, char *argv[])
 	GLint v_loc, p_loc;
 	GLint sampler_loc;
 	
-	tgs::Camera_2d camera(1.0f, 1.0f, 16, 15);
+	gfx::Camera_2d camera(1.0f, 1.0f, 16, 15);
 
 	//cgm::vec3 t(-floor(tile_map.width() / (float)2), -floor(tile_map.height() / (float)2), 0.0f);
     //V = cgm::rotate_y(180.0f);
@@ -296,14 +296,14 @@ int main(int argc, char *argv[])
 	//Player_idle_state::switch_anim_frames({ 0, 1 });
 	//Player_running_state::switch_anim_frames({ 3, 4, 5 });
 
-	Animator_controller *panim_controller = get_player_anim_controller();
+	gfx::Animator_controller *panim_controller = get_player_anim_controller();
 
 	
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/////////////////////// set up sprites////////////////////////////////////////////////////
-	gls::Shader sprite_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag");
+	gfx::Shader sprite_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag");
 	sprite_shader.use();
 	glUniformMatrix4fv(sprite_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 	glUniformMatrix4fv(sprite_shader.get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
@@ -312,7 +312,7 @@ int main(int argc, char *argv[])
 	/// Player setup
 	cgm::vec3 player_pos(10.0f, 12.0f);
 	
-	AABB_2d p_aabb(cgm::vec2(-0.40f, -0.75f), cgm::vec2(0.40f, 0.75f));
+	physics_2d::AABB_2d p_aabb(cgm::vec2(-0.40f, -0.75f), cgm::vec2(0.40f, 0.75f));
 	cgm::vec2 pos(player_pos.x, player_pos.y);
 	p_aabb.p_max += pos;
 	p_aabb.p_min += pos;
@@ -320,25 +320,25 @@ int main(int argc, char *argv[])
 	physics_2d::Body_2d *pbody = g_engine.m_physics_manager.get_world()->create_body_2d(physics_2d::Body_2d::Entity_types::DYNAMIC, pos, 1.0f, p_aabb);
 	pbody->set_velocity_threshold(cgm::vec2(6.0f, 12.0f));
 	
-	Player player(panim_controller, pbody, cgm::vec3(10.0f, 12.0f), cgm::mat4(), AABB_2d(), cgm::vec2(1.5f, 1.0f));
+	Player player(panim_controller, pbody, cgm::vec3(10.0f, 12.0f), cgm::mat4(), physics_2d::AABB_2d(), cgm::vec2(1.5f, 1.0f));
 	
 	pbody->set_user_data(static_cast<Game_object*>(&player));
 	std::cout << "player aabb in world space: max = " << p_aabb.p_max.x << ", " << p_aabb.p_max.y  << " min = " << p_aabb.p_min.x << ", " << p_aabb.p_min.y << std::endl;
 
 	/////////////////////////////////////////////////////////////////////
-	tgs::Sprite_batch batch(12, player.get_sprite_component()->get_atlas()->get_texture() , sprite_shader);
+	gfx::Sprite_batch batch(12, player.get_sprite_component()->get_atlas()->get_texture() , sprite_shader);
 	batch.add(*player.get_sprite_component());
 	
 	/////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////// MAP DEBUG SHADERS ////////////////////////////////////////////////////////////////////////
-		gls::Shader display_grid_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_tile_grid.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_tile_grid.frag");
+		gfx::Shader display_grid_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_tile_grid.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_tile_grid.frag");
 		display_grid_shader.use();
 		glUniformMatrix4fv(display_grid_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 		glUniformMatrix4fv(display_grid_shader.get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
 		map_renderer.set_debug_mode(Tile_map_renderer::Debug_options::DISPLAY_GRID, display_grid_shader);
 
-		gls::Shader display_colliders_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_colliders.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_colliders.frag");
+		gfx::Shader display_colliders_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_colliders.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_colliders.frag");
 		display_colliders_shader.use();
 		glUniformMatrix4fv(display_colliders_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 		glUniformMatrix4fv(display_colliders_shader.get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
@@ -360,7 +360,7 @@ int main(int argc, char *argv[])
 	float smmalest_dt = 100;
 	unsigned c = 0;
 	bool on_ground = false;
-	tgs::Rect bounds;
+	Rect bounds;
 	float pixel_width, pixel_height;
 	player.get_sprite_component()->get_atlas()->get_text_coord(13, &bounds, &pixel_width, &pixel_height);
 	std::cout << "TEXTURE COORDINATES X = " << bounds.x << ", Y = " << bounds.y << ", WIDTH = " << bounds.width << ", HEIGHT = " << bounds.height << ", IM_HEIGHT = " << pixel_height<< std::endl;

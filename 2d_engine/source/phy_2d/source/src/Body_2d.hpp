@@ -35,7 +35,7 @@ namespace physics_2d {
 		void                set_velocity(const cgm::vec2 vel) { m_velocity = vel; }
 		void                apply_gravity(const bool gravity_on) { m_apply_gravity = gravity_on; }
 	private:
-		Body_2d(const Entity_types & type, const cgm::vec2 pos, const float m, const AABB_2d & aabb);
+		Body_2d(const Entity_types & type, const cgm::vec2 & pos, const float m, const AABB_2d & aabb);
 		
 		Entity_types	     m_type;
 		float				 m_mass;

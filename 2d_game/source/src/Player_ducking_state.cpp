@@ -49,12 +49,12 @@ Gameplay_state * Player_ducking_state::handle_input(Actor & actor)
 	return nullptr;
 }
 
-void Player_ducking_state::begin_tile_collision(Actor & actor, const AABB_2d & tile_aabb) 
+void Player_ducking_state::begin_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	;
 }
 
-void Player_ducking_state::end_tile_collision(Actor & actor, const AABB_2d & tile_aabb)
+void Player_ducking_state::end_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	;
 }

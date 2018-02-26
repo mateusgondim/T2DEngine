@@ -1,3 +1,9 @@
-﻿  Input_manager.cpp
+﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/io/source/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\io\source\CMakeFiles\generate.stamp is up-to-date.
+  Button.cpp
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src\Button.cpp(27): warning C4553: '==': operator has no effect; did you intend '='?
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src\Button.cpp(32): warning C4553: '==': operator has no effect; did you intend '='?
+  Input_manager.cpp
+  Generating Code...
 c:\users\mateu\documents\github\demos\2d_engine\source\io\source\src\input_manager.cpp(102): warning C4172: returning address of local variable or temporary
   io.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\io\source\io.dir\Debug\io.lib

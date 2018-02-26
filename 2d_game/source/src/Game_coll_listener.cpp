@@ -1,11 +1,16 @@
 #include "Game_coll_listener.hpp"
-#include "Collision_listener.hpp"
-#include "Body_2d.hpp"
+
 #include "AABB_2d.hpp"
+#include "Body_2d.hpp"
 #include "Game_object.hpp"
 #include "Actor.hpp"
 
-void Game_coll_listener::begin_tile_collision(physics_2d::Body_2d & b, const AABB_2d & tile_aabb) const 
+#include <string>
+
+void Game_coll_listener::begin_body_collision(physics_2d::Body_2d & b1, physics_2d::Body_2d & b2) const { ; }
+void Game_coll_listener::end_body_collision(physics_2d::Body_2d & b1, physics_2d::Body_2d & b2) const  { ; }
+
+void Game_coll_listener::begin_tile_collision(physics_2d::Body_2d & b, const physics_2d::AABB_2d & tile_aabb) const 
 {
 	Game_object *pgame_obj = static_cast<Game_object *>(b.get_user_data());
 	std::string type = pgame_obj->get_type();
@@ -16,7 +21,7 @@ void Game_coll_listener::begin_tile_collision(physics_2d::Body_2d & b, const AAB
 	}
 }
 
-void Game_coll_listener::end_tile_collision(physics_2d::Body_2d   & b, const AABB_2d & tile_aabb) const 
+void Game_coll_listener::end_tile_collision(physics_2d::Body_2d   & b, const physics_2d::AABB_2d & tile_aabb) const
 {
 	Game_object *pgame_obj = static_cast<Game_object*>(b.get_user_data());
 	std::string type = pgame_obj->get_type();

@@ -14,40 +14,40 @@
     <CustomBuild Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Shader.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Shader.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Texture_2d.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Texture_2d.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Sprite_atlas.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Sprite_atlas_manager.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Sprite.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Animation_player.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animation_player.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Animator_controller.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animator_controller.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Animation_state.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animation_state.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Int_condition.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Int_condition.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Transition.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Transition.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Sprite_batch.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_batch.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tgs\source\tgs.dir\$(Configuration)\Camera_2d.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Camera_2d.obj">
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\cgm-2.0\source\cgm-2.0.dir\$(Configuration)\vec2.obj">

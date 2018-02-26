@@ -1,4 +1,5 @@
 #include "Tile_map.hpp"
+
 #include "Tile.hpp"
 #include "Tileset.hpp"
 #include "Rect.hpp"
@@ -29,12 +30,12 @@ Tile Tile_map::get_tile(const unsigned id) const
 }
 
 //TAKE INTO  CONSIDERATION THE PIXELS PER_WORLD UNIT
-tgs::Rect Tile_map::tile_wld_space_bounds(const unsigned row, const unsigned column) const
+Rect Tile_map::tile_wld_space_bounds(const unsigned row, const unsigned column) const
 {	
 	cgm::vec3 map_space_coord(column * m_tile_width / m_pixels_per_word_unit, (m_height * m_tile_height / m_pixels_per_word_unit) - (row * m_tile_height / m_pixels_per_word_unit), 0.0f);
 	cgm::vec3 wld_space_coord = map_space_coord + m_position;
 
-	tgs::Rect rect;
+	Rect rect;
 	rect.width   =  m_tile_width / m_pixels_per_word_unit;
 	rect.height  =  m_tile_height / m_pixels_per_word_unit;
 	rect.x       =  wld_space_coord.x;

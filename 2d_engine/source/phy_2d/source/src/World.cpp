@@ -1,6 +1,8 @@
 #include "World.hpp"
+#include "Collision_listener.hpp"
 #include "Body_2d.hpp"
 #include "AABB_2d.hpp"
+#include "Tile_map.hpp"
 #include "Rect.hpp"
 #include "Tile.hpp"
 
@@ -78,7 +80,7 @@ bool physics_2d::World::try_climbing_ladder(physics_2d::Body_2d * pbody, const b
 		tile = m_pmap->get_tile(id);
 		if(tile.m_is_ladder) {
 			//reposition the character to be inside the ladder
-			tgs::Rect ladder_tile_bounds = m_pmap->tile_wld_space_bounds(row, column);
+			Rect ladder_tile_bounds = m_pmap->tile_wld_space_bounds(row, column);
 			
 			float aabb_center_x = (pbody->m_aabb.p_max.x + pbody->m_aabb.p_min.x) / 2.0f;
 			float tile_center_x = (ladder_tile_bounds.x + (ladder_tile_bounds.x + ladder_tile_bounds.width)) / 2.0f;
@@ -125,7 +127,7 @@ bool physics_2d::World::is_body_on_ladder(physics_2d::Body_2d * pbody)
 	return false;
 }
 
-bool physics_2d::World::is_on_ladder_top_tile(const physics_2d::Body_2d * pbody, tgs::Rect & ladder_bounds) const 
+bool physics_2d::World::is_on_ladder_top_tile(const physics_2d::Body_2d * pbody, Rect & ladder_bounds) const 
 {
 	assert(pbody != nullptr && "NULL Body_2d pointer");
 
@@ -240,7 +242,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 		}
 		//std::cout << "LOOP ITERATED " << count << " times " << std::endl;
 		//get the world coordinates of the bounds of the closest horizontal obstacle
-		tgs::Rect  obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
+		Rect  obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 		
 		//update the position of the aabb the as the minimun of the obstacle left facing edge and the desidered posiiton
 		float      desired_x_position = pbody->m_aabb.p_max.x + pbody->m_velocity.x * dt;
@@ -328,7 +330,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 			}
 		}
 		//get the world coordinates of the bounds of the closest horizontal obstacle
-		tgs::Rect  obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
+		Rect  obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 		
 		//update the position the as the minimun of the obstacle left facing edge and the desidered posiiton
 		float      desired_x_position = pbody->m_aabb.p_min.x + pbody->m_velocity.x * dt;
@@ -417,7 +419,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 			}
 		}
 		//get the world coordinates of the bounds of the closest vertical obstacle
-		tgs::Rect obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
+		Rect obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 
 		if (closest_tile.m_is_obstacle || (closest_tile.m_is_one_way && (obstacle_border.y <= pbody->m_aabb.p_min.y))) { // treat has a obstacle
 
@@ -500,7 +502,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 		}
 		//std::cout << "LOOP ITERATED " << count << " TIMES " << std::endl;;
 		//get the world coordinates of the bounds of the closest vertical obstacle
-		tgs::Rect obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
+		Rect obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 
 		if (closest_tile.m_is_obstacle || (closest_tile.m_is_one_way && (obstacle_border.y <= pbody->m_aabb.p_min.y))) { // treat has a obstacle
 

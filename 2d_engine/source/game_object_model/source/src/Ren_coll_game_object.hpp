@@ -18,7 +18,7 @@ public:
 	
 	virtual void update() = 0;
 	virtual std::string get_type() const = 0;
-	tgs::Sprite &		  get_sprite()  { return m_sprite; }
+	gfx::Sprite &		  get_sprite()  { return m_sprite; }
 	physics_2d::Body_2d * get_body_2d() { return m_pbody; }
 	
 	void set_body_2d(physics_2d::Body_2d * pbody) 
@@ -28,7 +28,7 @@ public:
 		}
 	}
 private:
-	tgs::Sprite	         m_sprite;
+	gfx::Sprite	         m_sprite;
 	physics_2d::Body_2d  *m_pbody;
 };
 

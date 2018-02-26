@@ -8,8 +8,8 @@ class Player_ducking_state : public Gameplay_state {
 public:
 	Gameplay_state *  handle_input(Actor & actor) override;
 
-	void begin_tile_collision(Actor & actor, const AABB_2d & tile_aabb) override;
-	void end_tile_collision(Actor & actor, const AABB_2d & tile_aabb) override;
+	void begin_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb) override;
+	void end_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb) override;
 };
 
 

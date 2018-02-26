@@ -1,6 +1,10 @@
-﻿  Timer.cpp
+﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/game_utility/source/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\CMakeFiles\generate.stamp is up-to-date.
+  Timer.cpp
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.cpp(13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.cpp(18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  memory_allocator.cpp
+  Pool_allocator.cpp
   crc32.cpp
   string_id.cpp
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\string_id.cpp(16): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.

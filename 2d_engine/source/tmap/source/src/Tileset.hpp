@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "vec2.hpp"
+
 #include "Tile.hpp"
 #include "Texture_2d.hpp"
 /* -------------------------Tileset---------------------------------------
@@ -20,6 +20,9 @@
 
 //TODO: ADD THE DESCTURCTOR TO DEALLOCATE TILE*
 //TODO: PUT Load_tileset has a friend or add another parameter on the constructor to take the pointer
+
+namespace cgm { struct vec2; }
+
 class Tileset {
 friend std::ostream & print_tileset(std::ostream & os, const Tileset & tileset);
 public:
@@ -29,12 +32,12 @@ public:
 		m_tile_count(tile_count), m_columns(columns), m_set_width(set_width), m_set_height(set_height) {}
 	
 	void get_text_coord(const int set_coord, cgm::vec2 & uv0, cgm::vec2 & uv1, cgm::vec2 & uv2, cgm::vec2 & uv3) const;
-	const tgs::Texture_2d & get_texture() const { return m_texture; }
+	const gfx::Texture_2d & get_texture() const { return m_texture; }
 	bool is_inside_set(const unsigned id) const{ return ((id >= m_first_gid) && (id <= m_first_gid + m_tile_count - 1)) ? (true) : (false);} // check if this tile is inside the tileset image
 	Tile get_tile(const unsigned id)      const { return m_ptiles[id - m_first_gid]; } //assumes id is inside set
 private:
 	int			     m_first_gid;  // the id of the first tile in the tileset
-	tgs::Texture_2d  m_texture;
+	gfx::Texture_2d  m_texture;
 	int			     m_tile_width;  // witdh of the tiles in pixel
 	int			     m_tile_height; // height of the tiles in pixel
 	int			     m_margin; 

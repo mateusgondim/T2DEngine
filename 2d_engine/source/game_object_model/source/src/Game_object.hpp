@@ -33,16 +33,16 @@ public:
 	}
 
 	cgm::Transform     & get_transform_component()		  { return m_transform; }
-	tgs::Sprite          *get_sprite_component()		  { return m_psprite; }
-	Animator_controller  *get_anim_controller_component() { return m_panimator_controller; }
+	gfx::Sprite          *get_sprite_component()		  { return m_psprite; }
+	gfx::Animator_controller  *get_anim_controller_component() { return m_panimator_controller; }
 	physics_2d::Body_2d  *get_body_2d_component()		  { return m_pbody_2d;}
 	
 	virtual std::string get_type() const = 0;
 	virtual void update() = 0;
 protected:
 	cgm::Transform			 m_transform;
-	tgs::Sprite				*m_psprite;
-	Animator_controller		*m_panimator_controller;
+	gfx::Sprite				*m_psprite;
+	gfx::Animator_controller		*m_panimator_controller;
 	physics_2d::Body_2d     *m_pbody_2d;
 	string_id                m_type;
 	
