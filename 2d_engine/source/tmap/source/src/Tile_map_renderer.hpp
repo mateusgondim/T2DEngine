@@ -29,8 +29,8 @@ private:
 	void setup_buffers(const gfx::Shader & shader);
 	const Tile_map *m_tmap_ptr;
 	
-	std::vector<cgm::vec3> m_vertices_pos;
-	std::vector<cgm::vec2> m_vextices_text_coord;
+	std::vector<math::vec3> m_vertices_pos;
+	std::vector<math::vec2> m_vextices_text_coord;
 	std::vector<GLuint>	   m_indices;
 	GLuint m_VAO;
 	GLuint m_VBO_pos;

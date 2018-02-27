@@ -2,9 +2,9 @@
 
 #define _VEC3_HPP	
 
-namespace cgm { struct vec2; }
+namespace math { struct vec2; }
 
-namespace cgm {
+namespace math {
 	struct vec3 {
 		explicit vec3(float init_x = 0, float init_y = 0, float init_z = 0) : x(init_x), y(init_y), z(init_z) {}
 		vec3(const vec2 & v);

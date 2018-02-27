@@ -8,12 +8,12 @@
 #include "Input_manager.hpp"
 #include "Engine.hpp"
 
-Player_climbing_state::Player_climbing_state(const bool climbing_from_top, const cgm::vec2 & climbing_vel) :
+Player_climbing_state::Player_climbing_state(const bool climbing_from_top, const math::vec2 & climbing_vel) :
 	Gameplay_state(), m_from_top(climbing_from_top), m_climbing_vel(climbing_vel), m_anim_clip(0) {}
 
 Gameplay_state * Player_climbing_state::handle_input(Actor & actor)
 {
-	Rect bounds;
+	math::Rect bounds;
 	
 	bool is_on_ladder = g_engine.m_physics_manager.get_world()->is_body_on_ladder(actor.get_body_2d_component());
 	bool is_on_ladder_top = g_engine.m_physics_manager.get_world()->is_on_ladder_top_tile(actor.get_body_2d_component(), bounds);
@@ -97,7 +97,7 @@ Gameplay_state * Player_climbing_state::handle_input(Actor & actor)
 				//std::cout << "-----------------reached top of ladder---------- " << std::endl;
 				if (actor.get_body_2d_component()->get_velocity().y > 0.0f && (bounds.y <= actor.get_body_2d_component()->get_aabb_2d().p_max.y)) {
 					m_reached_top = true;
-					actor.get_body_2d_component()->set_velocity(cgm::vec2(0.0f, m_climbing_vel.y));
+					actor.get_body_2d_component()->set_velocity(math::vec2(0.0f, m_climbing_vel.y));
 					//start climbing off animation
 					actor.get_anim_controller_component()->switch_curr_state_anim_clip(1);
 					return nullptr;

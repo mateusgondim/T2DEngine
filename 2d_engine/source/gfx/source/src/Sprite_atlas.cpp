@@ -73,7 +73,7 @@ gfx::Sprite_atlas::Sprite_atlas(const std::string & file_name, const float pixel
 
 				//std::cout << "x=" << x << " y=" << y << " w=" << w << " h=" << h << std::endl;;
 
-				Rect rect(x, y, w, h);
+				math::Rect rect(x, y, w, h);
 				m_vrec.push_back(rect);
 			}
 			// load the texture
@@ -87,11 +87,11 @@ gfx::Sprite_atlas::Sprite_atlas(const std::string & file_name, const float pixel
 }
 
 //get the uv coordinates for the sprite number 'sprite_no' in the texture atlas
-void gfx::Sprite_atlas::get_text_coord(const int sprite_no, Rect *prect, float * px_width, float * px_height) const
+void gfx::Sprite_atlas::get_text_coord(const int sprite_no, math::Rect *prect, float * px_width, float * px_height) const
 {
 	
 //	cgm::vec2 uv0, uv1, uv2, uv3;
-	const Rect & rect = m_vrec[sprite_no];
+	const math::Rect & rect = m_vrec[sprite_no];
 
 //	uv0.x = rect.x / m_image_size.x;
 //	uv0.y = rect.y / m_image_size.y;

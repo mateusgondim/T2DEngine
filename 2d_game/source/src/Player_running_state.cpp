@@ -15,10 +15,10 @@
 Player_running_state::Player_running_state(Actor & actor, const float acceleration) : Gameplay_state(), m_acceleration(acceleration) 
 {
 	if (actor.get_facing_direction()) {
-		actor.get_body_2d_component()->add_force(cgm::vec2(-acceleration, 0.0f));
+		actor.get_body_2d_component()->add_force(math::vec2(-acceleration, 0.0f));
 	}
 	else {
-		actor.get_body_2d_component()->add_force(cgm::vec2(acceleration, 0.0f));
+		actor.get_body_2d_component()->add_force(math::vec2(acceleration, 0.0f));
 	}
 }
 

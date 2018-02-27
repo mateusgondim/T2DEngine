@@ -1,22 +1,20 @@
 ﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/CMakeLists.txt
   CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\generate.stamp is up-to-date.
   Engine.cpp
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\matrix_transform.hpp(5): warning C4099: 'cgm::mat4': type name first seen using 'class' now seen using 'struct'
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): note: see declaration of 'cgm::mat4'
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src\matrix_transform.hpp(5): warning C4099: 'math::mat4': type name first seen using 'class' now seen using 'struct'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src\mat4.hpp(7): note: see declaration of 'math::mat4'
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
   c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(23): warning C4099: 'Rect': type name first seen using 'struct' now seen using 'class'
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Rect.hpp(4): note: see declaration of 'Rect'
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\Collision_listener.hpp(8): warning C4099: 'physics_2d::AABB_2d': type name first seen using 'struct' now seen using 'class'
   c:\users\mateu\documents\github\demos\2d_engine\source\phy_2d\source\src\AABB_2d.hpp(5): note: see declaration of 'physics_2d::AABB_2d'
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.hpp(19): warning C4099: 'Rect': type name first seen using 'struct' now seen using 'class'
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(23): note: see declaration of 'Rect'
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.hpp(19): warning C4099: 'math::Rect': type name first seen using 'struct' now seen using 'class'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(23): note: see declaration of 'math::Rect'
 c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Gameplay_state.hpp(11): warning C4099: 'physics_2d::AABB_2d': type name first seen using 'struct' now seen using 'class'
   C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\Collision_listener.hpp(8): note: see declaration of 'physics_2d::AABB_2d'
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.hpp(13): warning C4099: 'cgm::vec3': type name first seen using 'struct' now seen using 'class'
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\matrix_transform.hpp(5): note: see declaration of 'cgm::vec3'
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.hpp(13): warning C4099: 'math::vec3': type name first seen using 'struct' now seen using 'class'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src\matrix_transform.hpp(5): note: see declaration of 'math::vec3'
   engine.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib

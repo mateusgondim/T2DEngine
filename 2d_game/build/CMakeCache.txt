@@ -178,6 +178,9 @@ G_UTILITY_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/sourc
 //Path to a file.
 IO_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/io/source/src
 
+//Path to a file.
+MATH_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/math/source/src
+
 //OpenGL library for win32
 OPENGL_gl_LIBRARY:STRING=opengl32
 

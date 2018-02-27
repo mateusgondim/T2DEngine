@@ -15,7 +15,7 @@ gfx::Sprite::Sprite(const std::string & atlas_data_file, const float pixels_per_
 	m_atlas = Sprite_atlas_manager::instance().load_atlas(atlas_data_file, pixels_per_unit);
 	//TODO: REMEBER TO SCALE THE POSITION DATA ACCORDING TO THE SPRITE_WIDH, SPRITE_HEIGHT AND PIXELS_PER_UNIT!!
 	
-	Rect rect;
+	math::Rect rect;
 	float sprite_width, sprite_height;
 	m_atlas->get_text_coord(0, &rect, &sprite_width, &sprite_height);
 	//tgs::Rect rect = m_atlas->get_text_coord(0);
@@ -23,21 +23,21 @@ gfx::Sprite::Sprite(const std::string & atlas_data_file, const float pixels_per_
 	m_scale.x = sprite_width / m_pixels_per_unit;
 	m_scale.y = sprite_height / m_pixels_per_unit;
 
-	m_vertices_pos.push_back(cgm::vec3( -(m_scale.x / 2.0f), -(m_scale.y / 2.0f), 0.0f));
-	m_vertices_pos.push_back(cgm::vec3(m_scale.x / 2.0f  , -(m_scale.y / 2.0f), 0.0f));
-	m_vertices_pos.push_back(cgm::vec3(m_scale.x / 2.0f, m_scale.y / 2.0f, 0.0f));
-	m_vertices_pos.push_back(cgm::vec3(m_scale.x / 2.0f, m_scale.y / 2.0f, 0.0f));
-	m_vertices_pos.push_back(cgm::vec3( -(m_scale.x / 2.0f), m_scale.y / 2.0f, 0.0f));
-	m_vertices_pos.push_back(cgm::vec3(-(m_scale.x / 2.0f), -(m_scale.y / 2.0f), 0.0f));
+	m_vertices_pos.push_back(math::vec3( -(m_scale.x / 2.0f), -(m_scale.y / 2.0f), 0.0f));
+	m_vertices_pos.push_back(math::vec3(m_scale.x / 2.0f  , -(m_scale.y / 2.0f), 0.0f));
+	m_vertices_pos.push_back(math::vec3(m_scale.x / 2.0f, m_scale.y / 2.0f, 0.0f));
+	m_vertices_pos.push_back(math::vec3(m_scale.x / 2.0f, m_scale.y / 2.0f, 0.0f));
+	m_vertices_pos.push_back(math::vec3( -(m_scale.x / 2.0f), m_scale.y / 2.0f, 0.0f));
+	m_vertices_pos.push_back(math::vec3(-(m_scale.x / 2.0f), -(m_scale.y / 2.0f), 0.0f));
 
 
-	m_vertices_uv.push_back(cgm::vec2(rect.x, rect.y + rect.height)); //uv1
-	m_vertices_uv.push_back(cgm::vec2(rect.x + rect.width, rect.y + rect.height)); //uv2
-	m_vertices_uv.push_back(cgm::vec2(rect.x + rect.width, rect.y)); //uv3
+	m_vertices_uv.push_back(math::vec2(rect.x, rect.y + rect.height)); //uv1
+	m_vertices_uv.push_back(math::vec2(rect.x + rect.width, rect.y + rect.height)); //uv2
+	m_vertices_uv.push_back(math::vec2(rect.x + rect.width, rect.y)); //uv3
 
-	m_vertices_uv.push_back(cgm::vec2(rect.x + rect.width, rect.y)); //uv3
-	m_vertices_uv.push_back(cgm::vec2(rect.x, rect.y)); // uv0
-	m_vertices_uv.push_back(cgm::vec2(rect.x, rect.y + rect.height)); //uv1
+	m_vertices_uv.push_back(math::vec2(rect.x + rect.width, rect.y)); //uv3
+	m_vertices_uv.push_back(math::vec2(rect.x, rect.y)); // uv0
+	m_vertices_uv.push_back(math::vec2(rect.x, rect.y + rect.height)); //uv1
 
 	m_curr_anim_n_frame.first = m_curr_anim_n_frame.second = -1;
 }
@@ -45,7 +45,7 @@ gfx::Sprite::Sprite(const std::string & atlas_data_file, const float pixels_per_
 
 void gfx::Sprite::update_uv(const int sprite_no)
 {
-	Rect rect;
+	math::Rect rect;
 	float sprite_width, sprite_height;
 	m_atlas->get_text_coord(sprite_no, &rect, &sprite_width, &sprite_height);
 	//tgs::Rect rect = m_atlas->get_text_coord(0);
@@ -54,26 +54,26 @@ void gfx::Sprite::update_uv(const int sprite_no)
 		m_scale.y = sprite_height / m_pixels_per_unit;
 	}
 
-	m_vertices_uv[0] =   cgm::vec2(rect.x, rect.y + rect.height); //uv1
-	m_vertices_uv[1] =   cgm::vec2(rect.x + rect.width, rect.y + rect.height); //uv2
-	m_vertices_uv[2] =   cgm::vec2(rect.x + rect.width, rect.y); //uv3
+	m_vertices_uv[0] = math::vec2(rect.x, rect.y + rect.height); //uv1
+	m_vertices_uv[1] = math::vec2(rect.x + rect.width, rect.y + rect.height); //uv2
+	m_vertices_uv[2] = math::vec2(rect.x + rect.width, rect.y); //uv3
 
 	m_vertices_uv[3] =   m_vertices_uv[2]; //uv3
-	m_vertices_uv[4] =   cgm::vec2(rect.x, rect.y); // uv0
+	m_vertices_uv[4] = math::vec2(rect.x, rect.y); // uv0
 	m_vertices_uv[5] =   m_vertices_uv[0]; //uv1	
 
 	//std::cout << "updating uv coordinate to " << sprite_no << std::endl;
 }
 
-void gfx::Sprite::update_pos(const cgm::vec3 & pos, const bool facing_left)
+void gfx::Sprite::update_pos(const math::vec3 & pos, const bool facing_left)
 {
 	m_scale.x = (facing_left) ? (m_scale.x) : (-m_scale.x);
 
-	m_vertices_pos[0] = cgm::vec3(-(m_scale.x / 2.0f), -(m_scale.y / 2.0f), 0.0f) + pos;
-	m_vertices_pos[1] = cgm::vec3(m_scale.x / 2.0f, -(m_scale.y / 2.0f), 0.0f) + pos;
-	m_vertices_pos[2] = cgm::vec3(m_scale.x / 2.0f, m_scale.y / 2.0f, 0.0f) + pos;
+	m_vertices_pos[0] = math::vec3(-(m_scale.x / 2.0f), -(m_scale.y / 2.0f), 0.0f) + pos;
+	m_vertices_pos[1] = math::vec3(m_scale.x / 2.0f, -(m_scale.y / 2.0f), 0.0f) + pos;
+	m_vertices_pos[2] = math::vec3(m_scale.x / 2.0f, m_scale.y / 2.0f, 0.0f) + pos;
 	m_vertices_pos[3] = m_vertices_pos[2];
-	m_vertices_pos[4] = cgm::vec3(-(m_scale.x / 2.0f), m_scale.y / 2.0f, 0.0f) + pos;
+	m_vertices_pos[4] = math::vec3(-(m_scale.x / 2.0f), m_scale.y / 2.0f, 0.0f) + pos;
 	m_vertices_pos[5] = m_vertices_pos[0];
 
 	m_scale.x = (facing_left) ? (m_scale.x) : (-m_scale.x);

@@ -165,9 +165,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/ZERO_CHECK.vcxproj">
       <Project>69B2C8B3-2661-3973-81A8-03BBD9A704AA</Project>
     </ProjectReference>
-    <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/cgm-2.0/source/cgm-2.0.vcxproj">
-      <Project>E2FD53C0-2882-3919-891B-DCAC6F8490CD</Project>
-    </ProjectReference>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/engine.vcxproj">
       <Project>99D73A57-F7E2-3A00-9F9A-ABCC3C03ADAC</Project>
     </ProjectReference>
@@ -182,6 +179,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/io/source/io.vcxproj">
       <Project>92E9210F-C2F8-3688-8868-4A68C078E644</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/math/source/math.vcxproj">
+      <Project>F92CC20B-83A1-337B-9A83-F9A08302A441</Project>
     </ProjectReference>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/phy_2d.vcxproj">
       <Project>7A6714B5-21FB-3CE5-83A9-70ED3C193A11</Project>

@@ -8,7 +8,9 @@
 #include <iostream>
 #include <memory>
 
-//cgm
+#include "game.hpp"
+
+//math
 #include "vec3.hpp"
 #include "mat4.hpp"
 #include "matrix_transform.hpp"
@@ -245,7 +247,7 @@ int main(int argc, char *argv[])
 
 	Tile_map_renderer map_renderer(tile_map, shader);
 
-	cgm::mat4 V;
+	math::mat4 V;
 	GLint v_loc, p_loc;
 	GLint sampler_loc;
 	
@@ -257,10 +259,10 @@ int main(int argc, char *argv[])
 	//V = cgm::mat4(cgm::mat4(), t);
 
 	//P = cgm::ortho(-floor(tile_map.width() / (float)2),  ceil(tile_map.width() / (float)2), -floor(tile_map.height() / (float)2), ceil(tile_map.height() / (float)2), -1.0, 1.0f);
-	cgm::vec3 p = camera.get_position();
+	math::vec3 p = camera.get_position();
 	p.x = -p.x;
 	p.y = -p.y;
-	V = cgm::mat4(cgm::mat4(), p);
+	V = math::mat4(math::mat4(), p);
 
 	v_loc = shader.get_uniform_location("V");
 	p_loc = shader.get_uniform_location("P");
@@ -310,17 +312,17 @@ int main(int argc, char *argv[])
 	glUniform1f(sprite_shader.get_uniform_location("tileset"), 0);
 
 	/// Player setup
-	cgm::vec3 player_pos(10.0f, 12.0f);
+	math::vec3 player_pos(10.0f, 12.0f);
 	
-	physics_2d::AABB_2d p_aabb(cgm::vec2(-0.40f, -0.75f), cgm::vec2(0.40f, 0.75f));
-	cgm::vec2 pos(player_pos.x, player_pos.y);
+	physics_2d::AABB_2d p_aabb(math::vec2(-0.40f, -0.75f), math::vec2(0.40f, 0.75f));
+	math::vec2 pos(player_pos.x, player_pos.y);
 	p_aabb.p_max += pos;
 	p_aabb.p_min += pos;
 
 	physics_2d::Body_2d *pbody = g_engine.m_physics_manager.get_world()->create_body_2d(physics_2d::Body_2d::Entity_types::DYNAMIC, pos, 1.0f, p_aabb);
-	pbody->set_velocity_threshold(cgm::vec2(6.0f, 12.0f));
+	pbody->set_velocity_threshold(math::vec2(6.0f, 12.0f));
 	
-	Player player(panim_controller, pbody, cgm::vec3(10.0f, 12.0f), cgm::mat4(), physics_2d::AABB_2d(), cgm::vec2(1.5f, 1.0f));
+	Player player(panim_controller, pbody, math::vec3(10.0f, 12.0f), math::mat4(), physics_2d::AABB_2d(), math::vec2(1.5f, 1.0f));
 	
 	pbody->set_user_data(static_cast<Game_object*>(&player));
 	std::cout << "player aabb in world space: max = " << p_aabb.p_max.x << ", " << p_aabb.p_max.y  << " min = " << p_aabb.p_min.x << ", " << p_aabb.p_min.y << std::endl;
@@ -360,7 +362,7 @@ int main(int argc, char *argv[])
 	float smmalest_dt = 100;
 	unsigned c = 0;
 	bool on_ground = false;
-	Rect bounds;
+	math::Rect bounds;
 	float pixel_width, pixel_height;
 	player.get_sprite_component()->get_atlas()->get_text_coord(13, &bounds, &pixel_width, &pixel_height);
 	std::cout << "TEXTURE COORDINATES X = " << bounds.x << ", Y = " << bounds.y << ", WIDTH = " << bounds.width << ", HEIGHT = " << bounds.height << ", IM_HEIGHT = " << pixel_height<< std::endl;

@@ -10,19 +10,19 @@
 
 
 class Gameplay_state;
-namespace cgm { class vec3; class mat4; }
+namespace math { class vec3; class mat4; }
 
 class Actor : public Game_object {
 public:
-	Actor(const cgm::vec3 & pos, const cgm::mat4 & orientation, const std::string & texture_file, Gameplay_state *pstate, const physics_2d::AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left = true);
-	Actor(const std::string & texture_file, const physics_2d::AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left = true);
+	Actor(const math::vec3 & pos, const math::mat4 & orientation, const std::string & texture_file, Gameplay_state *pstate, const physics_2d::AABB_2d & aabb, const math::vec2 & velocity, bool facing_left = true);
+	Actor(const std::string & texture_file, const physics_2d::AABB_2d & aabb, const math::vec2 & velocity, bool facing_left = true);
 
 	virtual ~Actor() 
 	{
 		delete m_pstate;
 	}
 
-	cgm::vec2 &		 get_velocity()						     { return m_velocity; }
+	math::vec2 &		 get_velocity()						     { return m_velocity; }
 	Gameplay_state*  get_state()                             { return m_pstate;}
 	void             set_state(Gameplay_state *pstate)	     { m_pstate = pstate;}
 	bool             get_facing_direction()				     { return m_facing_left; }
@@ -37,7 +37,7 @@ public:
 protected:
 	Gameplay_state						 *m_pstate;
 	physics_2d::AABB_2d					  m_aabb;
-	cgm::vec2							  m_velocity;
+	math::vec2							  m_velocity;
 	bool								  m_facing_left;
 };
 

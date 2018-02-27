@@ -1,7 +1,7 @@
 #ifndef _VEC2_HPP
 
 #define _VEC2_HPP
-namespace cgm {
+namespace math {
 	struct vec2 {
 		explicit vec2(float init_x = 0, float init_y = 0) : x(init_x), y(init_y) {}
 
@@ -21,7 +21,7 @@ namespace cgm {
 	};
 	
 	//unary minus operator for negating the vector
-	vec2  operator-(const cgm::vec2 & v);
+	vec2  operator-(const math::vec2 & v);
 
 	vec2   operator+(const vec2 & lhs, const vec2 & rhs);
 	vec2   operator-(const vec2 & lhs, const vec2 & rhs);

@@ -15,6 +15,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\Rect.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\vec2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

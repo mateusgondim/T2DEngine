@@ -265,6 +265,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\Rect.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\vec2.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\vec3.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\vec4.hpp" />

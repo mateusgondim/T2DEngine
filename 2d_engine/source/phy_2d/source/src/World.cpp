@@ -13,7 +13,7 @@
 #include <cassert>
 
 
-physics_2d::World::World(const cgm::vec2 & gravity, const cgm::vec2 & solid_tile_sensor_line) : 
+physics_2d::World::World(const math::vec2 & gravity, const math::vec2 & solid_tile_sensor_line) :
 	m_gravity(gravity), m_solid_tile_sensor_line(solid_tile_sensor_line) ,m_pmap(nullptr), m_pcoll_listener(nullptr) {}
 
 physics_2d::World::~World() 
@@ -21,7 +21,7 @@ physics_2d::World::~World()
 	std::for_each(m_bodies.begin(), m_bodies.end(), [](Body_2d *pbody) {delete pbody; });
 }
 
-physics_2d::Body_2d * physics_2d::World::create_body_2d(const Body_2d::Entity_types & type, const cgm::vec2 & pos, const float m, const AABB_2d & aabb)
+physics_2d::Body_2d * physics_2d::World::create_body_2d(const Body_2d::Entity_types & type, const math::vec2 & pos, const float m, const AABB_2d & aabb)
 {
 	Body_2d * pbody = new Body_2d(type, pos, m, aabb);
 	m_bodies.push_back(pbody);
@@ -45,8 +45,8 @@ bool physics_2d::World::try_climbing_ladder(physics_2d::Body_2d * pbody, const b
 	assert(pbody != nullptr && "NULL Body_2d pointer");
 
 	//world space bottom left and top right coordinates of the body's aabb
-	cgm::vec2 bottom_left = pbody->m_aabb.p_min;
-	cgm::vec2 top_right   = pbody->m_aabb.p_max;
+	math::vec2 bottom_left = pbody->m_aabb.p_min;
+	math::vec2 top_right   = pbody->m_aabb.p_max;
 
 	//scale down the aabb horizontal size, so it can only climb if it is close to the ladder column
 	float x_magnitude = top_right.x - bottom_left.x;
@@ -80,7 +80,7 @@ bool physics_2d::World::try_climbing_ladder(physics_2d::Body_2d * pbody, const b
 		tile = m_pmap->get_tile(id);
 		if(tile.m_is_ladder) {
 			//reposition the character to be inside the ladder
-			Rect ladder_tile_bounds = m_pmap->tile_wld_space_bounds(row, column);
+			math::Rect ladder_tile_bounds = m_pmap->tile_wld_space_bounds(row, column);
 			
 			float aabb_center_x = (pbody->m_aabb.p_max.x + pbody->m_aabb.p_min.x) / 2.0f;
 			float tile_center_x = (ladder_tile_bounds.x + (ladder_tile_bounds.x + ladder_tile_bounds.width)) / 2.0f;
@@ -108,8 +108,8 @@ bool physics_2d::World::is_body_on_ladder(physics_2d::Body_2d * pbody)
 	assert(pbody != nullptr && "NULL Body_2d pointer");
 	
 	// get the bottom left and bottom right AABB world space coords
-	cgm::vec2 top_right = pbody->m_aabb.p_max;
-	cgm::vec2 bottom_left = pbody->m_aabb.p_min;
+	math::vec2 top_right = pbody->m_aabb.p_max;
+	math::vec2 bottom_left = pbody->m_aabb.p_min;
 	top_right.x = bottom_left.x = (pbody->m_aabb.p_min.x + pbody->m_aabb.p_max.x) / 2.0f;
 	top_right.y = pbody->m_aabb.p_min.y * 0.3f + pbody->m_aabb.p_max.y * 0.7f;
 	std::pair<float, float> tile_top_right_coord = m_pmap->wld_to_tile_space(top_right);
@@ -127,13 +127,13 @@ bool physics_2d::World::is_body_on_ladder(physics_2d::Body_2d * pbody)
 	return false;
 }
 
-bool physics_2d::World::is_on_ladder_top_tile(const physics_2d::Body_2d * pbody, Rect & ladder_bounds) const 
+bool physics_2d::World::is_on_ladder_top_tile(const physics_2d::Body_2d * pbody, math::Rect & ladder_bounds) const
 {
 	assert(pbody != nullptr && "NULL Body_2d pointer");
 
 	// get the bottom left and bottom right AABB world space coords
-	cgm::vec2 top_center = pbody->m_aabb.p_max;
-	cgm::vec2 bottom_center = pbody->m_aabb.p_min;
+	math::vec2 top_center = pbody->m_aabb.p_max;
+	math::vec2 bottom_center = pbody->m_aabb.p_min;
 	bottom_center.x = top_center.x = (pbody->m_aabb.p_min.x + pbody->m_aabb.p_max.x) / 2.0f;
 	 
 
@@ -159,8 +159,8 @@ bool physics_2d::World::is_body_2d_on_ground(const physics_2d::Body_2d * pbody) 
 	assert(pbody != nullptr && "NULL Body_2d pointer");
 
 	// get the bottom left and bottom right AABB world space coords
-	cgm::vec2 bottom_left = pbody->m_aabb.p_min;
-	cgm::vec2 bottom_right = pbody->m_aabb.p_max;
+	math::vec2 bottom_left = pbody->m_aabb.p_min;
+	math::vec2 bottom_right = pbody->m_aabb.p_max;
 	bottom_right.y = bottom_left.y;
 
 	//get the tile map space coordinates, i.e [row, column] of the AABB bottom left and bottom right
@@ -193,8 +193,8 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 	//Attempt to move horizontally
 	if (is_moving_right) {
 		//get the right facing edge in world space
-		cgm::vec2 up_right      =  pbody->m_aabb.p_max;
-		cgm::vec2 bottom_right  =  pbody->m_aabb.p_min;
+		math::vec2 up_right      =  pbody->m_aabb.p_max;
+		math::vec2 bottom_right  =  pbody->m_aabb.p_min;
 		bottom_right.x          =  up_right.x;
 
 		std::pair<float, float> tile_up_right_coord = m_pmap->wld_to_tile_space(up_right)  ;
@@ -242,7 +242,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 		}
 		//std::cout << "LOOP ITERATED " << count << " times " << std::endl;
 		//get the world coordinates of the bounds of the closest horizontal obstacle
-		Rect  obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
+		math::Rect  obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 		
 		//update the position of the aabb the as the minimun of the obstacle left facing edge and the desidered posiiton
 		float      desired_x_position = pbody->m_aabb.p_max.x + pbody->m_velocity.x * dt;
@@ -254,8 +254,8 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 			float x_offset = (obstacle_border.x - sensor_line_width) - pbody->m_aabb.p_max.x;
 
 			//check if we can push the player in the other direction or if it is going to collide with a tile on their left
-			cgm::vec2 up_left = pbody->m_aabb.p_max;
-			cgm::vec2 bottom_left = pbody->m_aabb.p_min;
+			math::vec2 up_left = pbody->m_aabb.p_max;
+			math::vec2 bottom_left = pbody->m_aabb.p_min;
 			bottom_left.x += x_offset;
 			up_left.x = bottom_left.x;
 
@@ -286,8 +286,8 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 		
 		//std::cout << "------------------------------------------IN MOVING LEFT TILE COLLISION DETECTION--------------------------------------------------------------" << std::endl;
 		//get left facing edge
-		cgm::vec2 up_left = pbody->m_aabb.p_max;
-		cgm::vec2 bottom_left = pbody->m_aabb.p_min;
+		math::vec2 up_left = pbody->m_aabb.p_max;
+		math::vec2 bottom_left = pbody->m_aabb.p_min;
 		up_left.x			  = bottom_left.x;
 
 		//get the rows and columns that need to be checked against collision
@@ -330,7 +330,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 			}
 		}
 		//get the world coordinates of the bounds of the closest horizontal obstacle
-		Rect  obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
+		math::Rect  obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 		
 		//update the position the as the minimun of the obstacle left facing edge and the desidered posiiton
 		float      desired_x_position = pbody->m_aabb.p_min.x + pbody->m_velocity.x * dt;
@@ -341,8 +341,8 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 			
 			float  x_offset = (obstacle_border.x + obstacle_border.width + sensor_line_width) - pbody->m_aabb.p_min.x;
 			
-			cgm::vec2 top_right     =  pbody->m_aabb.p_max;
-			cgm::vec2 bottom_right  =  pbody->m_aabb.p_min;
+			math::vec2 top_right     =  pbody->m_aabb.p_max;
+			math::vec2 bottom_right  =  pbody->m_aabb.p_min;
 			// displace the bodie's aabb to the right to check against collision with a tile on their right
 			top_right.x += x_offset;
 			bottom_right.x = top_right.x;
@@ -378,8 +378,8 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 	// vertical movement
 	if (is_moving_up) {
 		//get up facing edge
-		cgm::vec2 up_left   =  pbody->m_aabb.p_min;
-		cgm::vec2 up_right  =  pbody->m_aabb.p_max;
+		math::vec2 up_left   =  pbody->m_aabb.p_min;
+		math::vec2 up_right  =  pbody->m_aabb.p_max;
 		up_left.y           =  up_right.y;
 
 		//get the rows and columns that need to be checked against collision
@@ -419,7 +419,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 			}
 		}
 		//get the world coordinates of the bounds of the closest vertical obstacle
-		Rect obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
+		math::Rect obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 
 		if (closest_tile.m_is_obstacle || (closest_tile.m_is_one_way && (obstacle_border.y <= pbody->m_aabb.p_min.y))) { // treat has a obstacle
 
@@ -461,8 +461,8 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 		
 		//std::cout << "------------------------------------------IN MOVING DOWN TILE COLLISION DETECTION--------------------------------------------------------------" << std::endl;
 		//get down facing edge
-		cgm::vec2 bottom_left   =  pbody->m_aabb.p_min;
-		cgm::vec2 bottom_right  =  pbody->m_aabb.p_max;
+		math::vec2 bottom_left   =  pbody->m_aabb.p_min;
+		math::vec2 bottom_right  =  pbody->m_aabb.p_max;
 		bottom_right.y = bottom_left.y;
 
 		//get the rows and columns that need to be checked against collision
@@ -502,7 +502,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 		}
 		//std::cout << "LOOP ITERATED " << count << " TIMES " << std::endl;;
 		//get the world coordinates of the bounds of the closest vertical obstacle
-		Rect obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
+		math::Rect obstacle_border = m_pmap->tile_wld_space_bounds(closest_obstacle_row, closest_obstacle_column);
 
 		if (closest_tile.m_is_obstacle || (closest_tile.m_is_one_way && (obstacle_border.y <= pbody->m_aabb.p_min.y))) { // treat has a obstacle
 

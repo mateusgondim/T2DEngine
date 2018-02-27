@@ -26,11 +26,11 @@ c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite_atl
 c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_batch.cpp(89): warning C4018: '<': signed/unsigned mismatch
   Camera_2d.cpp
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\matrix_transform.hpp(5): warning C4099: 'cgm::mat4': type name first seen using 'class' now seen using 'struct'
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(7): note: see declaration of 'cgm::mat4'
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src\matrix_transform.hpp(5): warning C4099: 'math::mat4': type name first seen using 'class' now seen using 'struct'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src\mat4.hpp(7): note: see declaration of 'math::mat4'
   Generating Code...
+c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\animator_controller.cpp(233): warning C4715: 'gfx::Animator_controller::get_current_frame': not all control paths return a value
 c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\animator_controller.cpp(241): warning C4715: 'gfx::Animator_controller::get_current_state': not all control paths return a value
 c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\animator_controller.cpp(249): warning C4715: 'gfx::Animator_controller::get_current_anim': not all control paths return a value
-c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\animator_controller.cpp(233): warning C4715: 'gfx::Animator_controller::get_current_frame': not all control paths return a value
 c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\sprite_atlas_manager.cpp(20): warning C4715: 'gfx::Sprite_atlas_manager::load_atlas': not all control paths return a value
   gfx.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\Debug\gfx.lib

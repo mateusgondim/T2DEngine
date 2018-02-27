@@ -20,7 +20,7 @@
  */
 
 class Tile;
-class Rect;
+namespace math { struct Rect; }
 
 class Tile_map {
 friend std::ostream & print_tile_map(std::ostream & os, const Tile_map & map);
@@ -46,8 +46,8 @@ public:
 	Tile get_tile(const unsigned id) const;
 	float pixels_per_world_unit() const { return m_pixels_per_word_unit; }
 
-	Rect tile_wld_space_bounds(const unsigned row, const unsigned column) const;
-	std::pair<float, float> wld_to_tile_space(const cgm::vec3 & pos) const;
+	math::Rect tile_wld_space_bounds(const unsigned row, const unsigned column) const;
+	std::pair<float, float> wld_to_tile_space(const math::vec3 & pos) const;
 
 	float world_to_tile_displacement_x(float t_x) const { return t_x / (m_tile_width / m_pixels_per_word_unit) ; }
 	float world_to_tile_displacement_y(float t_y) const { return t_y / (m_tile_height / m_pixels_per_word_unit); }
@@ -64,7 +64,7 @@ private:
 	int     m_tile_width;
 	int     m_tile_height;
 
-	cgm::vec3 m_position;  // tile map origin, i.e, the coordinates of the top left tile in world space
+	math::vec3 m_position;  // tile map origin, i.e, the coordinates of the top left tile in world space
 	float     m_pixels_per_word_unit; // how many pixels are equal to 1 world unit, used in scaling
 };
 

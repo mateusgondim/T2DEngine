@@ -16,7 +16,7 @@
 //TODO: COPY CONTROLL
 
 class Tile_map;
-class Rect;
+namespace math { class Rect; }
 
 namespace physics_2d { class Collision_listener; }
 
@@ -29,14 +29,14 @@ namespace physics_2d {
 	public:
 		enum Solver_methods { DISPLACE, ELASTIC };
 		
-		explicit World(const cgm::vec2 & gravity, const cgm::vec2 & solid_tile_sensor_line = cgm::vec2(3.2f, 3.5f) );
+		explicit World(const math::vec2 & gravity, const math::vec2 & solid_tile_sensor_line = math::vec2(3.2f, 3.5f) );
 		World(const World &) = delete;
 		//World(World &&) implement
 		//World & operator=(World &&) implement
 		World & operator=(const World &) = delete;
 		~World();
 
-		Body_2d *create_body_2d(const Body_2d::Entity_types & type, const cgm::vec2 & pos, const float m, const AABB_2d & aabb);
+		Body_2d *create_body_2d(const Body_2d::Entity_types & type, const math::vec2 & pos, const float m, const AABB_2d & aabb);
 		void     destroy_body_2d(Body_2d *pbody);
 		void     set_collision_listener(Collision_listener * pcoll_listener) { m_pcoll_listener =pcoll_listener; } //parameter should be poiter to interface that implements collision listener
 		void     set_tile_map(const Tile_map * pmap) { m_pmap = pmap; }
@@ -44,13 +44,13 @@ namespace physics_2d {
 		bool     is_body_2d_on_ground(const Body_2d * pbody) const;
 		bool     try_climbing_ladder(Body_2d * pbody, const bool is_climbing_up);
 		bool     is_body_on_ladder(Body_2d *   pbody);
-		bool     is_on_ladder_top_tile(const Body_2d * pbody, Rect & ladder_bounds) const;
+		bool     is_on_ladder_top_tile(const Body_2d * pbody, math::Rect & ladder_bounds) const;
 	private:
 		//static bool compare(const Tile_contact & lhs, const Tile_contact & rhs) { return lhs.m_pbody < rhs.m_pbody; }
 		void check_n_solve_map_collision(Body_2d *pbody, const float dt) ;
 		
-		cgm::vec2										 m_solid_tile_sensor_line; // ofsset in pixels, against solid tiles for collision detection  
-		cgm::vec2										 m_gravity;
+		math::vec2										 m_solid_tile_sensor_line; // ofsset in pixels, against solid tiles for collision detection  
+		math::vec2										 m_gravity;
 		const Tile_map									*m_pmap;
 		Collision_listener								*m_pcoll_listener;
 		//std::multiset<Tile_contact, decltype(compare)*>  m_tile_contact_multiset{compare};

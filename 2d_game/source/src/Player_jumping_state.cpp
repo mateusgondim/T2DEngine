@@ -12,7 +12,7 @@
 
 Player_jumping_state::Player_jumping_state(Actor & actor, float y_acceleration, float x_vel) : Gameplay_state(), m_y_acceleration(y_acceleration), m_x_vel(x_vel)
 {
-	actor.get_body_2d_component()->add_force(cgm::vec2(0.0f, m_y_acceleration));
+	actor.get_body_2d_component()->add_force(math::vec2(0.0f, m_y_acceleration));
 }
 
 Gameplay_state * Player_jumping_state::handle_input(Actor & actor) 
@@ -56,7 +56,7 @@ Gameplay_state * Player_jumping_state::handle_input(Actor & actor)
 	if (move_left_button.m_state == PRESSED) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(true);     //change to running left
-		actor.get_body_2d_component()->add_force(cgm::vec2(-m_x_vel, 0.0f));
+		actor.get_body_2d_component()->add_force(math::vec2(-m_x_vel, 0.0f));
 		//std::cout << "-----moving left here---------" << std::endl;
 	}
 	
@@ -64,7 +64,7 @@ Gameplay_state * Player_jumping_state::handle_input(Actor & actor)
 	if (move_right_button.m_state == PRESSED ) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(false);     
-		actor.get_body_2d_component()->add_force(cgm::vec2(m_x_vel, 0.0f));
+		actor.get_body_2d_component()->add_force(math::vec2(m_x_vel, 0.0f));
 		//std::cout << "-----moving left here---------" << std::endl;
 	}
 	

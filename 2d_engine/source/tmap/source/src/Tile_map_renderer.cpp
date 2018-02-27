@@ -56,8 +56,8 @@ void Tile_map_renderer::setup_buffers(const gfx::Shader & shader)
 	//calculate the tile's world position
 	for (int i = 0; i != m_tmap_ptr->height(); ++i) {
 		for (int j = 0; j != m_tmap_ptr -> width(); ++j) {
-			cgm::vec3 v_pos0, v_pos1, v_pos2, v_pos3;
-			Rect rect = m_tmap_ptr->tile_wld_space_bounds(i, j);
+			math::vec3 v_pos0, v_pos1, v_pos2, v_pos3;
+			math::Rect rect = m_tmap_ptr->tile_wld_space_bounds(i, j);
 
 			v_pos0.x = rect.x;
 			v_pos0.y = rect.y;
@@ -105,7 +105,7 @@ void Tile_map_renderer::setup_buffers(const gfx::Shader & shader)
 	for (int i = 0; i < m_tmap_ptr->height(); ++i) {
 		for (int j = 0; j < m_tmap_ptr->width(); ++j) {
 			unsigned tile_id = m_tmap_ptr->get_tile_id(0, i, j);
-			cgm::vec2 uv0, uv1, uv2, uv3;
+			math::vec2 uv0, uv1, uv2, uv3;
 			
 			//find witch tileset has the tile width id
 			const Tileset * ptileset = nullptr;
@@ -152,7 +152,7 @@ void Tile_map_renderer::setup_buffers(const gfx::Shader & shader)
 	//vertex postion
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO_pos);
 	glCheckError();
-	glBufferData(GL_ARRAY_BUFFER, m_vertices_pos.size() * sizeof(cgm::vec3), &m_vertices_pos[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, m_vertices_pos.size() * sizeof(math::vec3), &m_vertices_pos[0], GL_STATIC_DRAW);
 	glCheckError();
 
 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
@@ -162,18 +162,18 @@ void Tile_map_renderer::setup_buffers(const gfx::Shader & shader)
 
 	glEnableVertexAttribArray(0);
 	glCheckError();
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(cgm::vec3), (GLvoid*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(math::vec3), (GLvoid*)0);
 	glCheckError();
 
 	//vertex texture coordinate
  	glBindBuffer(GL_ARRAY_BUFFER, m_VBO_uv);
 	glCheckError();
-	glBufferData(GL_ARRAY_BUFFER, m_vextices_text_coord.size() * sizeof(cgm::vec2), &m_vextices_text_coord[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, m_vextices_text_coord.size() * sizeof(math::vec2), &m_vextices_text_coord[0], GL_STATIC_DRAW);
 	glCheckError();
 
 	glEnableVertexAttribArray(1);
 	glCheckError();
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(cgm::vec2), (GLvoid*)0);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(math::vec2), (GLvoid*)0);
 	glCheckError();
 	glBindVertexArray(0);
 	glCheckError();
@@ -182,7 +182,7 @@ void Tile_map_renderer::setup_buffers(const gfx::Shader & shader)
 
 void Tile_map_renderer::set_debug_mode(Debug_options option, const gfx::Shader & shader)
 {
-	std::vector<cgm::vec3> position;
+	std::vector<math::vec3> position;
 #ifndef NTILE_MAP_DEBUG //if it is in map debug mode 
 	switch (option) {
 	case DISPLAY_GRID:
@@ -202,9 +202,9 @@ void Tile_map_renderer::set_debug_mode(Debug_options option, const gfx::Shader &
 		//buffers
 		m_debug_pshaders[DISPLAY_GRID]->use();
 		for (int j = 0; j != m_tmap_ptr->width(); ++j ) { // for each column in the first row get the vertical lines of the grid
-			cgm::vec3 v0, v1;
+			math::vec3 v0, v1;
 			
-			Rect rect = m_tmap_ptr->tile_wld_space_bounds(0, j);
+			math::Rect rect = m_tmap_ptr->tile_wld_space_bounds(0, j);
 			v0.x = rect.x;
 			v0.y = rect.y;
 
@@ -229,9 +229,9 @@ void Tile_map_renderer::set_debug_mode(Debug_options option, const gfx::Shader &
 
 		// horizontal grid lines
 		for (int i = 0; i != m_tmap_ptr->height(); ++i) {
-			cgm::vec3 v0, v1;
+			math::vec3 v0, v1;
 
-			Rect rect = m_tmap_ptr->tile_wld_space_bounds(i, 0);
+			math::Rect rect = m_tmap_ptr->tile_wld_space_bounds(i, 0);
 			v0.x = rect.x;
 			v0.y = rect.y;
 
@@ -267,12 +267,12 @@ void Tile_map_renderer::set_debug_mode(Debug_options option, const gfx::Shader &
 		//vertex postion
 		glBindBuffer(GL_ARRAY_BUFFER, m_debug_VBOS[DISPLAY_GRID]);
 		glCheckError();
-		glBufferData(GL_ARRAY_BUFFER, position.size() * sizeof(cgm::vec3), &position[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, position.size() * sizeof(math::vec3), &position[0], GL_STATIC_DRAW);
 		glCheckError();
 
 		glEnableVertexAttribArray(0);
 		glCheckError();
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(cgm::vec3), (GLvoid*)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(math::vec3), (GLvoid*)0);
 		glCheckError();
 		glBindVertexArray(0);
 		glCheckError();
@@ -316,8 +316,8 @@ void Tile_map_renderer::set_debug_mode(Debug_options option, const gfx::Shader &
 					tile = ptileset->get_tile(id);
 					if (tile.m_is_obstacle) { // if it has a collider get the vertices position in the map to draw it
 						std::cout << "tile with id = " << id << "is collidable" << std::endl;
-						cgm::vec3 v0, v1, v2, v3;
-						Rect rect = m_tmap_ptr->tile_wld_space_bounds(i, j);
+						math::vec3 v0, v1, v2, v3;
+						math::Rect rect = m_tmap_ptr->tile_wld_space_bounds(i, j);
 						
 						v0.x = rect.x;
 						v0.y = rect.y - rect.height;
@@ -359,12 +359,12 @@ void Tile_map_renderer::set_debug_mode(Debug_options option, const gfx::Shader &
 			// Load data into vertex buffers
 			glBindBuffer(GL_ARRAY_BUFFER, m_debug_VBOS[DISPLAY_COLLIDERS]);
 			glCheckError();
-			glBufferData(GL_ARRAY_BUFFER, position.size() * sizeof(cgm::vec3), &position[0], GL_STATIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, position.size() * sizeof(math::vec3), &position[0], GL_STATIC_DRAW);
 			glCheckError();
 
 			glEnableVertexAttribArray(0);
 			glCheckError();
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(cgm::vec3), (GLvoid*)0);
+			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(math::vec3), (GLvoid*)0);
 			glCheckError();
 			glBindVertexArray(0);
 			glCheckError();

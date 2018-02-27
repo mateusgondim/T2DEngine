@@ -10,7 +10,7 @@
 #include "Animator_controller.hpp"
 #include "Engine.hpp"
 
-Player::Player(gfx::Animator_controller *pcontroller, physics_2d::Body_2d *pbody,const cgm::vec3 & position, const cgm::mat4 & orientation, const physics_2d::AABB_2d & aabb, const cgm::vec2 & velocity) :
+Player::Player(gfx::Animator_controller *pcontroller, physics_2d::Body_2d *pbody,const math::vec3 & position, const math::mat4 & orientation, const physics_2d::AABB_2d & aabb, const math::vec2 & velocity) :
 	Actor(position, orientation, PLAYER_ATLAS, new Player_idle_state ,aabb, velocity, false), m_anim_frame(0), m_life(100)
 {
 	//std::vector<unsigned> running_frames = { 3, 4, 5 }; // running

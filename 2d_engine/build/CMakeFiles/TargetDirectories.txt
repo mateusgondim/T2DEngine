@@ -1,8 +1,8 @@
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/engine.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/cgm-2.0/source/CMakeFiles/cgm-2.0.dir
-C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/cgm-2.0/source/CMakeFiles/ALL_BUILD.dir
+C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/math/source/CMakeFiles/math.dir
+C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/math/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeFiles/g_utility.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/io/source/CMakeFiles/io.dir

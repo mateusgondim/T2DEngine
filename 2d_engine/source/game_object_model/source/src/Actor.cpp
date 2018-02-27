@@ -18,12 +18,12 @@
 //Actor::Actor(const cgm::vec3 & pos, const cgm::mat4 & orientation, const std::string & texture_file, State *pstate, const AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left)
 //	: Renderable_game_object(pos, orientation, texture_file), m_pstate(pstate), m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) {}
 
-Actor::Actor(const std::string & texture_file, const physics_2d::AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left) :  m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) 
+Actor::Actor(const std::string & texture_file, const physics_2d::AABB_2d & aabb, const math::vec2 & velocity, bool facing_left) :  m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left)
 {
 	m_psprite = new gfx::Sprite(texture_file, 16.0f);
 }
 
-Actor::Actor(const cgm::vec3 & pos, const cgm::mat4 & orientation, const std::string & texture_file, Gameplay_state *pstate, const physics_2d::AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left) :
+Actor::Actor(const math::vec3 & pos, const math::mat4 & orientation, const std::string & texture_file, Gameplay_state *pstate, const physics_2d::AABB_2d & aabb, const math::vec2 & velocity, bool facing_left) :
 	Game_object(pos), m_pstate(pstate) ,m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) 
 {
 	m_psprite = new gfx::Sprite(texture_file, 16.0f);

@@ -30,12 +30,12 @@ Tile Tile_map::get_tile(const unsigned id) const
 }
 
 //TAKE INTO  CONSIDERATION THE PIXELS PER_WORLD UNIT
-Rect Tile_map::tile_wld_space_bounds(const unsigned row, const unsigned column) const
+math::Rect Tile_map::tile_wld_space_bounds(const unsigned row, const unsigned column) const
 {	
-	cgm::vec3 map_space_coord(column * m_tile_width / m_pixels_per_word_unit, (m_height * m_tile_height / m_pixels_per_word_unit) - (row * m_tile_height / m_pixels_per_word_unit), 0.0f);
-	cgm::vec3 wld_space_coord = map_space_coord + m_position;
+	math::vec3 map_space_coord(column * m_tile_width / m_pixels_per_word_unit, (m_height * m_tile_height / m_pixels_per_word_unit) - (row * m_tile_height / m_pixels_per_word_unit), 0.0f);
+	math::vec3 wld_space_coord = map_space_coord + m_position;
 
-	Rect rect;
+	math::Rect rect;
 	rect.width   =  m_tile_width / m_pixels_per_word_unit;
 	rect.height  =  m_tile_height / m_pixels_per_word_unit;
 	rect.x       =  wld_space_coord.x;
@@ -45,7 +45,7 @@ Rect Tile_map::tile_wld_space_bounds(const unsigned row, const unsigned column) 
 }
 
 //get the row and column from a point in world space
-std::pair<float, float> Tile_map::wld_to_tile_space(const cgm::vec3 & pos) const 
+std::pair<float, float> Tile_map::wld_to_tile_space(const math::vec3 & pos) const
 {
 	float rows = (m_height * m_tile_height / m_pixels_per_word_unit) - ((pos.y - m_position.y) / (m_tile_height / m_pixels_per_word_unit));
 	float columns =  (pos.x - m_position.x) / (m_tile_width / m_pixels_per_word_unit);

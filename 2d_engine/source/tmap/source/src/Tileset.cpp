@@ -8,7 +8,7 @@
 /* TODO: Take into consideration the first_gid and the number of tiles
 
 */
-void Tileset::get_text_coord(const int set_coord, cgm::vec2 & uv0, cgm::vec2 & uv1, cgm::vec2 & uv2, cgm::vec2 & uv3) const
+void Tileset::get_text_coord(const int set_coord, math::vec2 & uv0, math::vec2 & uv1, math::vec2 & uv2, math::vec2 & uv3) const
 {
 	int origin_x = m_margin;
 	int origin_y = m_set_height - m_margin;

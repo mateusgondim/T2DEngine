@@ -3,8 +3,8 @@
   Actor.cpp
 c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(13): warning C4099: 'cgm::vec3': type name first seen using 'struct' now seen using 'class'
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\cgm-2.0\source\src\mat4.hpp(4): note: see declaration of 'cgm::vec3'
+c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(13): warning C4099: 'math::vec3': type name first seen using 'struct' now seen using 'class'
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src\mat4.hpp(4): note: see declaration of 'math::vec3'
 c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(22): warning C4150: deletion of pointer to incomplete type 'Gameplay_state'; no destructor called
   c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(12): note: see declaration of 'Gameplay_state'
 c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Gameplay_state.hpp(11): warning C4099: 'physics_2d::AABB_2d': type name first seen using 'struct' now seen using 'class'

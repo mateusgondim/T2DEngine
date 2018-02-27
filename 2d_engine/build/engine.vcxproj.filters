@@ -50,16 +50,16 @@
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Camera_2d.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\cgm-2.0\source\cgm-2.0.dir\$(Configuration)\vec2.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\vec2.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\cgm-2.0\source\cgm-2.0.dir\$(Configuration)\vec3.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\vec3.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\cgm-2.0\source\cgm-2.0.dir\$(Configuration)\mat4.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\mat4.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\cgm-2.0\source\cgm-2.0.dir\$(Configuration)\matrix_transform.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\matrix_transform.obj">
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\io\source\io.dir\$(Configuration)\Button.obj">

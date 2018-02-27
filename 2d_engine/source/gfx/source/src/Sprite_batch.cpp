@@ -77,8 +77,8 @@ void gfx::Sprite_batch::add(const std::vector<gfx::Vertex1P1C1UV> & vertices)
 void gfx::Sprite_batch::add(const gfx::Sprite & sprite)
 {
 	//assumes vertex_position has the same size as vertex_uv!!
-	const std::vector<cgm::vec3> & position			=  sprite.get_vertex_position_vec();
-	const std::vector<cgm::vec2> & texture_coord	=  sprite.get_vertex_uv_vec();
+	const std::vector<math::vec3> & position			=  sprite.get_vertex_position_vec();
+	const std::vector<math::vec2> & texture_coord	=  sprite.get_vertex_uv_vec();
 
 	if ((m_max_num_vertices - m_num_used_vertices) < position.size()) {
 		std::cout << __FUNCTION__ << " there is not enough room for " << position.size() << " vertices in this batch. This batch already have "
@@ -87,7 +87,7 @@ void gfx::Sprite_batch::add(const gfx::Sprite & sprite)
 	else {
 		std::vector<Vertex1P1C1UV> vertices; //change this!! it involvers dynamic memory allocation, maybe add a data member to Sprite_batch
 		for (int i = 0; i < position.size(); ++i) {
-			Vertex1P1C1UV vertex(position[i], cgm::vec4(), texture_coord[i]);
+			Vertex1P1C1UV vertex(position[i], math::vec4(), texture_coord[i]);
 			vertices.push_back(vertex);
 		}
 		//transfer data to vbo

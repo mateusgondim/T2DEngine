@@ -8,16 +8,12 @@ c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.h
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
   c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Rect.hpp(4): warning C4099: 'Rect': type name first seen using 'class' now seen using 'struct'
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Rect.hpp(4): note: see declaration of 'Rect'
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.cpp(61): warning C4018: '<': signed/unsigned mismatch
   Tile_map_renderer.cpp
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
   c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile_map.hpp(23): warning C4099: 'Rect': type name first seen using 'struct' now seen using 'class'
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Rect.hpp(4): note: see declaration of 'Rect'
   tmx_parser.cpp
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch

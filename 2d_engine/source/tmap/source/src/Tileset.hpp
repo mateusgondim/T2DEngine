@@ -21,7 +21,7 @@
 //TODO: ADD THE DESCTURCTOR TO DEALLOCATE TILE*
 //TODO: PUT Load_tileset has a friend or add another parameter on the constructor to take the pointer
 
-namespace cgm { struct vec2; }
+namespace math { struct vec2; }
 
 class Tileset {
 friend std::ostream & print_tileset(std::ostream & os, const Tileset & tileset);
@@ -31,7 +31,7 @@ public:
 		: m_ptiles(ptiles), m_first_gid(first_gid), m_texture(image_path), m_tile_width(tile_width), m_tile_height(tile_height), m_margin(margin), m_spacing(spacing), 
 		m_tile_count(tile_count), m_columns(columns), m_set_width(set_width), m_set_height(set_height) {}
 	
-	void get_text_coord(const int set_coord, cgm::vec2 & uv0, cgm::vec2 & uv1, cgm::vec2 & uv2, cgm::vec2 & uv3) const;
+	void get_text_coord(const int set_coord, math::vec2 & uv0, math::vec2 & uv1, math::vec2 & uv2, math::vec2 & uv3) const;
 	const gfx::Texture_2d & get_texture() const { return m_texture; }
 	bool is_inside_set(const unsigned id) const{ return ((id >= m_first_gid) && (id <= m_first_gid + m_tile_count - 1)) ? (true) : (false);} // check if this tile is inside the tileset image
 	Tile get_tile(const unsigned id)      const { return m_ptiles[id - m_first_gid]; } //assumes id is inside set
