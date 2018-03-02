@@ -12,9 +12,9 @@ namespace math {
 		void   zero() { x = y = z = 0.0f; }
 		vec3 & operator+=(const vec3 & rhs);
 		
-		float x;
-		float y;
-		float z;
+		float x; // 32 bits (4 - byte aligned)
+		float y; // 32 bits (4 - byte aligned)
+		float z; // 32 bits (4 - byte aligned)
 	};
 	
 	vec3 operator+(const vec3 & lhs, const vec3 & rhs);

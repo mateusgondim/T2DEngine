@@ -4,18 +4,21 @@
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Ren_coll_game_object.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Gameplay_state.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

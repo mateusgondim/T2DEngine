@@ -8,10 +8,10 @@ namespace math {
 		explicit vec4(float init_x = 0, float init_y = 0, float init_z = 0, float init_w = 1) : x(init_x), y(init_y), z(init_z), w(init_w) {}
 		vec4(const vec3 & v, float init_w = 1) : x(v.x), y(v.y), z(v.z), w(init_w) {}
 		
-		float x; 
-		float y;
-		float z;
-		float w;
+		float x;  // 32 bits
+		float y; // 32 bits
+		float z;  // 32 bits
+		float w;  // 32 bits
 	};
 }
 #endif // !_VEC4_HPP

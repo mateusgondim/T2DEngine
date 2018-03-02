@@ -7,6 +7,7 @@
 class Pool_allocator final {
 friend std::ostream & operator<<(std::ostream & os,  Pool_allocator & pool);
 public:
+	Pool_allocator();
 	Pool_allocator(const std::size_t element_sz_bytes, const std::size_t num_elements, const std::size_t aligmnent);
 
 	Pool_allocator(const Pool_allocator &alloc) = delete; //copy constructor
@@ -16,10 +17,14 @@ public:
 
 	~Pool_allocator();
 
+	void alloc_pool(const std::size_t element_sz_bytes, const std::size_t num_elements, const std::size_t aligmnent);
+
 	void *get_element();
 	void  free_element(void *pelement);
 	//void  allocate_pool();
 	void  realease_pool_mem();
+
+	std::size_t	get_element_size() const ;
 private:
 	std::size_t  m_pool_sz_bytes;    //the size in bytes of the pool
 	std::size_t  m_element_sz_bytes; // size in bytes of each element

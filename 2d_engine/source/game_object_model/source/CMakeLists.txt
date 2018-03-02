@@ -7,8 +7,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 #Using c++11
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-SET(INCLUDE_FILES  src/Game_object.hpp src/Ren_coll_game_object.hpp src/Actor.hpp src/Gameplay_state.hpp)
-SET(SOURCE_FILES  src/Actor.cpp)
+SET(INCLUDE_FILES  src/Game_object.hpp  src/Actor.hpp src/Gameplay_state.hpp src/Game_object_manager.hpp)
+SET(SOURCE_FILES  src/Actor.cpp src/Game_object_manager.cpp)
 
 ADD_LIBRARY(gom OBJECT ${INCLUDE_FILES} ${SOURCE_FILES})
 TARGET_INCLUDE_DIRECTORIES( gom PUBLIC ${MATH_INCLUDE_DIR} ${G_UTILITY_INCLUDE_DIR} ${GFX_INCLUDE_DIR} ${PHY_2D_INCLUDE_DIR})

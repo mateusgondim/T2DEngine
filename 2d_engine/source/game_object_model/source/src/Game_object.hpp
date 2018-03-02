@@ -40,12 +40,12 @@ public:
 	virtual std::string get_type() const = 0;
 	virtual void update() = 0;
 protected:
-	math::Transform			 m_transform;
-	gfx::Sprite				*m_psprite;
-	gfx::Animator_controller		*m_panimator_controller;
-	physics_2d::Body_2d     *m_pbody_2d;
-	string_id                m_type;
-	
+	math::Transform				 m_transform;//
+	gfx::Sprite					*m_psprite;// 4 bytes
+	gfx::Animator_controller	*m_panimator_controller; // 4 bytes
+	physics_2d::Body_2d			*m_pbody_2d; // 4 bytes
+	string_id					m_type;     // 4 bytes
+	//vtable pointer + 4 bytes
 	
 	//TODO: PERHAPS ADD A MAP COLLISION FUNCTION!!
 };

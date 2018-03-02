@@ -9,4 +9,9 @@ c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\
   c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Actor.hpp(12): note: see declaration of 'Gameplay_state'
 c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Gameplay_state.hpp(11): warning C4099: 'physics_2d::AABB_2d': type name first seen using 'struct' now seen using 'class'
   C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\AABB_2d.hpp(5): note: see declaration of 'physics_2d::AABB_2d'
+  Game_object_manager.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite_atlas.hpp(19): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp(26): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object_manager.cpp(20): warning C4244: 'initializing': conversion from 'double' to 'std::size_t', possible loss of data
+  Generating Code...
   gom.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\Debug\gom.lib

@@ -16,8 +16,8 @@ namespace math {
 		vec2 & operator*=(const float k);
 		vec2 & operator/=(const float k);
 
-		float x;
-		float y;
+		float x; // 32 bits(4 - byte alignment)
+		float y; // 32 bits(4 - byte alignment)
 	};
 	
 	//unary minus operator for negating the vector

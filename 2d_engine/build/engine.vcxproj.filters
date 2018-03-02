@@ -104,6 +104,9 @@
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Actor.obj">
       <Filter>Object Libraries</Filter>
     </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_manager.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

@@ -266,10 +266,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Ren_coll_game_object.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Gameplay_state.hpp" />
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object_manager.hpp" />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.cpp"  />
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object_manager.cpp"  />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/ZERO_CHECK.vcxproj">

@@ -16,7 +16,7 @@ namespace math {
 		mat4 & transpose();
 		const float *value_ptr() const { return &m_elements[0][0]; }
 	private:
-		float m_elements[4][4];
+		float m_elements[4][4]; // size 512 bits(64 bytes) ( 4 byte aligned)
 	};
 }
 #endif // !_MAT4_HPP
