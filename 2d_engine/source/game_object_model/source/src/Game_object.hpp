@@ -4,9 +4,7 @@
 #include "vec3.hpp"
 #include "mat4.hpp" //chage to mat3!!!
 #include "Transform.hpp"
-#include "Sprite.hpp"
-#include "Animator_controller.hpp"
-#include "Body_2d.hpp"
+
 #include "string_id.hpp"
 #include <string>
 
@@ -18,6 +16,10 @@
  */
 //TODO: CHANGE THE ORIENTATION TO BE A 3X3 MATRIX!
 //TODO: MANAGE COPY CONTROLL!!!!
+
+namespace gfx { class Sprite; class Animator_controller; }
+namespace physics_2d { class Body_2d; }
+
 class Game_object {
 public:
 	Game_object() : m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
@@ -27,7 +29,7 @@ public:
 
 	virtual ~Game_object() 
 	{
-		delete m_psprite;
+		//delete m_psprite;
 		delete m_panimator_controller;
 		//delete m_pbody_2d; // need to delete through the physic_2d's world object 
 	}

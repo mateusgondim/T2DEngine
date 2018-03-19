@@ -2,9 +2,8 @@
 #define _SPRITE_ATLAS_HPP
 
 #include "Texture_2d.hpp"
-#include "vec2.hpp"
 #include "Rect.hpp"
-#include <string>
+#include "string_id.hpp"
 #include <vector>
 /*Sprite_atlas: this class stores all the data associated with
  * a sprite atlas necessary for rendering it, including the texture_2d  
@@ -14,22 +13,19 @@
 namespace gfx {
 	class Sprite_atlas {
 	public:
-		Sprite_atlas(const std::string & file_name, const float pixels_per_unit = 16.0f);
-		
-		unsigned            get_pixels_per_unit()  const { return m_pixels_per_unit; }
-		Texture_2d          get_texture()		   const { return m_texture; }
-		std::string			get_file_path()		   const { return m_file_path; }
+		Sprite_atlas(const std::string & file_name, const string_id id);
+		Texture_2d &      get_texture()		    { return m_texture; }
+		string_id			get_string_id()		   const { return m_id; }
 		void get_text_coord(const int sprite_no, math::Rect * prect, float * px_width, float *px_height) const;
+		~Sprite_atlas();
 	private:
-		std::string			m_file_path;       // atlas data file path
-		float				m_pixels_per_unit; // number of pixels per game world's unit
-		Texture_2d			m_texture;
+		string_id				m_id;					// size 4 bytes | alignment 4 bytes
+		Texture_2d				m_texture;				// size 16 bytes | alignment 4 bytes
+		
+	// pixel coordinates of each sprite on the texture atlas
+		std::vector<math::Rect>	m_vrec;					// 12 bytes size 4 byte aligment 
 
-		math::vec2			m_image_size; // width and height of this sprite in pixels
-		std::vector<math::Rect>	m_vrec;		  // pixel coordinates of each sprite on the texture atlas
-
-														  //TODO: SCALE THE VERTICES IN THE POSITION VECTOR WHEN CHANGING THE CURRENT VERTEX UV COORDINATES
-														  //std::vector<unsigned> m_elements
+	  //TODO: SCALE THE VERTICES IN THE POSITION VECTOR WHEN CHANGING THE CURRENT VERTEX UV COORDINATES			
 	};
 }
 

@@ -2,7 +2,7 @@
 
 #define _MATRIX_TRANSFORM_HPP
 
-namespace math { struct vec3; struct vec4; struct mat4; } //forward declaration to avoid includes
+namespace math { struct vec3; struct vec4; class mat4; } //forward declaration to avoid includes
 
 namespace math {
 	mat4 translate(const vec3 & t_vec);

@@ -26,7 +26,8 @@ void	Game_object_manager::init()
 void	Game_object_manager::shut_down() 
 {
 	for (std::size_t i = 0; i < MAX_NUM_POOLS; ++i) {
-		m_pool_array[i].realease_pool_mem();
+//		m_pool_array[i].realease_pool_mem();
+		;
 	}
 }
 

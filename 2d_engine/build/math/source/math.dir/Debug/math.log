@@ -4,7 +4,5 @@
   vec3.cpp
   mat4.cpp
   matrix_transform.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\math\source\src\mat4.hpp(7): warning C4099: 'math::mat4': type name first seen using 'struct' now seen using 'class'
-  c:\users\mateu\documents\github\demos\2d_engine\source\math\source\src\mat4.hpp(7): note: see declaration of 'math::mat4'
   Generating Code...
   math.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\Debug\math.lib

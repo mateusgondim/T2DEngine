@@ -1,4 +1,5 @@
 #include "Texture_2d.hpp"
+#include "string_id.hpp"
 
 #define GLEW_STATIC
 #include <GL/glew.h>
@@ -7,13 +8,15 @@
 
 #include <string>
 #include <iostream>
+#include <cstdint>
 
-gfx::Texture_2d::Texture_2d(const std::string & image_path) : m_id(0), m_pref_count(nullptr)
+gfx::Texture_2d::Texture_2d(const std::string & image_path) : m_texture_id(0), m_pref_count(nullptr)
 {
 	load_texture(image_path);
 }
 
-gfx::Texture_2d::Texture_2d(const Texture_2d & t) : m_pref_count(t.m_pref_count), m_id(t.m_id), m_width(t.m_width), m_height(t.m_height), m_image_path(t.m_image_path)
+gfx::Texture_2d::Texture_2d(const Texture_2d & t) : 
+	m_pref_count(t.m_pref_count), m_texture_id(t.m_texture_id), m_width(t.m_width), m_height(t.m_height), m_file_name_id(t.m_file_name_id)
 {
 	++*m_pref_count; // increment reference count
 }
@@ -25,19 +28,19 @@ void gfx::Texture_2d::load_texture(const std::string & image_path)
 	std::cout << __FILE__ << " Creating a texture object. Using image data from file: " << image_path << std::endl;
 #endif // !NDEBUG
 	glGetError();
-	if (glIsTexture(m_id) == GL_FALSE) {
-		m_image_path = image_path;
+	if (glIsTexture(m_texture_id) == GL_FALSE) {
+		m_file_name_id = intern_string(image_path.c_str()); //generate the string_id for this texture, usint it's file_path 
 
-		glGenTextures(1, &m_id);
-		glBindTexture(GL_TEXTURE_2D, m_id);
+		glGenTextures(1, &m_texture_id);
+		glBindTexture(GL_TEXTURE_2D, m_texture_id);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		int width, height;
-		unsigned char* image = SOIL_load_image(m_image_path.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
+		std::int32_t  width, height;
+		std::uint8_t  *image = SOIL_load_image(image_path.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
 
 		m_width = width;
 		m_height = height;
@@ -48,7 +51,7 @@ void gfx::Texture_2d::load_texture(const std::string & image_path)
 		SOIL_free_image_data(image);
 		glBindTexture(GL_TEXTURE_2D, 0);
 
-		//there is one use of this texture id
+	
 		m_pref_count = new int(1);
 
 		if (GL_NO_ERROR != glGetError()) {
@@ -56,7 +59,7 @@ void gfx::Texture_2d::load_texture(const std::string & image_path)
 		}
 	}
 	else {
-		std::cerr << __FUNCTION__ << " failed to create texture: " << m_id << " is already a texture object name, call delete_texture() to delete the currently bound texture" << std::endl;
+		std::cerr << __FUNCTION__ << " failed to create texture: " << m_texture_id << " is already a texture object name, call delete_texture() to delete the currently bound texture" << std::endl;
 	}
 }
 
@@ -68,11 +71,11 @@ gfx::Texture_2d & gfx::Texture_2d::operator=(const Texture_2d & rhs)
 		delete_texture();
 	}
 
-	m_pref_count  =  rhs.m_pref_count;
-	m_id		  =  rhs.m_id;
-	m_width		  =  rhs.m_width;
-	m_height	  =  rhs.m_height;
-	m_image_path  =  rhs.m_image_path;
+	m_pref_count    =  rhs.m_pref_count;
+	m_texture_id    =  rhs.m_texture_id;
+	m_width		    =  rhs.m_width;
+	m_height	    =  rhs.m_height;
+	m_file_name_id  =  rhs.m_file_name_id;
 
 	return *this;
 }
@@ -86,14 +89,14 @@ gfx::Texture_2d::~Texture_2d()
 
 }
 
-void gfx::Texture_2d::use(const unsigned unit) const
+void gfx::Texture_2d::use(const std::uint32_t unit) const
 {
-	if (glIsTexture(m_id) == GL_TRUE) {
+	if (glIsTexture(m_texture_id) == GL_TRUE) {
 		glActiveTexture(GL_TEXTURE0 + unit);
-		glBindTexture(GL_TEXTURE_2D, m_id);
+		glBindTexture(GL_TEXTURE_2D, m_texture_id);
 	}
 	else {
-		std::cerr << __FUNCTION__ << " failed to use texture: " << m_id << " is not a name of a texture, use load_texture(image_path) to load a 2d texture" << std::endl;
+		std::cerr << __FUNCTION__ << " failed to use texture: " << m_texture_id << " is not a name of a texture, use load_texture(image_path) to load a 2d texture" << std::endl;
 	}
 }
 
@@ -101,14 +104,16 @@ void gfx::Texture_2d::use(const unsigned unit) const
 
 void gfx::Texture_2d::delete_texture()
 {
-	if (glIsTexture(m_id) == GL_TRUE) {
-		glDeleteTextures(1, &m_id);
-		m_id = 0;
+	if (glIsTexture(m_texture_id) == GL_TRUE) {
+		glDeleteTextures(1, &m_texture_id);
+		m_texture_id = 0;
+		remove_string_id_entry(m_file_name_id);
+
 		if (GL_NO_ERROR != glGetError()) {
 			std::cerr << __FUNCTION__ << " failed to delete texture" << std::endl;
 		}
 	}
-	else if (m_id != 0) {
-		std::cerr << __FUNCTION__ << " failed to delete texture: " << m_id << " is not a name of a texture" << std::endl;
+	else if (m_texture_id != 0) {
+		std::cerr << __FUNCTION__ << " failed to delete texture: " << m_texture_id << " is not a name of a texture" << std::endl;
 	}
 }

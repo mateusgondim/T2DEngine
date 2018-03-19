@@ -1,6 +1,6 @@
 #include "Sprite_atlas.hpp"
 #include "Texture_2d.hpp"
-#include "vec2.hpp"
+#include "string_id.hpp"
 #include "Rect.hpp"
 
 #include <string>
@@ -11,7 +11,7 @@
 /* Reads the xml file containing the coordinates of the sprites in the atlas and 
  * the directory of the image file and, loads the texture object and the sprite atlas data
  */
-gfx::Sprite_atlas::Sprite_atlas(const std::string & file_name, const float pixels_per_unit) : m_file_path(file_name), m_pixels_per_unit(pixels_per_unit)
+gfx::Sprite_atlas::Sprite_atlas(const std::string & file_name, const string_id id) : m_id(id)
 {
 
 	//process the tileset xml file
@@ -53,10 +53,10 @@ gfx::Sprite_atlas::Sprite_atlas(const std::string & file_name, const float pixel
 			std::string digits("0123456789");
 			//get atlas witdth and height
 			pos = line.find("width");
-			m_image_size.x = std::stoi(line.substr(line.find_first_of(digits, pos)));
+			//m_image_size.x = std::stoi(line.substr(line.find_first_of(digits, pos)));
 
 			pos = line.find("height");
-			m_image_size.y = std::stoi(line.substr(line.find_first_of(digits, pos)));
+			//m_image_size.y = std::stoi(line.substr(line.find_first_of(digits, pos)));
 
 			//loop trough all the sprite lines
 			while (std::getline(in, line) && (line.find("<sprite") != std::string::npos)) { // for every sprite int the atlas
@@ -104,10 +104,10 @@ void gfx::Sprite_atlas::get_text_coord(const int sprite_no, math::Rect *prect, f
 
 //	uv3.x = uv2.x;
 //	uv3.y = uv0.y;
-	prect->x       = rect.x / m_image_size.x;
-	prect->y       =  rect.y / m_image_size.y;
-	prect->width   =  rect.width / m_image_size.x;
-	prect->height  =  rect.height / m_image_size.y;
+	prect->x       = rect.x / m_texture.get_width();
+	prect->y       =  rect.y / m_texture.get_height();
+	prect->width   =  rect.width / m_texture.get_width();
+	prect->height  =  rect.height / m_texture.get_height();
 	
 	*px_width  = rect.width;
 	*px_height = rect.height;
@@ -124,4 +124,10 @@ void gfx::Sprite_atlas::get_text_coord(const int sprite_no, math::Rect *prect, f
 	m_vertices_uv.push_back(uv0);
 	m_vertices_uv.push_back(uv1);
 	*/
+}
+
+gfx::Sprite_atlas::~Sprite_atlas() 
+{
+	//erase the id of the atlas
+	remove_string_id_entry(m_id);
 }

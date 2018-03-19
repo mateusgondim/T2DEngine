@@ -1,10 +1,15 @@
-#include "Gameplay_state.hpp"
+
 #include "Player_running_state.hpp"
+
+#include "Actor.hpp"
+#include "AABB_2d.hpp"
+#include "Gameplay_state.hpp"
+
 #include "Player_idle_state.hpp"
 #include "Player_jumping_state.hpp"
 #include "Animation_player.hpp"
+#include "Animator_controller.hpp"
 #include "Timer.hpp"
-#include "Actor.hpp"
 #include "Body_2d.hpp"
 #include "Input_manager.hpp"
 #include "Engine.hpp"

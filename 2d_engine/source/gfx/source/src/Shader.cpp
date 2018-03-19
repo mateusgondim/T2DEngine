@@ -186,13 +186,27 @@ gfx::Shader::Shader(const std::string & compute_file)
 	glDeleteShader(compute_obj);
 }
 
-GLint gfx::Shader::get_uniform_location(const std::string & u_name) const
+void      gfx::Shader::use()	const 
+{ 
+	glUseProgram(m_program); 
+}
+
+std::int32_t gfx::Shader::get_uniform_location(const std::string & u_name) const
 {
-	GLint location = glGetUniformLocation(m_program, u_name.c_str());
+	std::int32_t location = glGetUniformLocation(m_program, u_name.c_str());
 
 	if (location == -1) {
 		std::cerr << "ERROR: Could not find uniform '" << u_name << "' in shader program" << std::endl;
 	}
 
 	return location;
+}
+
+gfx::Shader::~Shader() 
+{
+	// deallocate shader program
+	if (glIsProgram(m_program)) {
+		glDeleteProgram(m_program);
+	}
+	m_program = 0;
 }

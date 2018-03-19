@@ -15,6 +15,9 @@
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Creator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Gameplay_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

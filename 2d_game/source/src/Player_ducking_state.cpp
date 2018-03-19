@@ -1,6 +1,9 @@
 #include "Player_ducking_state.hpp"
-#include "Gameplay_state.hpp"
+
+#include "AABB_2d.hpp"
 #include "Actor.hpp"
+#include "Gameplay_state.hpp"
+#include "Animator_controller.hpp"
 #include "Engine.hpp"
 
 #include "Player_idle_state.hpp"

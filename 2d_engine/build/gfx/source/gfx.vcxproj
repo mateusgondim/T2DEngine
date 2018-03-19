@@ -77,7 +77,7 @@
     </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -95,10 +95,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -111,7 +111,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++11</CppLanguageStandard>
@@ -128,10 +128,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -144,7 +144,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++11</CppLanguageStandard>
@@ -161,10 +161,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -177,7 +177,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++11</CppLanguageStandard>
@@ -194,10 +194,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -269,7 +269,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Vertex1P1C1UV.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_player.hpp" />
@@ -280,11 +279,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Bool_condition.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Transition.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_batch.hpp" />
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Graphics_manager.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Camera_2d.hpp" />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_player.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller.cpp"  />
@@ -292,6 +291,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Int_condition.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Transition.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_batch.cpp"  />
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Graphics_manager.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Camera_2d.cpp"  />
   </ItemGroup>
   <ItemGroup>

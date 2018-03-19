@@ -18,3 +18,16 @@ string_id intern_string(const char *str)
 
 	return sid;
 }
+
+void	remove_string_id_entry(string_id id) 
+{
+	std::map<string_id, const char*>::iterator it = g_string_table.find(id);
+	if (it != g_string_table.end()) {
+		
+		//deallocate string
+		free((void*)it->second);
+		
+		//remove entry from the table
+		g_string_table.erase(id);
+	}
+}

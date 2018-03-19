@@ -51,7 +51,7 @@ std::ostream & print_tileset(std::ostream & os, const Tileset & tileset)
 	os << "Tileset data " << std::endl;
 	os << "<tileset" << " firstgid=" << tileset.m_first_gid  << " tilewidth=" << tileset.m_tile_width << " tileheight=" << tileset.m_tile_height << " margin=" << tileset.m_margin << " spacing=" << tileset.m_spacing
 	   << " tilecount=" << tileset.m_tile_count << " columns=" << tileset.m_columns << " >" << std::endl;
-	os << "<image " << "source=" << tileset.m_texture.get_image_path() << " width=" << tileset.m_set_width << " height=" << tileset.m_set_height << " />" << std::endl;
+	os << "<image " << "source= "  << " width=" << tileset.m_set_width << " height=" << tileset.m_set_height << " />" << std::endl;
 	os << "</tilset>" << std::endl;
 
 	return os;

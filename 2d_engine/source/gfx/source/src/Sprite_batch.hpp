@@ -2,32 +2,34 @@
 
 #define _SPRITE_BATCH_HPP
 #include <vector>
-#include "Vertex1P1C1UV.hpp"
-#include "Texture_2d.hpp"
+#include <cstdint>
 
-/*Sprite_batch: part of the tile graphics system, this class is responsable for
+/*Sprite_batch: part of the graphics system, this class is responsable for
  * creating a vao for rendering a group of sprites.
- * Every batch has a texture associated with it and a buffer object to store the sprite's 
- * vertex data
+ * The group of sprites are all on the same layer and uses the same texture.
+ * The layer of the batch is managed by the graphics manager and, the id of the texture
+ * is kept on the batch's data member 'm_texture_id', witch is the conversion of the texture
+ * file name to a unsigned of 32 bits using the crc32 algorithm
  */
 //Forward declaration to prevent includes
-namespace gfx { class Shader; class Sprite; }
+namespace gfx { class Sprite; struct Vertex1P1C1UV; }
 
 namespace gfx {
 	class Sprite_batch {
 	public:
-				Sprite_batch(const unsigned max_num_vertices, const Texture_2d & texture, const gfx::Shader & shader, const bool is_static = false);
+				Sprite_batch(const unsigned max_num_vertices, const bool is_static = false);
 		void	add(const std::vector<Vertex1P1C1UV> & vertices);
-		void    add(const Sprite & sprite);
-		void    set_sptexture(const Texture_2d & texture) { m_texture = texture; }
+		void    add(const Sprite *psprite);
+	
 		void	render();
+
+		~Sprite_batch(); // deallocate opengl Resources
 	private:
-		bool		m_is_static;
-		unsigned	m_max_num_vertices;
-		unsigned	m_num_used_vertices;
-		Texture_2d  m_texture; // pointer to texture object for the sprites in this batch
-		unsigned	m_vao;
-		unsigned	m_vbo;
+		std::uint32_t	m_max_num_vertices;
+		std::uint32_t	m_num_used_vertices;
+		std::uint32_t	m_vao;
+		std::uint32_t	m_vbo;
+		bool			m_is_static;
 	};
 }
 

@@ -267,6 +267,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.hpp" />
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Creator.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Gameplay_state.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object_manager.hpp" />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.cpp"  />

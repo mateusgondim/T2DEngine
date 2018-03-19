@@ -1,10 +1,9 @@
 #ifndef _PLAYER_RUNNING_STATE_HPP
 #define _PLAYER_RUNNING_STATE_HPP
-#include "Actor.hpp"
 #include "Gameplay_state.hpp"
-#include "Button.hpp"
-#include <vector>
-
+#include "AABB_2d.hpp"
+class Actor;
+namespace physics_2d { struct AABB_2d; }
 
 class Player_running_state : public Gameplay_state {
 public:

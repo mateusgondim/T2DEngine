@@ -1,10 +1,16 @@
-#include "Gameplay_state.hpp"
+
 #include "Player_idle_state.hpp"
+
+#include "AABB_2d.hpp"
+#include "Actor.hpp"
+#include "Gameplay_state.hpp"
+
 #include "Player_ducking_state.hpp"
 #include "Player_running_state.hpp"
 #include "Player_jumping_state.hpp"
 #include "Player_climbing_state.hpp"
-#include "Actor.hpp"
+#include "Animator_controller.hpp"
+
 #include "Input_manager.hpp"
 #include "Button.hpp"
 #include "Body_2d.hpp"

@@ -4,8 +4,7 @@
 #include "Collision_listener.hpp"
 #include "AABB_2d.hpp"
 
-
-namespace physics_2d { class Body_2d; }
+namespace physics_2d { class Body_2d; struct AABB_2d; }
 
 class Game_coll_listener : public physics_2d::Collision_listener {
 public:

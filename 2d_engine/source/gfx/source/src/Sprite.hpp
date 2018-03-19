@@ -3,43 +3,52 @@
 
 #include "vec2.hpp"
 #include "vec3.hpp"
-#include "Sprite_atlas.hpp"
 
-#include <vector>
-#include <memory>
-#include <string>
 #include <utility>
+#include <stdint.h>
 
 /*
  *
  */
 //TODO: Maybe add a change direction function
-namespace gfx { class Animator_controller; }
+namespace gfx { class Sprite_atlas; class Animator_controller; }
+
+#define POS_ARRAY_SZ 6
+#define UV_ARRAY_SZ  6
 
 namespace gfx {
 	class Sprite {
 	public:
-		Sprite(const std::string & file_name, const float pixels_per_unit = 16.0f);
-		const	std::vector<math::vec3> & get_vertex_position_vec() const { return m_vertices_pos; }
-				std::vector<math::vec3> & get_vertex_position_vec()       { return m_vertices_pos;}
-		const	std::vector<math::vec2> & get_vertex_uv_vec()	   const { return m_vertices_uv; };
-				unsigned                 get_pixels_per_unit()	   const {return m_pixels_per_unit;}
-		std::shared_ptr<const Sprite_atlas> get_atlas()		       const {return m_atlas;}
+		Sprite(Sprite_atlas *patlas, const uint8_t layer, const float pixels_per_unit = 16.0f);
+		const	math::vec3 *get_vertex_position_vec()  const  { return m_vertices_pos; }
+				math::vec3 *get_vertex_position_vec()         { return m_vertices_pos;}
+		const	math::vec2 *get_vertex_uv_vec()		   const  { return m_vertices_uv; };
+				math::vec2 *get_vertex_uv_vec()	              { return m_vertices_uv; };
+				unsigned    get_pixels_per_unit()	   const  {return m_pixels_per_unit;}
+	    const   Sprite_atlas *get_atlas()		       const;
+				uint8_t get_layer()				const {return m_layer;}
 
 		void   update_pos(const math::vec3 & position, const bool facing_left = true);
 		void   update_uv(const int sprite_no);
 		//bool   is_animated() const;
 		void   update_animation(const float dt, Animator_controller *pcontroller);
+
+		~Sprite() = default;
+
 	private:
-		std::vector<math::vec3>				m_vertices_pos;
-		std::vector<math::vec2>				m_vertices_uv;
-		float								m_pixels_per_unit; // number of pixels per game world's unit
-		math::vec2                           m_scale;           // scale taking into account the pixels per world unit
-		std::shared_ptr<const Sprite_atlas>	m_atlas;
-	
-		std::pair<unsigned, unsigned>		m_curr_anim_n_frame;
+		math::vec3							 m_vertices_pos[POS_ARRAY_SZ]; // size = 72 bytes | alignment = 4 bytes
+		math::vec2							 m_vertices_uv[UV_ARRAY_SZ];	// size = 48 bytes | alignment = 4 bytes
 		
-		//unsigned                           m_controller_curr_anim;
+		// number of pixels per game world's unit
+		float								 m_pixels_per_unit; // size = 4 bytes | alignment = 4 bytes
+		
+     // scale taking into account the pixels per world unit
+		math::vec2                           m_scale; // size = 8 btyes | alignment = 4 bytes          
+		
+		Sprite_atlas						*m_patlas;	//MAYBE CHANGE TO AN ID
+		std::pair<unsigned, unsigned>		 m_curr_anim_n_frame;
+		uint8_t								 m_layer;
+		
 		//TODO: SCALE THE VERTICES IN THE POSITION VECTOR WHEN CHANGING THE CURRENT VERTEX UV COORDINATES
 		//std::vector<unsigned> m_elements
 	};

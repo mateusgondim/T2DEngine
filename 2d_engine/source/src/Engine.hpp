@@ -7,7 +7,8 @@
 #include "Physics_manager.hpp"
 //input
 #include "Input_manager.hpp"
-
+// graphics
+#include "Graphics_manager.hpp"
 
 
 class Engine final {
@@ -17,10 +18,10 @@ public:
 	//void shut_down();
 	~Engine() {}
 public:
-	Timer m_timer;
+	Timer						 m_timer;
 	physics_2d::Physics_manager  m_physics_manager;
-	//graphics_manager m_graphics_manager
-	Input_manager    m_input_manager;
+	gfx::Graphics_manager        m_graphics_manager;
+	Input_manager				 m_input_manager;
 };
 
 extern Engine g_engine;

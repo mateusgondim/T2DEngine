@@ -2,7 +2,10 @@
 #define _PLAYER_DUCKING_STATE_HPP
 
 #include "Gameplay_state.hpp"
-#include "Actor.hpp"
+#include "AABB_2d.hpp"
+
+class Actor;
+namespace physics_2d { struct AABB_2d; }
 
 class Player_ducking_state : public Gameplay_state {
 public:

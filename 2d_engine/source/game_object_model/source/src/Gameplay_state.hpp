@@ -8,7 +8,7 @@
  */
 //-------------------------------------------------------------------------
 
-namespace physics_2d { class AABB_2d; class Body_2d; }
+namespace physics_2d { struct AABB_2d; class Body_2d; }
 class Actor;
 
 class Gameplay_state {

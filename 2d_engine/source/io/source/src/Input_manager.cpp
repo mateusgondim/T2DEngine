@@ -138,7 +138,7 @@ void Input_handler::add_button_n_cmd(const Button & b,  Command * cmd)
 	}
 }*/
 
-void Input_manager::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void Input_manager::key_callback(int key, int scancode, int action, int mods)
 {
 	Button button;
 #ifndef NDEBUG

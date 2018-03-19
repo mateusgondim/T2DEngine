@@ -29,7 +29,7 @@ void gfx::Animator_controller::update(const float dt)
 		}
 		
 	}
-	std::cout << "CONTROLLER UPDATE" << std::endl;
+	//std::cout << "CONTROLLER UPDATE" << std::endl;
 	//check if a parameter was changed
 	if (m_param_val_changed) {
 		//for every transition that goes from the current state

@@ -22,10 +22,11 @@ public:
 	void *get_element();
 	void  free_element(void *pelement);
 	//void  allocate_pool();
-	void  realease_pool_mem();
 
 	std::size_t	get_element_size() const ;
 private:
+	void  realease_pool_mem();
+
 	std::size_t  m_pool_sz_bytes;    //the size in bytes of the pool
 	std::size_t  m_element_sz_bytes; // size in bytes of each element
 	std::size_t  m_alignment;         // the element/pool alignment requirement in bytes

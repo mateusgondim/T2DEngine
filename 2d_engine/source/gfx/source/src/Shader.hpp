@@ -9,24 +9,21 @@
 #ifndef _SHADER_HPP
 
 #define _SHADER_HPP
-
-#define GLEW_STATIC
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
-
 #include <string>
+#include <cstdint>
+
 namespace gfx {
 	class Shader {
 	public:
 		Shader(const std::string & vert_file_name, const std::string & frag_file_name, const std::string & geom_file_name = "");
 		Shader(const std::string & compute_file);
-		void     use()        const { glUseProgram(m_program); }
-		GLuint  get_program() const { return m_program; }
-		GLint   get_uniform_location(const std::string & u_name) const;
+		void     use()        const;
+		std::uint32_t  get_program() const { return m_program; }
+		std::int32_t   get_uniform_location(const std::string & u_name) const;
 		//void    bind_attrib(const std::string & name, )
+		~Shader();
 	private:
-		GLuint m_program;
+		std::uint32_t m_program;
 		//std::map<std::string GLuint> m_attribs;
 	};
 }

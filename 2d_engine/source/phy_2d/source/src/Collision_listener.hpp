@@ -5,7 +5,7 @@
  *  physics engine when a collision happens with other bodies 2d and tiles, should implement this interface
  */
 
-namespace physics_2d { class Body_2d; class AABB_2d; }
+namespace physics_2d { class Body_2d; struct AABB_2d; }
 
 namespace physics_2d {
 	class Collision_listener {

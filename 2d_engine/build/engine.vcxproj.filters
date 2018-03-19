@@ -23,9 +23,6 @@
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas_manager.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite.obj">
       <Filter>Object Libraries</Filter>
     </Object>
@@ -45,6 +42,9 @@
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_batch.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Graphics_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Camera_2d.obj">

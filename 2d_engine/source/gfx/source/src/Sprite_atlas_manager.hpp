@@ -18,7 +18,7 @@ namespace gfx {
 			static Sprite_atlas_manager * instance = new Sprite_atlas_manager();
 			return *instance;
 		}
-		std::shared_ptr<const Sprite_atlas> load_atlas(const std::string & file_path, const float pixels_per_unit = 16);
+		std::shared_ptr<const Sprite_atlas> load_atlas(const std::string & file_path);
 	private:
 		Sprite_atlas_manager() : m_num_used_atlases(0), m_max_num_atlases(MAX_NUM_ATLASES) {}
 

@@ -16,7 +16,7 @@
 //TODO: COPY CONTROLL
 
 class Tile_map;
-namespace math { class Rect; }
+namespace math { struct Rect; }
 
 namespace physics_2d { class Collision_listener; }
 
