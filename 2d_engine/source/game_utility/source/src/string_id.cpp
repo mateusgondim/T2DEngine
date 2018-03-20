@@ -19,6 +19,15 @@ string_id intern_string(const char *str)
 	return sid;
 }
 
+const  char *get_string_by_id(const string_id id) 
+{
+	std::map<string_id, const char*>::iterator it = g_string_table.find(id);
+	if (it != g_string_table.end()) {
+		return it->second;
+	}
+	return nullptr;
+}
+
 void	remove_string_id_entry(string_id id) 
 {
 	std::map<string_id, const char*>::iterator it = g_string_table.find(id);

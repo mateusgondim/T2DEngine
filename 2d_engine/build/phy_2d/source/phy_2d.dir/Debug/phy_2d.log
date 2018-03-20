@@ -1,4 +1,7 @@
-﻿  World.cpp
+﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/phy_2d/source/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\CMakeFiles\generate.stamp is up-to-date.
+  Body_2d.cpp
+  World.cpp
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
@@ -29,4 +32,5 @@ C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.c
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.cpp(481): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.cpp(486): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.cpp(488): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+  Generating Code...
   phy_2d.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\Debug\phy_2d.lib

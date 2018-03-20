@@ -10,6 +10,10 @@
 #include "Sprite_atlas.hpp"
 #include "Sprite_batch.hpp"
 
+#include "Tileset.hpp"
+#include "Tile_map.hpp"
+#include "Vertex1P1C1UV.hpp"
+
 #include "vec4.hpp"
 
 #include <cstdint>
@@ -37,6 +41,7 @@ void gfx::Graphics_manager::init(const std::uint8_t context_version_major, const
 	m_atlas_pool.alloc_pool(sizeof(Sprite_atlas), 6, 4);
 	m_sprite_pool.alloc_pool(sizeof(Sprite), 25, 4);
 	m_batch_pool.alloc_pool(sizeof(Sprite_batch), 3, 4);
+	m_texture_pool.alloc_pool(sizeof(Texture_2d), 5, 4);
 
 	// set the capacity of the vector<Sprite> and vector<sprite_batch*> to prevent dynamic allocation at runtime
 	m_sprites.reserve(25);
@@ -235,6 +240,28 @@ void gfx::Graphics_manager::uniform_1f(std::int32_t location, float v0)
 	gfx_check_error();
 }
 
+void gfx::Graphics_manager::set_sprite_shader_id(const shader_id id) 
+{
+	//check if this id is valid
+	std::map<shader_id, Shader*>::iterator it = m_shaders.find(id);
+
+	if (it != m_shaders.end()) {
+		//valid id
+		m_sprite_shader_id = id;
+	}
+}
+
+void gfx::Graphics_manager::set_tile_map_shader_id(const shader_id id) 
+{
+	//check if this id is valid
+	std::map<shader_id, Shader*>::iterator it = m_shaders.find(id);
+
+	if (it != m_shaders.end()) {
+		//valid id
+		m_tile_map_shader_id = id;
+	}
+}
+
 /* load_sprite_atlas: This function creates a new sprite_atlas object, using a pre allocated memory pool.
  * Using the sprite atlas file path, a unique identifier is generated for the atlas and stored with a pointer to
  * to the new object on a std::map. The id for the atlas is returned if the function is successful, -1 is returned otherwise.
@@ -404,13 +431,24 @@ void gfx::Graphics_manager::delete_shader(const shader_id id)
  */
 void gfx::Graphics_manager::render() 
 {
+	clear_color_buffers();
+
+	//render the tile map, layer by layer
+	set_current_shader_program(m_tile_map_shader_id); 
+	
+	texture_id text_id = (m_ptile_map->get_tilesets())[0].get_texture_id();
+
+	Texture_2d *ptexture = m_textures[text_id];
+	ptexture->use();
+	m_pmap_batch->render();
+
+	//render the sprites
+	set_current_shader_program(m_sprite_shader_id);
+
 	// get a pointer to the first sprite in the vector
 	Sprite       *psprite = m_sprites[0];
 
 	if (psprite != nullptr) { // if there is at least one sprite on the vector	
-		
-		//clear buffers  THIS COMMENT IS ONLY UNTIL WE INCORPORATE THE TILE MAP RENDERING TO THE GRAPHICS MANAGER RENDER() FUNCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//clear_color_buffers();
 
       // get the layer and the atlas id for the first sprite
 		sprite_layer  layer =  psprite->get_layer();
@@ -471,6 +509,112 @@ void gfx::Graphics_manager::render()
 	}
 }
 
+
+/*Set_tile_map_renderer: Set up the Opengl's buffers to render the tile_map and,
+ * allocates textures used by the map's tilesets.
+ */
+void gfx::Graphics_manager::set_tile_map_renderer(Tile_map *ptile_map) 
+{
+	// ASSERT (PTILE_MAP != nullptr)
+	m_ptile_map = ptile_map;
+
+	//load the textures used by the tilesets
+	for (auto & tileset : m_ptile_map->get_tilesets()) {
+		/* Each map layer should use the same tileset
+		 * so each tilese here, is used by a specific layer of the map
+		 */
+		texture_id tex_id = tileset.get_texture_id();
+
+		//check if there is already a texture with this id on the map
+		std::map<texture_id, Texture_2d*>::iterator it = m_textures.find(tex_id);
+
+		if (it != m_textures.end()) {
+			std::cerr << "ERROR(" << __FUNCTION__ << "): There is already a texture with id = " << tex_id << " in the map" << std::endl;
+			return;
+		}
+		
+		// get the texture file path from id
+		const char *ptexture_file_path = get_string_by_id(tex_id);
+
+		//get a memory block from the texture pool
+		void *ptex_mem = m_texture_pool.get_element();
+
+		//check if there is memory left
+		if (ptex_mem == nullptr) {
+			std::cerr << "ERROR(" << __FUNCTION__ << "): " << "There is no memory left in the Texture memory pool " << std::endl;
+			return;
+		}
+
+		//construct the texture_2d object
+		Texture_2d *ptexture = new (ptex_mem) Texture_2d(ptexture_file_path);
+
+		// add texture to map
+		m_textures[tex_id] = ptexture;
+	}
+
+	// get the memory block from the  batch pool
+	void *pbatch_mem = m_batch_pool.get_element();
+
+	// check if there memory left in the pool
+	if (pbatch_mem == nullptr) {
+		std::cerr << "ERROR(" __FUNCTION__ << "): No memory left in batch pool" << std::endl;
+		return;
+	}
+
+	//construct the batch object to render the tile map
+	m_pmap_batch = new (pbatch_mem) Sprite_batch(m_ptile_map->width() * m_ptile_map->height() * 6, true);
+
+	std::vector<Vertex1P1C1UV> vertices;
+	
+	// for each tile on the map
+	for (int i = 0; i != m_ptile_map->height(); ++i) {
+		for (int j = 0; j != m_ptile_map->width(); ++j) {
+			// get the world space coordinates of the tile
+			Vertex1P1C1UV vertex1, vertex2, vertex3, vertex4;
+			math::Rect rect = m_ptile_map->tile_wld_space_bounds(i, j);
+
+			vertex1.m_pos = math::vec3(rect.x, rect.y, 0.0f);
+			vertex2.m_pos = math::vec3(rect.x, rect.y - rect.height, 0.0f);
+			vertex3.m_pos = math::vec3(rect.x + rect.width, rect.y - rect.height, 0.0f);
+			vertex4.m_pos = math::vec3(rect.x + rect.width, rect.y, 0.0f);
+			
+			vertex1.m_col = vertex2.m_col = vertex3.m_col = vertex4.m_col = math::vec4(1.0f, 0.0f, 0.0f, 0.0f);
+
+			// get the uv coordinates of the tile
+			std::uint32_t tile_id = m_ptile_map->get_tile_id(0, i, j);
+
+			//find witch tileset has the tile width id
+			const Tileset * ptileset = nullptr;
+			for (auto & tileset : m_ptile_map->get_tilesets()) {
+				if (tileset.is_inside_set(tile_id)) {
+					ptileset = &tileset;
+					break;
+				}
+			}
+			if (ptileset) {
+				ptileset->get_text_coord(tile_id, vertex1.m_uv, vertex2.m_uv, vertex3.m_uv, vertex4.m_uv);
+			}
+#ifndef NDEBUG
+			else {
+				std::cerr << __FUNCTION__ << " ERROR: Could not find tileset containing tile with id = " << tile_id << std::endl;
+			}
+#endif // !NDEBUG
+
+			vertices.push_back(vertex1);
+			vertices.push_back(vertex2);
+			vertices.push_back(vertex3);
+
+			vertices.push_back(vertex3);
+			vertices.push_back(vertex4);
+			vertices.push_back(vertex1);
+		}
+	}
+
+	//add the vertices to the batch
+	m_pmap_batch->add(vertices);
+
+}
+
 //shut_down
 void gfx::Graphics_manager::shut_down() 
 {
@@ -515,6 +659,12 @@ void gfx::Graphics_manager::shut_down()
 	//m_sprite_pool.realease_pool_mem();
 
 	//destruct the batch objects 
+	
+	//destroy the tile_map batch and, give the memory back to the pool
+	m_pmap_batch->~Sprite_batch();
+	m_batch_pool.free_element(static_cast<void*>(m_pmap_batch));
+
+	//destroy the sprite Batches and deallocate the pool 
 	for (std::vector<Sprite_batch*>::iterator it = m_batches.begin(); it != m_batches.end(); ++it) {
 		Sprite_batch *pbatch = *it;
 		pbatch->~Sprite_batch();
@@ -524,6 +674,15 @@ void gfx::Graphics_manager::shut_down()
 	}
 	//deallocate Sprite batch pool
 	//m_batch_pool.realease_pool_mem();
+
+	//destroy the texture objects
+	for (std::map<texture_id, Texture_2d*>::iterator it = m_textures.begin(); it != m_textures.end(); ++it) {
+		Texture_2d *ptexture = it->second;
+		ptexture->~Texture_2d();
+
+		//release the pooll memory block
+		m_texture_pool.free_element(static_cast<void*>(ptexture));
+	}
 
 	//Shut down GLFW
 	glfwTerminate();

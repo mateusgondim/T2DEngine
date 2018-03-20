@@ -7,9 +7,6 @@
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\tmx_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -22,9 +19,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map_renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\tmx_parser.hpp">

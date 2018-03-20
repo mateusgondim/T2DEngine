@@ -398,7 +398,7 @@ void Tile_map_renderer::render(const gfx::Shader & shader)
 	shader.use();
 	//glCheckError();
 	
-	(m_tmap_ptr->get_tilesets())[0].get_texture().use();
+	//(m_tmap_ptr->get_tilesets())[0].get_texture().use();
 	
 	glBindVertexArray(m_VAO);
 	//glCheckError();

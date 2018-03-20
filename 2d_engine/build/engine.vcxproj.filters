@@ -89,9 +89,6 @@
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\Tile_map.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\Tile_map_renderer.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\tmx_parser.obj">
       <Filter>Object Libraries</Filter>
     </Object>

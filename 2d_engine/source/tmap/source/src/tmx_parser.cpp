@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "tmx_parser.hpp"
+#include "string_id.hpp"
 #include "Tile.hpp"
 #include "Tileset.hpp"
 #include "Tile_map.hpp"
@@ -228,8 +229,9 @@ int load_tileset(const std::string & map_file_dir ,const std::string & header, T
 			std::cout << ( (ptiles[i].m_is_obstacle) ? ("true") :("false") ) << std::endl;
 		}
 		//--------------------------------------------------------------------------------//
-
-		tileset = Tileset(ptiles, firstgid, texture_file_path, tile_width, tile_height, margin, spacing, tile_count, columns, width, height);
+		string_id texture_id = intern_string(texture_file_path.c_str());
+		tileset = Tileset(ptiles, firstgid, texture_id, tile_width, tile_height, margin, spacing, tile_count, columns, width, height);
+		//tileset = Tileset(ptiles, firstgid, texture_file_path, tile_width, tile_height, margin, spacing, tile_count, columns, width, height);
 
 		return 0;
 	}

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
-#include <cmath>
+
 
 #include "Tileset.hpp"
 #include "vec3.hpp"

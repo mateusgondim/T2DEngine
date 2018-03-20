@@ -19,13 +19,15 @@
 #endif
 
 struct GLFWwindow;
-namespace gfx { class Sprite; class Sprite_atlas; class Shader; class Sprite_batch; }
+class  Tile_map;
+namespace gfx { class Sprite; class Texture_2d; class Sprite_atlas; class Shader; class Sprite_batch; }
 namespace math { struct vec4; }
 
 namespace gfx {
 	enum class GFX_ENUMS { SRC_ALPHA, ONE_MINUS_SRC_ALPHA, BLEND, COLOR_BUFFER_BIT, DEPTH_BUFFER_BIT };
 	class Graphics_manager {
 		typedef		string_id		atlas_id;
+		typedef		string_id       texture_id;
 		typedef		string_id		shader_id;
 		typedef		std::uint8_t	sprite_layer;
 
@@ -59,7 +61,13 @@ namespace gfx {
 		void         uniform_matrix4fv(std::int32_t location, std::int32_t count, bool is_transposed, const float *pvalue);
 		void		 uniform_1f(std::int32_t location, float v0);
 
+		void		set_sprite_shader_id(const shader_id id);
+		void		set_tile_map_shader_id(const shader_id id);
+
 		atlas_id	load_sprite_atlas(const char *patlas_path);
+
+		//Tile map operations
+		void        set_tile_map_renderer(Tile_map *ptile_map);
 
 		Sprite      *get_sprite_component(const atlas_id id, const sprite_layer layer);
 		void		 delete_sprite_component(Sprite *psprite);
@@ -74,6 +82,7 @@ namespace gfx {
 		// Global Graphics objects 
 		std::map<atlas_id, Sprite_atlas*>			m_atlases;
 		std::map<shader_id, Shader*>				m_shaders;
+		std::map<texture_id, Texture_2d*>           m_textures;
 		
 		std::vector<Sprite_batch*>					m_batches;
 		std::vector<Sprite*>						m_sprites;
@@ -84,10 +93,17 @@ namespace gfx {
 		Pool_allocator                              m_shader_pool;
 		Pool_allocator                              m_batch_pool;
 		Pool_allocator								m_sprite_pool;
+		Pool_allocator								m_texture_pool; // for the tile_map textures...
 		//Pool_allocator							m_anim_controller_pool
 
+		// Data members to render Tile_map
+		Tile_map								   *m_ptile_map; // pointer to tile_map data object to render
+		Sprite_batch							   *m_pmap_batch; // pointer to batch contaning the map's vertices 
+
+		shader_id									m_sprite_shader_id; // the id for the shader used to render the sprites
+		shader_id									m_tile_map_shader_id; // the id for the shader used to render the Tile map
+
 		// Opengl Context data
-		
 		GLFWwindow		*m_pwindow; // GLFW window
 		//Opengl's context version
 		std::uint8_t	m_context_version_major; 

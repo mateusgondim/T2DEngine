@@ -31,7 +31,7 @@ private:
 	
 	std::vector<math::vec3> m_vertices_pos;
 	std::vector<math::vec2> m_vextices_text_coord;
-	std::vector<GLuint>	   m_indices;
+	std::vector<GLuint>	    m_indices;
 	GLuint m_VAO;
 	GLuint m_VBO_pos;
 	GLuint m_VBO_uv;

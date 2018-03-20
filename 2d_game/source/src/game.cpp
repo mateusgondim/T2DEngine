@@ -1,14 +1,9 @@
-#define GLEW_STATIC
 
-
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
+#include "game.hpp"
 
 #include <iostream>
 #include <memory>
 
-#include "game.hpp"
 
 //math
 #include "vec3.hpp"
@@ -20,7 +15,6 @@
 
 #include "Camera_2d.hpp"
 #include "Tile_map.hpp"
-#include "Tile_map_renderer.hpp"
 #include "Shader.hpp"
 #include "tmx_parser.hpp"
 
@@ -261,7 +255,10 @@ int main(int argc, char *argv[])
 	string_id     tile_map_shader_id = g_engine.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/vertex.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/fragment.frag");
 	gfx::Shader   *ptile_map_shader = g_engine.m_graphics_manager.get_shader(tile_map_shader_id);
 
-	Tile_map_renderer map_renderer(tile_map, *ptile_map_shader );
+	//load the data to render the map into the graphics manager
+	g_engine.m_graphics_manager.set_tile_map_renderer(&tile_map);
+
+	//Tile_map_renderer map_renderer(tile_map, *ptile_map_shader );
 
 	math::mat4 V;
 	
@@ -292,10 +289,10 @@ int main(int argc, char *argv[])
 	g_engine.m_graphics_manager.set_current_shader_program(tile_map_shader_id);
 
 	//glUniformMatrix4fv(v_loc, 1, GL_FALSE, V.value_ptr());
-	g_engine.m_graphics_manager.uniform_matrix4fv(v_loc, 1, GL_FALSE, V.value_ptr());
+	g_engine.m_graphics_manager.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());
 
 	//glUniformMatrix4fv(p_loc, 1, GL_FALSE, camera.projection().value_ptr());
-	g_engine.m_graphics_manager.uniform_matrix4fv(p_loc, 1, GL_FALSE, camera.projection().value_ptr());
+	g_engine.m_graphics_manager.uniform_matrix4fv(p_loc, 1, false, camera.projection().value_ptr());
 
 	//glUniform1f(sampler_loc, 0);
 	g_engine.m_graphics_manager.uniform_1f(sampler_loc, 0);
@@ -344,11 +341,11 @@ int main(int argc, char *argv[])
 	
 
 	//glUniformMatrix4fv(sprite_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
-	g_engine.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
+	g_engine.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
 
 
 	//glUniformMatrix4fv(sprite_shader.get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
-	g_engine.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
+	g_engine.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("P"), 1, false, camera.projection().value_ptr());
 	
 	//glUniform1f(sprite_shader.get_uniform_location("tileset"), 0);
 	g_engine.m_graphics_manager.uniform_1f(psprite_shader->get_uniform_location("tileset"), 0);
@@ -383,37 +380,37 @@ int main(int argc, char *argv[])
 	/////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////// MAP DEBUG SHADERS ////////////////////////////////////////////////////////////////////////
-		string_id   tile_map_grid_shader_id = g_engine.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_tile_grid.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_tile_grid.frag");
+		//string_id   tile_map_grid_shader_id = g_engine.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_tile_grid.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_tile_grid.frag");
 		//gfx::Shader display_grid_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_tile_grid.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_tile_grid.frag");
 		
-		g_engine.m_graphics_manager.set_current_shader_program(tile_map_grid_shader_id);
+		//g_engine.m_graphics_manager.set_current_shader_program(tile_map_grid_shader_id);
 		//display_grid_shader.use();
 		
-		gfx::Shader *ptile_map_grid_shader = g_engine.m_graphics_manager.get_shader(tile_map_grid_shader_id);
+		//gfx::Shader *ptile_map_grid_shader = g_engine.m_graphics_manager.get_shader(tile_map_grid_shader_id);
 		
 		//glUniformMatrix4fv(display_grid_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
-		g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_grid_shader->get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
+		//g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_grid_shader->get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 
 		//glUniformMatrix4fv(display_grid_shader.get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
-		g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_grid_shader->get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
+		//g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_grid_shader->get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
 
-		map_renderer.set_debug_mode(Tile_map_renderer::Debug_options::DISPLAY_GRID, *ptile_map_grid_shader);
+		//map_renderer.set_debug_mode(Tile_map_renderer::Debug_options::DISPLAY_GRID, *ptile_map_grid_shader);
 
-		string_id   tile_map_coll_shader_id = g_engine.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_colliders.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_colliders.frag");
+		//string_id   tile_map_coll_shader_id = g_engine.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_colliders.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_colliders.frag");
 		//gfx::Shader display_colliders_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_colliders.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/d_display_colliders.frag");
 		
-		g_engine.m_graphics_manager.set_current_shader_program(tile_map_coll_shader_id);
+		//g_engine.m_graphics_manager.set_current_shader_program(tile_map_coll_shader_id);
 		//display_colliders_shader.use();
 		
-		gfx::Shader *ptile_map_coll_shader = g_engine.m_graphics_manager.get_shader(tile_map_coll_shader_id);
+		//gfx::Shader *ptile_map_coll_shader = g_engine.m_graphics_manager.get_shader(tile_map_coll_shader_id);
 
-		g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_coll_shader->get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
+		//g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_coll_shader->get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 		//glUniformMatrix4fv(display_colliders_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 
-		g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_coll_shader->get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
+		//g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_coll_shader->get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
 		//glUniformMatrix4fv(display_colliders_shader.get_uniform_location("P"), 1, GL_FALSE, camera.projection().value_ptr());
 		
-		map_renderer.set_debug_mode(Tile_map_renderer::Debug_options::DISPLAY_COLLIDERS, *ptile_map_coll_shader);
+		//map_renderer.set_debug_mode(Tile_map_renderer::Debug_options::DISPLAY_COLLIDERS, *ptile_map_coll_shader);
 	/////////////////////////////////////////////////////////////////////////////////////////
 
 	g_engine.m_graphics_manager.set_clear_color(math::vec4(0.0f, 0.0f, 0.5f, 1.0f) );
@@ -439,6 +436,11 @@ int main(int argc, char *argv[])
 	//float pixel_width, pixel_height;
 	//player.get_sprite_component()->get_atlas()->get_text_coord(13, &bounds, &pixel_width, &pixel_height);
 	//std::cout << "TEXTURE COORDINATES X = " << bounds.x << ", Y = " << bounds.y << ", WIDTH = " << bounds.width << ", HEIGHT = " << bounds.height << ", IM_HEIGHT = " << pixel_height<< std::endl;
+
+	//set the shaders for sprite and tile map
+	g_engine.m_graphics_manager.set_tile_map_shader_id(tile_map_shader_id);
+	g_engine.m_graphics_manager.set_sprite_shader_id(sprite_shader_id);
+	
 
 	while (!g_engine.m_graphics_manager.window_should_close()) {
 		//int i = 0;
@@ -496,19 +498,19 @@ int main(int argc, char *argv[])
 
 		g_engine.m_graphics_manager.set_current_shader_program(tile_map_shader_id);
 		//shader.use();
-		g_engine.m_graphics_manager.uniform_matrix4fv(v_loc, 1, GL_FALSE, V.value_ptr());
+		g_engine.m_graphics_manager.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());
 		//glUniformMatrix4fv(v_loc, 1, GL_FALSE, V.value_ptr());
 		
-		g_engine.m_graphics_manager.set_current_shader_program(tile_map_grid_shader_id);
+		//g_engine.m_graphics_manager.set_current_shader_program(tile_map_grid_shader_id);
 		//display_grid_shader.use();
 		
-		g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_grid_shader->get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
+		//g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_grid_shader->get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 		//glUniformMatrix4fv(display_grid_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 
-		g_engine.m_graphics_manager.set_current_shader_program(tile_map_coll_shader_id);
+		//g_engine.m_graphics_manager.set_current_shader_program(tile_map_coll_shader_id);
 		//display_colliders_shader.use();
 		
-		g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_coll_shader->get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
+		//g_engine.m_graphics_manager.uniform_matrix4fv(ptile_map_coll_shader->get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 		//glUniformMatrix4fv(display_colliders_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 
 		//std::cout << "PLAYER WLD SPACE POS = (" << player.get_body_2d()->get_position().x << ", " << player.get_body_2d()->get_position().y << ")" << std::endl;
@@ -520,14 +522,14 @@ int main(int argc, char *argv[])
 		//glViewport(0, 0, vport_width, vport_height);
 		
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		map_renderer.render(*ptile_map_shader);
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//map_renderer.render(*ptile_map_shader);
 		
 		
 		//sprite_shader.use();
 		g_engine.m_graphics_manager.set_current_shader_program(sprite_shader_id);
 
-		g_engine.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
+		g_engine.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
 		//glUniformMatrix4fv(sprite_shader.get_uniform_location("V"), 1, GL_FALSE, V.value_ptr());
 		
 		g_engine.m_graphics_manager.render();
