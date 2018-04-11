@@ -16,16 +16,16 @@
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller_parameter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_state.cpp">
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Int_condition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Transition.cpp">
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state_transition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_batch.cpp">
@@ -60,22 +60,19 @@
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller_parameter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_state.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Condition.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state_transition.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Int_condition.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Bool_condition.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Transition.hpp">
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_condition.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_batch.hpp">

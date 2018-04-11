@@ -22,8 +22,10 @@ Player_jumping_state::Player_jumping_state(Actor & actor, float y_acceleration, 
 
 Gameplay_state * Player_jumping_state::handle_input(Actor & actor) 
 {
+	string_id is_attacking_param_id = intern_string("is_attacking");
+	string_id player_attacking_state_id = intern_string("player_attacking");
+	
 	bool on_ground = g_engine.m_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
-	bool is_attacking = actor.get_anim_controller_component()->get_trigger("is_attacking");
 
 	if (on_ground) {
 		//std::cout << "changing state to player_idle" << std::endl;
@@ -33,7 +35,7 @@ Gameplay_state * Player_jumping_state::handle_input(Actor & actor)
 		return new Player_idle_state;
 	}
 
-	if (is_attacking) {
+	if ((actor.get_anim_controller_component()->get_current_state().get_state_id() == player_attacking_state_id)) {
 		return nullptr;
 	}
 

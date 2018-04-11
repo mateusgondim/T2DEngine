@@ -25,12 +25,14 @@ Gameplay_state * Player_climbing_state::handle_input(Actor & actor)
 	//climbing from top animation and small displacement
 	if (m_from_top) {
 		if (m_anim_clip == 0) {
-			actor.get_anim_controller_component()->switch_curr_state_anim_clip(1);
 			actor.get_body_2d_component()->set_velocity(-m_climbing_vel);
+			actor.get_anim_controller_component()->set_bool("finish_climbing", true);
+			m_anim_clip = 1;
 		}
 		if (bounds.y > actor.get_body_2d_component()->get_aabb_2d().p_max.y) {
 			actor.get_body_2d_component()->stop_movement_y();
-			actor.get_anim_controller_component()->switch_curr_state_anim_clip(0);
+			//actor.get_anim_controller_component()->switch_curr_state_anim_clip(0);
+			actor.get_anim_controller_component()->set_bool("finish_climbing", false);
 			m_from_top = false;
 		}
 		return nullptr;
@@ -76,7 +78,7 @@ Gameplay_state * Player_climbing_state::handle_input(Actor & actor)
 			const Button & moving_up_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_UP);
 			if (moving_up_button.m_state == PRESSED) {
 				actor.get_body_2d_component()->set_velocity(m_climbing_vel);
-				actor.get_anim_controller_component()->get_current_state().get_anim_player().resume();
+				actor.get_anim_controller_component()->get_current_state().resume_anim();
 			}
 			else {
 				const Button & moving_down_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_DOWN);
@@ -89,11 +91,11 @@ Gameplay_state * Player_climbing_state::handle_input(Actor & actor)
 
 				if (moving_down_button.m_state == PRESSED) {
 					actor.get_body_2d_component()->set_velocity(-m_climbing_vel);
-					actor.get_anim_controller_component()->get_current_state().get_anim_player().resume();
+					actor.get_anim_controller_component()->get_current_state().resume_anim();
 				}
 				else if (moving_down_button.m_state == RELEASED && moving_up_button.m_state == RELEASED) {
 					actor.get_body_2d_component()->stop_movement_y();
-					actor.get_anim_controller_component()->get_current_state().get_anim_player().pause();
+					actor.get_anim_controller_component()->get_current_state().pause_anim();
 				}
 			}
 
@@ -103,7 +105,8 @@ Gameplay_state * Player_climbing_state::handle_input(Actor & actor)
 					m_reached_top = true;
 					actor.get_body_2d_component()->set_velocity(math::vec2(0.0f, m_climbing_vel.y));
 					//start climbing off animation
-					actor.get_anim_controller_component()->switch_curr_state_anim_clip(1);
+					actor.get_anim_controller_component()->set_bool("finish_climbing", true);
+					//actor.get_anim_controller_component()->switch_curr_state_anim_clip(1);
 					return nullptr;
 				}
 				else {
@@ -124,7 +127,8 @@ Gameplay_state * Player_climbing_state::handle_input(Actor & actor)
 				actor.get_body_2d_component()->stop_movement_y();
 				actor.get_body_2d_component()->apply_gravity(true);
 				actor.get_anim_controller_component()->set_bool("is_climbing", false);
-				actor.get_anim_controller_component()->switch_curr_state_anim_clip(0);
+				actor.get_anim_controller_component()->set_bool("finish_climbing", false);
+				//actor.get_anim_controller_component()->switch_curr_state_anim_clip(0);
 				return new Player_idle_state();
 			}
 			return nullptr;

@@ -1,6 +1,8 @@
 
 #include "Player_idle_state.hpp"
 
+#include "string_id.hpp"
+
 #include "AABB_2d.hpp"
 #include "Actor.hpp"
 #include "Gameplay_state.hpp"
@@ -25,13 +27,14 @@
 Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 {
 	//auto stream = Input_handler::instance().get_input();
+	string_id is_attacking_param_id = intern_string("is_attacking");
+	string_id player_attacking_state_id = intern_string("player_attacking");
 
 	bool on_ground =  g_engine.m_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
-	bool is_attacking = actor.get_anim_controller_component()->get_trigger("is_attacking");
 	//auto iter = std::find_if(stream.begin(), stream.end(),
 	//	[](const std::pair<Button, Command*> & p) {return p.first.m_bound_key == KEY_A; });
 	
-	if (is_attacking) { //still playing attacking animation, cant move
+	if ((actor.get_anim_controller_component()->get_current_state().get_state_id() == player_attacking_state_id)) { //still playing attacking animation, cant move
 		return nullptr;
 	}
 
@@ -100,8 +103,8 @@ Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 	}
 
 	const Button & attacking_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::ATTACK_01);
-	if (attacking_button.m_state == PRESSED) {
-		actor.get_anim_controller_component()->set_trigger("is_attacking");
+	if ( (attacking_button.m_state == PRESSED) ) {
+		actor.get_anim_controller_component()->set_trigger(is_attacking_param_id);
 	}
 
 	return nullptr;

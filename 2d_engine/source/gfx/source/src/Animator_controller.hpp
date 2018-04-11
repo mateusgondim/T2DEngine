@@ -2,68 +2,65 @@
 #define _ANIMATOR_CONTROLLER_HPP
 #include <map>
 #include <iostream>
-#include <memory>
-#include "Animation_state.hpp"
-#include "Transition.hpp"
+#include "string_id.hpp"
+#include "Animator_controller_parameter.hpp"
+#include "Animator_state.hpp"
 
-/* Animation_controller: This class manages a Animation state machine, it state
- * contains a animation and is stored in the map m_state_machine, the transitions,
- * witch are stored in the m_transitions, contain the conditions that need to hold for the
- * state machine to transition from one state to another. The controller maintains a set of parameters
- * that the state machine uses for the conditions, 
+
+
+/*  Animation_controller: This class manages a Animation state machine, stored std::map, this map associates each state name_id
+ *  with a Animator_state object. Each state oject stores the transitions for that state
+ *  The controller maintains a set of parameters that the state machine's transitions, use as variables for the 
+ *  conditions to change from one state to another.
  */
 
-namespace gfx { class Animation_state; }
+namespace gfx { class Animation_player; struct Animator_condition; }
 
 namespace gfx {
-	class Animator_controller {
+	class Animator_controller final {
 		friend std::ostream & operator<<(std::ostream & os, const Animator_controller & anim_controller);
 	public:
 		Animator_controller() = default;
-
 		void update(const float dt);
-		void add_state(const Animation_state & anim_state);
-		void set_initial_state(const std::string & name);
+		
+		void set_current_state(const char *name);
 
-		void add_transition(const Transition & transition) { m_transitions.insert({ transition.get_name(), transition }); }
+		Animator_state & add_state(const char *name);
+		Animator_state & add_state(const char *name, const gfx::Animation_player & anim_player);
 
-		void add_int_condition(const std::string & t_name, const std::string & param_name, Condition::Cond_operator op, const int expected_value);
-		void add_bool_condition(const std::string & t_name, const std::string & param_name, const bool expected_value);
-		void add_trigger_condition(const std::string & t_name, const std::string & param_name, const bool expected_value);
+		void			 remove_state(const Animator_state & state);
+	
+		void add_parameter(const char *name, const Animator_controller_parameter::Type type);
+		void add_parameter(const Animator_controller_parameter & parameter);
 
-		//add transition parameters
-		void add_trigger_param(const std::string & name, const bool value = false) { m_trigger_parameters.insert({ name, value }); }
-		void add_int_param(const std::string  & name, const int value) { m_int_parameters.insert({ name, value }); }
-		void add_bool_param(const std::string & name, const bool value = false) { m_bool_parameters.insert({ name, value }); }
+		//Parameter setters
+		void set_integer(const char *name, const int ivalue);
+		void set_integer(const string_id id, const int ivalue);
 
-		//void add_int_transition(const std::string & o_state_name, const std::string & d_state_name,  const std::string & parameter_name, const int expected_val);
-		//void add_bool_transition(const std::string & o_state_name, const std::string & d_state_name, const std::string & parameter_name, const bool expected_val);
-		//void add_trigger_transition(const std::string & o_state_name, const std::string & d_state_name, const std::string & parameter_name);
+		void set_bool(const char *name,   const bool bvalue);
+		void set_bool(const string_id id, const bool bvalue);
 
-		//setters
-		void set_int(const std::string & name, const int ivalue);
-		void set_bool(const std::string & name, const bool bvalue);
-		void set_trigger(const std::string & name);
-		bool get_trigger(const std::string & name) const;
+		void set_trigger(const char *name);
+		void set_trigger(const string_id id);
+		
+		//Parameters getters
+		int  get_integer(const char *name)   const;
+		int  get_integer(const string_id id) const;
 
-		//getters
-		//bool get_bool_param(const std::string & name)     const;
-		//int  get_int_param(const std::string & name)      const;
-		//bool get_trigger_param(const std::string & name)  const;
-		Animation_state & get_current_state();
-		unsigned get_current_frame() const;
-		unsigned get_current_anim() const;
-		void     switch_curr_state_anim_clip(const std::vector<gfx::Animation>::size_type next_anim);
+		bool get_bool(const char *name)      const;
+		bool get_bool(const string_id id)    const;
+
+		bool get_trigger(const char *name)   const;
+		bool get_trigger(const string_id id) const;
+
+		Animator_state & get_current_state();
 	private:
-		std::map<std::string, Transition>       m_transitions;
-		std::map<std::string, Animation_state>  m_state_machine;
-		std::map<std::string, bool>				m_trigger_parameters;
-		std::map<std::string, bool>				m_bool_parameters;
-		std::map<std::string, int>				m_int_parameters;
-		std::string                             m_current_state;
-		std::string								m_initial_state;
-		bool								    m_param_val_changed = false;
-		bool                                    m_pending_trigger = false;
+		bool   evaluate_condition(const Animator_controller_parameter & parameter, const Animator_condition & condition) const;
+
+		std::map<string_id, Animator_controller_parameter>  m_parameters;
+		std::map<string_id, Animator_state>				    m_state_machine;
+		string_id                                           m_current_state_id;
+		bool												m_param_val_changed = false;
 	};
 
 	std::ostream & operator<<(std::ostream & os, const Animator_controller & anim_controller);

@@ -3,15 +3,13 @@
 
 #include "vec2.hpp"
 #include "vec3.hpp"
-
-#include <utility>
 #include <stdint.h>
 
 /*
  *
  */
 //TODO: Maybe add a change direction function
-namespace gfx { class Sprite_atlas; class Animator_controller; }
+namespace gfx { class Sprite_atlas; }
 
 #define POS_ARRAY_SZ 6
 #define UV_ARRAY_SZ  6
@@ -31,7 +29,7 @@ namespace gfx {
 		void   update_pos(const math::vec3 & position, const bool facing_left = true);
 		void   update_uv(const int sprite_no);
 		//bool   is_animated() const;
-		void   update_animation(const float dt, Animator_controller *pcontroller);
+		//void   update_animation(const float dt, Animator_controller *pcontroller);
 
 		~Sprite() = default;
 
@@ -44,9 +42,7 @@ namespace gfx {
 		
      // scale taking into account the pixels per world unit
 		math::vec2                           m_scale; // size = 8 btyes | alignment = 4 bytes          
-		
 		Sprite_atlas						*m_patlas;	//MAYBE CHANGE TO AN ID
-		std::pair<unsigned, unsigned>		 m_curr_anim_n_frame;
 		uint8_t								 m_layer;
 		
 		//TODO: SCALE THE VERTICES IN THE POSITION VECTOR WHEN CHANGING THE CURRENT VERTEX UV COORDINATES

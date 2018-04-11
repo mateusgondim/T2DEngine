@@ -8,6 +8,7 @@
 namespace gfx {
 	class Animation {
 	public:
+		Animation() : m_frame_count(0) {}
 		Animation(const std::vector<unsigned> & frames, const float frames_per_second, const bool loop = true) : 
 			m_frames(frames), m_frames_per_second(frames_per_second), m_loop(loop), m_playback_rate(1.0f)
 		{

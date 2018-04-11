@@ -7,6 +7,7 @@
 #include "AABB_2d.hpp"
 #include "Gameplay_state.hpp"
 #include "Player_idle_state.hpp"
+#include "Animator_state.hpp"
 #include "Animator_controller.hpp"
 #include "Sprite.hpp"
 #include "Engine.hpp"
@@ -35,8 +36,11 @@ void Player::handle_input()
 void Player::update() 
 {
 	m_panimator_controller->update(g_engine.m_timer.get_dt());
-	m_psprite->update_animation(g_engine.m_timer.get_dt(), m_panimator_controller);
 	
+	gfx::Animator_state & curr_state = m_panimator_controller->get_current_state();
+	if (curr_state.changed_animation_frame()) {
+		m_psprite->update_uv(curr_state.get_curr_anim_frame());
+	}
 	m_psprite->update_pos(m_pbody_2d->get_position(), !get_facing_direction());
 }
 

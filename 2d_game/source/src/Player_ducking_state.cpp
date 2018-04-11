@@ -10,9 +10,12 @@
 
 Gameplay_state * Player_ducking_state::handle_input(Actor & actor) 
 {
+	string_id is_attacking_param_id = intern_string("is_attacking");
+	string_id player_attacking_state_id = intern_string("player_ducking_attacking");
+
 	//check if is attacking, if so, return
-	bool is_attacking = actor.get_anim_controller_component()->get_trigger("is_attacking");
-	if (is_attacking) {
+	
+	if ((actor.get_anim_controller_component()->get_current_state().get_state_id() == player_attacking_state_id)) {
 		return nullptr;
 	}
 

@@ -8,9 +8,6 @@
 
 /* Animation_state - Class to represent a state on the animation state machine
  * each state has a animation_player so it can play the animation on its update() function.
- * It also has a map for each transition using int, bool or trigger parameters. The maps stores for each transition, 
-   the name of the destination state as the key and, as the value, a pair containig a pointer to the parameter name and value and,
-   the value of the parameters that is expected to make the transition
  */
 namespace gfx {
 	class Animation_state {

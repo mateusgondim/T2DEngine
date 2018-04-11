@@ -1,6 +1,5 @@
 #include "Sprite.hpp"
 #include "Sprite_atlas.hpp"
-#include "Animator_controller.hpp"
 #include "Rect.hpp"
 #include "vec3.hpp"
 #include "vec2.hpp"
@@ -41,7 +40,6 @@ gfx::Sprite::Sprite(Sprite_atlas *patlas, const std::uint8_t layer, const float 
 	m_vertices_uv[4] = math::vec2(rect.x, rect.y); // uv0
 	m_vertices_uv[5] = math::vec2(rect.x, rect.y + rect.height); //uv1
 
-	m_curr_anim_n_frame.first = m_curr_anim_n_frame.second = -1;
 }
 
 
@@ -88,51 +86,17 @@ const gfx::Sprite_atlas *gfx::Sprite::get_atlas() const
 }
 
 /*
-void tgs::Sprite::set_anim_controller(std::unique_ptr<Animator_controller> & upanim_controller)
-{
-	if (!m_upanim_controller) {
-		m_upanim_controller.reset(upanim_controller.release());
-	}
-}
-
-bool tgs::Sprite::is_animated() const 
-{
-	if (m_upanim_controller) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-*/
-
 void gfx::Sprite::update_animation(const float dt, Animator_controller *pcontroller)
 {
 	if (pcontroller) { 
-		std::pair<unsigned, unsigned> anim_n_frame = pcontroller->get_current_state().get_anim_player().get_anim_n_frame();
-
-		if (m_curr_anim_n_frame != anim_n_frame) {
-			update_uv(anim_n_frame.second);
-			m_curr_anim_n_frame = anim_n_frame;
+		Animator_state & curr_state = pcontroller->get_current_state();
+		if (curr_state.changed_animation_frame()) {
+			update_uv(curr_state.get_curr_anim_frame());
 		}
-
-		/*
-		unsigned curr_anim = m_upanim_controller->get_current_anim();
-		
-		unsigned prev_frame = m_upanim_controller->get_current_frame();
-		m_upanim_controller->update();
-		unsigned curr_frame = m_upanim_controller->get_current_frame();
-		if (curr_frame != prev_frame) {
-			update_uv(curr_frame);
-		}
-		else if (m_controller_curr_anim != curr_anim) {
-			m_controller_curr_anim = curr_anim;
-			update_uv(curr_frame);
-		}*/
 	}
 	else {
 #ifndef NDEBUG
 		std::cerr << "WARNING: " << __FUNCTION__ << " This sprite is not animated" << std::endl;
 #endif // !NDEBUG
 	}
-}
+}*/
