@@ -10,7 +10,8 @@
 #include "Animator_state.hpp"
 #include "Animator_controller.hpp"
 #include "Sprite.hpp"
-#include "Engine.hpp"
+#include "Body_2d.hpp"
+#include "Systems.hpp"
 
 Player::Player(gfx::Sprite *psprite,gfx::Animator_controller *pcontroller, physics_2d::Body_2d *pbody,const math::vec3 & position, const math::mat4 & orientation, const physics_2d::AABB_2d & aabb, const math::vec2 & velocity) :
 	Actor(position, orientation, psprite, new Player_idle_state ,aabb, velocity, false), m_anim_frame(0), m_life(100)
@@ -35,7 +36,7 @@ void Player::handle_input()
 
 void Player::update() 
 {
-	m_panimator_controller->update(g_engine.m_timer.get_dt());
+	m_panimator_controller->update(g_systems.m_timer.get_dt());
 	
 	gfx::Animator_state & curr_state = m_panimator_controller->get_current_state();
 	if (curr_state.changed_animation_frame()) {

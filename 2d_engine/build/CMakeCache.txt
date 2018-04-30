@@ -185,7 +185,13 @@ OPENGL_glu_LIBRARY:STRING=glu32
 PHY_2D_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/phy_2d/source/src
 
 //Path to a file.
+RMS_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/rms/source/src
+
+//Path to a file.
 SOIL_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/Simple OpenGL Image Library/src
+
+//Path to a file.
+SYS_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/sys/source/src
 
 //Path to a file.
 TGS_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/tgs/source/src
@@ -243,6 +249,18 @@ phy_2d_BINARY_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/p
 
 //Value Computed by CMake
 phy_2d_SOURCE_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/phy_2d/source
+
+//Value Computed by CMake
+rms_BINARY_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/rms/source
+
+//Value Computed by CMake
+rms_SOURCE_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/rms/source
+
+//Value Computed by CMake
+sys_BINARY_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/sys/source
+
+//Value Computed by CMake
+sys_SOURCE_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/sys/source
 
 //Value Computed by CMake
 tgs_BINARY_DIR:STATIC=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tgs/source
@@ -335,7 +353,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=10
 //ADVANCED property for variable: CMAKE_RC_COMPILER
 CMAKE_RC_COMPILER-ADVANCED:INTERNAL=1
 CMAKE_RC_COMPILER_WORKS:INTERNAL=1

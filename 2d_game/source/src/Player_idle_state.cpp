@@ -16,11 +16,12 @@
 #include "Input_manager.hpp"
 #include "Button.hpp"
 #include "Body_2d.hpp"
+#include "World.hpp"
 #include "AABB_2d.hpp"
 #include "Timer.hpp"
 #include <iostream>
 #include <algorithm>
-#include "Engine.hpp"
+#include "Systems.hpp"
 
 
 //TODO: SWITCH ON ACTION BUTTONS, I.E. ATTACK, RUN_RIGHT, ETC
@@ -30,7 +31,7 @@ Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 	string_id is_attacking_param_id = intern_string("is_attacking");
 	string_id player_attacking_state_id = intern_string("player_attacking");
 
-	bool on_ground =  g_engine.m_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
+	bool on_ground = g_systems.m_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
 	//auto iter = std::find_if(stream.begin(), stream.end(),
 	//	[](const std::pair<Button, Command*> & p) {return p.first.m_bound_key == KEY_A; });
 	
@@ -38,7 +39,7 @@ Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 		return nullptr;
 	}
 
-	const Button & move_left_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
+	const Button & move_left_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
 
 	if (move_left_button.m_state == PRESSED) {
 		//std::cout << "chaging state to Player_running_state| dir= left" << std::endl;
@@ -48,7 +49,7 @@ Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 		return new Player_running_state(actor);
 	}
 	
-	const Button & move_right_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
+	const Button & move_right_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
 	
 	if (move_right_button.m_state == PRESSED) {
 		//std::cout << "Changing state to Player_running_state | dir = right" << std::endl;
@@ -60,7 +61,7 @@ Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 		return new Player_running_state(actor);
 	}
 	if (on_ground) {
-		const Button & jump_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
+		const Button & jump_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
 		if ( jump_button.m_state == PRESSED ) {
 			std::cout << "Changing to Player_jumping_state" << std::endl;
 			actor.get_anim_controller_component()->set_bool("is_jumping", true);
@@ -68,10 +69,10 @@ Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 		}
 	}
 
-	const Button & climb_up_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_UP);
+	const Button & climb_up_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_UP);
 
 	if (climb_up_button.m_state == PRESSED) {
-		bool climbing = g_engine.m_physics_manager.get_world()->try_climbing_ladder(actor.get_body_2d_component(), true);
+		bool climbing = g_systems.m_physics_manager.get_world()->try_climbing_ladder(actor.get_body_2d_component(), true);
 		if (climbing) {
 			//std::cout << "CAN CLIMB NOW!!!" << std::endl;
 			//animation set up
@@ -84,9 +85,9 @@ Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 		//}
 	}
 
-	const Button & climb_down_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_DOWN);
+	const Button & climb_down_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_DOWN);
 	if (climb_down_button.m_state == PRESSED) {
-		bool climbing = g_engine.m_physics_manager.get_world()->try_climbing_ladder(actor.get_body_2d_component(), false);// climb_down = tru
+		bool climbing = g_systems.m_physics_manager.get_world()->try_climbing_ladder(actor.get_body_2d_component(), false);// climb_down = tru
 		if (climbing) {
 			//animation set up
 			actor.get_anim_controller_component()->set_bool("is_climbing", true);
@@ -102,7 +103,7 @@ Gameplay_state * Player_idle_state::handle_input(Actor & actor)
 
 	}
 
-	const Button & attacking_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::ATTACK_01);
+	const Button & attacking_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::ATTACK_01);
 	if ( (attacking_button.m_state == PRESSED) ) {
 		actor.get_anim_controller_component()->set_trigger(is_attacking_param_id);
 	}

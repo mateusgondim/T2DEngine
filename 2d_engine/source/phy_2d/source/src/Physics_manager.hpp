@@ -2,8 +2,9 @@
 #define _PHYSICS_MANAGER_HPP
 
 #include "vec2.hpp"
-#include "World.hpp"
-#include "Tile_map.hpp"
+
+namespace physics_2d { class World; }
+class Tile_map;
 
 namespace physics_2d {
 	class Physics_manager final {
@@ -11,13 +12,10 @@ namespace physics_2d {
 		Physics_manager() : m_pworld(nullptr) {}
 		~Physics_manager() {}
 		
-		World * get_world() { return m_pworld; }
-		void init(Tile_map *pmap, const math::vec2 & gravity = math::vec2(0.0f, -0.9f))
-		{ 
-			m_pworld = new World(gravity); 
-			m_pworld->set_tile_map(pmap);
-		}
-		void shut_down() { delete m_pworld; }
+		World * get_world();
+		
+		void init(Tile_map *pmap, const math::vec2 & gravity = math::vec2(0.0f, -0.9f));
+		void shut_down();
 	private:
 		World *m_pworld;
 	};

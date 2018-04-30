@@ -1,20 +1,32 @@
-﻿  Animation_player.cpp
+﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/gfx/source/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\CMakeFiles\generate.stamp is up-to-date.
+  Shader.cpp
+  Texture_2d.cpp
+  Sprite_atlas.cpp
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.cpp(66): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.cpp(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.cpp(70): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.cpp(72): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Sprite.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+  Animation_player.cpp
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_player.cpp(49): warning C4018: '>=': signed/unsigned mismatch
+  Animator_controller_parameter.cpp
   Animator_controller.cpp
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller.cpp(271): warning C4800: 'const float': forcing value to bool 'true' or 'false' (performance warning)
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller.cpp(274): warning C4800: 'const float': forcing value to bool 'true' or 'false' (performance warning)
   Animator_state.cpp
+  Animator_state_transition.cpp
+  Sprite_batch.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
   Graphics_manager.cpp
 c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
   c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Graphics_manager.cpp(88): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-  Sprite.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-  Sprite_batch.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Graphics_manager.cpp(89): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+  Camera_2d.cpp
   Generating Code...
 c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\animator_controller.cpp(288): warning C4715: 'gfx::Animator_controller::evaluate_condition': not all control paths return a value
   gfx.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\Debug\gfx.lib

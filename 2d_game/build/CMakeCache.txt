@@ -197,6 +197,9 @@ SOIL_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/Sim
 SOIL_LIBRARY:FILEPATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/Simple OpenGL Image Library/projects/VC9/Debug/SOIL.lib
 
 //Path to a file.
+SYS_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/sys/source/src
+
+//Path to a file.
 TGS_INCLUDE_DIR:PATH=C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/tgs/source/src
 
 //Path to a file.

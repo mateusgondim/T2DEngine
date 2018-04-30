@@ -272,6 +272,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\Physics_manager.hpp" />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\Body_2d.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.cpp"  />
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\Physics_manager.cpp"  />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/ZERO_CHECK.vcxproj">

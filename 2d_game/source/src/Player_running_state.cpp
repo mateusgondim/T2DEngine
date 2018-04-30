@@ -11,8 +11,10 @@
 #include "Animator_controller.hpp"
 #include "Timer.hpp"
 #include "Body_2d.hpp"
+#include "World.hpp"
 #include "Input_manager.hpp"
-#include "Engine.hpp"
+#include "Systems.hpp"
+
 #include <iostream>
 #include <algorithm>
 
@@ -30,7 +32,7 @@ Player_running_state::Player_running_state(Actor & actor, const float accelerati
 Gameplay_state * Player_running_state::handle_input(Actor & actor)
 {
 	//auto stream = Input_handler::instance().get_input();
-	bool on_ground = g_engine.m_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
+	bool on_ground = g_systems.m_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
 	
 	if (!on_ground) { //player fell
 		actor.get_anim_controller_component()->set_bool("is_running", false);
@@ -40,7 +42,7 @@ Gameplay_state * Player_running_state::handle_input(Actor & actor)
 	}
 	else {
 		if (actor.get_facing_direction()) {
-			const Button & move_left_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
+			const Button & move_left_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
 			if (move_left_button.m_state == RELEASED) {
 				//std::cout << "chaging state to Player_idle" << std::endl;
 				//set the paramter on the animation state machine to make the transition to the new animation
@@ -50,7 +52,7 @@ Gameplay_state * Player_running_state::handle_input(Actor & actor)
 			}
 		}
 		else {
-			const Button & move_right_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
+			const Button & move_right_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
 			if (move_right_button.m_state == RELEASED) {
 				//std::cout << "changing state to player_idle" << std::endl;
 				//set the paramter on the animation state machine to make the transition to the new animation
@@ -60,7 +62,7 @@ Gameplay_state * Player_running_state::handle_input(Actor & actor)
 			}
 		}
 
-		const Button & jump_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
+		const Button & jump_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
 		if ((jump_button.m_state == PRESSED) && on_ground) {
 			//std::cout << "Changing  to player_jumping_state " << std::endl;
 			//set the paramter on the animation state machine to make the transition to the new animation
@@ -69,7 +71,7 @@ Gameplay_state * Player_running_state::handle_input(Actor & actor)
 			//actor.get_body_2d()->stop_movement_x();
 			return new Player_jumping_state(actor);
 		}
-		const Button & attack_button = g_engine.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::ATTACK_01);
+		const Button & attack_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::ATTACK_01);
 		if (attack_button.m_state == PRESSED) {
 			//ANIMATION
 			actor.get_anim_controller_component()->set_bool("is_running", false);

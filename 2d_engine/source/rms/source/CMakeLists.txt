@@ -1,0 +1,14 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6.4)
+
+Project(rms)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+
+#Using c++11
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+SET(INCLUDE_FILES src/Resource.hpp src/Resource_manager.hpp)
+SET(SOURCE_FILES  src/Resource.cpp src/Resource_manager.cpp)
+
+ADD_LIBRARY(rms OBJECT ${INCLUDE_FILES} ${SOURCE_FILES})
+TARGET_INCLUDE_DIRECTORIES( rms PUBLIC  ${G_UTILITY_INCLUDE_DIR} )

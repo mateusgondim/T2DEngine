@@ -8,7 +8,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 SET(INCLUDE_FILES src/AABB_2d src/Body_2d.hpp src/Collision_listener.hpp src/World.hpp src/Physics_manager.hpp)
-SET(SOURCE_FILES  src/Body_2d.cpp src/World.cpp)
+SET(SOURCE_FILES  src/Body_2d.cpp src/World.cpp src/Physics_manager.cpp)
 
 ADD_LIBRARY(phy_2d OBJECT ${INCLUDE_FILES} ${SOURCE_FILES})
 TARGET_INCLUDE_DIRECTORIES(phy_2d PUBLIC ${MATH_INCLUDE_DIR} ${TMAP_INCLUDE_DIR} ${G_UTILITY_INCLUDE_DIR})

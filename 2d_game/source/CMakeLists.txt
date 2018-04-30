@@ -36,9 +36,8 @@ FIND_PATH(PHY_2D_INCLUDE_DIR NAMES Body_2d.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/.
 #GAME OBJECT MODEL
 FIND_PATH(GOM_INCLUDE_DIR NAMES game_object.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/../../2d_engine/source/game_object_model/source/src)
 
-#ENGINE
-FIND_LIBRARY(ENGINE_LIBRARY engine)
-FIND_PATH(ENGINE_INCLUDE_DIR Engine.hpp)
+#SYS
+FIND_PATH(SYS_INCLUDE_DIR NAMES Systems.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/../../2d_engine/source/sys/source/src)
 
 
 SET(INCLUDE_FILES src/Player.hpp src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp src/Player_jumping_state.hpp src/Player_climbing_state.hpp src/Game_coll_listener.hpp src/game.hpp)
@@ -47,5 +46,5 @@ SET(SOURCE_FILES src/Player.cpp src/Player_idle_state.cpp  src/Player_ducking_st
 ADD_EXECUTABLE(game ${INCLUDE_FILES} ${SOURCE_FILES})
 
 TARGET_LINK_LIBRARIES(game ${ENGINE_LIBRARY} ${GLFW3_LIBRARY} ${OPENGL_gl_LIBRARY} ${GLEW_LIBRARY} ${SOIL_LIBRARY} )
-TARGET_INCLUDE_DIRECTORIES(game PUBLIC ${GFX_INCLUDE_DIR} ${MATH_INCLUDE_DIR} ${IO_INCLUDE_DIR} ${G_UTILITY_INCLUDE_DIR} ${TMAP_INCLUDE_DIR} ${PHY_2D_INCLUDE_DIR} ${GOM_INCLUDE_DIR} ${ENGINE_INCLUDE_DIR})
+TARGET_INCLUDE_DIRECTORIES(game PUBLIC ${GFX_INCLUDE_DIR} ${MATH_INCLUDE_DIR} ${IO_INCLUDE_DIR} ${G_UTILITY_INCLUDE_DIR} ${TMAP_INCLUDE_DIR} ${PHY_2D_INCLUDE_DIR} ${GOM_INCLUDE_DIR} ${SYS_INCLUDE_DIR})
 

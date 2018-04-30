@@ -21,6 +21,7 @@
 #include <string>
 #include <algorithm>
 
+
 //MISSING INITIALIZATION OF ERRORCALLBACK AND KEYCALLBACK
 gfx::Graphics_manager::key_callback_ptr gfx::Graphics_manager::s_key_callback = nullptr;
 

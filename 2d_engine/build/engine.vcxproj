@@ -77,7 +77,7 @@
     </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -95,10 +95,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -111,7 +111,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++11</CppLanguageStandard>
@@ -128,10 +128,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -144,7 +144,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++11</CppLanguageStandard>
@@ -161,10 +161,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -177,7 +177,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++11</CppLanguageStandard>
@@ -194,10 +194,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\GLFW\include;C:\Program Files (x86)\glew\include;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\sys\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -265,8 +265,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src\Engine.hpp" />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src\Engine.cpp"  />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Shader.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Texture_2d.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas.obj" />
@@ -290,11 +288,15 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\Pool_allocator.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\crc32.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\string_id.obj" />
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\rms\source\rms.dir\$(Configuration)\Resource.obj" />
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\rms\source\rms.dir\$(Configuration)\Resource_manager.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\Tileset.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\Tile_map.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\tmx_parser.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\Body_2d.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\World.obj" />
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\Physics_manager.obj" />
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\sys\source\sys.dir\$(Configuration)\Systems.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Actor.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_manager.obj" />
   </ItemGroup>
@@ -319,6 +321,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/phy_2d.vcxproj">
       <Project>7A6714B5-21FB-3CE5-83A9-70ED3C193A11</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/rms/source/rms.vcxproj">
+      <Project>A9E17A06-FDBC-3F3B-9245-4184C161423A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/sys/source/sys.vcxproj">
+      <Project>5AE463C9-BAC0-31F6-9639-6B753E17A2F8</Project>
     </ProjectReference>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tmap/source/tmap.vcxproj">
       <Project>9D6BF585-E83E-3B3C-B27C-6251BA7D81E2</Project>

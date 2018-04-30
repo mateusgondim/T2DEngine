@@ -26,5 +26,4 @@ private:
 	std::map<int, int> m_action_to_key;
 };
 
-
 #endif // !_INPUT_MANAGER_HPP

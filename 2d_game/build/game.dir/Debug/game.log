@@ -1,53 +1,6 @@
-﻿  Player.cpp
+﻿  Player_ducking_state.cpp
 c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(33): warning C4150: deletion of pointer to incomplete type 'gfx::Animator_controller'; no destructor called
   c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(20): note: see declaration of 'gfx::Animator_controller'
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.hpp(23): warning C4150: deletion of pointer to incomplete type 'Gameplay_state'; no destructor called
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.hpp(12): note: see declaration of 'Gameplay_state'
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
-  c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-  Player_climbing_state.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(33): warning C4150: deletion of pointer to incomplete type 'gfx::Animator_controller'; no destructor called
-  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(20): note: see declaration of 'gfx::Animator_controller'
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
-  c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-  Player_ducking_state.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(33): warning C4150: deletion of pointer to incomplete type 'gfx::Animator_controller'; no destructor called
-  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(20): note: see declaration of 'gfx::Animator_controller'
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
-  c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-  Player_idle_state.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(33): warning C4150: deletion of pointer to incomplete type 'gfx::Animator_controller'; no destructor called
-  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(20): note: see declaration of 'gfx::Animator_controller'
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
-  c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-  Player_jumping_state.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(33): warning C4150: deletion of pointer to incomplete type 'gfx::Animator_controller'; no destructor called
-  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(20): note: see declaration of 'gfx::Animator_controller'
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
-  c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-  Player_running_state.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(33): warning C4150: deletion of pointer to incomplete type 'gfx::Animator_controller'; no destructor called
-  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(20): note: see declaration of 'gfx::Animator_controller'
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
-  c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-  game.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
-  c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-  Generating Code...
+SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   game.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\Debug\game.exe

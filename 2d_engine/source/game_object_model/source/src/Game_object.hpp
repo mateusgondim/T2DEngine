@@ -11,7 +11,7 @@
 /* Game_object: The base class for all the entities in the game world. 
  * This engine uses a component approach to its object model,
  * so the game object class works as a hub of components, each providing a specific functionallity
- * to the object, classes that inherent from this class, should initialize the needed components and,
+ * to the object, classes that inherent from this class, should initialize the needed components and
  * add new ones if necessary.
  */
 //TODO: CHANGE THE ORIENTATION TO BE A 3X3 MATRIX!

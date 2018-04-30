@@ -186,6 +186,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/phy_2d.vcxproj">
       <Project>7A6714B5-21FB-3CE5-83A9-70ED3C193A11</Project>
     </ProjectReference>
+    <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/rms/source/rms.vcxproj">
+      <Project>A9E17A06-FDBC-3F3B-9245-4184C161423A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/sys/source/sys.vcxproj">
+      <Project>5AE463C9-BAC0-31F6-9639-6B753E17A2F8</Project>
+    </ProjectReference>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tmap/source/tmap.vcxproj">
       <Project>9D6BF585-E83E-3B3C-B27C-6251BA7D81E2</Project>
     </ProjectReference>
