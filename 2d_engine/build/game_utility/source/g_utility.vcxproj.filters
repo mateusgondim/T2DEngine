@@ -4,12 +4,6 @@
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\memory_allocator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Pool_allocator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\crc32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -19,12 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\memory_allocator.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Pool_allocator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\crc32.hpp">

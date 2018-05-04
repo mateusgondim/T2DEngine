@@ -5,6 +5,8 @@ C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/math/source/CMakeFiles/mat
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/math/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeFiles/g_utility.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeFiles/ALL_BUILD.dir
+C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/mem/source/CMakeFiles/mem.dir
+C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/mem/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/rms/source/CMakeFiles/rms.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/rms/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/io/source/CMakeFiles/io.dir

@@ -28,11 +28,10 @@ namespace rms {
 		
 		virtual void    load() = 0;
 		virtual void    unload() = 0;
+		virtual size_t  calculate_size() const = 0;
 	protected:
 		Resource();
 		
-		virtual size_t  calculate_size() const = 0;
-
 		Resource_manager *m_pcreator;
 		string_id		  m_id;
 		size_t			  m_size;

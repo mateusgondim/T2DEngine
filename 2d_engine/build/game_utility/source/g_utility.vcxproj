@@ -266,13 +266,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\memory_allocator.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Pool_allocator.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\crc32.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\string_id.hpp" />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\memory_allocator.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Pool_allocator.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\crc32.cpp"  />
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\string_id.cpp"  />
   </ItemGroup>

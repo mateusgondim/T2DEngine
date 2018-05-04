@@ -4,13 +4,22 @@
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_player.cpp">
@@ -42,7 +51,13 @@
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader_manager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Vertex1P1C1UV.hpp">
@@ -52,6 +67,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation.hpp">

@@ -1,17 +1,17 @@
 ﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/tmap/source/CMakeLists.txt
   CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\CMakeFiles\generate.stamp is up-to-date.
   Tileset.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
   Tile_map.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
   c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.cpp(61): warning C4018: '<': signed/unsigned mismatch
   tmx_parser.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
 c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
   c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\tmx_parser.cpp(227): warning C4018: '<': signed/unsigned mismatch

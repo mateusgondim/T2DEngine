@@ -1,30 +1,24 @@
 #ifndef _SPRITE_ATLAS_MANAGER_HPP
 #define _SPRITE_ATLAS_MANAGER_HPP
 
-#define MAX_NUM_ATLASES 10
-
-#include <memory>
-#include <vector>
-#include <string>
-#include "Sprite_atlas.hpp"
-
 //TODO: Pixels_per_unit is a global variable tha should be the same for all the sprites in the games, find a way to maintain the consistency, maybe a variable in the "Engine" class...
 
-namespace gfx {
-	class Sprite_atlas_manager {
-	public:
-		static Sprite_atlas_manager & instance() 
-		{
-			static Sprite_atlas_manager * instance = new Sprite_atlas_manager();
-			return *instance;
-		}
-		std::shared_ptr<const Sprite_atlas> load_atlas(const std::string & file_path);
-	private:
-		Sprite_atlas_manager() : m_num_used_atlases(0), m_max_num_atlases(MAX_NUM_ATLASES) {}
+#include "Resource_manager.hpp"
+#include "string_id.hpp"
 
-		unsigned	m_num_used_atlases;
-		unsigned	m_max_num_atlases;
-		std::vector<std::shared_ptr<Sprite_atlas>> m_atlas_buffer;
+namespace rms { class Resource; }
+namespace gfx { class Texture_2d_manager; }
+
+namespace gfx {
+	class Sprite_atlas_manager : public rms::Resource_manager {
+	public:
+		Sprite_atlas_manager();
+		rms::Resource *load(const char *name, const char *file_path, Texture_2d_manager *texture_manager);
+		
+		void          unload(const char *name) override;
+		void	      unload(string_id  id) override;
+		void		  unload_all()	override;
+		rms::Resource *create_impl(const char *name) override;
 	};
 }
 

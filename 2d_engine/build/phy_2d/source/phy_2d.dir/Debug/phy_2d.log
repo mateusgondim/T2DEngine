@@ -2,8 +2,8 @@
   CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\CMakeFiles\generate.stamp is up-to-date.
   Body_2d.cpp
   World.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
   c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.cpp(77): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
@@ -33,8 +33,8 @@ C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.c
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.cpp(486): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.cpp(488): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
   Physics_manager.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(36): warning C4018: '<=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
 C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
   c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
   Generating Code...

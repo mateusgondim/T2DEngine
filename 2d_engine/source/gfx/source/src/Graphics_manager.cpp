@@ -9,6 +9,10 @@
 #include "Sprite.hpp"
 #include "Sprite_atlas.hpp"
 #include "Sprite_batch.hpp"
+#include "Resource.hpp"
+#include "Texture_2d_manager.hpp"
+#include "Texture_2d.hpp"
+#include "Sprite_atlas_manager.hpp"
 
 #include "Tileset.hpp"
 #include "Tile_map.hpp"
@@ -38,11 +42,11 @@ void gfx::Graphics_manager::init(const std::uint8_t context_version_major, const
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	//Initialize memory pools
-	m_shader_pool.alloc_pool(sizeof(Shader), 10, 4);
-	m_atlas_pool.alloc_pool(sizeof(Sprite_atlas), 6, 4);
-	m_sprite_pool.alloc_pool(sizeof(Sprite), 25, 4);
+	//m_shader_pool.alloc_pool(sizeof(Shader), 10, 4);
+	//m_atlas_pool.alloc_pool(sizeof(Sprite_atlas), 6, 4);
+	//m_sprite_pool.alloc_pool(sizeof(Sprite), 25, 4);
 	m_batch_pool.alloc_pool(sizeof(Sprite_batch), 3, 4);
-	m_texture_pool.alloc_pool(sizeof(Texture_2d), 5, 4);
+	//m_texture_pool.alloc_pool(sizeof(Texture_2d), 5, 4);
 
 	// set the capacity of the vector<Sprite> and vector<sprite_batch*> to prevent dynamic allocation at runtime
 	m_sprites.reserve(25);
@@ -168,6 +172,7 @@ void gfx::Graphics_manager::set_viewport(std::int32_t x, std::int32_t y, std::in
    the name of the vertex shader file, a unique identifier is generated for the shader object, this identifier and
    a pointer to the shader object are stored in a std::map data structure. The function then returns the id of the shader  
  */
+/*
 gfx::Graphics_manager::shader_id gfx::Graphics_manager::load_shader(const char *v_shader_path, const char *f_shader_path) 
 {
 	//Use the vertex shader file path to generate unique id for the shader
@@ -195,8 +200,9 @@ gfx::Graphics_manager::shader_id gfx::Graphics_manager::load_shader(const char *
 	m_shaders[id] = pshader;
 
 	return id;
-}
+}*/
 
+/*
 gfx::Shader *gfx::Graphics_manager::get_shader(gfx::Graphics_manager::shader_id id) 
 {
 	std::map<shader_id, Shader*>::iterator it = m_shaders.find(id);
@@ -205,7 +211,9 @@ gfx::Shader *gfx::Graphics_manager::get_shader(gfx::Graphics_manager::shader_id 
 	}
 	return nullptr;
 }
+*/
 
+/*
 void gfx::Graphics_manager::set_current_shader_program(gfx::Graphics_manager::shader_id id) 
 {
 	std::map<shader_id, Shader*>::iterator it = m_shaders.find(id);
@@ -213,7 +221,7 @@ void gfx::Graphics_manager::set_current_shader_program(gfx::Graphics_manager::sh
 		(it->second)->use();
 		gfx_check_error();
 	}
-}
+}*/
 
 void gfx::Graphics_manager::uniform_matrix4fv(std::int32_t location, std::int32_t count, bool is_transposed, const float *pvalue) 
 {
@@ -241,32 +249,22 @@ void gfx::Graphics_manager::uniform_1f(std::int32_t location, float v0)
 	gfx_check_error();
 }
 
-void gfx::Graphics_manager::set_sprite_shader_id(const shader_id id) 
+void gfx::Graphics_manager::set_sprite_shader(gfx::Shader *pshader) 
 {
-	//check if this id is valid
-	std::map<shader_id, Shader*>::iterator it = m_shaders.find(id);
-
-	if (it != m_shaders.end()) {
-		//valid id
-		m_sprite_shader_id = id;
-	}
+	m_psprite_shader = pshader;
 }
 
-void gfx::Graphics_manager::set_tile_map_shader_id(const shader_id id) 
+void gfx::Graphics_manager::set_tile_map_shader(gfx::Shader *pshader) 
 {
-	//check if this id is valid
-	std::map<shader_id, Shader*>::iterator it = m_shaders.find(id);
-
-	if (it != m_shaders.end()) {
-		//valid id
-		m_tile_map_shader_id = id;
-	}
+	m_ptile_map_shader = pshader;
 }
 
 /* load_sprite_atlas: This function creates a new sprite_atlas object, using a pre allocated memory pool.
  * Using the sprite atlas file path, a unique identifier is generated for the atlas and stored with a pointer to
  * to the new object on a std::map. The id for the atlas is returned if the function is successful, -1 is returned otherwise.
  */
+
+ /*
 gfx::Graphics_manager::atlas_id gfx::Graphics_manager::load_sprite_atlas(const char *patlas_path) 
 {
 	//Use the atlas file path to generate a unique id 
@@ -293,12 +291,14 @@ gfx::Graphics_manager::atlas_id gfx::Graphics_manager::load_sprite_atlas(const c
 	m_atlases[id] = psprite_atlas;
 
 	return id;
-}
+}*/
 
 /* get_sprite_component: This function creates a new sprite object using a pre allocated memory pool. The id of the texture_atlas 
  * associated with the sprite and the layer of the sprite, are passed as arguments. The new sprite object is stored in a std::vector
  * and the vector is sorted according to the layer and the texture_atlas id.
  */
+
+/*
 gfx::Sprite *gfx::Graphics_manager::get_sprite_component(const gfx::Graphics_manager::atlas_id id, const gfx::Graphics_manager::sprite_layer layer) 
 {
 	//check if there is a atlas with id = 'id'
@@ -328,8 +328,18 @@ gfx::Sprite *gfx::Graphics_manager::get_sprite_component(const gfx::Graphics_man
 	std::sort(m_sprites.begin(), m_sprites.end(), sprite_sort);
 
 	return psprite;
+}*/
+
+void gfx::Graphics_manager::add_sprite_to_render(gfx::Sprite *psprite) 
+{
+	//save the pointer in the sprite vector
+	m_sprites.push_back(psprite);
+
+	// sort the sprite vector by  layer and texture atlas
+	std::sort(m_sprites.begin(), m_sprites.end(), sprite_sort);
 }
 
+/*
 void gfx::Graphics_manager::delete_sprite_component(Sprite *psprite) 
 {
 	// find the sprite pointer in the vector
@@ -359,7 +369,7 @@ void gfx::Graphics_manager::delete_sprite_component(Sprite *psprite)
 	// sort the vector
 	std::sort(m_sprites.begin(), m_sprites.end(), sprite_sort);
 }
-
+*/
 
 /* sprite_sort: Comparison function used by the std::sort algorithm to sort the sprites
  *   based on layer first. those with the same layer, are sorted based on the sprite atlas id.
@@ -368,13 +378,14 @@ bool gfx::sprite_sort(const gfx::Sprite *lhs, const gfx::Sprite *rhs)
 {
 	if (lhs->get_layer() == rhs->get_layer()) {
 		// if they belong to the same layer, sort them by texture atlas
-		return lhs->get_atlas()->get_string_id() < rhs->get_atlas()->get_string_id();
+		return lhs->get_atlas()->get_id() < rhs->get_atlas()->get_id();
 	}
 	else {
 		return lhs->get_layer() < rhs->get_layer();
 	}
 }
 
+/*
 void gfx::Graphics_manager::delete_texture_atlas(const atlas_id id) 
 {
 	// get the atlas by id
@@ -400,7 +411,9 @@ void gfx::Graphics_manager::delete_texture_atlas(const atlas_id id)
 	//remove the <id,sprite_atlas*> pair from the map
 	m_atlases.erase(id);
 }
+*/
 
+/*
 void gfx::Graphics_manager::delete_shader(const shader_id id) 
 {
 	// get the shader object by id
@@ -425,35 +438,38 @@ void gfx::Graphics_manager::delete_shader(const shader_id id)
 
 	//remove the pair <shader_id, shader*> from the map
 	m_shaders.erase(id);
-}
+}*/
 
 /* render: Render all the sprites in vector, grouping those with the samer layer and the same texture atlas, 
  * on a single batch to be drawn using a single OpenGL's drawcall.
  */
-void gfx::Graphics_manager::render() 
+void gfx::Graphics_manager::render(gfx::Texture_2d_manager *texture_manager, gfx::Sprite_atlas_manager *atlas_manager)
 {
 	clear_color_buffers();
 
 	//render the tile map, layer by layer
-	set_current_shader_program(m_tile_map_shader_id); 
-	
-	texture_id text_id = (m_ptile_map->get_tilesets())[0].get_texture_id();
+	//set_current_shader_program(m_tile_map_shader_id); 
+	m_ptile_map_shader->use();
 
-	Texture_2d *ptexture = m_textures[text_id];
+	texture_id text_id = ((m_ptile_map->get_tilesets())[0].get_texture_id());
+
+	//Texture_2d *ptexture = m_textures[text_id];
+	Texture_2d   *ptexture = static_cast<Texture_2d*>(texture_manager->get_by_id(text_id));
 	ptexture->use();
 	m_pmap_batch->render();
 
 	//render the sprites
-	set_current_shader_program(m_sprite_shader_id);
+	//set_current_shader_program(m_sprite_shader_id);
+	m_psprite_shader->use();
 
-	// get a pointer to the first sprite in the vector
-	Sprite       *psprite = m_sprites[0];
-
-	if (psprite != nullptr) { // if there is at least one sprite on the vector	
+	if (!m_sprites.empty()) { // if there is at least one sprite on the vector	
+	
+	   // get a pointer to the first sprite in the vector
+		Sprite       *psprite = m_sprites[0];
 
       // get the layer and the atlas id for the first sprite
 		sprite_layer  layer =  psprite->get_layer();
-		atlas_id      a_id  =  psprite->get_atlas()->get_string_id();
+		atlas_id      a_id  =  psprite->get_atlas()->get_id();
 
 		// get a batch to render the sprites
 		Sprite_batch *pbatch = m_batches[0];
@@ -468,7 +484,7 @@ void gfx::Graphics_manager::render()
 		++it;
 		for (; it != m_sprites.end(); ++it) {
 			//check if the current sprite belongs to the batch
-			if (  (layer == (*it)->get_layer()) && (a_id == (*it)->get_atlas()->get_string_id()) ) {
+			if (  (layer == (*it)->get_layer()) && (a_id == (*it)->get_atlas()->get_id()) ) {
 				// same layer, same atlas_id, add it to the current batch
 				pbatch->add(*it); 
 			}
@@ -479,8 +495,9 @@ void gfx::Graphics_manager::render()
 				
 				 //bind the sprite_atlas texture
 				//Maybe we should check if the id is correct, if is not, we can use a default texture, that draws something like a red square...
-				Sprite_atlas *patlas = (m_atlases.find(a_id))->second;
-				patlas->get_texture().use();
+				//Sprite_atlas *patlas = (m_atlases.find(a_id))->second;
+				Sprite_atlas *pbatch_atlas = static_cast<Sprite_atlas*>(atlas_manager->get_by_id(a_id));
+				pbatch_atlas->get_texture()->use();
 
 				//draw the sprites in the batch
 				pbatch->render();
@@ -489,8 +506,8 @@ void gfx::Graphics_manager::render()
 				if (layer != (*it)->get_layer()) {
 					layer = (*it)->get_layer();
 				}
-				if (a_id != (*it)->get_atlas()->get_string_id()) {
-					a_id = (*it)->get_atlas()->get_string_id();
+				if (a_id != (*it)->get_atlas()->get_id()) {
+					a_id = (*it)->get_atlas()->get_id();
 				}
 
 				// start a new batch
@@ -499,22 +516,23 @@ void gfx::Graphics_manager::render()
 		}
 
 		// Draw the sprites in the last batch
-		Sprite_atlas *patlas = (m_atlases.find(a_id))->second;
-		patlas->get_texture().use();
+		//Sprite_atlas *patlas = (m_atlases.find(a_id))->second;
+		//patlas->get_texture().use();
+		Sprite_atlas *pbatch_atlas = static_cast<Sprite_atlas*>(atlas_manager->get_by_id(a_id));
+		pbatch_atlas->get_texture()->use();
 
 		pbatch->render();
 		glBindTexture(GL_TEXTURE_2D, 0);
-		
-		glfwPollEvents();
-		glfwSwapBuffers(m_pwindow);
 	}
+	glfwPollEvents();
+	glfwSwapBuffers(m_pwindow);
 }
 
 
 /*Set_tile_map_renderer: Set up the Opengl's buffers to render the tile_map and,
  * allocates textures used by the map's tilesets.
  */
-void gfx::Graphics_manager::set_tile_map_renderer(Tile_map *ptile_map) 
+void gfx::Graphics_manager::set_tile_map_renderer(Tile_map *ptile_map, gfx::Texture_2d_manager *texture_manager) 
 {
 	// ASSERT (PTILE_MAP != nullptr)
 	m_ptile_map = ptile_map;
@@ -524,6 +542,25 @@ void gfx::Graphics_manager::set_tile_map_renderer(Tile_map *ptile_map)
 		/* Each map layer should use the same tileset
 		 * so each tilese here, is used by a specific layer of the map
 		 */
+		
+		//get the file path for the texture of this tileset
+		std::string file_path = tileset.get_texture_file_path();
+
+		//get the name of texture file to generate the resource unique
+		auto pos = (file_path.find_last_of('/') == std::string::npos) ? (file_path.find_last_of('\\')) : (file_path.find_last_of('/'));
+		++pos;
+		std::string file_name = file_path.substr(pos);
+
+		//load the texture resource
+		rms::Resource *resource = texture_manager->load(file_name.c_str(), file_path.c_str());
+		if (resource != nullptr) {
+			tileset.set_texture_id(resource->get_id());
+		}
+		else {
+			std::cerr << "ERROR(" << __FILE__ << "): Could not load texture " << file_path << std::endl;
+		}
+		
+		/*
 		texture_id tex_id = tileset.get_texture_id();
 
 		//check if there is already a texture with this id on the map
@@ -551,6 +588,7 @@ void gfx::Graphics_manager::set_tile_map_renderer(Tile_map *ptile_map)
 
 		// add texture to map
 		m_textures[tex_id] = ptexture;
+		*/
 	}
 
 	// get the memory block from the  batch pool
@@ -619,6 +657,7 @@ void gfx::Graphics_manager::set_tile_map_renderer(Tile_map *ptile_map)
 //shut_down
 void gfx::Graphics_manager::shut_down() 
 {
+	/*
 	// destruct the shader objects and remove their ids from the table
 	for (std::map<shader_id, Shader*>::iterator it = m_shaders.begin(); it != m_shaders.end(); ++it) {
 		shader_id id	 =  it->first;
@@ -658,9 +697,9 @@ void gfx::Graphics_manager::shut_down()
 	}
 	//deallocate sprite pool
 	//m_sprite_pool.realease_pool_mem();
-
-	//destruct the batch objects 
+	*/
 	
+	//destruct the batch objects 
 	//destroy the tile_map batch and, give the memory back to the pool
 	m_pmap_batch->~Sprite_batch();
 	m_batch_pool.free_element(static_cast<void*>(m_pmap_batch));
@@ -675,7 +714,8 @@ void gfx::Graphics_manager::shut_down()
 	}
 	//deallocate Sprite batch pool
 	//m_batch_pool.realease_pool_mem();
-
+	
+	/*
 	//destroy the texture objects
 	for (std::map<texture_id, Texture_2d*>::iterator it = m_textures.begin(); it != m_textures.end(); ++it) {
 		Texture_2d *ptexture = it->second;
@@ -684,7 +724,7 @@ void gfx::Graphics_manager::shut_down()
 		//release the pooll memory block
 		m_texture_pool.free_element(static_cast<void*>(ptexture));
 	}
-
+	*/
 	//Shut down GLFW
 	glfwTerminate();
 

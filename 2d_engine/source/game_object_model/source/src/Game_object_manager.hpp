@@ -17,6 +17,7 @@ class Game_object;
 class Creator;
 
 class  Game_object_manager final {
+public:
 	typedef string_id		type_id;
 	typedef std::size_t		pool_array_id;
 
@@ -35,7 +36,7 @@ class  Game_object_manager final {
 private:
 	std::map<type_id, Creator*>		m_creator_map;
 	std::map<void*, pool_array_id>	m_objects_map;
-	Pool_allocator					m_pool_array[MAX_NUM_POOLS];
+	mem::Pool_allocator				m_pool_array[MAX_NUM_POOLS];
 };
 
 #endif // !_GAME_OBJECT_MANAGER_HPP

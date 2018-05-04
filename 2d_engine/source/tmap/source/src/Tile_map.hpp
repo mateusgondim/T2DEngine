@@ -41,7 +41,7 @@ public:
 	int height()       const { return m_height; }
 	int tile_width()   const { return m_tile_width;}
 	int tile_height()  const { return m_tile_height; }
-	const std::vector<Tileset> & get_tilesets() const { return m_tilesets; }
+	std::vector<Tileset> & get_tilesets()  { return m_tilesets; }
 	int get_tile_id(const int layer, const int row, const int column) const { return m_map[layer][row][column]; }
 	Tile get_tile(const unsigned id) const;
 	float pixels_per_world_unit() const { return m_pixels_per_word_unit; }

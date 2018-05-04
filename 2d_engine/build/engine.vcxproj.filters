@@ -7,13 +7,22 @@
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Shader.obj">
       <Filter>Object Libraries</Filter>
     </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Shader_manager.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Texture_2d.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Texture_2d_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas.obj">
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animation_player.obj">
@@ -52,6 +61,15 @@
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\matrix_transform.obj">
       <Filter>Object Libraries</Filter>
     </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\mem\source\mem.dir\$(Configuration)\memory_allocator.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\mem\source\mem.dir\$(Configuration)\Pool_allocator.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\mem\source\mem.dir\$(Configuration)\runtime_memory_allocator.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\io\source\io.dir\$(Configuration)\Button.obj">
       <Filter>Object Libraries</Filter>
     </Object>
@@ -59,12 +77,6 @@
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\Timer.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\memory_allocator.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\Pool_allocator.obj">
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\crc32.obj">

@@ -12,19 +12,31 @@
 #include <string>
 #include <cstdint>
 
+#include "Resource.hpp"
+
+namespace rms { class Resource_manager; }
+
 namespace gfx {
-	class Shader {
+	class Shader : public rms::Resource {
 	public:
-		Shader(const std::string & vert_file_name, const std::string & frag_file_name, const std::string & geom_file_name = "");
-		Shader(const std::string & compute_file);
+		Shader(rms::Resource_manager *pcreator, const char *name);
+		//hader(const std::string & vert_file_name, const std::string & frag_file_name, const std::string & geom_file_name = "");
+		//Shader(const std::string & compute_file);
+
+		void	load() override;
+		void	unload() override;
+		size_t  calculate_size() const override;
+
+		void   set_vert_file_name(const std::string & vert_fname);
+		void   set_frag_file_name(const std::string & frag_fname);
+		void   set_geom_file_name(const std::string & geom_fname);
 		void     use()        const;
 		std::uint32_t  get_program() const { return m_program; }
 		std::int32_t   get_uniform_location(const std::string & u_name) const;
 		//void    bind_attrib(const std::string & name, )
-		~Shader();
 	private:
 		std::uint32_t m_program;
-		//std::map<std::string GLuint> m_attribs;
+		std::string   m_vert_fname, m_frag_fname, m_geom_fname;
 	};
 }
 #endif

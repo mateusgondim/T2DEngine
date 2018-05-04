@@ -46,7 +46,7 @@ namespace rms {
 			//void			destroy_resource_pool();
 	protected:
 		virtual Resource *create_impl(const char *name) = 0;
-		Pool_allocator  m_resources_mem_pool;
+		mem::Pool_allocator  m_resources_mem_pool;
 		resource_map    m_resources;
 		size_t		    m_memory_budget;
 		std::string	    m_resource_type;

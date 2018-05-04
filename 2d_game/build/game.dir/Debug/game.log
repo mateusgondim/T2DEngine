@@ -1,6 +1,3 @@
-﻿  Player_ducking_state.cpp
-c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(33): warning C4150: deletion of pointer to incomplete type 'gfx::Animator_controller'; no destructor called
-  c:\users\mateu\documents\github\demos\2d_engine\source\game_object_model\source\src\Game_object.hpp(20): note: see declaration of 'gfx::Animator_controller'
-SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+﻿SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   game.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\Debug\game.exe

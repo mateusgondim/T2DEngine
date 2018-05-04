@@ -15,13 +15,7 @@ namespace rms {
 
 	Resource_manager::~Resource_manager() 
 	{
-		resource_map::iterator it;
-		
-		//remove the resources ids from the string table, and destroy the resources!!
-		for (it = m_resources.begin(); it != m_resources.end(); ++it) {
-			remove_string_id_entry(it->first);
-			it->second->unload();
-		}
+		unload_all();
 		//MEMORY POOL DESTRUCTOR IS CALLED IMPLICITLY
 	}
 
@@ -99,16 +93,12 @@ namespace rms {
 		}
 	}
 	
-	
-	//NOT REMOVING THE ID FROM THE STRING TABLE
 	void Resource_manager::unload(const string_id id) 
 	{
 		Resource *presource = get_by_id(id);
 
 		//if it exists, unload it
 		if (presource != nullptr) {
-			string_id id = presource->get_id();
-
 			//deallocate resource
 			presource->unload();
 
@@ -121,8 +111,6 @@ namespace rms {
 
 	}
 	
-	
-	// NOT REMOVING THE IDS FROM THE STRING TABLE
 	void Resource_manager::unload_all() 
 	{
 		resource_map::iterator it;

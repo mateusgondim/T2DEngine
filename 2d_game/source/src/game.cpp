@@ -43,6 +43,13 @@
 
 //Graphics
 #include "Sprite.hpp"
+#include "Shader_manager.hpp"
+#include "Texture_2d_manager.hpp"
+#include "Sprite_atlas.hpp"
+#include "Sprite_atlas_manager.hpp"
+
+//memory
+#include "runtime_memory_allocator.hpp"
 
 #include "string_id.hpp"
 
@@ -330,6 +337,11 @@ int main(int argc, char *argv[])
 
 	g_systems.m_graphics_manager.create_window(512, 480, "2D Game");
 
+	//get the resource managers
+	gfx::Shader_manager			shader_manager;
+	gfx::Texture_2d_manager		texture_manager;
+	gfx::Sprite_atlas_manager	atlas_manager;
+
 	
 	//glfwSetKeyCallback(window, key_callback);
 	g_systems.m_graphics_manager.set_key_callback(key_callback);
@@ -344,12 +356,13 @@ int main(int argc, char *argv[])
 
 	
 	// CHANGE ABSOLUTE PATH!!!!!!!
+	gfx::Shader   *ptile_map_shader = static_cast<gfx::Shader*>(shader_manager.load("tile_map_shader", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/vertex.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/fragment.frag"));
 	
-	string_id     tile_map_shader_id = g_systems.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/vertex.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/fragment.frag");
-	gfx::Shader   *ptile_map_shader = g_systems.m_graphics_manager.get_shader(tile_map_shader_id);
+	//string_id     tile_map_shader_id = g_systems.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/vertex.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/fragment.frag");
+	//gfx::Shader   *ptile_map_shader = g_systems.m_graphics_manager.get_shader(tile_map_shader_id);
 
 	//load the data to render the map into the graphics manager
-	g_systems.m_graphics_manager.set_tile_map_renderer(&tile_map);
+	g_systems.m_graphics_manager.set_tile_map_renderer(&tile_map, &texture_manager);
 
 	//Tile_map_renderer map_renderer(tile_map, *ptile_map_shader );
 
@@ -379,7 +392,8 @@ int main(int argc, char *argv[])
 	sampler_loc = ptile_map_shader->get_uniform_location("tileset1");
 
 	//set uniforms on current shader program
-	g_systems.m_graphics_manager.set_current_shader_program(tile_map_shader_id);
+	ptile_map_shader->use();
+	//g_systems.m_graphics_manager.set_current_shader_program(tile_map_shader_id);
 	g_systems.m_graphics_manager.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());
 	g_systems.m_graphics_manager.uniform_matrix4fv(p_loc, 1, false, camera.projection().value_ptr());
 	g_systems.m_graphics_manager.uniform_1f(sampler_loc, 0);
@@ -407,11 +421,12 @@ int main(int argc, char *argv[])
 
 	/////////////////////// set up sprites////////////////////////////////////////////////////
 	//gfx::Shader sprite_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag");
-	string_id sprite_shader_id = g_systems.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag");
-	
-	g_systems.m_graphics_manager.set_current_shader_program(sprite_shader_id);
-	gfx::Shader *psprite_shader = g_systems.m_graphics_manager.get_shader(sprite_shader_id);
-	
+	//string_id sprite_shader_id = g_systems.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag");
+	gfx::Shader *psprite_shader = static_cast<gfx::Shader*>(shader_manager.load("sprite_shader", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag"));
+
+	//g_systems.m_graphics_manager.set_current_shader_program(sprite_shader_id);
+	//gfx::Shader *psprite_shader = g_systems.m_graphics_manager.get_shader(sprite_shader_id);
+	psprite_shader->use();
 	g_systems.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
 	g_systems.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("P"), 1, false, camera.projection().value_ptr());
 	g_systems.m_graphics_manager.uniform_1f(psprite_shader->get_uniform_location("tileset"), 0);
@@ -419,10 +434,14 @@ int main(int argc, char *argv[])
 	/// Player setup
 	
 	// load atlas needed for the player sprite
-	string_id player_atlas_id = g_systems.m_graphics_manager.load_sprite_atlas("C:/Users/mateu/Documents/GitHub/Demos/2d_game/resources/sprite sheets/character.xml");
+	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(atlas_manager.load("player", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/resources/sprite sheets/character.xml", &texture_manager));
+	//string_id player_atlas_id = g_systems.m_graphics_manager.load_sprite_atlas("C:/Users/mateu/Documents/GitHub/Demos/2d_game/resources/sprite sheets/character.xml");
 
 	// load player's sprite component
-	gfx::Sprite *pplayer_sprite = g_systems.m_graphics_manager.get_sprite_component(player_atlas_id, 1);
+	void  *pplayer_sprite_mem = mem::allocate(sizeof(gfx::Sprite));
+	gfx::Sprite *pplayer_sprite = new (pplayer_sprite_mem) gfx::Sprite(patlas, 1);
+	g_systems.m_graphics_manager.add_sprite_to_render(pplayer_sprite);
+	//gfx::Sprite *pplayer_sprite = g_systems.m_graphics_manager.get_sprite_component(player_atlas_id, 1);
 
 	math::vec3 player_pos(10.0f, 12.0f);
 	
@@ -455,8 +474,10 @@ int main(int argc, char *argv[])
 	bool on_ground = false;
 	
 	//set the shaders for sprite and tile map
-	g_systems.m_graphics_manager.set_tile_map_shader_id(tile_map_shader_id);
-	g_systems.m_graphics_manager.set_sprite_shader_id(sprite_shader_id);
+	g_systems.m_graphics_manager.set_tile_map_shader(ptile_map_shader);
+	//g_systems.m_graphics_manager.set_tile_map_shader_id(tile_map_shader_id);
+	g_systems.m_graphics_manager.set_sprite_shader(psprite_shader);
+	//g_systems.m_graphics_manager.set_sprite_shader_id(sprite_shader_id);
 	
 
 	while (!g_systems.m_graphics_manager.window_should_close()) {
@@ -513,20 +534,24 @@ int main(int argc, char *argv[])
 	
 		V = camera.get_view();
 
-		g_systems.m_graphics_manager.set_current_shader_program(tile_map_shader_id);
+
+		//g_systems.m_graphics_manager.set_current_shader_program(tile_map_shader_id);
+		ptile_map_shader->use();
 		g_systems.m_graphics_manager.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());
 		
 		
 		g_systems.m_graphics_manager.get_framebuffer_size(&vport_width, &vport_height);
 		g_systems.m_graphics_manager.set_viewport(0, 0, vport_width, vport_height);
 		
-		g_systems.m_graphics_manager.set_current_shader_program(sprite_shader_id);
+		
+		//g_systems.m_graphics_manager.set_current_shader_program(sprite_shader_id);
+		psprite_shader->use();
 		g_systems.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
 		
-		g_systems.m_graphics_manager.render();
+		g_systems.m_graphics_manager.render(&texture_manager, &atlas_manager);
 
 	}
-
+	mem::free(pplayer_sprite_mem, sizeof(gfx::Sprite));
 	std::wcout << "[min dt, max dt] = [" << smmalest_dt * 1000.0f << ", " << bigger_dt * 1000.0f << "]" << std::endl;
 	g_systems.shut_down();
 	return 0;
