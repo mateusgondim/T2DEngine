@@ -48,6 +48,12 @@
 #include "Sprite_atlas.hpp"
 #include "Sprite_atlas_manager.hpp"
 
+//gom
+#include "Game_object_handle.hpp"
+#include "Game_object_manager.hpp"
+
+#include "Player_creator.hpp"
+
 //memory
 #include "runtime_memory_allocator.hpp"
 
@@ -55,7 +61,7 @@
 
 #include <iostream>
 
-#include "Systems.hpp"
+#include "Engine.hpp"
 
 
 
@@ -65,6 +71,7 @@ float curr_time;
 float last_time;
 float dt = 1.0F / FRAME_RATE;
 
+static Engine g_engine;
 
 void error_callback(int error, const char * descr)
 {
@@ -73,7 +80,7 @@ void error_callback(int error, const char * descr)
 
 void key_callback(int key, int scancode, int action, int mods)
 {
-	g_systems.m_input_manager.key_callback(key, scancode, action, mods);
+	g_engine.m_input_manager.key_callback(key, scancode, action, mods);
 }
 
 gfx::Animator_controller *get_player_anim_controller() 
@@ -317,7 +324,8 @@ gfx::Animator_controller *get_player_anim_controller()
 
 int main(int argc, char *argv[])
 {
-	g_systems.m_graphics_manager.set_error_callback(error_callback);
+	g_engine.m_graphics_manager.set_error_callback(error_callback);
+	//g_systems.m_graphics_manager.set_error_callback(error_callback);
 	
 	// Load tile map
 	Tile_map tile_map;
@@ -333,55 +341,35 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	
-	g_systems.init(4, 3, &tile_map);
+	g_engine.init(4, 3, &tile_map);
 
-	g_systems.m_graphics_manager.create_window(512, 480, "2D Game");
-
-	//get the resource managers
-	gfx::Shader_manager			shader_manager;
-	gfx::Texture_2d_manager		texture_manager;
-	gfx::Sprite_atlas_manager	atlas_manager;
-
+	g_engine.m_graphics_manager.create_window(512, 480, "2D Game");
 	
 	//glfwSetKeyCallback(window, key_callback);
-	g_systems.m_graphics_manager.set_key_callback(key_callback);
+	g_engine.m_graphics_manager.set_key_callback(key_callback);
 
 	int vport_width, vport_height;
 
 	//glfwGetFramebufferSize(window, &vport_width, &vport_height);
-	g_systems.m_graphics_manager.get_framebuffer_size(&vport_width, &vport_height);
+	g_engine.m_graphics_manager.get_framebuffer_size(&vport_width, &vport_height);
 
 	//glViewport(0, 0, vport_width, vport_height);
-	g_systems.m_graphics_manager.set_viewport(0, 0, vport_width, vport_height);
+	g_engine.m_graphics_manager.set_viewport(0, 0, vport_width, vport_height);
 
 	
 	// CHANGE ABSOLUTE PATH!!!!!!!
-	gfx::Shader   *ptile_map_shader = static_cast<gfx::Shader*>(shader_manager.load("tile_map_shader", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/vertex.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/fragment.frag"));
-	
-	//string_id     tile_map_shader_id = g_systems.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/vertex.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/fragment.frag");
-	//gfx::Shader   *ptile_map_shader = g_systems.m_graphics_manager.get_shader(tile_map_shader_id);
+	gfx::Shader   *ptile_map_shader = static_cast<gfx::Shader*>(g_engine.m_shader_manager.load("tile_map_shader", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/vertex.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/fragment.frag"));
 
 	//load the data to render the map into the graphics manager
-	g_systems.m_graphics_manager.set_tile_map_renderer(&tile_map, &texture_manager);
-
-	//Tile_map_renderer map_renderer(tile_map, *ptile_map_shader );
+	g_engine.m_graphics_manager.set_tile_map_renderer(&tile_map, &g_engine.m_texture_manager);
 
 	math::mat4 V;
 	
-	//GLint v_loc, p_loc;
 	int32_t v_loc, p_loc;
-
-	//GLint sampler_loc;
 	int32_t sampler_loc;
 
 	gfx::Camera_2d camera(1.0f, 1.0f, 16, 15);
 
-	//cgm::vec3 t(-floor(tile_map.width() / (float)2), -floor(tile_map.height() / (float)2), 0.0f);
-    //V = cgm::rotate_y(180.0f);
-	//V.transpose();
-	//V = cgm::mat4(cgm::mat4(), t);
-
-	//P = cgm::ortho(-floor(tile_map.width() / (float)2),  ceil(tile_map.width() / (float)2), -floor(tile_map.height() / (float)2), ceil(tile_map.height() / (float)2), -1.0, 1.0f);
 	math::vec3 p = camera.get_position();
 	p.x = -p.x;
 	p.y = -p.y;
@@ -393,74 +381,65 @@ int main(int argc, char *argv[])
 
 	//set uniforms on current shader program
 	ptile_map_shader->use();
-	//g_systems.m_graphics_manager.set_current_shader_program(tile_map_shader_id);
-	g_systems.m_graphics_manager.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());
-	g_systems.m_graphics_manager.uniform_matrix4fv(p_loc, 1, false, camera.projection().value_ptr());
-	g_systems.m_graphics_manager.uniform_1f(sampler_loc, 0);
+	g_engine.m_graphics_manager.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());
+	g_engine.m_graphics_manager.uniform_matrix4fv(p_loc, 1, false, camera.projection().value_ptr());
+	g_engine.m_graphics_manager.uniform_1f(sampler_loc, 0);
 
 	///////////////////--------------------------Initialization code------------------ ///////////////////////////////////////////////////////////////////////////
 	//Set physics engine collision listener
 	Game_coll_listener game_coll_listener;
-	g_systems.m_physics_manager.get_world()->set_collision_listener(&game_coll_listener);
+	g_engine.m_physics_manager.get_world()->set_collision_listener(&game_coll_listener);
 	
 	// Initialize Input_manager
-	g_systems.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_LEFT, Button(Input_manager::KEYS::KEY_LEFT));
-	g_systems.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::JUMP, Button(Input_manager::KEYS::KEY_A));
-	g_systems.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_RIGHT, Button(Input_manager::KEYS::KEY_RIGHT));
-	g_systems.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::CLIMB_UP, Button(Input_manager::KEYS::KEY_UP));
-	g_systems.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::CLIMB_DOWN, Button(Input_manager::KEYS::KEY_DOWN));
-	g_systems.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_UP, Button(Input_manager::KEYS::KEY_UP));
-	g_systems.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_DOWN, Button(Input_manager::KEYS::KEY_DOWN));
-	g_systems.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::ATTACK_01, Button(Input_manager::KEYS::KEY_S));
+	g_engine.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_LEFT, Button(Input_manager::KEYS::KEY_LEFT));
+	g_engine.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::JUMP, Button(Input_manager::KEYS::KEY_A));
+	g_engine.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_RIGHT, Button(Input_manager::KEYS::KEY_RIGHT));
+	g_engine.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::CLIMB_UP, Button(Input_manager::KEYS::KEY_UP));
+	g_engine.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::CLIMB_DOWN, Button(Input_manager::KEYS::KEY_DOWN));
+	g_engine.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_UP, Button(Input_manager::KEYS::KEY_UP));
+	g_engine.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::MOVE_DOWN, Button(Input_manager::KEYS::KEY_DOWN));
+	g_engine.m_input_manager.map_action_to_button(Input_manager::GAME_ACTIONS::ATTACK_01, Button(Input_manager::KEYS::KEY_S));
 
-	gfx::Animator_controller *panim_controller = get_player_anim_controller();
-
-	
-
+	//gfx::Animator_controller *panim_controller = get_player_anim_controller();
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/////////////////////// set up sprites////////////////////////////////////////////////////
 	//gfx::Shader sprite_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag");
 	//string_id sprite_shader_id = g_systems.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag");
-	gfx::Shader *psprite_shader = static_cast<gfx::Shader*>(shader_manager.load("sprite_shader", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag"));
+	gfx::Shader *psprite_shader = static_cast<gfx::Shader*>(g_engine.m_shader_manager.load("sprite_shader", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag"));
 
-	//g_systems.m_graphics_manager.set_current_shader_program(sprite_shader_id);
-	//gfx::Shader *psprite_shader = g_systems.m_graphics_manager.get_shader(sprite_shader_id);
 	psprite_shader->use();
-	g_systems.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
-	g_systems.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("P"), 1, false, camera.projection().value_ptr());
-	g_systems.m_graphics_manager.uniform_1f(psprite_shader->get_uniform_location("tileset"), 0);
+	g_engine.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
+	g_engine.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("P"), 1, false, camera.projection().value_ptr());
+	g_engine.m_graphics_manager.uniform_1f(psprite_shader->get_uniform_location("tileset"), 0);
 
 	/// Player setup
 	
 	// load atlas needed for the player sprite
-	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(atlas_manager.load("player", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/resources/sprite sheets/character.xml", &texture_manager));
-	//string_id player_atlas_id = g_systems.m_graphics_manager.load_sprite_atlas("C:/Users/mateu/Documents/GitHub/Demos/2d_game/resources/sprite sheets/character.xml");
-
-	// load player's sprite component
-	void  *pplayer_sprite_mem = mem::allocate(sizeof(gfx::Sprite));
-	gfx::Sprite *pplayer_sprite = new (pplayer_sprite_mem) gfx::Sprite(patlas, 1);
-	g_systems.m_graphics_manager.add_sprite_to_render(pplayer_sprite);
-	//gfx::Sprite *pplayer_sprite = g_systems.m_graphics_manager.get_sprite_component(player_atlas_id, 1);
-
-	math::vec3 player_pos(10.0f, 12.0f);
+	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(g_engine.m_atlas_manager.load("player", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/resources/sprite sheets/character.xml", &g_engine.m_texture_manager));
 	
-	physics_2d::AABB_2d p_aabb(math::vec2(-0.40f, -0.75f), math::vec2(0.40f, 0.75f));
-	math::vec2 pos(player_pos.x, player_pos.y);
-	p_aabb.p_max += pos;
-	p_aabb.p_min += pos;
-
-	physics_2d::Body_2d *pbody = g_systems.m_physics_manager.get_world()->create_body_2d(physics_2d::Body_2d::Entity_types::DYNAMIC, pos, 1.0f, p_aabb);
-	pbody->set_velocity_threshold(math::vec2(6.0f, 12.0f));
+	//get the atlas resource id
+	string_id atlas_id = patlas->get_id();
 	
-	Player player(pplayer_sprite, panim_controller, pbody, math::vec3(10.0f, 12.0f), math::mat4(), physics_2d::AABB_2d(), math::vec2(1.5f, 1.0f));
-	
-	pbody->set_user_data(static_cast<Game_object*>(&player));
-	std::cout << "player aabb in world space: max = " << p_aabb.p_max.x << ", " << p_aabb.p_max.y  << " min = " << p_aabb.p_min.x << ", " << p_aabb.p_min.y << std::endl;
+	// Create the Player Creator class
+	Player_creator *pplayer_creator = new Player_creator(atlas_id, 0);
 
-	g_systems.m_graphics_manager.set_clear_color(math::vec4(0.0f, 0.0f, 0.5f, 1.0f) );
-	g_systems.m_graphics_manager.set_blend_func();
-	g_systems.m_graphics_manager.graphics_enable(gfx::GFX_ENUMS::BLEND);
+	//create a type id for the player object. THIS SHOULD BE READ FROM A FILE
+	string_id player_type_id = intern_string("Player_object");
+
+	//register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
+	g_engine.m_game_object_manager.register_creator(player_type_id, pplayer_creator);
+
+	//Create the player object
+	gom::Game_object_handle player_handle = g_engine.m_game_object_manager.instantiate(player_type_id);
+	Player *pplayer = static_cast<Player*>(g_engine.m_game_object_manager.get_by_handle(player_handle));
+	
+	g_engine.m_graphics_manager.add_sprite_to_render(pplayer->get_sprite_component());
+	
+	
+	g_engine.m_graphics_manager.set_clear_color(math::vec4(0.0f, 0.0f, 0.5f, 1.0f) );
+	g_engine.m_graphics_manager.set_blend_func();
+	g_engine.m_graphics_manager.graphics_enable(gfx::GFX_ENUMS::BLEND);
 
 	
 	//last_time = glfwGetTime();
@@ -474,13 +453,10 @@ int main(int argc, char *argv[])
 	bool on_ground = false;
 	
 	//set the shaders for sprite and tile map
-	g_systems.m_graphics_manager.set_tile_map_shader(ptile_map_shader);
-	//g_systems.m_graphics_manager.set_tile_map_shader_id(tile_map_shader_id);
-	g_systems.m_graphics_manager.set_sprite_shader(psprite_shader);
-	//g_systems.m_graphics_manager.set_sprite_shader_id(sprite_shader_id);
+	g_engine.m_graphics_manager.set_tile_map_shader(ptile_map_shader);
+	g_engine.m_graphics_manager.set_sprite_shader(psprite_shader);
 	
-
-	while (!g_systems.m_graphics_manager.window_should_close()) {
+	while (!g_engine.m_graphics_manager.window_should_close()) {
 		//int i = 0;
 		//float physics_update_dt;
 		//last_time = curr_time;
@@ -489,15 +465,15 @@ int main(int argc, char *argv[])
 		//last_time = curr_time;
 		
 		//float frame_time = curr_time - last_time;
-		std::cout << "FPS: " << g_systems.m_timer.get_fps() << std::endl;
+		std::cout << "FPS: " << g_engine.m_timer.get_fps() << std::endl;
 
-		g_systems.m_timer.update();
-		lag += g_systems.m_timer.get_dt();
+		g_engine.m_timer.update();
+		lag += g_engine.m_timer.get_dt();
 
-		float frame_time = g_systems.m_timer.get_dt();
+		float frame_time = g_engine.m_timer.get_dt();
 		//std::cout << "delta time shold be " << dt << " | dt = " << frame_time << std::endl;
 		
-		player.handle_input();
+		pplayer->handle_input(&g_engine.m_input_manager, g_engine.m_physics_manager.get_world());
 		
 		bool  lagging = (frame_time > dt) ? true :false;
 		if (lagging) {
@@ -520,7 +496,7 @@ int main(int argc, char *argv[])
 		while (lag >= dt) {
 			//++i;
 			//float delta_time = (frame_time >= dt) ?dt :frame_time;
-			g_systems.m_physics_manager.get_world()->update(g_systems.m_timer.get_fixed_dt());
+			g_engine.m_physics_manager.get_world()->update(g_engine.m_timer.get_fixed_dt());
 			
 			//std::cout << "frame time = " << frame_time << " | delta_time = " << delta_time << std::endl;
 			//frame_time -= delta_time;
@@ -528,31 +504,28 @@ int main(int argc, char *argv[])
 			
  		}
 		//std::cout <<  "RENDERING AFTER " << i << " world.update() calls" << std::endl;
-		player.update();
+		pplayer->update(g_engine.m_timer.get_dt());
 		
-		camera.follow(player.get_body_2d_component()->get_position());
+		camera.follow(pplayer->get_body_2d_component()->get_position());
 	
 		V = camera.get_view();
 
-
-		//g_systems.m_graphics_manager.set_current_shader_program(tile_map_shader_id);
 		ptile_map_shader->use();
-		g_systems.m_graphics_manager.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());
+		g_engine.m_graphics_manager.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());
 		
 		
-		g_systems.m_graphics_manager.get_framebuffer_size(&vport_width, &vport_height);
-		g_systems.m_graphics_manager.set_viewport(0, 0, vport_width, vport_height);
+		g_engine.m_graphics_manager.get_framebuffer_size(&vport_width, &vport_height);
+		g_engine.m_graphics_manager.set_viewport(0, 0, vport_width, vport_height);
 		
-		
-		//g_systems.m_graphics_manager.set_current_shader_program(sprite_shader_id);
 		psprite_shader->use();
-		g_systems.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
+		g_engine.m_graphics_manager.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
 		
-		g_systems.m_graphics_manager.render(&texture_manager, &atlas_manager);
+		g_engine.m_graphics_manager.render(&g_engine.m_texture_manager, &g_engine.m_atlas_manager);
 
 	}
-	mem::free(pplayer_sprite_mem, sizeof(gfx::Sprite));
+
 	std::wcout << "[min dt, max dt] = [" << smmalest_dt * 1000.0f << ", " << bigger_dt * 1000.0f << "]" << std::endl;
-	g_systems.shut_down();
+	g_engine.m_game_object_manager.destroy(player_handle);
+	g_engine.shut_down();
 	return 0;
 }

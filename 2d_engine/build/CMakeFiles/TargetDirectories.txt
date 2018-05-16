@@ -17,7 +17,5 @@ C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tmap/source/CMakeFiles/tma
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tmap/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/CMakeFiles/phy_2d.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/CMakeFiles/ALL_BUILD.dir
-C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/sys/source/CMakeFiles/sys.dir
-C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/sys/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_object_model/source/CMakeFiles/gom.dir
 C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_object_model/source/CMakeFiles/ALL_BUILD.dir

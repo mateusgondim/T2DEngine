@@ -6,14 +6,17 @@
 #include "AABB_2d.hpp"
 #include "vec2.hpp"
 
-class Player_climbing_state : public Gameplay_state {
+namespace physics_2d { class World; }
+class Input_manager;
+
+class Player_climbing_state : public gom::Gameplay_state {
 public:
 	Player_climbing_state(const bool climbing_from_top = false, const math::vec2 & climbing_vel = math::vec2(0.0f, 0.05f));
-	Gameplay_state *  handle_input(Actor & actor) override;
+	Gameplay_state *  handle_input(gom::Actor & actor, Input_manager *pinput, physics_2d::World *pwld) override;
 	//void update(Actor & actor) override;
-
-	void begin_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb) override;
-	void end_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb) override;
+	size_t get_size() const override;
+	void begin_tile_collision(gom::Actor & actor, const physics_2d::AABB_2d & tile_aabb) override;
+	void end_tile_collision(gom::Actor & actor, const physics_2d::AABB_2d & tile_aabb) override;
 private:
 	math::vec2  m_climbing_vel;
 	bool       m_reached_top = false;

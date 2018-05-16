@@ -21,6 +21,9 @@ namespace gfx {
 		friend std::ostream & operator<<(std::ostream & os, const Animator_controller & anim_controller);
 	public:
 		Animator_controller() = default;
+		
+		~Animator_controller() = default;
+
 		void update(const float dt);
 		
 		void set_current_state(const char *name);

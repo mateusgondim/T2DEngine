@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src\Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src\Engine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <CustomBuild Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -109,10 +119,16 @@
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\Physics_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\sys\source\sys.dir\$(Configuration)\Systems.obj">
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object.obj">
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Actor.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Creator.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_handle.obj">
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_manager.obj">
@@ -120,6 +136,12 @@
     </Object>
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{006AD50C-5BFB-3830-A166-E5E4B27E6641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{27884427-B338-3775-97DF-3C569646EB48}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Object Files">
       <UniqueIdentifier>{6526C076-9056-3E35-B0A2-80562EB3184F}</UniqueIdentifier>
     </Filter>

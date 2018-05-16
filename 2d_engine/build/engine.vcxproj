@@ -265,6 +265,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src\Engine.hpp" />
+    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src\Engine.cpp"  />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Shader.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Shader_manager.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Texture_2d.obj" />
@@ -300,8 +302,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\Body_2d.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\World.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\Physics_manager.obj" />
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\sys\source\sys.dir\$(Configuration)\Systems.obj" />
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Actor.obj" />
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Creator.obj" />
+    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_handle.obj" />
     <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_manager.obj" />
   </ItemGroup>
   <ItemGroup>
@@ -331,9 +335,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/rms/source/rms.vcxproj">
       <Project>A9E17A06-FDBC-3F3B-9245-4184C161423A</Project>
-    </ProjectReference>
-    <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/sys/source/sys.vcxproj">
-      <Project>5AE463C9-BAC0-31F6-9639-6B753E17A2F8</Project>
     </ProjectReference>
     <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tmap/source/tmap.vcxproj">
       <Project>9D6BF585-E83E-3B3C-B27C-6251BA7D81E2</Project>

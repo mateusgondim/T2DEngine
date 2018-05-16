@@ -13,13 +13,14 @@
 #include "Body_2d.hpp"
 #include "World.hpp"
 #include "Input_manager.hpp"
-#include "Systems.hpp"
+
+#include "runtime_memory_allocator.hpp"
 
 #include <iostream>
 #include <algorithm>
 
 
-Player_running_state::Player_running_state(Actor & actor, const float acceleration) : Gameplay_state(), m_acceleration(acceleration) 
+Player_running_state::Player_running_state(gom::Actor & actor, const float acceleration) : Gameplay_state(), m_acceleration(acceleration)
 {
 	if (actor.get_facing_direction()) {
 		actor.get_body_2d_component()->add_force(math::vec2(-acceleration, 0.0f));
@@ -29,49 +30,58 @@ Player_running_state::Player_running_state(Actor & actor, const float accelerati
 	}
 }
 
-Gameplay_state * Player_running_state::handle_input(Actor & actor)
+gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor, Input_manager *pinput, physics_2d::World *pwld)
 {
 	//auto stream = Input_handler::instance().get_input();
-	bool on_ground = g_systems.m_physics_manager.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
+	bool on_ground = pwld->is_body_2d_on_ground(actor.get_body_2d_component());
 	
 	if (!on_ground) { //player fell
 		actor.get_anim_controller_component()->set_bool("is_running", false);
 		actor.get_anim_controller_component()->set_bool("is_jumping", true);
 		//actor.get_body_2d()->stop_movement_x();
-		return new Player_jumping_state(actor, 0.0f);
+
+
+		void *pmem = mem::allocate(sizeof(Player_jumping_state));
+		return static_cast<gom::Gameplay_state*> (new (pmem) Player_jumping_state(actor, 0.0f) );
 	}
 	else {
 		if (actor.get_facing_direction()) {
-			const Button & move_left_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
+			const Button & move_left_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
 			if (move_left_button.m_state == RELEASED) {
 				//std::cout << "chaging state to Player_idle" << std::endl;
 				//set the paramter on the animation state machine to make the transition to the new animation
 				actor.get_anim_controller_component()->set_bool("is_running", false);
 				actor.get_body_2d_component()->stop_movement_x();
-				return new Player_idle_state;
+				
+				void *pmem = mem::allocate(sizeof(Player_idle_state));
+				return static_cast<gom::Gameplay_state*> (new (pmem) Player_idle_state);
 			}
 		}
 		else {
-			const Button & move_right_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
+			const Button & move_right_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
 			if (move_right_button.m_state == RELEASED) {
 				//std::cout << "changing state to player_idle" << std::endl;
 				//set the paramter on the animation state machine to make the transition to the new animation
 				actor.get_anim_controller_component()->set_bool("is_running", false);
 				actor.get_body_2d_component()->stop_movement_x();
-				return new Player_idle_state;
+				
+				void *pmem = mem::allocate(sizeof(Player_idle_state));
+				return static_cast<gom::Gameplay_state*> (new (pmem) Player_idle_state);
 			}
 		}
 
-		const Button & jump_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
+		const Button & jump_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
 		if ((jump_button.m_state == PRESSED) && on_ground) {
 			//std::cout << "Changing  to player_jumping_state " << std::endl;
 			//set the paramter on the animation state machine to make the transition to the new animation
 			actor.get_anim_controller_component()->set_bool("is_running", false);
 			actor.get_anim_controller_component()->set_bool("is_jumping", true);
 			//actor.get_body_2d()->stop_movement_x();
-			return new Player_jumping_state(actor);
+			
+			void *pmem = mem::allocate(sizeof(Player_jumping_state));
+			return static_cast<gom::Gameplay_state*> (new (pmem) Player_jumping_state(actor));
 		}
-		const Button & attack_button = g_systems.m_input_manager.get_button_from_action(Input_manager::GAME_ACTIONS::ATTACK_01);
+		const Button & attack_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::ATTACK_01);
 		if (attack_button.m_state == PRESSED) {
 			//ANIMATION
 			actor.get_anim_controller_component()->set_bool("is_running", false);
@@ -81,13 +91,19 @@ Gameplay_state * Player_running_state::handle_input(Actor & actor)
 			actor.get_body_2d_component()->stop_movement_x();
 			//launch projectile
 
-			return new Player_idle_state;
-			
+			void *pmem = mem::allocate(sizeof(Player_idle_state));
+			return static_cast<gom::Gameplay_state*> (new (pmem) Player_idle_state);
 		}
 	}
 	return nullptr;
 }
-void Player_running_state::begin_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
+
+size_t Player_running_state::get_size() const 
+{
+	return sizeof(Player_running_state);
+}
+
+void Player_running_state::begin_tile_collision(gom::Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	std::cout << "PLAYER RUNNING STATE " << __FUNCTION__ << ": with ";
 
@@ -109,7 +125,7 @@ void Player_running_state::begin_tile_collision(Actor & actor, const physics_2d:
 		std::cerr << " unknow tile aabb coordinate..." << std::endl;
 	}
 }
-void Player_running_state::end_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb)
+void Player_running_state::end_tile_collision(gom::Actor & actor, const physics_2d::AABB_2d & tile_aabb)
 {
 	std::cout << "PLAYER RUNNING STATE " << __FUNCTION__ << ": with ";
 

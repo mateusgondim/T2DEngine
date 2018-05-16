@@ -1,1 +1,7 @@
-﻿
+﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/mem/source/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\mem\source\CMakeFiles\generate.stamp is up-to-date.
+  memory_allocator.cpp
+  Pool_allocator.cpp
+  runtime_memory_allocator.cpp
+  Generating Code...
+  mem.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\mem\source\mem.dir\Debug\mem.lib

@@ -1,1 +1,8 @@
-﻿
+﻿  Checking Build System
+  CMake is re-running because C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/CMakeFiles/generate.stamp is out-of-date.
+    the file 'C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt'
+    is newer than 'C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/CMakeFiles/generate.stamp.depend'
+    result='-1'
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/mateu/Documents/GitHub/Demos/2d_game/build

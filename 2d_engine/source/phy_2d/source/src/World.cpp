@@ -1,6 +1,7 @@
 #include "World.hpp"
 #include "Collision_listener.hpp"
 #include "Body_2d.hpp"
+#include "Body_2d_def.hpp"
 #include "AABB_2d.hpp"
 #include "Tile_map.hpp"
 #include "Rect.hpp"
@@ -24,6 +25,14 @@ physics_2d::World::~World()
 physics_2d::Body_2d * physics_2d::World::create_body_2d(const Body_2d::Entity_types & type, const math::vec2 & pos, const float m, const AABB_2d & aabb)
 {
 	Body_2d * pbody = new Body_2d(type, pos, m, aabb);
+	m_bodies.push_back(pbody);
+
+	return pbody;
+}
+
+physics_2d::Body_2d * physics_2d::World::create_body_2d(const Body_2d_def & body_def)
+{
+	Body_2d * pbody = new Body_2d(body_def.m_type, body_def.m_position, body_def.m_mass, body_def.m_aabb);
 	m_bodies.push_back(pbody);
 
 	return pbody;

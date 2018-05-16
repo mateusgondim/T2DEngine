@@ -3,39 +3,59 @@
 #include "vec3.hpp"
 #include "vec2.hpp"
 #include "mat4.hpp"
-#include "AABB_2d.hpp"
-
+#include "Body_2d.hpp"
 
 #include "Sprite.hpp"
+#include "Sprite_atlas.hpp"
 #include "Gameplay_state.hpp"
 #include "Animator_controller.hpp"
 
-#include <string>
+#include "runtime_memory_allocator.hpp"
+
+
 
 
 
 //TAKE OUT MAGIC NUMBER 16 ON SPRITE CONSTRUCTOR
 //Actor::Actor(const cgm::vec3 & pos, const cgm::mat4 & orientation, const std::string & texture_file, State *pstate, const AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left)
 //	: Renderable_game_object(pos, orientation, texture_file), m_pstate(pstate), m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) {}
+namespace gom {
 
-Actor::Actor(gfx::Sprite *psprite, const physics_2d::AABB_2d & aabb, const math::vec2 & velocity, bool facing_left) :  m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left)
-{
-	m_psprite = psprite;
-	//m_psprite = new gfx::Sprite(texture_file, 16.0f);
-}
+	Actor::Actor(const game_object_id unique_id, const uint16_t handle_index, sprite_info & s_info, physics_2d::Body_2d *pbody, const gfx::Animator_controller *pcontroller, bool facing_left)
+		: Game_object(unique_id, handle_index, pbody->get_position()), m_pstate(nullptr), m_velocity(pbody->get_velocity()), m_facing_left(facing_left)
+	{
+		//create sprite component
+		void *pmem = mem::allocate(sizeof(gfx::Sprite));
+		if (pmem != nullptr) {
+			m_psprite = static_cast<gfx::Sprite*>(new (pmem) gfx::Sprite(s_info.second, s_info.first));
+		}
+		//set body2d component
+		m_pbody_2d = pbody;
+		m_pbody_2d->set_user_data(static_cast<void*>(this));
 
-Actor::Actor(const math::vec3 & pos, const math::mat4 & orientation, gfx::Sprite *psprite, Gameplay_state *pstate, const physics_2d::AABB_2d & aabb, const math::vec2 & velocity, bool facing_left) :
-	Game_object(pos), m_pstate(pstate) ,m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) 
-{
-	m_psprite = psprite;
-	//m_psprite = new gfx::Sprite(texture_file, 16.0f);
-}
+		//make a copy of the animator controller
+		pmem = mem::allocate(sizeof(gfx::Animator_controller));
+		if (pmem != nullptr) {
+			m_panimator_controller = static_cast<gfx::Animator_controller*>( new (pmem) gfx::Animator_controller(*pcontroller) );
+		}
+	}
 
-void Actor::begin_tile_collision(const physics_2d::AABB_2d & tile_aabb)
-{
-	m_pstate->begin_tile_collision(*this, tile_aabb);
-}
-void Actor::end_tile_collision(const physics_2d::AABB_2d & tile_aabb)
-{
-	m_pstate->end_tile_collision(*this, tile_aabb);
+	Actor::~Actor() 
+	{
+		if (m_pstate != nullptr) {
+			size_t sz = m_pstate->get_size();
+			m_pstate->~Gameplay_state();
+			mem::free(m_pstate, sz);
+			m_pstate = nullptr;
+		}
+	}
+
+	void Actor::begin_tile_collision(const physics_2d::AABB_2d & tile_aabb)
+	{
+		m_pstate->begin_tile_collision(*this, tile_aabb);
+	}
+	void Actor::end_tile_collision(const physics_2d::AABB_2d & tile_aabb)
+	{
+		m_pstate->end_tile_collision(*this, tile_aabb);
+	}
 }

@@ -1,42 +1,60 @@
 #ifndef _GAME_OBJECT_MANAGER_HPP
 #define _GAME_OBJECT_MANAGER_HPP
-
-#include "string_id.hpp"
-#include "Pool_allocator.hpp"
 #include <map>
+#include <stdint.h>
 
-#define MAX_NUM_POOLS 6
 
-/* Game_object_manager: class responsable for managing and spawning all the game objects in the world,
- * it can register new creator objects for spawning new types of game objects using the register function.
- * All the game objects are stored using the small pool allocators stored in the array. To keep track of all the objects in the world
- * the manager keeps a map of addresses of each objects and the corresponding pool allocator it memory belongs to.
+/* Game_object_manager: class responsable to instantiate and store all the game objects
+   in the world. All the objects are stored in a handle table and should only be accessed by
+   handles, that way we can garantee that there will be no danglin pointers. To create new game objects,
+   this manager maitains a map that associates the objects type id with a specific creator, each creator 
+   is able to create a Game_object of the specific type.
  */
 
-class Game_object;
-class Creator;
+namespace gom { class Game_object; class Creator; class Game_object_handle; }
+namespace gfx { class Sprite_atlas_manager; }
+namespace physics_2d { class World; }
 
-class  Game_object_manager final {
-public:
-	typedef string_id		type_id;
-	typedef std::size_t		pool_array_id;
-
-	//constructor and destructor
-	Game_object_manager() = default;
-	~Game_object_manager() = default;
-
-	void init();
-	void shut_down();
+namespace gom {
 	
-	bool		register_creator(const type_id obj_type, Creator *pcreator);
-	Game_object *create_game_object(const type_id obj_type);
-	void        release_game_object(Game_object *pobj);
-	//print_pools_stats
+	struct Handle_table_entry {
+		uint16_t     m_next_free_index;
+		size_t	     m_game_object_sz;
+		Game_object  *m_pgame_object;
+	};
 
-private:
-	std::map<type_id, Creator*>		m_creator_map;
-	std::map<void*, pool_array_id>	m_objects_map;
-	mem::Pool_allocator				m_pool_array[MAX_NUM_POOLS];
-};
 
+	class  Game_object_manager final {
+	public:
+		typedef uint16_t						type_id;
+		typedef std::map<type_id, Creator*>		creator_map;
+
+		//constructor and destructor
+		Game_object_manager() = default;
+		~Game_object_manager() = default;
+
+		void				  init(gfx::Sprite_atlas_manager *patlas_manager, physics_2d::World *pwld);
+		void				  shut_down();
+
+		bool				  register_creator(const type_id obj_type, Creator *pcreator);
+		Game_object_handle    instantiate(const type_id obj_type);
+		void				  destroy(const Game_object_handle & handle);
+
+		Game_object			  *get_by_handle(const Game_object_handle & handle);
+
+	private:
+		static const uint16_t  m_MAX_GAME_OBJECTS = 1024;
+		static  uint32_t	   m_next_guid;
+		Handle_table_entry     m_ahandle_table[m_MAX_GAME_OBJECTS];
+		uint16_t               m_next_free_index;
+		creator_map			   m_creators;
+		//pointers to engine managers, used by the creators
+		gfx::Sprite_atlas_manager *m_patlas_manager;
+		physics_2d::World		  *m_pworld;
+		//gfx::Animator_controller_manager *m_pcontroller_manager;
+
+
+	};
+
+}
 #endif // !_GAME_OBJECT_MANAGER_HPP

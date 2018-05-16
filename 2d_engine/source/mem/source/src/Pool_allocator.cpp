@@ -121,6 +121,10 @@ namespace mem {
 
 	void Pool_allocator::free_element(void* pblock)
 	{
+		if (pblock == nullptr) {
+			return;
+		}
+
 		if (m_pmemory == nullptr) {
 			std::cerr << "ERROR " << __FUNCTION__ << ": No memory was allocated to this pool" << std::endl;
 			return;

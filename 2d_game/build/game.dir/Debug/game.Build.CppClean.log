@@ -1,12 +1,13 @@
 c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\vc140.pdb
-c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\game.obj
 c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\game_coll_listener.obj
+c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\player_creator.obj
+c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\player.obj
 c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\player_climbing_state.obj
 c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\player_jumping_state.obj
 c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\player_running_state.obj
 c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\player_ducking_state.obj
 c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\player_idle_state.obj
-c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\player.obj
+c:\users\mateu\documents\github\demos\2d_game\build\game.dir\debug\game.obj
 c:\users\mateu\documents\github\demos\2d_game\build\cmakefiles\generate.stamp
 c:\users\mateu\documents\github\demos\2d_game\build\debug\game.ilk
 c:\users\mateu\documents\github\demos\2d_game\build\debug\game.exe

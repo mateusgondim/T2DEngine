@@ -2,108 +2,166 @@
 
 #include "Game_object.hpp"
 #include "Creator.hpp"
-#include "string_id.hpp"
-#include "Pool_allocator.hpp"
+#include "Game_object_handle.hpp"
+#include "runtime_memory_allocator.hpp"
+
+#include "Sprite_atlas_manager.hpp"
+#include "World.hpp"
+#include "Body_2d.hpp"
 
 #include <map>
-#include <cmath>
+#include <cassert>
 #include <iostream>
 
-//Initilaze all the memory pools 
-void	Game_object_manager::init() 
-{
-	std::size_t min_pool_element_sz = 8;
-	std::size_t alignment = 4;
-	std::size_t num_elements = 20;
-
-	for (std::uint32_t i = 0; i < MAX_NUM_POOLS; ++i) {
-		std::size_t pool_element_sz = min_pool_element_sz * std::pow(2, i);
-		m_pool_array[i].alloc_pool(pool_element_sz, num_elements, alignment);
-	}
-}
-
-//REMEMBER THE OBJECTS MUST BE DESTROYED BEFORE THE MEMORY IS RELEASED
-void	Game_object_manager::shut_down() 
-{
-	for (std::size_t i = 0; i < MAX_NUM_POOLS; ++i) {
-//		m_pool_array[i].realease_pool_mem();
-		;
-	}
-}
-
-bool	Game_object_manager::register_creator(const type_id obj_type, Creator *pcreator) 
-{
-	//check if there is already a creator assigned to this id
-	std::map<type_id, Creator*>::iterator it = m_creator_map.find(obj_type);
-	if (it != m_creator_map.end()) { // creator alredy assigned to this type
-		delete pcreator;
-		return false;
-	}
-	// add entry on the map
-	m_creator_map[obj_type] = pcreator;
-
-	return true;
-}
-
-Game_object	*Game_object_manager::create_game_object(const type_id obj_type) 
-{
-	//find the creator associated with this type's id
-	std::map<type_id, Creator*>::iterator it = m_creator_map.find(obj_type);
-	if (it == m_creator_map.end()) {
-		std::cerr << "ERROR(" << __FUNCTION__ << "): invalid type_id = " << obj_type << std::endl;
-		return nullptr;
+namespace gom {
+	uint32_t	   Game_object_manager::m_next_guid		= 1; // zero is reserved for invalid guid
+	
+	void Game_object_manager::init(gfx::Sprite_atlas_manager *patlas_manager, physics_2d::World *pwld)
+	{
+		//set managers
+		m_patlas_manager = patlas_manager;
+		m_pworld		 = pwld;
+		
+		//set up the handle table
+		m_next_free_index = 0;
+		for (size_t i = 0; i < m_MAX_GAME_OBJECTS - 1; ++i) {
+			m_ahandle_table[i].m_next_free_index =  i + 1;
+			m_ahandle_table[i].m_game_object_sz  =  0;
+			m_ahandle_table[i].m_pgame_object    =  nullptr;
+		}
+		// the last index is considere invalid, i.e, when the m_next_free_index= m_MAX_GAME_OBJECTS - 1, the table is considered full
+		m_ahandle_table[m_MAX_GAME_OBJECTS - 1].m_next_free_index = 0;
+		m_ahandle_table[m_MAX_GAME_OBJECTS - 1].m_game_object_sz = 0;
+		m_ahandle_table[m_MAX_GAME_OBJECTS - 1].m_pgame_object = nullptr;
 	}
 
-	// get the object's size in bytes
-	std::size_t obj_sz = (it->second)->get_size();
+	void Game_object_manager::shut_down() 
+	{
+		//destroy and deallocate all the game objects 
+		for (size_t i = 0; i < m_MAX_GAME_OBJECTS; ++i) {
+			if (m_ahandle_table[i].m_pgame_object != nullptr) {
+				physics_2d::Body_2d *pbody = m_ahandle_table[i].m_pgame_object->get_body_2d_component();
+				m_pworld->destroy_body_2d(pbody);
 
-	//find the pool allocator with the smallest element size that can store this object
-	pool_array_id pool_index = -1;
-	for (std::size_t i = 0; i < MAX_NUM_POOLS; ++i) {
-		if (obj_sz <= m_pool_array[i].get_element_size()) {
-			pool_index = i;
-			break;
+				m_ahandle_table[i].m_pgame_object-> ~Game_object();
+				mem::free(static_cast<void*>(m_ahandle_table[i].m_pgame_object), m_ahandle_table[i].m_game_object_sz);
+				m_ahandle_table[i].m_pgame_object = nullptr;
+			}
+		}
+
+		//delete creators
+		for (creator_map::iterator it = m_creators.begin(); it != m_creators.end(); ++it) {
+			delete (it->second);
 		}
 	}
 
-	if (pool_index == -1) { // object size is larger than the element size of all the pools in the array
-		std::cerr << "ERROR(" << __FUNCTION__ << "): there is no pool with element size greater of equal to " << obj_sz << " bytes" << std::endl;
-		return nullptr;
+	bool	Game_object_manager::register_creator(const type_id obj_type, Creator *pcreator)
+	{
+		//check if there is already a creator assigned to this id
+		creator_map::iterator it = m_creators.find(obj_type);
+		if (it != m_creators.end()) { // creator alredy assigned to this type
+			delete pcreator;
+			return false;
+		}
+		// add entry on the map
+		m_creators[obj_type] = pcreator;
+
+		return true;
 	}
-
-	//request the memory block from the pool allocator
-	void *pmem = m_pool_array[pool_index].get_element();
-	if (pmem == nullptr) { // pool is full
-		return nullptr;
-	}
-
-	// store the pointer to the game object's memory location and, the corresponding pool id
-	m_objects_map[pmem] = pool_index;
-
-	// create the requested Game Object
-	Game_object * game_obj = it->second->create(pmem);
-
-	return game_obj;
-}
-
-void Game_object_manager::release_game_object(Game_object *pobj) 
-{
-	//get void* to the object's memory block
-	void *pmem = static_cast<void*>(pobj);
-
-	// see if this object was allocated by the manager
-	std::map<void*, pool_array_id>::iterator it = m_objects_map.find(pmem);
-
-	if (it == m_objects_map.end()) {
-		std::cerr << "ERROR(" << __FUNCTION__ << "): This game object was not allocated by this class or this is a dangling pointer" << std::endl;
-		return;
-	}
-	//get the index of the pool that owns the object's memory
-	pool_array_id index = it->second;
 	
-	//release the pool's element
-	m_pool_array[index].free_element(pmem);
+	Game_object_handle Game_object_manager::instantiate(const type_id obj_type) 
+	{
+		//find the creator associated with this type's id
+		creator_map::iterator it = m_creators.find(obj_type);
+		if (it == m_creators.end()) {
+			std::cerr << "ERROR(" << __FUNCTION__ << "): invalid type_id = " << obj_type << std::endl;
+			return Game_object_handle();
+		}
+		
+		//check if there is space in the table 
+		if (m_next_free_index == m_MAX_GAME_OBJECTS - 1) {
+			std::cerr << "ERROR(" << __FUNCTION__ << "): Handle table is full"<< std::endl;
+			return Game_object_handle();
+		}
 
-	//remove the object's memory address and pool id from the map
-	m_objects_map.erase(pmem);
+		//get the next free handle index for storing this game object
+		uint16_t handle_index = m_next_free_index;
+		
+		//generate a new unique id for this object
+		uint32_t unique_id    = m_next_guid;
+		
+		// get the object's size in bytes
+		std::size_t obj_sz = (it->second)->get_size();
+
+		//get a memory block large enough to store the object
+		void *pmem = mem::allocate(obj_sz);
+
+		if (pmem == nullptr) {
+			std::cerr << "ERROR(" << __FUNCTION__ << "): Could not allocate space for a new Game Object" << std::endl;
+			return Game_object_handle();
+		}
+
+		// create the requested Game Object
+		Game_object * pgame_obj = it->second->create(pmem, m_next_guid, handle_index, m_patlas_manager, m_pworld);
+
+		if (pgame_obj != nullptr) {
+			//if the creation was succefull, update the next_guid and next_handle
+			m_next_free_index = m_ahandle_table[m_next_free_index].m_next_free_index;
+			++m_next_guid;
+
+			//set the handle entry data
+			m_ahandle_table[handle_index].m_next_free_index =  0;//invalid 
+			m_ahandle_table[handle_index].m_game_object_sz  =  obj_sz;
+			m_ahandle_table[handle_index].m_pgame_object    =  pgame_obj;
+
+			//return the handle for the created game object
+			return Game_object_handle(*pgame_obj);
+		}
+		else {
+			//give back the memory
+			mem::free(pmem, obj_sz);
+			std::cerr << "ERROR(" << __FUNCTION__ << "): Could not create game object" << std::endl;
+			return Game_object_handle();
+		}
+
+	}
+
+	void Game_object_manager::destroy(const Game_object_handle & handle) 
+	{
+		//check the handle entry from the table
+		Game_object *pgame_object = get_by_handle(handle);
+
+		if (pgame_object != nullptr) {
+			
+			//the Game object is on the table, first deallocate the object's body_2d component. We have to do it here, because we need the pointer to the world object
+			physics_2d::Body_2d *pbody = pgame_object->get_body_2d_component();
+			m_pworld->destroy_body_2d(pbody);
+			
+			// call the destructor 
+			pgame_object->~Game_object();
+			
+			//free the Game_object's memory block
+			mem::free(static_cast<void*>(pgame_object), m_ahandle_table[handle.m_handle_index].m_game_object_sz);
+			m_ahandle_table[handle.m_handle_index].m_pgame_object = nullptr;
+				
+			//update the table
+			m_ahandle_table[handle.m_handle_index].m_next_free_index = m_next_free_index;
+			m_next_free_index = handle.m_handle_index;
+		}
+	}
+	
+	Game_object *Game_object_manager::get_by_handle(const Game_object_handle & handle) 
+	{
+		assert(handle.m_handle_index < m_MAX_GAME_OBJECTS - 1);
+
+		//check the handle entry from the table
+		Game_object *pgame_object = m_ahandle_table[handle.m_handle_index].m_pgame_object;
+		if (pgame_object != nullptr) {
+			return (pgame_object->get_unique_id() == handle.m_unique_id) ? (pgame_object) : (nullptr);
+		}
+		else {
+			return nullptr;
+		}
+	}
+	
 }

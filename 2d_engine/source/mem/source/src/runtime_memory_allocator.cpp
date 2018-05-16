@@ -65,6 +65,10 @@ namespace mem {
 
 	void free(void *pmem, const size_t sz) 
 	{
+		if (pmem == nullptr) {
+			return;
+		}
+
 		if (sz > s_MAX_BLOCK_SIZE) {
 			//it was allocated using std::malloc
 			std::free(pmem);

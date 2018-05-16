@@ -1,3 +1,25 @@
-﻿SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp is up-to-date.
+  Player.cpp
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+  Player_creator.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.hpp(19): warning C4373: 'gfx::Sprite_atlas_manager::unload': virtual function overrides 'rms::Resource_manager::unload', previous versions of the compiler did not override when parameters only differed by const/volatile qualifiers
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src\Resource_manager.hpp(33): note: see declaration of 'rms::Resource_manager::unload'
+  Player_idle_state.cpp
+  Player_ducking_state.cpp
+  Player_running_state.cpp
+  Player_jumping_state.cpp
+  Player_climbing_state.cpp
+  Game_coll_listener.cpp
+  game.cpp
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
+  c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
+C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.hpp(19): warning C4373: 'gfx::Sprite_atlas_manager::unload': virtual function overrides 'rms::Resource_manager::unload', previous versions of the compiler did not override when parameters only differed by const/volatile qualifiers
+  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src\Resource_manager.hpp(33): note: see declaration of 'rms::Resource_manager::unload'
+  Generating Code...
+SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   game.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\Debug\game.exe

@@ -8,22 +8,25 @@
  */
 //-------------------------------------------------------------------------
 
-namespace physics_2d { struct AABB_2d; class Body_2d; }
-class Actor;
+namespace physics_2d { struct AABB_2d; class Body_2d; class World; }
+class Input_manager;
+namespace gom { class Actor; }
 
-class Gameplay_state {
-public:
-	Gameplay_state() = default;
-	virtual ~Gameplay_state() {}
-	
-	virtual Gameplay_state *  handle_input(Actor & actor) = 0;
-	//virtual void update(Actor & actor) = 0;
-	
-	//virtual void begin_body_collision(physics_2d::Body_2d & body) const = 0;
-	//virtual void end_body_collision(physics_2d::Body_2d & body) const = 0;
-	virtual void begin_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb) = 0;
-	virtual void end_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb) = 0;
-};
+namespace gom {
+	class Gameplay_state {
+	public:
+		Gameplay_state() = default;
+		virtual ~Gameplay_state() {}
 
+		virtual Gameplay_state *  handle_input(Actor & actor, Input_manager *pinput, physics_2d::World *pwld) = 0;
+		virtual size_t			  get_size() const = 0;
+		//virtual void update(Actor & actor) = 0;
+
+		//virtual void begin_body_collision(physics_2d::Body_2d & body) const = 0;
+		//virtual void end_body_collision(physics_2d::Body_2d & body) const = 0;
+		virtual void begin_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb) = 0;
+		virtual void end_tile_collision(Actor & actor, const physics_2d::AABB_2d & tile_aabb) = 0;
+	};
+}
 
 #endif // !_GAMEPLAY_STATE_HPP

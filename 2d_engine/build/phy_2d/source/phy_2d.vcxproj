@@ -267,6 +267,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\AABB_2d.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\Body_2d.hpp" />
+    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\Body_2d_def.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\Collision_listener.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\World.hpp" />
     <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src\Physics_manager.hpp" />

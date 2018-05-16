@@ -5,7 +5,6 @@
 #include "Body_2d.hpp"
 #include "vec2.hpp"
 #include <vector>
-#include <set>
 
 /*World: Part of the physics engine, this class represents a 
  * world populated with 2d bodies, this bodies are affected
@@ -18,7 +17,7 @@
 class Tile_map;
 namespace math { struct Rect; }
 
-namespace physics_2d { class Collision_listener; }
+namespace physics_2d { class Collision_listener; struct Body_2d_def; }
 
 #define MIN(a, b) ((a < b) ?(a) :(b))
 #define MAX(a, b) ((a > b) ?(a) :(b))
@@ -37,6 +36,7 @@ namespace physics_2d {
 		~World();
 
 		Body_2d *create_body_2d(const Body_2d::Entity_types & type, const math::vec2 & pos, const float m, const AABB_2d & aabb);
+		Body_2d *create_body_2d(const Body_2d_def & body_def);
 		void     destroy_body_2d(Body_2d *pbody);
 		void     set_collision_listener(Collision_listener * pcoll_listener) { m_pcoll_listener =pcoll_listener; } //parameter should be poiter to interface that implements collision listener
 		void     set_tile_map(const Tile_map * pmap) { m_pmap = pmap; }

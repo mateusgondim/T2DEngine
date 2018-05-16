@@ -37,7 +37,6 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/gfx/source/cmake_install.cmake")
   include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tmap/source/cmake_install.cmake")
   include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/cmake_install.cmake")
-  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/sys/source/cmake_install.cmake")
   include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_object_model/source/cmake_install.cmake")
 
 endif()
