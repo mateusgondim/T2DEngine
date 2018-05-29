@@ -3,10 +3,14 @@
 #include "vec3.hpp"
 #include "vec2.hpp"
 #include "mat4.hpp"
+#include "Body_2d_def.hpp"
 #include "Body_2d.hpp"
+#include "World.hpp"
+#include "Physics_manager.hpp"
 
 #include "Sprite.hpp"
 #include "Sprite_atlas.hpp"
+#include "Graphics_manager.hpp"
 #include "Gameplay_state.hpp"
 #include "Animator_controller.hpp"
 
@@ -21,16 +25,20 @@
 //	: Renderable_game_object(pos, orientation, texture_file), m_pstate(pstate), m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) {}
 namespace gom {
 
-	Actor::Actor(const game_object_id unique_id, const uint16_t handle_index, sprite_info & s_info, physics_2d::Body_2d *pbody, const gfx::Animator_controller *pcontroller, bool facing_left)
-		: Game_object(unique_id, handle_index, pbody->get_position()), m_pstate(nullptr), m_velocity(pbody->get_velocity()), m_facing_left(facing_left)
+	Actor::Actor(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left)
+		: Game_object(unique_id, handle_index, pbody_def->m_position), m_pstate(nullptr), m_velocity(pbody_def->m_velocity), m_facing_left(facing_left)
 	{
 		//create sprite component
 		void *pmem = mem::allocate(sizeof(gfx::Sprite));
 		if (pmem != nullptr) {
-			m_psprite = static_cast<gfx::Sprite*>(new (pmem) gfx::Sprite(s_info.second, s_info.first));
+			m_psprite = static_cast<gfx::Sprite*>(new (pmem) gfx::Sprite(sprite_data.first, sprite_data.second) );
+			
+			//add to the graphics manager to be rendered
+			gfx::g_graphics_mgr.add_sprite_to_render(m_psprite);
 		}
-		//set body2d component
-		m_pbody_2d = pbody;
+
+		//create a body2d component
+		m_pbody_2d = physics_2d::g_physics_mgr.get_world()->create_body_2d(*pbody_def);
 		m_pbody_2d->set_user_data(static_cast<void*>(this));
 
 		//make a copy of the animator controller

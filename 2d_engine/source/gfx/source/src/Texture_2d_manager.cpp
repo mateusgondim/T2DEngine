@@ -9,6 +9,8 @@
 // CHECK CASES WHERE LOADING FAILS... I.E THE CREATE_OR_RETRIEVE FAIL
 
 namespace gfx {
+	Texture_2d_manager g_texture_2d_mgr;
+	
 	Texture_2d_manager::Texture_2d_manager() : rms::Resource_manager(std::string("texture_2d"), sizeof(Texture_2d), 5, 4) {}
 
 	rms::Resource *Texture_2d_manager::create_impl(const char *name) 

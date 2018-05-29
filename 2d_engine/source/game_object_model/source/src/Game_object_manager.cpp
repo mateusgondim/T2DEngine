@@ -6,7 +6,7 @@
 #include "runtime_memory_allocator.hpp"
 
 #include "Sprite_atlas_manager.hpp"
-#include "World.hpp"
+#include "Physics_manager.hpp"
 #include "Body_2d.hpp"
 
 #include <map>
@@ -14,14 +14,12 @@
 #include <iostream>
 
 namespace gom {
+	Game_object_manager g_game_object_mgr;
+
 	uint32_t	   Game_object_manager::m_next_guid		= 1; // zero is reserved for invalid guid
 	
-	void Game_object_manager::init(gfx::Sprite_atlas_manager *patlas_manager, physics_2d::World *pwld)
+	void Game_object_manager::init()
 	{
-		//set managers
-		m_patlas_manager = patlas_manager;
-		m_pworld		 = pwld;
-		
 		//set up the handle table
 		m_next_free_index = 0;
 		for (size_t i = 0; i < m_MAX_GAME_OBJECTS - 1; ++i) {
@@ -40,9 +38,6 @@ namespace gom {
 		//destroy and deallocate all the game objects 
 		for (size_t i = 0; i < m_MAX_GAME_OBJECTS; ++i) {
 			if (m_ahandle_table[i].m_pgame_object != nullptr) {
-				physics_2d::Body_2d *pbody = m_ahandle_table[i].m_pgame_object->get_body_2d_component();
-				m_pworld->destroy_body_2d(pbody);
-
 				m_ahandle_table[i].m_pgame_object-> ~Game_object();
 				mem::free(static_cast<void*>(m_ahandle_table[i].m_pgame_object), m_ahandle_table[i].m_game_object_sz);
 				m_ahandle_table[i].m_pgame_object = nullptr;
@@ -102,7 +97,7 @@ namespace gom {
 		}
 
 		// create the requested Game Object
-		Game_object * pgame_obj = it->second->create(pmem, m_next_guid, handle_index, m_patlas_manager, m_pworld);
+		Game_object * pgame_obj = it->second->create(pmem, m_next_guid, handle_index);
 
 		if (pgame_obj != nullptr) {
 			//if the creation was succefull, update the next_guid and next_handle
@@ -132,10 +127,7 @@ namespace gom {
 		Game_object *pgame_object = get_by_handle(handle);
 
 		if (pgame_object != nullptr) {
-			
-			//the Game object is on the table, first deallocate the object's body_2d component. We have to do it here, because we need the pointer to the world object
-			physics_2d::Body_2d *pbody = pgame_object->get_body_2d_component();
-			m_pworld->destroy_body_2d(pbody);
+			//the Game object is on the table
 			
 			// call the destructor 
 			pgame_object->~Game_object();

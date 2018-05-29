@@ -19,7 +19,7 @@
  * Tile_map space is a left-right top-bottom coordinate space
  */
 
-class Tile;
+struct Tile;
 namespace math { struct Rect; }
 
 class Tile_map {

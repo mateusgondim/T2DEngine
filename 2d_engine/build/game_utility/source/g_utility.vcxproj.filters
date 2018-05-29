@@ -1,36 +1,36 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\crc32.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\crc32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\string_id.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\string_id.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\Timer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\crc32.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\crc32.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\string_id.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src\string_id.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{006AD50C-5BFB-3830-A166-E5E4B27E6641}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{27884427-B338-3775-97DF-3C569646EB48}</UniqueIdentifier>
+      <UniqueIdentifier>{DF0FA155-300F-3EEE-A124-E1C9CDE1723C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{82A921EF-F974-3533-AA8B-7B29AFE32F10}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

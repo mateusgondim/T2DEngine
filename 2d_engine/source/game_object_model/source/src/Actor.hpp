@@ -10,15 +10,15 @@
 
 namespace gom { class Gameplay_state; }
 namespace math { struct vec3; class mat4; }
-namespace gfx { class Sprite; class Sprite_atlas; }
+namespace gfx { class Sprite_atlas; }
 namespace physics_2d { struct AABB_2d; class Body_2d; struct Body_2d_def; }
+
 
 namespace gom {
 	class Actor : public Game_object {
 	public:
-		typedef std::pair<uint8_t, gfx::Sprite_atlas*> sprite_info;
-
-		Actor(const game_object_id unique_id, const uint16_t handle_index, sprite_info & s_info, physics_2d::Body_2d *pbody, const gfx::Animator_controller *pcontroller, bool facing_left = true);
+		typedef std::pair < const gfx::Sprite_atlas*, uint8_t> atlas_n_layer;
+		Actor(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left = true);
 
 		virtual ~Actor();
 

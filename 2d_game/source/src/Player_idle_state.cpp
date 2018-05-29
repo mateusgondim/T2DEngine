@@ -4,6 +4,7 @@
 #include "string_id.hpp"
 
 #include "AABB_2d.hpp"
+#include "Physics_manager.hpp"
 #include "Actor.hpp"
 #include "Gameplay_state.hpp"
 
@@ -13,7 +14,7 @@
 #include "Player_climbing_state.hpp"
 #include "Animator_controller.hpp"
 
-#include "Input_manager.hpp"
+#include "input_manager.hpp"
 #include "Button.hpp"
 #include "Body_2d.hpp"
 #include "World.hpp"
@@ -26,13 +27,13 @@
 
 
 //TODO: SWITCH ON ACTION BUTTONS, I.E. ATTACK, RUN_RIGHT, ETC
-gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor, Input_manager *pinput, physics_2d::World *pwld)
+gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 {
 	//auto stream = Input_handler::instance().get_input();
 	string_id is_attacking_param_id = intern_string("is_attacking");
 	string_id player_attacking_state_id = intern_string("player_attacking");
 
-	bool on_ground = pwld->is_body_2d_on_ground(actor.get_body_2d_component());
+	bool on_ground = physics_2d::g_physics_mgr.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
 	//auto iter = std::find_if(stream.begin(), stream.end(),
 	//	[](const std::pair<Button, Command*> & p) {return p.first.m_bound_key == KEY_A; });
 	
@@ -40,9 +41,9 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor, Input_
 		return nullptr;
 	}
 
-	const Button & move_left_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
+	const Button & move_left_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_LEFT);
 
-	if (move_left_button.m_state == PRESSED) {
+	if (move_left_button.m_state == PRESSED || move_left_button.m_state == REPEAT) {
 		//std::cout << "chaging state to Player_running_state| dir= left" << std::endl;
 		actor.set_facing_direction(true);     //change to running left
 		 //set the parameter on the  animation state machine
@@ -54,9 +55,9 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor, Input_
 		return static_cast<gom::Gameplay_state*> (new (pmem) Player_running_state(actor));
 	}
 	
-	const Button & move_right_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
+	const Button & move_right_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_RIGHT);
 	
-	if (move_right_button.m_state == PRESSED) {
+	if (move_right_button.m_state == PRESSED || move_right_button.m_state == REPEAT) {
 		//std::cout << "Changing state to Player_running_state | dir = right" << std::endl;
 			
 		//set the parameter on the animation state machine
@@ -68,8 +69,8 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor, Input_
 		return static_cast<gom::Gameplay_state*> (new (pmem) Player_running_state(actor));
 	}
 	if (on_ground) {
-		const Button & jump_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::JUMP);
-		if ( jump_button.m_state == PRESSED ) {
+		const Button & jump_button = io::get_button_from_action(io::GAME_ACTIONS::JUMP);
+		if ( jump_button.m_state == PRESSED || jump_button.m_state == REPEAT) {
 			std::cout << "Changing to Player_jumping_state" << std::endl;
 			actor.get_anim_controller_component()->set_bool("is_jumping", true);
 			
@@ -80,10 +81,10 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor, Input_
 		}
 	}
 
-	const Button & climb_up_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_UP);
+	const Button & climb_up_button = io::get_button_from_action(io::GAME_ACTIONS::CLIMB_UP);
 
 	if (climb_up_button.m_state == PRESSED) {
-		bool climbing = pwld->try_climbing_ladder(actor.get_body_2d_component(), true);
+		bool climbing = physics_2d::g_physics_mgr.get_world()->try_climbing_ladder(actor.get_body_2d_component(), true);
 		if (climbing) {
 			//std::cout << "CAN CLIMB NOW!!!" << std::endl;
 			//animation set up
@@ -99,9 +100,9 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor, Input_
 		//}
 	}
 
-	const Button & climb_down_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_DOWN);
+	const Button & climb_down_button = io::get_button_from_action(io::GAME_ACTIONS::CLIMB_DOWN);
 	if (climb_down_button.m_state == PRESSED) {
-		bool climbing = pwld->try_climbing_ladder(actor.get_body_2d_component(), false);// climb_down = tru
+		bool climbing = physics_2d::g_physics_mgr.get_world()->try_climbing_ladder(actor.get_body_2d_component(), false);// climb_down = tru
 		if (climbing) {
 			//animation set up
 			actor.get_anim_controller_component()->set_bool("is_climbing", true);
@@ -124,7 +125,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor, Input_
 
 	}
 
-	const Button & attacking_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::ATTACK_01);
+	const Button & attacking_button = io::get_button_from_action(io::GAME_ACTIONS::ATTACK_01);
 	if ( (attacking_button.m_state == PRESSED) ) {
 		actor.get_anim_controller_component()->set_trigger(is_attacking_param_id);
 	}

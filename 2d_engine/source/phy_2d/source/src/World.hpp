@@ -5,6 +5,7 @@
 #include "Body_2d.hpp"
 #include "vec2.hpp"
 #include <vector>
+#include "Pool_allocator.hpp"
 
 /*World: Part of the physics engine, this class represents a 
  * world populated with 2d bodies, this bodies are affected
@@ -13,6 +14,8 @@
  */
 
 //TODO: COPY CONTROLL
+
+#define MAX_BODY_2DS 40
 
 class Tile_map;
 namespace math { struct Rect; }
@@ -46,15 +49,15 @@ namespace physics_2d {
 		bool     is_body_on_ladder(Body_2d *   pbody);
 		bool     is_on_ladder_top_tile(const Body_2d * pbody, math::Rect & ladder_bounds) const;
 	private:
-		//static bool compare(const Tile_contact & lhs, const Tile_contact & rhs) { return lhs.m_pbody < rhs.m_pbody; }
 		void check_n_solve_map_collision(Body_2d *pbody, const float dt) ;
 		
 		math::vec2										 m_solid_tile_sensor_line; // ofsset in pixels, against solid tiles for collision detection  
 		math::vec2										 m_gravity;
 		const Tile_map									*m_pmap;
 		Collision_listener								*m_pcoll_listener;
-		//std::multiset<Tile_contact, decltype(compare)*>  m_tile_contact_multiset{compare};
+		
 		std::vector<Body_2d*>        m_bodies;
+		mem::Pool_allocator			 m_mem_pool;
 	};
 }
 

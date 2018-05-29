@@ -12,8 +12,6 @@
  */
 
 namespace gom { class Game_object; class Creator; class Game_object_handle; }
-namespace gfx { class Sprite_atlas_manager; }
-namespace physics_2d { class World; }
 
 namespace gom {
 	
@@ -33,7 +31,7 @@ namespace gom {
 		Game_object_manager() = default;
 		~Game_object_manager() = default;
 
-		void				  init(gfx::Sprite_atlas_manager *patlas_manager, physics_2d::World *pwld);
+		void				  init();
 		void				  shut_down();
 
 		bool				  register_creator(const type_id obj_type, Creator *pcreator);
@@ -48,13 +46,7 @@ namespace gom {
 		Handle_table_entry     m_ahandle_table[m_MAX_GAME_OBJECTS];
 		uint16_t               m_next_free_index;
 		creator_map			   m_creators;
-		//pointers to engine managers, used by the creators
-		gfx::Sprite_atlas_manager *m_patlas_manager;
-		physics_2d::World		  *m_pworld;
-		//gfx::Animator_controller_manager *m_pcontroller_manager;
-
-
 	};
-
+	extern Game_object_manager g_game_object_mgr;
 }
 #endif // !_GAME_OBJECT_MANAGER_HPP

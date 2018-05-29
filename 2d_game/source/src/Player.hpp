@@ -12,9 +12,9 @@ class Input_manager;
 
 class Player final : public gom::Actor {
 public:
-	Player(const game_object_id unique_id, const uint16_t handle_index, sprite_info & s_info, physics_2d::Body_2d *pbody, const gfx::Animator_controller *pcontroller, bool facing_left = true);
+	Player(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left = true);
 	
-	void handle_input(Input_manager *pinput, physics_2d::World *pwld);
+	void handle_input();
 	void update(const float dt) override;
 private:
 	float				m_life;

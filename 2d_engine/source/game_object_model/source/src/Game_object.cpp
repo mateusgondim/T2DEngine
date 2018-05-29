@@ -1,10 +1,13 @@
 #include "Game_object.hpp"
 #include "Transform.hpp"
 #include "Sprite.hpp"
+#include "Graphics_manager.hpp"
 #include "Body_2d.hpp"
 #include "Animator_controller.hpp"
 
 #include "runtime_memory_allocator.hpp"
+#include "World.hpp"
+#include "Physics_manager.hpp"
 
 namespace gom {
 	Game_object::Game_object(const game_object_id unique_id, const uint16_t handle_index) :
@@ -19,6 +22,10 @@ namespace gom {
 	Game_object::~Game_object()
 	{
 		if (m_psprite != nullptr) {
+			//remove it from the graphics manager
+			gfx::g_graphics_mgr.rem_sprite_from_batch(m_psprite);
+			
+			//destroy and deallocate 
 			m_psprite->~Sprite();
 			mem::free(static_cast<void*>(m_psprite), sizeof(gfx::Sprite));
 
@@ -30,8 +37,10 @@ namespace gom {
 
 			m_panimator_controller = nullptr;
 		}
-		// The Body_2d component needs to be deleted through the physic_2d's world object 
-		//this is done in the Engine's Game_object_manager 
+		if (m_pbody_2d != nullptr) {
+			physics_2d::g_physics_mgr.get_world()->destroy_body_2d(m_pbody_2d);
+			m_pbody_2d = nullptr;
+		}
 	}
 
 	Game_object::game_object_id Game_object::get_unique_id() const

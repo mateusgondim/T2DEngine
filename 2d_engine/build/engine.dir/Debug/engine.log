@@ -1,10 +1,4 @@
-﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/CMakeLists.txt
-  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\generate.stamp is up-to-date.
-  Engine.cpp
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.hpp(19): warning C4373: 'gfx::Sprite_atlas_manager::unload': virtual function overrides 'rms::Resource_manager::unload', previous versions of the compiler did not override when parameters only differed by const/volatile qualifiers
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src\Resource_manager.hpp(33): note: see declaration of 'rms::Resource_manager::unload'
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src\Tile_map.hpp(22): warning C4099: 'Tile': type name first seen using 'struct' now seen using 'class'
-  c:\users\mateu\documents\github\demos\2d_engine\source\tmap\source\src\Tile.hpp(5): note: see declaration of 'Tile'
-  engine.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib
+﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/generate.stamp is up-to-date.
+  engine.cpp
+  engine.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib

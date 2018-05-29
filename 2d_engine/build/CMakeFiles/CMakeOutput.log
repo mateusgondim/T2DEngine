@@ -1,287 +1,287 @@
-The system is: Windows - 10.0.16299 - AMD64
+The system is: Windows - 10.0.17134 - AMD64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler:  
 Build flags: 
-Id flags: 
+Id flags:  
 
 The output was:
 0
-Microsoft (R) Build Engine version 14.0.25420.1
+Microsoft (R) Build Engine version 15.7.179.6572 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 1/25/2018 3:33:50 PM.
-Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.7.0\CompilerIdC\CompilerIdC.vcxproj" on node 1 (default targets).
+Build started 5/24/2018 6:48:00 PM.
+Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.11.2\CompilerIdC\CompilerIdC.vcxproj" on node 1 (default targets).
 PrepareForBuild:
   Creating directory "Debug\".
   Creating directory "Debug\CompilerIdC.tlog\".
 InitializeBuildStatus:
   Creating "Debug\CompilerIdC.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /nologo /W0 /WX- /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:queue CMakeCCompilerId.c
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\CL.exe /c /nologo /W0 /WX- /diagnostics:classic /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TC /analyze- /FC /errorReport:queue CMakeCCompilerId.c
   CMakeCCompilerId.c
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCCompilerId.obj
-  CompilerIdC.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.7.0\CompilerIdC\.\CompilerIdC.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCCompilerId.obj
+  CompilerIdC.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.11.2\CompilerIdC\.\CompilerIdC.exe
 PostBuildEvent:
   for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
   :VCEnd
-  CMAKE_C_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\cl.exe
+  CMAKE_C_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\Hostx86\x86\cl.exe
 FinalizeBuildStatus:
   Deleting file "Debug\CompilerIdC.tlog\unsuccessfulbuild".
   Touching "Debug\CompilerIdC.tlog\CompilerIdC.lastbuildstate".
-Done Building Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.7.0\CompilerIdC\CompilerIdC.vcxproj" (default targets).
+Done Building Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.11.2\CompilerIdC\CompilerIdC.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.71
+Time Elapsed 00:00:01.73
 
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
 
-The C compiler identification is MSVC, found in "C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/3.7.0/CompilerIdC/CompilerIdC.exe"
+The C compiler identification is MSVC, found in "C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/3.11.2/CompilerIdC/CompilerIdC.exe"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler:  
 Build flags: 
-Id flags: 
+Id flags:  
 
 The output was:
 0
-Microsoft (R) Build Engine version 14.0.25420.1
+Microsoft (R) Build Engine version 15.7.179.6572 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 1/25/2018 3:33:51 PM.
-Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.7.0\CompilerIdCXX\CompilerIdCXX.vcxproj" on node 1 (default targets).
+Build started 5/24/2018 6:48:02 PM.
+Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.11.2\CompilerIdCXX\CompilerIdCXX.vcxproj" on node 1 (default targets).
 PrepareForBuild:
   Creating directory "Debug\".
   Creating directory "Debug\CompilerIdCXX.tlog\".
 InitializeBuildStatus:
   Creating "Debug\CompilerIdCXX.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /nologo /W0 /WX- /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue CMakeCXXCompilerId.cpp
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\CL.exe /c /nologo /W0 /WX- /diagnostics:classic /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:queue CMakeCXXCompilerId.cpp
   CMakeCXXCompilerId.cpp
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCXXCompilerId.obj
-  CompilerIdCXX.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.7.0\CompilerIdCXX\.\CompilerIdCXX.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCXXCompilerId.obj
+  CompilerIdCXX.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.11.2\CompilerIdCXX\.\CompilerIdCXX.exe
 PostBuildEvent:
   for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
   :VCEnd
-  CMAKE_CXX_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\cl.exe
+  CMAKE_CXX_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\Hostx86\x86\cl.exe
 FinalizeBuildStatus:
   Deleting file "Debug\CompilerIdCXX.tlog\unsuccessfulbuild".
   Touching "Debug\CompilerIdCXX.tlog\CompilerIdCXX.lastbuildstate".
-Done Building Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.7.0\CompilerIdCXX\CompilerIdCXX.vcxproj" (default targets).
+Done Building Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\3.11.2\CompilerIdCXX\CompilerIdCXX.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.58
+Time Elapsed 00:00:01.70
 
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
 
-The CXX compiler identification is MSVC, found in "C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/3.7.0/CompilerIdCXX/CompilerIdCXX.exe"
+The CXX compiler identification is MSVC, found in "C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/3.11.2/CompilerIdCXX/CompilerIdCXX.exe"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_268cf.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
-Microsoft (R) Build Engine version 14.0.25420.1
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_1d037.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine version 15.7.179.6572 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 1/25/2018 3:33:52 PM.
-Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_268cf.vcxproj" on node 1 (default targets).
+Build started 5/24/2018 6:48:05 PM.
+Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_1d037.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_268cf.dir\Debug\".
-  Creating directory "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_268cf.dir\Debug\cmTC_268cf.tlog\".
+  Creating directory "cmTC_1d037.dir\Debug\".
+  Creating directory "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_1d037.dir\Debug\cmTC_1d037.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_268cf.dir\Debug\cmTC_268cf.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_1d037.dir\Debug\cmTC_1d037.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_268cf.dir\Debug\\" /Fd"cmTC_268cf.dir\Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:queue C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\testCCompiler.c
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x86
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1d037.dir\Debug\\" /Fd"cmTC_1d037.dir\Debug\vc141.pdb" /Gd /TC /analyze- /FC /errorReport:queue C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\testCCompiler.c
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.14.26429.4 for x86
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_268cf.dir\Debug\\" /Fd"cmTC_268cf.dir\Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:queue C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\testCCompiler.c
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_1d037.dir\Debug\\" /Fd"cmTC_1d037.dir\Debug\vc141.pdb" /Gd /TC /analyze- /FC /errorReport:queue C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\testCCompiler.c
   
   testCCompiler.c
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_268cf.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_268cf.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_268cf.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_268cf.dir\Debug\testCCompiler.obj
-  cmTC_268cf.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_268cf.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_1d037.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_1d037.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_1d037.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_1d037.dir\Debug\testCCompiler.obj
+  cmTC_1d037.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_1d037.exe
 FinalizeBuildStatus:
-  Deleting file "cmTC_268cf.dir\Debug\cmTC_268cf.tlog\unsuccessfulbuild".
-  Touching "cmTC_268cf.dir\Debug\cmTC_268cf.tlog\cmTC_268cf.lastbuildstate".
-Done Building Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_268cf.vcxproj" (default targets).
+  Deleting file "cmTC_1d037.dir\Debug\cmTC_1d037.tlog\unsuccessfulbuild".
+  Touching "cmTC_1d037.dir\Debug\cmTC_1d037.tlog\cmTC_1d037.lastbuildstate".
+Done Building Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_1d037.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.87
+Time Elapsed 00:00:01.64
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_7363d.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
-Microsoft (R) Build Engine version 14.0.25420.1
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_35980.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine version 15.7.179.6572 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 1/25/2018 3:33:53 PM.
-Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_7363d.vcxproj" on node 1 (default targets).
+Build started 5/24/2018 6:48:07 PM.
+Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_35980.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_7363d.dir\Debug\".
-  Creating directory "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_7363d.dir\Debug\cmTC_7363d.tlog\".
+  Creating directory "cmTC_35980.dir\Debug\".
+  Creating directory "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_35980.dir\Debug\cmTC_35980.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_7363d.dir\Debug\cmTC_7363d.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_35980.dir\Debug\cmTC_35980.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_7363d.dir\Debug\\" /Fd"cmTC_7363d.dir\Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCCompilerABI.c"
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x86
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_35980.dir\Debug\\" /Fd"cmTC_35980.dir\Debug\vc141.pdb" /Gd /TC /analyze- /FC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCCompilerABI.c"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.14.26429.4 for x86
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_7363d.dir\Debug\\" /Fd"cmTC_7363d.dir\Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCCompilerABI.c"
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_35980.dir\Debug\\" /Fd"cmTC_35980.dir\Debug\vc141.pdb" /Gd /TC /analyze- /FC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCCompilerABI.c"
   
   CMakeCCompilerABI.c
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_7363d.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_7363d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_7363d.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_7363d.dir\Debug\CMakeCCompilerABI.obj
-  cmTC_7363d.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_7363d.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_35980.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_35980.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_35980.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_35980.dir\Debug\CMakeCCompilerABI.obj
+  cmTC_35980.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_35980.exe
 FinalizeBuildStatus:
-  Deleting file "cmTC_7363d.dir\Debug\cmTC_7363d.tlog\unsuccessfulbuild".
-  Touching "cmTC_7363d.dir\Debug\cmTC_7363d.tlog\cmTC_7363d.lastbuildstate".
-Done Building Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_7363d.vcxproj" (default targets).
+  Deleting file "cmTC_35980.dir\Debug\cmTC_35980.tlog\unsuccessfulbuild".
+  Touching "cmTC_35980.dir\Debug\cmTC_35980.tlog\cmTC_35980.lastbuildstate".
+Done Building Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_35980.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.61
+Time Elapsed 00:00:01.64
 
 
 Determining if the CXX compiler works passed with the following output:
-Change Dir: C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_7f8ce.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
-Microsoft (R) Build Engine version 14.0.25420.1
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_f82d1.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine version 15.7.179.6572 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 1/25/2018 3:33:53 PM.
-Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_7f8ce.vcxproj" on node 1 (default targets).
+Build started 5/24/2018 6:48:09 PM.
+Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_f82d1.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_7f8ce.dir\Debug\".
-  Creating directory "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_7f8ce.dir\Debug\cmTC_7f8ce.tlog\".
+  Creating directory "cmTC_f82d1.dir\Debug\".
+  Creating directory "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_f82d1.dir\Debug\cmTC_f82d1.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_7f8ce.dir\Debug\cmTC_7f8ce.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_f82d1.dir\Debug\cmTC_f82d1.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_7f8ce.dir\Debug\\" /Fd"cmTC_7f8ce.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x86
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f82d1.dir\Debug\\" /Fd"cmTC_f82d1.dir\Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:queue C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.14.26429.4 for x86
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_7f8ce.dir\Debug\\" /Fd"cmTC_7f8ce.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f82d1.dir\Debug\\" /Fd"cmTC_f82d1.dir\Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:queue C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx
   
   testCXXCompiler.cxx
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_7f8ce.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_7f8ce.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_7f8ce.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_7f8ce.dir\Debug\testCXXCompiler.obj
-  cmTC_7f8ce.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_7f8ce.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_f82d1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_f82d1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_f82d1.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_f82d1.dir\Debug\testCXXCompiler.obj
+  cmTC_f82d1.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_f82d1.exe
 FinalizeBuildStatus:
-  Deleting file "cmTC_7f8ce.dir\Debug\cmTC_7f8ce.tlog\unsuccessfulbuild".
-  Touching "cmTC_7f8ce.dir\Debug\cmTC_7f8ce.tlog\cmTC_7f8ce.lastbuildstate".
-Done Building Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_7f8ce.vcxproj" (default targets).
+  Deleting file "cmTC_f82d1.dir\Debug\cmTC_f82d1.tlog\unsuccessfulbuild".
+  Touching "cmTC_f82d1.dir\Debug\cmTC_f82d1.tlog\cmTC_f82d1.lastbuildstate".
+Done Building Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_f82d1.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.59
+Time Elapsed 00:00:01.68
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_974dd.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
-Microsoft (R) Build Engine version 14.0.25420.1
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_15d41.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine version 15.7.179.6572 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 1/25/2018 3:33:54 PM.
-Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_974dd.vcxproj" on node 1 (default targets).
+Build started 5/24/2018 6:48:11 PM.
+Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_15d41.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_974dd.dir\Debug\".
-  Creating directory "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_974dd.dir\Debug\cmTC_974dd.tlog\".
+  Creating directory "cmTC_15d41.dir\Debug\".
+  Creating directory "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_15d41.dir\Debug\cmTC_15d41.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_974dd.dir\Debug\cmTC_974dd.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_15d41.dir\Debug\cmTC_15d41.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_974dd.dir\Debug\\" /Fd"cmTC_974dd.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCXXCompilerABI.cpp"
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x86
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_15d41.dir\Debug\\" /Fd"cmTC_15d41.dir\Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXCompilerABI.cpp"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.14.26429.4 for x86
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_974dd.dir\Debug\\" /Fd"cmTC_974dd.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCXXCompilerABI.cpp"
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_15d41.dir\Debug\\" /Fd"cmTC_15d41.dir\Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXCompilerABI.cpp"
   
   CMakeCXXCompilerABI.cpp
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_974dd.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_974dd.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_974dd.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_974dd.dir\Debug\CMakeCXXCompilerABI.obj
-  cmTC_974dd.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_974dd.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_15d41.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_15d41.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_15d41.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_15d41.dir\Debug\CMakeCXXCompilerABI.obj
+  cmTC_15d41.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_15d41.exe
 FinalizeBuildStatus:
-  Deleting file "cmTC_974dd.dir\Debug\cmTC_974dd.tlog\unsuccessfulbuild".
-  Touching "cmTC_974dd.dir\Debug\cmTC_974dd.tlog\cmTC_974dd.lastbuildstate".
-Done Building Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_974dd.vcxproj" (default targets).
+  Deleting file "cmTC_15d41.dir\Debug\cmTC_15d41.tlog\unsuccessfulbuild".
+  Touching "cmTC_15d41.dir\Debug\cmTC_15d41.tlog\cmTC_15d41.lastbuildstate".
+Done Building Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_15d41.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.60
+Time Elapsed 00:00:01.63
 
 
 
 
 Detecting CXX [] compiler features compiled with the following output:
-Change Dir: C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_f9853.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
-Microsoft (R) Build Engine version 14.0.25420.1
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_1d23e.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine version 15.7.179.6572 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 1/25/2018 3:33:55 PM.
-Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_f9853.vcxproj" on node 1 (default targets).
+Build started 5/24/2018 6:48:14 PM.
+Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_1d23e.vcxproj" on node 1 (default targets).
 PrepareForBuild:
-  Creating directory "cmTC_f9853.dir\Debug\".
-  Creating directory "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\".
-  Creating directory "cmTC_f9853.dir\Debug\cmTC_f9853.tlog\".
+  Creating directory "cmTC_1d23e.dir\Debug\".
+  Creating directory "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\".
+  Creating directory "cmTC_1d23e.dir\Debug\cmTC_1d23e.tlog\".
 InitializeBuildStatus:
-  Creating "cmTC_f9853.dir\Debug\cmTC_f9853.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+  Creating "cmTC_1d23e.dir\Debug\cmTC_1d23e.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f9853.dir\Debug\\" /Fd"cmTC_f9853.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\feature_tests.cxx
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24215.1 for x86
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_1d23e.dir\Debug\\" /Fd"cmTC_1d23e.dir\Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:queue C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\feature_tests.cxx
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.14.26429.4 for x86
   Copyright (C) Microsoft Corporation.  All rights reserved.
   
-  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f9853.dir\Debug\\" /Fd"cmTC_f9853.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\feature_tests.cxx
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_1d23e.dir\Debug\\" /Fd"cmTC_1d23e.dir\Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:queue C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\feature_tests.cxx
   
   feature_tests.cxx
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_f9853.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_f9853.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_f9853.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_f9853.dir\Debug\feature_tests.obj
-  cmTC_f9853.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_f9853.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_1d23e.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_1d23e.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/CMakeTmp/Debug/cmTC_1d23e.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_1d23e.dir\Debug\feature_tests.obj
+  cmTC_1d23e.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\Debug\cmTC_1d23e.exe
 FinalizeBuildStatus:
-  Deleting file "cmTC_f9853.dir\Debug\cmTC_f9853.tlog\unsuccessfulbuild".
-  Touching "cmTC_f9853.dir\Debug\cmTC_f9853.tlog\cmTC_f9853.lastbuildstate".
-Done Building Project "C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_f9853.vcxproj" (default targets).
+  Deleting file "cmTC_1d23e.dir\Debug\cmTC_1d23e.tlog\unsuccessfulbuild".
+  Touching "cmTC_1d23e.dir\Debug\cmTC_1d23e.tlog\cmTC_1d23e.lastbuildstate".
+Done Building Project "C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\CMakeFiles\CMakeTmp\cmTC_1d23e.vcxproj" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.64
+Time Elapsed 00:00:01.69
 
 
-    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
     Feature record: CXX_FEATURE:1cxx_alias_templates
     Feature record: CXX_FEATURE:1cxx_alignas
     Feature record: CXX_FEATURE:1cxx_alignof
@@ -293,6 +293,7 @@ Time Elapsed 00:00:00.64
     Feature record: CXX_FEATURE:1cxx_contextual_conversions
     Feature record: CXX_FEATURE:1cxx_decltype
     Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
     Feature record: CXX_FEATURE:1cxx_default_function_template_args
     Feature record: CXX_FEATURE:1cxx_defaulted_functions
     Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers

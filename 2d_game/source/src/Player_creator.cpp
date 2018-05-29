@@ -3,13 +3,15 @@
 #include "Creator.hpp"
 #include "Player.hpp"
 
-#include "World.hpp"
 #include "Body_2d_def.hpp"
 #include "AABB_2d.hpp"
+#include "Physics_manager.hpp"
 
 #include "Sprite_atlas.hpp"
 #include "Sprite_atlas_manager.hpp"
 #include "Animator_controller.hpp"
+#include "Sprite_atlas_manager.hpp"
+
 #include "runtime_memory_allocator.hpp"
 #include <stdint.h>
 
@@ -35,16 +37,14 @@ Player_creator::Player_creator(const string_id atlas_id, const string_id anim_co
 	create_anim_controller();
 }
 
-gom::Game_object *Player_creator::create(void *pmem, const uint32_t unique_id, const uint16_t handle_index, gfx::Sprite_atlas_manager *patlas_manager, physics_2d::World *pwld)
+gom::Game_object *Player_creator::create(void *pmem, const uint32_t unique_id, const uint16_t handle_index)
 {
 	//get the sprite_atlas resource 
-	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(patlas_manager->get_by_id(m_atlas_res_id));
-
-	//create the body_2d component
-	physics_2d::Body_2d *pbody = pwld->create_body_2d(*m_pbody_def);
+	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
+	gom::Actor::atlas_n_layer sprite_data(patlas, 1);
 	
 	//call the player's constructor
-	return static_cast<gom::Game_object*>(new (pmem) Player(unique_id, handle_index, std::pair<uint8_t, gfx::Sprite_atlas*>(1, patlas), pbody, m_panim_controller));
+	return static_cast<gom::Game_object*>(new (pmem) Player(unique_id, handle_index, sprite_data, m_pbody_def, m_panim_controller));
 }
 
 Player_creator::~Player_creator() 

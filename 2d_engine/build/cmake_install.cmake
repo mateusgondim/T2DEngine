@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source
+# Install script for directory: C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,17 +27,22 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/math/source/cmake_install.cmake")
-  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_utility/source/cmake_install.cmake")
-  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/mem/source/cmake_install.cmake")
-  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/rms/source/cmake_install.cmake")
-  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/io/source/cmake_install.cmake")
-  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/gfx/source/cmake_install.cmake")
-  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/tmap/source/cmake_install.cmake")
-  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/cmake_install.cmake")
-  include("C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/game_object_model/source/cmake_install.cmake")
+  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/math/source/cmake_install.cmake")
+  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/game_utility/source/cmake_install.cmake")
+  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/mem/source/cmake_install.cmake")
+  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/rms/source/cmake_install.cmake")
+  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/io/source/cmake_install.cmake")
+  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/gfx/source/cmake_install.cmake")
+  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/tmap/source/cmake_install.cmake")
+  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/cmake_install.cmake")
+  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/game_object_model/source/cmake_install.cmake")
 
 endif()
 
@@ -49,5 +54,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/mateu/Documents/GitHub/Demos/2d_engine/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

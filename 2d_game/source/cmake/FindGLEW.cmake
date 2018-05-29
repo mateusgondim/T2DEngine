@@ -60,7 +60,7 @@ if (WIN32)
             "$ENV{GLEW_LOCATION}/lib"
         PATHS
             "$ENV{PROGRAMFILES}/GLEW/lib"
-	    "C:/Program Files (x86)/GLEW/lib"
+	    "C:/Program Files (x86)/GLEW/lib/Release/Win32"
             "${PROJECT_SOURCE_DIR}/extern/glew/bin"
             "${PROJECT_SOURCE_DIR}/extern/glew/lib"
         PATH_SUFFIXES

@@ -20,7 +20,7 @@
 
 struct GLFWwindow;
 class  Tile_map;
-namespace gfx { class Sprite; class Texture_2d; class Texture_2d_manager; class Sprite_atlas_manager; class Sprite_atlas; class Shader; class Sprite_batch; }
+namespace gfx { class Sprite; class Shader; class Sprite_batch; }
 namespace math { struct vec4; }
 
 namespace gfx {
@@ -35,6 +35,7 @@ namespace gfx {
 		typedef     void (*key_callback_ptr)   (int, int, int, int);
 	public:
 			        Graphics_manager();
+					~Graphics_manager() = default;
 		//initialization functions
 		void		init(const std::uint8_t context_version_major, const std::uint8_t context_version_minor);
 		bool        create_window(const std::int32_t width, const std::int32_t height, const char *ptitle);
@@ -64,18 +65,19 @@ namespace gfx {
 		void		set_sprite_shader(gfx::Shader *pshader);
 		void		set_tile_map_shader(gfx::Shader *pshader);
 		void		add_sprite_to_render(gfx::Sprite *psprite);
+		void		rem_sprite_from_batch(const gfx::Sprite *psprite);
 
 		//atlas_id	load_sprite_atlas(const char *patlas_path);
 
 		//Tile map operations
-		void        set_tile_map_renderer(Tile_map *ptile_map, gfx::Texture_2d_manager *texture_manager);
+		void        set_tile_map_renderer(Tile_map *ptile_map);
 
 		//Sprite      *get_sprite_component(const atlas_id id, const sprite_layer layer);
 		//void		 delete_sprite_component(Sprite *psprite);
 		//void		 delete_texture_atlas(const atlas_id id);
 		//void		 delete_shader(const shader_id id);
 
-		void         render(gfx::Texture_2d_manager *texture_manager, gfx::Sprite_atlas_manager *atlas_manager);
+		void         render();
 		
 	private:
 		static  void key_callback(GLFWwindow *pwindow, int key, int scancode, int action, int mods);
@@ -116,7 +118,7 @@ namespace gfx {
 		bool			m_is_initialized;
 
 	};
-	
+	extern  Graphics_manager g_graphics_mgr;
 	bool	sprite_sort(const gfx::Sprite *lhs, const gfx::Sprite *rhs);
 }
 

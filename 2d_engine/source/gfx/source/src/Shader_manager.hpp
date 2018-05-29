@@ -13,6 +13,7 @@ namespace gfx {
 
 		rms::Resource *create_impl(const char *name) override;
 	};
+	extern Shader_manager g_shader_mgr;
 }
 
 #endif // !_SHADER_MANAGER_HPP

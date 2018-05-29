@@ -20,6 +20,7 @@ namespace gfx {
 		void		  unload_all()	override;
 		rms::Resource *create_impl(const char *name) override;
 	};
+	extern Sprite_atlas_manager g_sprite_atlas_mgr;
 }
 
 #endif // !_SPRITE_ATLAS_MANAGER_HPP

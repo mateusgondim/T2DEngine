@@ -12,7 +12,7 @@ namespace gom { class Game_object; }
 class Player_creator : public gom::Creator {
 public:
 	Player_creator(const string_id atlas_id, const string_id anim_controller_id);
-	gom::Game_object *create(void * pmem, const uint32_t unique_id, const uint16_t handle_index, gfx::Sprite_atlas_manager *patlas_manager, physics_2d::World *pwld) override;
+	gom::Game_object *create(void * pmem, const uint32_t unique_id, const uint16_t handle_index) override;
 
 	~Player_creator() override;
 private:

@@ -1,152 +1,149 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src\Engine.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src\engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src\Engine.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src\engine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Shader.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Shader.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Shader_manager.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Shader_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Texture_2d.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Texture_2d.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Texture_2d_manager.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Texture_2d_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas_manager.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_atlas_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animation_player.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animation_player.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animator_controller_parameter.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animator_controller_parameter.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animator_controller.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animator_controller.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animator_state.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animator_state.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animator_state_transition.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Animator_state_transition.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_batch.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Sprite_batch.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Graphics_manager.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Graphics_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Camera_2d.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\$(Configuration)\Camera_2d.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\vec2.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\vec2.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\vec3.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\vec3.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\mat4.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\mat4.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\matrix_transform.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\$(Configuration)\matrix_transform.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\mem\source\mem.dir\$(Configuration)\memory_allocator.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\mem\source\mem.dir\$(Configuration)\memory_allocator.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\mem\source\mem.dir\$(Configuration)\Pool_allocator.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\mem\source\mem.dir\$(Configuration)\Pool_allocator.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\mem\source\mem.dir\$(Configuration)\runtime_memory_allocator.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\mem\source\mem.dir\$(Configuration)\runtime_memory_allocator.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\io\source\io.dir\$(Configuration)\Button.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\io\source\io.dir\$(Configuration)\Button.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\io\source\io.dir\$(Configuration)\Input_manager.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\io\source\io.dir\$(Configuration)\input_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\Timer.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\Timer.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\crc32.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\crc32.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\string_id.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\string_id.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\rms\source\rms.dir\$(Configuration)\Resource.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\rms\source\rms.dir\$(Configuration)\Resource.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\rms\source\rms.dir\$(Configuration)\Resource_manager.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\rms\source\rms.dir\$(Configuration)\Resource_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\Tileset.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\Tileset.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\Tile_map.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\Tile_map.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\tmx_parser.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\$(Configuration)\tmx_parser.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\Body_2d.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\Body_2d.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\World.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\World.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\Physics_manager.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\Physics_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Actor.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Actor.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Creator.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Creator.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_handle.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_handle.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_manager.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{006AD50C-5BFB-3830-A166-E5E4B27E6641}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{27884427-B338-3775-97DF-3C569646EB48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object Files">
-      <UniqueIdentifier>{6526C076-9056-3E35-B0A2-80562EB3184F}</UniqueIdentifier>
+      <UniqueIdentifier>{DF0FA155-300F-3EEE-A124-E1C9CDE1723C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object Libraries">
-      <UniqueIdentifier>{55EB6918-CF8C-329C-ADAB-B0BD4AD15C5A}</UniqueIdentifier>
+      <UniqueIdentifier>{4B6CFB15-4F86-398B-9E82-1B0B8BB8291D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{82A921EF-F974-3533-AA8B-7B29AFE32F10}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

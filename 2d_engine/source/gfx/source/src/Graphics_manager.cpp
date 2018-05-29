@@ -26,6 +26,8 @@
 #include <algorithm>
 
 
+gfx::Graphics_manager gfx::g_graphics_mgr;
+
 //MISSING INITIALIZATION OF ERRORCALLBACK AND KEYCALLBACK
 gfx::Graphics_manager::key_callback_ptr gfx::Graphics_manager::s_key_callback = nullptr;
 
@@ -339,6 +341,24 @@ void gfx::Graphics_manager::add_sprite_to_render(gfx::Sprite *psprite)
 	std::sort(m_sprites.begin(), m_sprites.end(), sprite_sort);
 }
 
+
+void gfx::Graphics_manager::rem_sprite_from_batch(const gfx::Sprite *psprite) 
+{
+	//find the interval containing the sprite 
+	std::vector<gfx::Sprite*>::iterator it = std::lower_bound(m_sprites.begin(), m_sprites.end(), psprite, sprite_sort);
+	if (it != m_sprites.end()) {
+		for (; it != m_sprites.end(); ++it) {
+			if (*it == psprite) {
+				break;
+			}
+		}
+		if (it != m_sprites.end()) {
+			//remove sprite
+			m_sprites.erase(it);
+		}
+	}
+}
+
 /*
 void gfx::Graphics_manager::delete_sprite_component(Sprite *psprite) 
 {
@@ -443,7 +463,7 @@ void gfx::Graphics_manager::delete_shader(const shader_id id)
 /* render: Render all the sprites in vector, grouping those with the samer layer and the same texture atlas, 
  * on a single batch to be drawn using a single OpenGL's drawcall.
  */
-void gfx::Graphics_manager::render(gfx::Texture_2d_manager *texture_manager, gfx::Sprite_atlas_manager *atlas_manager)
+void gfx::Graphics_manager::render()
 {
 	clear_color_buffers();
 
@@ -454,7 +474,7 @@ void gfx::Graphics_manager::render(gfx::Texture_2d_manager *texture_manager, gfx
 	texture_id text_id = ((m_ptile_map->get_tilesets())[0].get_texture_id());
 
 	//Texture_2d *ptexture = m_textures[text_id];
-	Texture_2d   *ptexture = static_cast<Texture_2d*>(texture_manager->get_by_id(text_id));
+	Texture_2d   *ptexture = static_cast<Texture_2d*>(g_texture_2d_mgr.get_by_id(text_id));
 	ptexture->use();
 	m_pmap_batch->render();
 
@@ -496,7 +516,7 @@ void gfx::Graphics_manager::render(gfx::Texture_2d_manager *texture_manager, gfx
 				 //bind the sprite_atlas texture
 				//Maybe we should check if the id is correct, if is not, we can use a default texture, that draws something like a red square...
 				//Sprite_atlas *patlas = (m_atlases.find(a_id))->second;
-				Sprite_atlas *pbatch_atlas = static_cast<Sprite_atlas*>(atlas_manager->get_by_id(a_id));
+				Sprite_atlas *pbatch_atlas = static_cast<Sprite_atlas*>(g_sprite_atlas_mgr.get_by_id(a_id));
 				pbatch_atlas->get_texture()->use();
 
 				//draw the sprites in the batch
@@ -518,7 +538,7 @@ void gfx::Graphics_manager::render(gfx::Texture_2d_manager *texture_manager, gfx
 		// Draw the sprites in the last batch
 		//Sprite_atlas *patlas = (m_atlases.find(a_id))->second;
 		//patlas->get_texture().use();
-		Sprite_atlas *pbatch_atlas = static_cast<Sprite_atlas*>(atlas_manager->get_by_id(a_id));
+		Sprite_atlas *pbatch_atlas = static_cast<Sprite_atlas*>(g_sprite_atlas_mgr.get_by_id(a_id));
 		pbatch_atlas->get_texture()->use();
 
 		pbatch->render();
@@ -532,7 +552,7 @@ void gfx::Graphics_manager::render(gfx::Texture_2d_manager *texture_manager, gfx
 /*Set_tile_map_renderer: Set up the Opengl's buffers to render the tile_map and,
  * allocates textures used by the map's tilesets.
  */
-void gfx::Graphics_manager::set_tile_map_renderer(Tile_map *ptile_map, gfx::Texture_2d_manager *texture_manager) 
+void gfx::Graphics_manager::set_tile_map_renderer(Tile_map *ptile_map) 
 {
 	// ASSERT (PTILE_MAP != nullptr)
 	m_ptile_map = ptile_map;
@@ -552,7 +572,7 @@ void gfx::Graphics_manager::set_tile_map_renderer(Tile_map *ptile_map, gfx::Text
 		std::string file_name = file_path.substr(pos);
 
 		//load the texture resource
-		rms::Resource *resource = texture_manager->load(file_name.c_str(), file_path.c_str());
+		rms::Resource *resource = g_texture_2d_mgr.load(file_name.c_str(), file_path.c_str());
 		if (resource != nullptr) {
 			tileset.set_texture_id(resource->get_id());
 		}

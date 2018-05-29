@@ -13,7 +13,8 @@
 
 #include "Body_2d.hpp"
 #include "World.hpp"
-#include "Input_manager.hpp"
+#include "Physics_manager.hpp"
+#include "input_manager.hpp"
 
 #include "runtime_memory_allocator.hpp"
 
@@ -22,12 +23,12 @@ Player_jumping_state::Player_jumping_state(gom::Actor & actor, float y_accelerat
 	actor.get_body_2d_component()->add_force(math::vec2(0.0f, m_y_acceleration));
 }
 
-gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor, Input_manager *pinput, physics_2d::World *pwld)
+gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 {
 	string_id is_attacking_param_id = intern_string("is_attacking");
 	string_id player_attacking_state_id = intern_string("player_attacking");
 	
-	bool on_ground = pwld->is_body_2d_on_ground(actor.get_body_2d_component());
+	bool on_ground = physics_2d::g_physics_mgr.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
 
 	if (on_ground) {
 		//std::cout << "changing state to player_idle" << std::endl;
@@ -43,9 +44,9 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor, Inp
 		return nullptr;
 	}
 
-	const Button & climb_up_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::CLIMB_UP);
+	const Button & climb_up_button = io::get_button_from_action(io::GAME_ACTIONS::CLIMB_UP);
 	if (climb_up_button.m_state == PRESSED) {
-		bool is_on_ladder = pwld->try_climbing_ladder(actor.get_body_2d_component(), true);
+		bool is_on_ladder = physics_2d::g_physics_mgr.get_world()->try_climbing_ladder(actor.get_body_2d_component(), true);
 		if (is_on_ladder) {
 			actor.get_anim_controller_component()->set_bool("is_jumping", false);
 			actor.get_anim_controller_component()->set_bool("is_climbing", true);
@@ -58,23 +59,23 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor, Inp
 		}
 	}
 
-	const Button & attack_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::ATTACK_01);
+	const Button & attack_button = io::get_button_from_action(io::GAME_ACTIONS::ATTACK_01);
 	if (attack_button.m_state == PRESSED) {
 		//ANIMATION
 		actor.get_anim_controller_component()->set_trigger("is_attacking");
 		return nullptr;
 	}
 
-	const Button & move_left_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
-	if (move_left_button.m_state == PRESSED) {
+	const Button & move_left_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_LEFT);
+	if (move_left_button.m_state == PRESSED || move_left_button.m_state == REPEAT) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(true);     //change to running left
 		actor.get_body_2d_component()->add_force(math::vec2(-m_x_vel, 0.0f));
 		//std::cout << "-----moving left here---------" << std::endl;
 	}
 	
-	const Button & move_right_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
-	if (move_right_button.m_state == PRESSED ) {
+	const Button & move_right_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_RIGHT);
+	if (move_right_button.m_state == PRESSED || move_right_button.m_state == REPEAT) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(false);     
 		actor.get_body_2d_component()->add_force(math::vec2(m_x_vel, 0.0f));

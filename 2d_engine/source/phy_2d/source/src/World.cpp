@@ -15,25 +15,40 @@
 
 
 physics_2d::World::World(const math::vec2 & gravity, const math::vec2 & solid_tile_sensor_line) :
-	m_gravity(gravity), m_solid_tile_sensor_line(solid_tile_sensor_line) ,m_pmap(nullptr), m_pcoll_listener(nullptr) {}
+	m_gravity(gravity), m_solid_tile_sensor_line(solid_tile_sensor_line) ,m_pmap(nullptr), m_pcoll_listener(nullptr), m_mem_pool(sizeof(physics_2d::Body_2d), MAX_BODY_2DS, 4) 
+{
+	m_bodies.reserve(MAX_BODY_2DS);
+}
 
 physics_2d::World::~World() 
 {
-	std::for_each(m_bodies.begin(), m_bodies.end(), [](Body_2d *pbody) {delete pbody; });
+	for (auto it = m_bodies.begin(); it != m_bodies.end(); ++it) {
+		m_mem_pool.free_element(static_cast<void*>(*it));
+	}
+
+	//memory pool destructor is called implicitly to return the memory to the system
 }
 
 physics_2d::Body_2d * physics_2d::World::create_body_2d(const Body_2d::Entity_types & type, const math::vec2 & pos, const float m, const AABB_2d & aabb)
 {
-	Body_2d * pbody = new Body_2d(type, pos, m, aabb);
-	m_bodies.push_back(pbody);
-
+	Body_2d *pbody = nullptr;
+	void *pmem = m_mem_pool.get_element();
+	if (pmem != nullptr) {
+		pbody = static_cast<Body_2d*>( new (pmem) Body_2d(type, pos, m, aabb) );
+		m_bodies.push_back(pbody);
+	}
+	
 	return pbody;
 }
 
 physics_2d::Body_2d * physics_2d::World::create_body_2d(const Body_2d_def & body_def)
 {
-	Body_2d * pbody = new Body_2d(body_def.m_type, body_def.m_position, body_def.m_mass, body_def.m_aabb);
-	m_bodies.push_back(pbody);
+	Body_2d *pbody = nullptr;
+	void *pmem = m_mem_pool.get_element();
+	if (pmem != nullptr) {
+		pbody = static_cast<Body_2d*>(new (pmem) Body_2d(body_def.m_type, body_def.m_position, body_def.m_mass, body_def.m_aabb));
+		m_bodies.push_back(pbody);
+	}
 
 	return pbody;
 }
@@ -42,7 +57,7 @@ void physics_2d::World::destroy_body_2d(physics_2d::Body_2d *pbody)
 {
 	for (auto iter = m_bodies.begin(); iter != m_bodies.end(); ++iter) {
 		if (*iter == pbody) {
-			delete (*iter);
+			m_mem_pool.free_element(static_cast<void*>(*iter));
 			m_bodies.erase(iter);
 			break;
 		}

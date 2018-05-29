@@ -1,117 +1,117 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader_manager.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d_manager.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_player.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller_parameter.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller_parameter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state_transition.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state_transition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_batch.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_batch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Graphics_manager.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Graphics_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Camera_2d.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Camera_2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader_manager.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Shader_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d_manager.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Texture_2d_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Vertex1P1C1UV.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Vertex1P1C1UV.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_player.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animation_player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller_parameter.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller_parameter.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_controller.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state_transition.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_state_transition.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_condition.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Animator_condition.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_batch.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_batch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Graphics_manager.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Graphics_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Camera_2d.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Camera_2d.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{006AD50C-5BFB-3830-A166-E5E4B27E6641}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{27884427-B338-3775-97DF-3C569646EB48}</UniqueIdentifier>
+      <UniqueIdentifier>{DF0FA155-300F-3EEE-A124-E1C9CDE1723C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{82A921EF-F974-3533-AA8B-7B29AFE32F10}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

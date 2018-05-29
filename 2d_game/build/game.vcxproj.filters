@@ -1,72 +1,72 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_creator.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_creator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_idle_state.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_idle_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_ducking_state.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_ducking_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_running_state.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_running_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_jumping_state.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_jumping_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_climbing_state.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_climbing_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Game_coll_listener.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Game_coll_listener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\game.cpp">
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_creator.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_creator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_idle_state.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_idle_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_ducking_state.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_ducking_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_running_state.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_running_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_jumping_state.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_jumping_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_climbing_state.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_climbing_state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Game_coll_listener.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Game_coll_listener.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\game.hpp">
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{83D6E489-F1B3-3AAF-BD92-145646E035F3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{2E239978-681C-3234-A64B-8348BB1868CF}</UniqueIdentifier>
+      <UniqueIdentifier>{B6E1D34F-D7CA-3760-AF0D-0B7F6F08995D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{7354A024-B26F-3284-AD72-C85E6D7777D6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

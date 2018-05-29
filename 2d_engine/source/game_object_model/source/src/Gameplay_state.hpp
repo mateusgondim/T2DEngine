@@ -8,8 +8,8 @@
  */
 //-------------------------------------------------------------------------
 
-namespace physics_2d { struct AABB_2d; class Body_2d; class World; }
-class Input_manager;
+namespace physics_2d { struct AABB_2d; class Body_2d;}
+
 namespace gom { class Actor; }
 
 namespace gom {
@@ -18,7 +18,7 @@ namespace gom {
 		Gameplay_state() = default;
 		virtual ~Gameplay_state() {}
 
-		virtual Gameplay_state *  handle_input(Actor & actor, Input_manager *pinput, physics_2d::World *pwld) = 0;
+		virtual Gameplay_state *  handle_input(Actor & actor) = 0;
 		virtual size_t			  get_size() const = 0;
 		//virtual void update(Actor & actor) = 0;
 

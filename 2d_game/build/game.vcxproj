@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,35 +19,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGUID>{E8C34C57-7BBF-3472-82C2-621EB3206507}</ProjectGUID>
+    <ProjectGuid>{F3BFB7D1-BB2D-3ACA-9923-8E7B911C9E4B}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>game</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -56,36 +54,36 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-    <PropertyGroup>
-      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\Debug\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">game.dir\Debug\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">game</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\Release\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">game.dir\Release\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">game</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\MinSizeRel\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">game.dir\MinSizeRel\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">game</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\RelWithDebInfo\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">game.dir\RelWithDebInfo\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">game</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
-    </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">game.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">game</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">game.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">game</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">game.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">game</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">game.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">game</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -98,15 +96,15 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -114,15 +112,14 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;opengl32.lib;C:\Program Files (x86)\glew\lib\libglew32.lib;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\projects\VC9\Debug\SOIL.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;opengl32.lib;C:\Program Files (x86)\GLEW\lib\Release\Win32\glew32s.lib;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\projects\VC9\Debug\SOIL.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/Debug/game.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/Debug/game.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/Debug/game.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/Debug/game.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -130,7 +127,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++11</CppLanguageStandard>
@@ -143,14 +140,15 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -158,15 +156,14 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;opengl32.lib;C:\Program Files (x86)\glew\lib\libglew32.lib;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\projects\VC9\Debug\SOIL.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;opengl32.lib;C:\Program Files (x86)\GLEW\lib\Release\Win32\glew32s.lib;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\projects\VC9\Debug\SOIL.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/Release/game.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/Release/game.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/Release/game.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/Release/game.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -174,7 +171,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++11</CppLanguageStandard>
@@ -187,14 +184,15 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -202,15 +200,14 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;opengl32.lib;C:\Program Files (x86)\glew\lib\libglew32.lib;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\projects\VC9\Debug\SOIL.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;opengl32.lib;C:\Program Files (x86)\GLEW\lib\Release\Win32\glew32s.lib;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\projects\VC9\Debug\SOIL.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/MinSizeRel/game.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/MinSizeRel/game.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/MinSizeRel/game.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/MinSizeRel/game.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -218,7 +215,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++11</CppLanguageStandard>
@@ -235,10 +232,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\gfx\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\mem\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\rms\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\io\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\phy_2d\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -246,25 +243,24 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;opengl32.lib;C:\Program Files (x86)\glew\lib\libglew32.lib;C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\projects\VC9\Debug\SOIL.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib;C:\Program Files (x86)\GLFW\lib\glfw3.lib;opengl32.lib;C:\Program Files (x86)\GLEW\lib\Release\Win32\glew32s.lib;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\Simple OpenGL Image Library\projects\VC9\Debug\SOIL.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/RelWithDebInfo/game.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/RelWithDebInfo/game.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/RelWithDebInfo/game.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/RelWithDebInfo/game.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt</Message>
+    <CustomBuild Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/mateu/Documents/GitHub/Demos/2d_game/source -BC:/Users/mateu/Documents/GitHub/Demos/2d_game/build --check-stamp-file C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Mateus/Documents/GitHub/Demos/2d_game/source -BC:/Users/Mateus/Documents/GitHub/Demos/2d_game/build --check-stamp-file C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -272,12 +268,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeCCompiler.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\cmake\Findglfw3.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\cmake\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeCCompiler.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\cmake\Findglfw3.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\cmake\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/mateu/Documents/GitHub/Demos/2d_game/source -BC:/Users/mateu/Documents/GitHub/Demos/2d_game/build --check-stamp-file C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Mateus/Documents/GitHub/Demos/2d_game/source -BC:/Users/Mateus/Documents/GitHub/Demos/2d_game/build --check-stamp-file C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -285,12 +281,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeCCompiler.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\cmake\Findglfw3.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\cmake\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeCCompiler.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\cmake\Findglfw3.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\cmake\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/mateu/Documents/GitHub/Demos/2d_game/source -BC:/Users/mateu/Documents/GitHub/Demos/2d_game/build --check-stamp-file C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Mateus/Documents/GitHub/Demos/2d_game/source -BC:/Users/Mateus/Documents/GitHub/Demos/2d_game/build --check-stamp-file C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -298,12 +294,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeCCompiler.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\cmake\Findglfw3.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\cmake\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeCCompiler.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\cmake\Findglfw3.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\cmake\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/mateu/Documents/GitHub/Demos/2d_game/source -BC:/Users/mateu/Documents/GitHub/Demos/2d_game/build --check-stamp-file C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Mateus/Documents/GitHub/Demos/2d_game/source -BC:/Users/Mateus/Documents/GitHub/Demos/2d_game/build --check-stamp-file C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -311,34 +307,35 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeCCompiler.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.7.0\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\cmake\Findglfw3.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\cmake\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.7\Modules\CMakeParseArguments.cmake;C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\mateu\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeCCompiler.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\3.11.2\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\cmake\Findglfw3.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\cmake\FindGLEW.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_creator.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_idle_state.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_ducking_state.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_running_state.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_jumping_state.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_climbing_state.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Game_coll_listener.hpp" />
-    <ClInclude Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\game.hpp" />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_creator.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_idle_state.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_ducking_state.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_running_state.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_jumping_state.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Player_climbing_state.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\Game_coll_listener.cpp"  />
-    <ClCompile Include="C:\Users\mateu\Documents\GitHub\Demos\2d_game\source\src\game.cpp"  />
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player.hpp" />
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_creator.hpp" />
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_idle_state.hpp" />
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_ducking_state.hpp" />
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_running_state.hpp" />
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_jumping_state.hpp" />
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_climbing_state.hpp" />
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Game_coll_listener.hpp" />
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\game.hpp" />
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player.cpp" />
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_creator.cpp" />
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_idle_state.cpp" />
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_ducking_state.cpp" />
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_running_state.cpp" />
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_jumping_state.cpp" />
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_climbing_state.cpp" />
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Game_coll_listener.cpp" />
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\game.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:/Users/mateu/Documents/GitHub/Demos/2d_game/build/ZERO_CHECK.vcxproj">
-      <Project>DC23B209-CC17-3345-B02B-D7BFA0F51D60</Project>
+    <ProjectReference Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\ZERO_CHECK.vcxproj">
+      <Project>{719D0A2B-CB4B-361E-A419-584B469933AC}</Project>
+      <Name>ZERO_CHECK</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

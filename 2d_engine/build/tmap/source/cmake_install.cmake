@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/tmap/source
+# Install script for directory: C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/tmap/source
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -25,5 +25,10 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   else()
     set(CMAKE_INSTALL_COMPONENT)
   endif()
+endif()
+
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 

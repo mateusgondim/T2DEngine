@@ -19,5 +19,6 @@ namespace physics_2d {
 	private:
 		World *m_pworld;
 	};
+	extern Physics_manager g_physics_mgr;
 }
 #endif // !_PHYSICS_MANAGER_HPP

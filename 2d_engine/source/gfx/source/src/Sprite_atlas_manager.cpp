@@ -9,6 +9,8 @@
 #include <iostream>
 
 namespace gfx {
+	Sprite_atlas_manager g_sprite_atlas_mgr;
+
 	Sprite_atlas_manager::Sprite_atlas_manager() : rms::Resource_manager(std::string("sprite_atlas"), sizeof(Sprite_atlas), 5, 4) {}
 
 	rms::Resource* Sprite_atlas_manager::create_impl(const char *name) 

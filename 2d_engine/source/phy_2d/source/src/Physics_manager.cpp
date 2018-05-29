@@ -6,6 +6,8 @@
 
 
 namespace physics_2d {
+	Physics_manager g_physics_mgr;
+
 	World * Physics_manager::get_world() { return m_pworld; }
 	
 	void Physics_manager::init(Tile_map *pmap, const math::vec2 & gravity)

@@ -12,7 +12,7 @@ class Input_manager;
 class Player_climbing_state : public gom::Gameplay_state {
 public:
 	Player_climbing_state(const bool climbing_from_top = false, const math::vec2 & climbing_vel = math::vec2(0.0f, 0.05f));
-	Gameplay_state *  handle_input(gom::Actor & actor, Input_manager *pinput, physics_2d::World *pwld) override;
+	Gameplay_state *  handle_input(gom::Actor & actor) override;
 	//void update(Actor & actor) override;
 	size_t get_size() const override;
 	void begin_tile_collision(gom::Actor & actor, const physics_2d::AABB_2d & tile_aabb) override;

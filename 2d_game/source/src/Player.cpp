@@ -14,17 +14,17 @@
 #include "Body_2d.hpp"
 
 
-Player::Player(const game_object_id unique_id, const uint16_t handle_index, sprite_info & s_info, physics_2d::Body_2d *pbody, const gfx::Animator_controller *pcontroller, bool facing_left) :
-	Actor(unique_id, handle_index, s_info, pbody, pcontroller, facing_left), m_life(100)
+Player::Player(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left) :
+	Actor(unique_id, handle_index, sprite_data, pbody_def, pcontroller, facing_left), m_life(100)
 {
 	void *pmem = mem::allocate(sizeof(Player_idle_state));
 	m_pstate = static_cast<gom::Gameplay_state*>(new (pmem) Player_idle_state());
 }
 
 
-void Player::handle_input(Input_manager *pinput, physics_2d::World *pwld)
+void Player::handle_input()
 {
-	gom::Gameplay_state * pstate = get_state()->handle_input(*this, pinput, pwld);
+	gom::Gameplay_state * pstate = get_state()->handle_input(*this);
 	if (pstate) {
 		size_t sz = m_pstate->get_size();
 		m_pstate->~Gameplay_state();

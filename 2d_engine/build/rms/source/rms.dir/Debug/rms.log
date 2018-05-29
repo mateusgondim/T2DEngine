@@ -1,6 +1,6 @@
-﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/rms/source/CMakeLists.txt
-  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\rms\source\CMakeFiles\generate.stamp is up-to-date.
+﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/rms/source/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/rms/source/CMakeFiles/generate.stamp is up-to-date.
   Resource.cpp
   Resource_manager.cpp
   Generating Code...
-  rms.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\rms\source\rms.dir\Debug\rms.lib
+  rms.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\rms\source\rms.dir\Debug\rms.lib

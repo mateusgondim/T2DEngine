@@ -7,6 +7,8 @@
 #include <utility>
 #include <string>
 
+gfx::Shader_manager gfx::g_shader_mgr;
+
 gfx::Shader_manager::Shader_manager() : rms::Resource_manager(std::string("shader"), sizeof(gfx::Shader), 5, 4) {}
 
 rms::Resource *gfx::Shader_manager::create_impl(const char *name) 

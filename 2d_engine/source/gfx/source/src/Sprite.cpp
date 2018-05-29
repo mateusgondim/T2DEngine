@@ -11,7 +11,7 @@
 
 
 
-gfx::Sprite::Sprite(Sprite_atlas *patlas, const std::uint8_t layer, const float pixels_per_unit) : m_patlas(patlas), m_layer(layer) ,m_pixels_per_unit(pixels_per_unit)
+gfx::Sprite::Sprite(const Sprite_atlas *patlas, const std::uint8_t layer, const float pixels_per_unit) : m_patlas(patlas), m_layer(layer) ,m_pixels_per_unit(pixels_per_unit)
 {
 	
 	//TODO: REMEBER TO SCALE THE POSITION DATA ACCORDING TO THE SPRITE_WIDH, SPRITE_HEIGHT AND PIXELS_PER_UNIT!!

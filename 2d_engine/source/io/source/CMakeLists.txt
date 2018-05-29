@@ -7,8 +7,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 #Using c++11
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-SET(INCLUDE_FILES src/Button.hpp src/Input_manager.hpp)
-SET(SOURCE_FILES  src/Button.cpp src/Input_manager.cpp)
+SET(INCLUDE_FILES src/Button.hpp src/input_manager.hpp)
+SET(SOURCE_FILES  src/Button.cpp src/input_manager.cpp)
 
 
 ADD_LIBRARY(io OBJECT ${INCLUDE_FILES} ${SOURCE_FILES})

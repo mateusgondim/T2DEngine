@@ -24,12 +24,12 @@ void Button::update(const int action)
 			break;
 		}
 		else if (action == REPEAT) {
-			m_state == REPEAT;
+			m_state = REPEAT;
 			break;
 		}
 	case REPEAT:
 		if (action == RELEASED) {
-			m_state == RELEASED;
+			m_state = RELEASED;
 			break;
 		}
 		else if (action == REPEAT) {

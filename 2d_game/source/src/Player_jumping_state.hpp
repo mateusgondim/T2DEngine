@@ -12,7 +12,7 @@ class Player_jumping_state : public gom::Gameplay_state {
 public:
 	Player_jumping_state(gom::Actor & actor, float y_acceleration = 0.30f, float x_vel = 5.0f);
 
-	gom::Gameplay_state *  handle_input(gom::Actor & actor, Input_manager *pinput, physics_2d::World *pwld) override;
+	gom::Gameplay_state *  handle_input(gom::Actor & actor) override;
 	size_t get_size() const  override;
 	//void update(Actor & actor) override;
 

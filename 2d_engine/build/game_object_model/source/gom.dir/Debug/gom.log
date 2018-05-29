@@ -1,16 +1,12 @@
-﻿  Building Custom Rule C:/Users/mateu/Documents/GitHub/Demos/2d_engine/source/game_object_model/source/CMakeLists.txt
-  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\CMakeFiles\generate.stamp is up-to-date.
+﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/game_object_model/source/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/game_object_model/source/CMakeFiles/generate.stamp is up-to-date.
   Game_object.cpp
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
   Actor.cpp
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-c:\users\mateu\documents\github\demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.hpp(19): warning C4373: 'gfx::Sprite_atlas_manager::unload': virtual function overrides 'rms::Resource_manager::unload', previous versions of the compiler did not override when parameters only differed by const/volatile qualifiers
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src\Resource_manager.hpp(33): note: see declaration of 'rms::Resource_manager::unload'
+c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
   Creator.cpp
   Game_object_handle.cpp
   Game_object_manager.cpp
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\gfx\source\src\Sprite_atlas_manager.hpp(19): warning C4373: 'gfx::Sprite_atlas_manager::unload': virtual function overrides 'rms::Resource_manager::unload', previous versions of the compiler did not override when parameters only differed by const/volatile qualifiers
-  C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\rms\source\src\Resource_manager.hpp(33): note: see declaration of 'rms::Resource_manager::unload'
-C:\Users\mateu\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object_manager.cpp(28): warning C4267: '=': conversion from 'size_t' to 'uint16_t', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\game_object_model\source\src\game_object_manager.cpp(26): warning C4267: '=': conversion from 'size_t' to 'uint16_t', possible loss of data
   Generating Code...
-  gom.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\Debug\gom.lib
+  gom.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\Debug\gom.lib

@@ -8,8 +8,9 @@
 #include "AABB_2d.hpp"
 #include "Body_2d.hpp"
 #include "World.hpp"
+#include "Physics_manager.hpp"
 #include "Button.hpp"
-#include "Input_manager.hpp"
+#include "input_manager.hpp"
 #include "Rect.hpp"
 
 #include "runtime_memory_allocator.hpp"
@@ -22,13 +23,13 @@ size_t Player_climbing_state::get_size() const
 	return sizeof(Player_climbing_state);
 }
 
-gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor, Input_manager *pinput, physics_2d::World *pwld)
+gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 {
 	math::Rect bounds;
 	
-	bool is_on_ladder = pwld->is_body_on_ladder(actor.get_body_2d_component());
-	bool is_on_ladder_top = pwld->is_on_ladder_top_tile(actor.get_body_2d_component(), bounds);
-	bool is_on_ground = pwld->is_body_2d_on_ground(actor.get_body_2d_component());
+	bool is_on_ladder = physics_2d::g_physics_mgr.get_world()->is_body_on_ladder(actor.get_body_2d_component());
+	bool is_on_ladder_top = physics_2d::g_physics_mgr.get_world()->is_on_ladder_top_tile(actor.get_body_2d_component(), bounds);
+	bool is_on_ground = physics_2d::g_physics_mgr.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
 	//climbing from top animation and small displacement
 	if (m_from_top) {
 		if (m_anim_clip == 0) {
@@ -60,7 +61,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor, In
 				//return new Player_jumping_state(actor, 0.0f);
 			}
 
-			const Button & moving_left_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
+			const Button & moving_left_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_LEFT);
 			if (moving_left_button.m_state == PRESSED) {
 				actor.get_body_2d_component()->stop_movement_y();
 				actor.get_body_2d_component()->apply_gravity(true);
@@ -74,7 +75,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor, In
 				//return new Player_jumping_state(actor, 0.0f);
 			}
 
-			const Button & moving_right_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
+			const Button & moving_right_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_RIGHT);
 			if (moving_right_button.m_state == PRESSED) {
 				actor.get_body_2d_component()->stop_movement_y();
 				actor.get_body_2d_component()->apply_gravity(true);
@@ -91,13 +92,13 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor, In
 
 
 			//std::cout << __FUNCTION__ << ": INSIDE LADDER" << std::endl;
-			const Button & moving_up_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_UP);
+			const Button & moving_up_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_UP);
 			if (moving_up_button.m_state == PRESSED) {
 				actor.get_body_2d_component()->set_velocity(m_climbing_vel);
 				actor.get_anim_controller_component()->get_current_state().resume_anim();
 			}
 			else {
-				const Button & moving_down_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_DOWN);
+				const Button & moving_down_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_DOWN);
 				if (is_on_ground) {
 					actor.get_body_2d_component()->stop_movement_y();
 					actor.get_body_2d_component()->apply_gravity(true);

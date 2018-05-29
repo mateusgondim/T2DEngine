@@ -9,7 +9,7 @@ namespace physics_2d { struct AABB_2d; class World; }
 
 class Player_idle_state : public gom::Gameplay_state {
 public:
-	gom::Gameplay_state *  handle_input(gom::Actor & actor, Input_manager *pinput, physics_2d::World *pwld) override;
+	gom::Gameplay_state *  handle_input(gom::Actor & actor) override;
 	size_t get_size() const override;
 	//void update(Actor & actor) override;
 

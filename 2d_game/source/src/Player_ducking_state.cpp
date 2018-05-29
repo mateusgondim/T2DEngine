@@ -3,15 +3,16 @@
 #include "AABB_2d.hpp"
 #include "Actor.hpp"
 #include "Gameplay_state.hpp"
-#include "Input_manager.hpp"
+#include "input_manager.hpp"
 #include "World.hpp"
+#include "Physics_manager.hpp"
 #include "Animator_controller.hpp"
 
 #include "Player_idle_state.hpp"
 
 #include "runtime_memory_allocator.hpp"
 
-gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor, Input_manager *pinput, physics_2d::World *pwld)
+gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor)
 {
 	string_id is_attacking_param_id = intern_string("is_attacking");
 	string_id player_attacking_state_id = intern_string("player_ducking_attacking");
@@ -23,7 +24,7 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor, Inp
 	}
 
 	//check if released ducking button, if so, return to idle
-	const Button & move_down_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_DOWN);
+	const Button & move_down_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_DOWN);
 	if (move_down_button.m_state == RELEASED) {
 		//ANIMATION
 		actor.get_anim_controller_component()->set_bool("is_ducking", false);
@@ -35,14 +36,14 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor, Inp
 	}
 
 	//check if pressed left or right, if so, change orientation
-	const Button & move_left_button   = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_LEFT);
+	const Button & move_left_button   = io::get_button_from_action(io::GAME_ACTIONS::MOVE_LEFT);
 	if (move_left_button.m_state == PRESSED) {
 		//change orientation
 		actor.set_facing_direction(true);
 		return nullptr;
 	}
 	else { 
-		const Button & move_right_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::MOVE_RIGHT);
+		const Button & move_right_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_RIGHT);
 		if (move_right_button.m_state == PRESSED) {
 			actor.set_facing_direction(false);
 			return nullptr;
@@ -50,7 +51,7 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor, Inp
 	}
 	
 	//check if pressed attack button, if so, attack
-	const Button & attacking_button = pinput->get_button_from_action(Input_manager::GAME_ACTIONS::ATTACK_01);
+	const Button & attacking_button = io::get_button_from_action(io::GAME_ACTIONS::ATTACK_01);
 
 	if (attacking_button.m_state == PRESSED) {
 		//ANIMATION
