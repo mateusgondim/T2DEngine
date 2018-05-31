@@ -61,6 +61,7 @@
 #include "string_id.hpp"
 
 #include <iostream>
+#include <Windows.h>
 
 #include "engine.hpp"
 
@@ -325,11 +326,12 @@ gfx::Animator_controller *get_player_anim_controller()
 int main(int argc, char *argv[])
 {
 	// Load tile map
+	//$(OutDir);
 	Tile_map tile_map;
-	std::cout << "here here" << std::endl;
-	std::string path = argv[1];
+	
+	std::string level = argv[1];
 
-	if (!load_tile_map(path, tile_map)) {
+	if (!load_tile_map("../resources/maps/test_map.tmx", tile_map)) {
 		std::cout << "Tile_map was loaded " << std::endl;
 		print_tile_map(std::cout, tile_map);
 	}
@@ -351,7 +353,7 @@ int main(int argc, char *argv[])
 
 	
 	// CHANGE ABSOLUTE PATH!!!!!!!
-	gfx::Shader   *ptile_map_shader = static_cast<gfx::Shader*>(gfx::g_shader_mgr.load("tile_map_shader", "C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/shaders/vertex.vert", "C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/shaders/fragment.frag"));
+	gfx::Shader   *ptile_map_shader = static_cast<gfx::Shader*>(gfx::g_shader_mgr.load("tile_map_shader", "../source/shaders/vertex.vert", "../source/shaders/fragment.frag"));
 
 	//load the data to render the map into the graphics manager
 	gfx::g_graphics_mgr.set_tile_map_renderer(&tile_map);
@@ -399,7 +401,7 @@ int main(int argc, char *argv[])
 	/////////////////////// set up sprites////////////////////////////////////////////////////
 	//gfx::Shader sprite_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag");
 	//string_id sprite_shader_id = g_systems.m_graphics_manager.load_shader("C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/mateu/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag");
-	gfx::Shader *psprite_shader = static_cast<gfx::Shader*>(gfx::g_shader_mgr.load("sprite_shader", "C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/shaders/sprite.vert", "C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/shaders/sprite.frag"));
+	gfx::Shader *psprite_shader = static_cast<gfx::Shader*>(gfx::g_shader_mgr.load("sprite_shader", "../source/shaders/sprite.vert", "../source/shaders/sprite.frag"));
 
 	psprite_shader->use();
 	gfx::g_graphics_mgr.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
@@ -410,7 +412,7 @@ int main(int argc, char *argv[])
 	std::cout << sizeof(void*) << std::endl;
 
 	// load atlas needed for the player sprite
-	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.load("player", "C:/Users/Mateus/Documents/GitHub/Demos/2d_game/resources/sprite sheets/character.xml",&gfx::g_texture_2d_mgr));
+	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.load("player", "../resources/sprite sheets/character.xml",&gfx::g_texture_2d_mgr));
 	
 	//get the atlas resource id
 	string_id atlas_id = patlas->get_id();

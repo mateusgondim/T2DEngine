@@ -35,7 +35,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/math/source/cmake_install.cmake")
-  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/game_utility/source/cmake_install.cmake")
+  include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/utility/source/cmake_install.cmake")
   include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/mem/source/cmake_install.cmake")
   include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/rms/source/cmake_install.cmake")
   include("C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/io/source/cmake_install.cmake")

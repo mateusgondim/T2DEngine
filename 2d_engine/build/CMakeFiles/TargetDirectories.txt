@@ -3,8 +3,8 @@ C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/ALL_BUILD.dir
 C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/ZERO_CHECK.dir
 C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/math/source/CMakeFiles/math.dir
 C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/math/source/CMakeFiles/ALL_BUILD.dir
-C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeFiles/g_utility.dir
-C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeFiles/ALL_BUILD.dir
+C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/utility/source/CMakeFiles/utility.dir
+C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/utility/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/mem/source/CMakeFiles/mem.dir
 C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/mem/source/CMakeFiles/ALL_BUILD.dir
 C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/rms/source/CMakeFiles/rms.dir

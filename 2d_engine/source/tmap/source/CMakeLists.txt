@@ -11,5 +11,5 @@ SET(INCLUDE_FILES src/Tile.hpp src/Tileset.hpp src/Tile_map.hpp src/tmx_parser.h
 SET(SOURCE_FILES  src/Tileset.cpp src/Tile_map.cpp src/tmx_parser.cpp)
 
 ADD_LIBRARY(tmap OBJECT ${INCLUDE_FILES} ${SOURCE_FILES})
-INCLUDE_DIRECTORIES(tmap ${MATH_INCLUDE_DIR}  ${G_UTILITY_INCLUDE_DIR})
+INCLUDE_DIRECTORIES(tmap ${MATH_INCLUDE_DIR}  ${UTILITY_INCLUDE_DIR})
 

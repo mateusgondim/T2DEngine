@@ -168,10 +168,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{64CDEACD-51B3-3790-AC84-189D9EFABBFB}</Project>
       <Name>engine</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.vcxproj">
-      <Project>{B967512C-0FEE-3FBA-9392-2E5CBDD18E53}</Project>
-      <Name>g_utility</Name>
-    </ProjectReference>
     <ProjectReference Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.vcxproj">
       <Project>{8D509BE5-E589-362B-83EC-7971788231C4}</Project>
       <Name>gfx</Name>
@@ -203,6 +199,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.vcxproj">
       <Project>{D63BCBD1-BE31-342B-8449-ADCD745D5AB3}</Project>
       <Name>tmap</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\utility\source\utility.vcxproj">
+      <Project>{47C2E216-CF26-3BDB-A102-D2AECB03BB2B}</Project>
+      <Name>utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

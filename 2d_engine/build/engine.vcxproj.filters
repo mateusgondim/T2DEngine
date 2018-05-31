@@ -86,13 +86,16 @@
     <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\io\source\io.dir\$(Configuration)\input_manager.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\Timer.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\utility\source\utility.dir\$(Configuration)\Timer.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\crc32.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\utility\source\utility.dir\$(Configuration)\crc32.obj">
       <Filter>Object Libraries</Filter>
     </Object>
-    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_utility\source\g_utility.dir\$(Configuration)\string_id.obj">
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\utility\source\utility.dir\$(Configuration)\string_id.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\utility\source\utility.dir\$(Configuration)\Path.obj">
       <Filter>Object Libraries</Filter>
     </Object>
     <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\rms\source\rms.dir\$(Configuration)\Resource.obj">

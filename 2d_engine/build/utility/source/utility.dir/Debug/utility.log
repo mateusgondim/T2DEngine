@@ -1,0 +1,5 @@
+﻿  Path.cpp
+c:\users\mateus\documents\github\demos\2d_engine\source\utility\source\src\path.cpp(100): error C2382: 'Path::Path': redefinition; different exception specifications
+  c:\users\mateus\documents\github\demos\2d_engine\source\utility\source\src\path.hpp(19): note: see declaration of 'Path::Path'
+c:\users\mateus\documents\github\demos\2d_engine\source\utility\source\src\path.cpp(135): error C2382: 'Path::operator =': redefinition; different exception specifications
+  c:\users\mateus\documents\github\demos\2d_engine\source\utility\source\src\path.hpp(22): note: see declaration of 'Path::operator ='

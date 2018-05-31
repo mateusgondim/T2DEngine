@@ -1,7 +1,7 @@
 ﻿  Checking Build System
   CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/generate.stamp is up-to-date.
   CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/math/source/CMakeFiles/generate.stamp is up-to-date.
-  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/game_utility/source/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/utility/source/CMakeFiles/generate.stamp is up-to-date.
   CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/mem/source/CMakeFiles/generate.stamp is up-to-date.
   CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/rms/source/CMakeFiles/generate.stamp is up-to-date.
   CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/io/source/CMakeFiles/generate.stamp is up-to-date.

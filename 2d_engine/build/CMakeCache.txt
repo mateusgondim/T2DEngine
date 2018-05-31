@@ -218,6 +218,9 @@ SOIL_INCLUDE_DIR:PATH=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/Si
 //Path to a file.
 TMAP_INCLUDE_DIR:PATH=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/tmap/source/src
 
+//Path to a file.
+UTILITY_INCLUDE_DIR:PATH=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/utility/source/src
+
 //Value Computed by CMake
 engine_BINARY_DIR:STATIC=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build
 
@@ -280,6 +283,12 @@ tmap_BINARY_DIR:STATIC=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/tm
 
 //Value Computed by CMake
 tmap_SOURCE_DIR:STATIC=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/tmap/source
+
+//Value Computed by CMake
+utility_BINARY_DIR:STATIC=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/utility/source
+
+//Value Computed by CMake
+utility_SOURCE_DIR:STATIC=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/utility/source
 
 
 ########################

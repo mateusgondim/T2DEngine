@@ -63,7 +63,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\tmap;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\tmap;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -73,7 +73,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\tmap;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\tmap;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -83,7 +83,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\tmap;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\tmap;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -93,7 +93,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\tmap;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\tmap\source\tmap;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\math\source\src;C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\utility\source\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>

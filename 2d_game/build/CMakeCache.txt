@@ -227,6 +227,9 @@ SOIL_LIBRARY:FILEPATH=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/Si
 //Path to a file.
 TMAP_INCLUDE_DIR:PATH=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/tmap/source/src
 
+//Path to a file.
+UTILITY_INCLUDE_DIR:PATH=C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/utility/source/src
+
 //Value Computed by CMake
 game_BINARY_DIR:STATIC=C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build
 
