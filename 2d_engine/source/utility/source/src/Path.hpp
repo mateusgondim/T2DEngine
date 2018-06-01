@@ -10,6 +10,7 @@
 
 class Path {
 friend std::ostream & operator<<(std::ostream & os, const Path & path);
+friend Path operator+(const char *lhs, const Path & rhs);
 public:
 	enum Separator {FORWARD_SLASH, BACKSLASH, INVALID_SEPARATOR};
 		  Path(const char *str, const Separator separator, size_t num_chars = 0);
@@ -23,12 +24,18 @@ public:
 
 		  ~Path();
 
+		  Path & operator+=(const Path & path);
+		  Path & operator+=(const char *str);
+
 	      Path & convert(const Separator separator);
 	void  get_filename(char *filename) const;
 	void  get_file_extension(char *file_extesion) const;
 	void  get_directory(char *directory) const;
+	const char *c_str() const { return m_str; }
 
-	size_t	get_length() const { return m_strlen - 1; }
+	size_t	get_length()   const { return m_strlen - 1; }
+	size_t  get_capacity() const { return m_capacity; }
+	void    reserve(const size_t n);
 private:
 	bool is_separator(const char c) const;
 	char get_separator() const;
@@ -37,7 +44,12 @@ private:
 	Separator m_separator;
 	char	  *m_str;
 	size_t	  m_strlen;
+	size_t    m_capacity; 
 };
+
+Path operator+(const Path & lhs, const Path & rhs);
+Path operator+(const Path & lhs, const char *rhs);
+Path operator+(const char *lhs, const Path & rhs);
 
 std::ostream & operator<<(std::ostream & os, const Path & path);
 

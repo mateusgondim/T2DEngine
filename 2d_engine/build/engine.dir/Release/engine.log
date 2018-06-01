@@ -1,0 +1,4 @@
+﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/generate.stamp is up-to-date.
+  engine.cpp
+  engine.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\Release\engine.lib

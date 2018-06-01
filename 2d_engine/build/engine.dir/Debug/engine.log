@@ -1,1 +1,4 @@
-﻿LINK : fatal error LNK1181: cannot open input file 'C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\utility\source\utility.dir\Debug\Path.obj'
+﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/CMakeFiles/generate.stamp is up-to-date.
+  engine.cpp
+  engine.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\Debug\engine.lib

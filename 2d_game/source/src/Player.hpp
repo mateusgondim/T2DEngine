@@ -1,8 +1,5 @@
 #ifndef _PLAYER_HPP
 #define _PLAYER_HPP
-
-#define  PLAYER_ATLAS "C:/Users/mateu/Documents/GitHub/Demos/2d_game/resources/sprite sheets/character.xml"
-
 #include "Actor.hpp"
 
 namespace math { struct vec2; struct vec3; class mat4; }

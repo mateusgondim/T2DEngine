@@ -45,12 +45,15 @@ FIND_PATH(GOM_INCLUDE_DIR NAMES game_object.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/
 
 #ENGINE
 FIND_PATH(ENGINE_INCLUDE_DIR NAMES engine.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/../../2d_engine/source/src)
-FIND_LIBRARY(ENGINE_LIBRARY NAMES Engine   HINTS ${CMAKE_CURRENT_LIST_DIR}/../../2d_engine/Build/Debug ${CMAKE_CURRENT_LIST_DIR}/../../2d_engine/Build/Release)
+FIND_LIBRARY(ENGINE_LIBRARY NAMES Engine   HINTS ${CMAKE_CURRENT_LIST_DIR}/../../2d_engine/Build/Debug)
 
 SET(INCLUDE_FILES src/Player.hpp src/Player_creator.hpp src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp src/Player_jumping_state.hpp src/Player_climbing_state.hpp src/Game_coll_listener.hpp src/game.hpp)
 SET(SOURCE_FILES src/Player.cpp  src/Player_creator.cpp src/Player_idle_state.cpp  src/Player_ducking_state.cpp src/Player_running_state.cpp src/Player_jumping_state.cpp src/Player_climbing_state.cpp src/Game_coll_listener.cpp src/game.cpp)
 
-ADD_EXECUTABLE(game ${INCLUDE_FILES} ${SOURCE_FILES})
+ADD_EXECUTABLE(game ${INCLUDE_FILES} ${SOURCE_FILES} )
+
+#Copy the resources folder to the executable folder
+add_custom_command(TARGET game POST_BUILD  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/../resources $<TARGET_FILE_DIR:game>/resources)
 
 TARGET_LINK_LIBRARIES(game ${ENGINE_LIBRARY} ${GLFW3_LIBRARY} ${OPENGL_gl_LIBRARY} ${GLEW_LIBRARY} ${SOIL_LIBRARY} )
 TARGET_INCLUDE_DIRECTORIES(game PUBLIC ${GFX_INCLUDE_DIR} ${MATH_INCLUDE_DIR} ${MEM_INCLUDE_DIR} ${RMS_INCLUDE_DIR} ${IO_INCLUDE_DIR} ${UTILITY_INCLUDE_DIR} ${TMAP_INCLUDE_DIR} ${PHY_2D_INCLUDE_DIR} ${GOM_INCLUDE_DIR} ${ENGINE_INCLUDE_DIR})

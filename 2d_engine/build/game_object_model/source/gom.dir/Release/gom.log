@@ -1,0 +1,12 @@
+﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/game_object_model/source/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/game_object_model/source/CMakeFiles/generate.stamp is up-to-date.
+  Game_object.cpp
+c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+  Actor.cpp
+c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+  Creator.cpp
+  Game_object_handle.cpp
+  Game_object_manager.cpp
+c:\users\mateus\documents\github\demos\2d_engine\source\game_object_model\source\src\game_object_manager.cpp(26): warning C4267: '=': conversion from 'size_t' to 'uint16_t', possible loss of data
+  Generating Code...
+  gom.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\Release\gom.lib

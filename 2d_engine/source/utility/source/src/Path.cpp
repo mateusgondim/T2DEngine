@@ -14,9 +14,16 @@ Path::Path(const char *str, const Separator separator, size_t num_chars) : m_sep
 		++m_strlen;
 	}
 
+	//double the amout of characters for the size of the buffer
+	m_capacity = (m_strlen - 1) * 2 + 1;
+
 	// allocate space for the path
-	m_str = (char*)std::malloc(m_strlen);
+	m_str = (char*)std::malloc(m_capacity);
 	
+	if (m_str == nullptr) {
+		return;
+	}
+
 	char *pdest = m_str;
 	char sep = get_separator();
 
@@ -52,6 +59,9 @@ Path::Path(const char *str): m_str(nullptr), m_strlen(0)
 	}
 	++m_strlen;
 
+	//double the amout of characters for the size of the buffer
+	m_capacity = (m_strlen - 1) * 2 + 1;
+
 	//get separator
 	porigin = str;
 	while (*porigin++ != '\0') {
@@ -63,7 +73,7 @@ Path::Path(const char *str): m_str(nullptr), m_strlen(0)
 
 	if (m_separator != INVALID_SEPARATOR) {
 		//allocate str
-		m_str = (char*)std::malloc(m_strlen);
+		m_str = (char*)std::malloc(m_capacity);
 
 		porigin = str;
 		char *pdest = m_str;
@@ -84,10 +94,10 @@ Path::Path(const char *str): m_str(nullptr), m_strlen(0)
 
 }
 
-Path::Path(const Path & path) : m_separator(path.m_separator), m_strlen(path.m_strlen)
+Path::Path(const Path & path) : m_separator(path.m_separator), m_strlen(path.m_strlen), m_capacity(path.m_capacity)
 {
 	//allocate space for the new path string
-	m_str = (char*)malloc(m_strlen);
+	m_str = (char*)malloc(m_capacity);
 	
 	//copy the string
 	const char *porigin = path.m_str;
@@ -97,9 +107,10 @@ Path::Path(const Path & path) : m_separator(path.m_separator), m_strlen(path.m_s
 	}
 }
 
-Path::Path(Path && path) : m_separator(path.m_separator), m_strlen(path.m_strlen), m_str(path.m_str) 
+Path::Path(Path && path) noexcept : m_separator(path.m_separator), m_strlen(path.m_strlen), m_capacity(path.m_capacity), m_str(path.m_str) 
 {
 	path.m_strlen = 0;
+	path.m_capacity = 0;
 	path.m_str = nullptr;
 }
 
@@ -108,15 +119,17 @@ Path::~Path()
 	free(m_str);
 	m_str	 = nullptr;
 	m_strlen = 0;
+	m_capacity = 0;
 }
 
 Path & Path::operator=(const Path & rhs) 
 {
 	if (m_str != rhs.m_str) { //accounts for self assignment
-		// check if size is enough
-		if (m_strlen < rhs.m_strlen) {
+		// check if the capacity is big enough to hold the characters in rhs
+		if (m_capacity < rhs.m_strlen) {
 			free(m_str);
-			m_str = (char*)std::malloc(rhs.m_strlen);
+			m_str = (char*)std::malloc(rhs.m_capacity);
+			m_capacity = rhs.m_capacity;
 		}
 
 		m_separator = rhs.m_separator;
@@ -132,7 +145,7 @@ Path & Path::operator=(const Path & rhs)
 	return *this;
 }
 
-Path & Path::Path::operator=(Path && rhs) 
+Path & Path::Path::operator=(Path && rhs) noexcept
 {
 	if (m_str != rhs.m_str) { //accounts for self assignment
 		//deallocate resources
@@ -141,13 +154,165 @@ Path & Path::Path::operator=(Path && rhs)
 		//move resources from rhs to this object
 		m_separator =  rhs.m_separator;
 		m_strlen    =  rhs.m_strlen;
+		m_capacity  =  rhs.m_capacity;
 		m_str		=  rhs.m_str;
 
-		rhs.m_strlen = 0;
-		rhs.m_str = nullptr;
+		rhs.m_strlen    = 0;
+		rhs.m_capacity  = 0;
+		rhs.m_str       = nullptr;
 	}
 
 	return *this;
+}
+
+Path & Path::operator+=(const Path & path) 
+{
+	size_t expanded_sz = (m_strlen + path.m_strlen) - 1; //accounts for two '\0' characters
+	
+	char *pdest;
+	const char *porigin;
+
+	//check if this Path object has a capacity big enough to hold  both character strings
+	if (expanded_sz > m_capacity) { 
+		//rellocate the characters
+		char *pbuffer = (char*)malloc(expanded_sz);
+		m_capacity = expanded_sz;
+
+		//copy this m_str
+		pdest = pbuffer;
+		porigin = m_str;
+		while ((*pdest++ = *porigin++) != '\0') {
+			;
+		}
+		//free the old m_str buffer and assign the new one to it 
+		free(m_str);
+		m_str = pbuffer;
+	}
+
+	//copy the second string
+	pdest = m_str + (m_strlen - 1);
+	porigin = path.m_str;
+	char sepchar = get_separator();
+	while (*porigin != '\0') {
+		if (is_separator(*porigin)) {
+			*pdest = sepchar;
+		}
+		else {
+			*pdest = *porigin;
+		}
+		++porigin;
+		++pdest;
+	}
+	*pdest = '\0';
+
+	m_strlen += (path.m_strlen - 1);
+
+	return *this;
+}
+
+Path & Path::operator+=(const char *str) 
+{
+	//check for nullptr
+	if (str == nullptr) {
+		return *this;
+	}
+
+	//calculate the size of the string
+	size_t sz = 0;
+	for (const char *straux = str; *straux != '\0'; ++straux) {
+		++sz;
+	}
+
+	size_t expanded_sz = m_strlen + sz; 
+	char *pdest;
+	const char *porigin;
+	
+	if (expanded_sz > m_capacity) {
+		//rellocate the character string
+		char *pbuffer = (char*)malloc(expanded_sz);
+
+		m_capacity = expanded_sz;
+
+		//copy this m_str
+		pdest = pbuffer;
+		porigin = m_str;
+		while ((*pdest++ = *porigin++) != '\0') {
+			;
+		}
+		//free the old m_str buffer and assign the new one to it 
+		free(m_str);
+		m_str = pbuffer;
+	}
+	
+	//copy the second string
+	pdest = m_str + (m_strlen - 1);
+	porigin = str;
+	char sepchar = get_separator();
+	while (*porigin != '\0') {
+		if (is_separator(*porigin)) {
+			*pdest = sepchar;
+		}
+		else {
+			*pdest = *porigin;
+		}
+		++porigin;
+		++pdest;
+	}
+	*pdest = '\0';
+	m_strlen += sz;
+
+	return *this;
+}
+
+Path operator+(const Path & lhs, const Path & rhs) 
+{
+	Path r = lhs;
+	r += rhs;
+
+	return r;
+}
+
+Path operator+(const Path & lhs, const char *rhs) 
+{
+	Path r = lhs;
+	r += rhs;
+
+	return r;
+}
+
+Path operator+(const char *lhs, const Path & rhs) 
+{
+	//check for nullptr
+	if (lhs == nullptr) {
+		return rhs;
+	}
+
+	//calculate the size of lhs
+	size_t len = 0;
+	for (const char *straux = lhs; *straux != '\0'; ++straux) {
+		len++;
+	}
+	len++;
+
+	//get the separator character from lhs
+	Path::Separator separator = Path::INVALID_SEPARATOR;
+	const char *straux = lhs;
+	while (*straux++ != '\0') {
+		if (rhs.is_separator(*straux)) {
+			separator = rhs.get_separator(*straux);
+			break;
+		}
+	}
+
+	//badly formed path string
+	if (separator == Path::INVALID_SEPARATOR) {
+		return rhs;
+	}
+
+	Path r(lhs, separator, len);
+	r += rhs;
+
+	return r;
 }
 
 Path & Path::convert(const Separator separator) 
@@ -226,6 +391,31 @@ void Path::get_directory(char *directory) const
 			;
 		}
 	}
+}
+
+void Path::reserve(const size_t n) 
+{
+	if ((m_str == nullptr) || (n < m_capacity) ) {
+		return;
+	}
+
+	char *pbuffer = (char*)malloc(n);
+	if (pbuffer == nullptr) {
+		return;
+	}
+
+	m_capacity = n;
+
+	//copy the characters
+	char *pdest = pbuffer;
+	const char *porigin = m_str;
+	while ((*pdest++ = *porigin++) != '\0') {
+		;
+	}
+
+	//free the old buffer
+	free(m_str);
+	m_str = pbuffer;
 }
 
 bool Path::is_separator(const char c)  const
