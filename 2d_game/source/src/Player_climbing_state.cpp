@@ -37,7 +37,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 			actor.get_anim_controller_component()->set_bool("finish_climbing", true);
 			m_anim_clip = 1;
 		}
-		if (bounds.y > actor.get_body_2d_component()->get_aabb_2d().p_max.y) {
+		if (bounds.y > actor.get_body_2d_component()->get_aabb().p_max.y) {
 			actor.get_body_2d_component()->stop_movement_y();
 			//actor.get_anim_controller_component()->switch_curr_state_anim_clip(0);
 			actor.get_anim_controller_component()->set_bool("finish_climbing", false);
@@ -121,7 +121,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 
 			if (is_on_ladder_top) {//REACHED THE TOP
 				//std::cout << "-----------------reached top of ladder---------- " << std::endl;
-				if (actor.get_body_2d_component()->get_velocity().y > 0.0f && (bounds.y <= actor.get_body_2d_component()->get_aabb_2d().p_max.y)) {
+				if (actor.get_body_2d_component()->get_velocity().y > 0.0f && (bounds.y <= actor.get_body_2d_component()->get_aabb().p_max.y)) {
 					m_reached_top = true;
 					actor.get_body_2d_component()->set_velocity(math::vec2(0.0f, m_climbing_vel.y));
 					//start climbing off animation
@@ -136,13 +136,11 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 			return nullptr;
 		}
 		else { //climbing off from the top, one tile
-			float center_y = (actor.get_body_2d_component()->get_aabb_2d().p_max.y + actor.get_body_2d_component()->get_aabb_2d().p_min.y) / 2.0f;
+			float center_y = (actor.get_body_2d_component()->get_aabb().p_max.y + actor.get_body_2d_component()->get_aabb().p_min.y) / 2.0f;
 			if (center_y > bounds.y) {
-				float y_displacement = bounds.y - actor.get_body_2d_component()->get_aabb_2d().p_min.y;
-
-				actor.get_body_2d_component()->get_position().y += y_displacement;		// + FLOAT_ROUNDOFF;
-				actor.get_body_2d_component()->get_aabb_2d().p_max.y += y_displacement;	// +FLOAT_ROUNDOFF;
-				actor.get_body_2d_component()->get_aabb_2d().p_min.y += y_displacement;	// +FLOAT_ROUNDOFF;
+				float y_displacement = bounds.y - actor.get_body_2d_component()->get_aabb().p_min.y;
+				math::vec2  translation(0.0f, y_displacement);
+				actor.get_body_2d_component()->translate_by(translation);
 
 				actor.get_body_2d_component()->stop_movement_y();
 				actor.get_body_2d_component()->apply_gravity(true);

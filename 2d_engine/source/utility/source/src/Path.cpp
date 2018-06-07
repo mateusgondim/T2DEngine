@@ -64,16 +64,24 @@ Path::Path(const char *str): m_str(nullptr), m_strlen(0)
 
 	//get separator
 	porigin = str;
-	while (*porigin++ != '\0') {
+	while (*porigin != '\0') {
 		if (is_separator(*porigin)) {
 			m_separator = get_separator(*porigin);
 			break;
 		}
+		++porigin;
 	}
 
 	if (m_separator != INVALID_SEPARATOR) {
 		//allocate str
 		m_str = (char*)std::malloc(m_capacity);
+		
+		if (m_str == nullptr) { // unable to allocate
+			m_capacity = 0;
+			m_strlen   = 0;
+			std::cerr << __FUNCTION__ << ":Unable to allocate memory" << std::endl;
+			return;
+		}
 
 		porigin = str;
 		char *pdest = m_str;
@@ -98,12 +106,16 @@ Path::Path(const Path & path) : m_separator(path.m_separator), m_strlen(path.m_s
 {
 	//allocate space for the new path string
 	m_str = (char*)malloc(m_capacity);
-	
-	//copy the string
-	const char *porigin = path.m_str;
-	char *pdest = m_str;
-	while ( (*pdest++ = *porigin++) != '\0') {
-		;
+	if (m_str != nullptr) {
+		//copy the string
+		const char *porigin = path.m_str;
+		char *pdest = m_str;
+		while ((*pdest++ = *porigin++) != '\0') {
+			;
+		}
+	}
+	else {
+		std::cerr << __FUNCTION__ << ": Unable to allocate memory" << std::endl;
 	}
 }
 
@@ -127,9 +139,16 @@ Path & Path::operator=(const Path & rhs)
 	if (m_str != rhs.m_str) { //accounts for self assignment
 		// check if the capacity is big enough to hold the characters in rhs
 		if (m_capacity < rhs.m_strlen) {
-			free(m_str);
-			m_str = (char*)std::malloc(rhs.m_capacity);
-			m_capacity = rhs.m_capacity;
+			char *pbuffer = (char*)std::malloc(rhs.m_capacity);
+			if (pbuffer != nullptr) {
+				free(m_str);
+				m_str = pbuffer;
+				m_capacity = rhs.m_capacity;
+			}
+			else {
+				std::cerr << __FUNCTION__ << ": Unable to allocate memory" << std::endl;
+				return *this;
+			}
 		}
 
 		m_separator = rhs.m_separator;
@@ -175,18 +194,25 @@ Path & Path::operator+=(const Path & path)
 	//check if this Path object has a capacity big enough to hold  both character strings
 	if (expanded_sz > m_capacity) { 
 		//rellocate the characters
+		expanded_sz = (expanded_sz - 1) * 2 + 1;
 		char *pbuffer = (char*)malloc(expanded_sz);
-		m_capacity = expanded_sz;
+		if (pbuffer != nullptr) {
+			m_capacity = expanded_sz;
 
-		//copy this m_str
-		pdest = pbuffer;
-		porigin = m_str;
-		while ((*pdest++ = *porigin++) != '\0') {
-			;
+			//copy this m_str
+			pdest = pbuffer;
+			porigin = m_str;
+			while ((*pdest++ = *porigin++) != '\0') {
+				;
+			}
+			//free the old m_str buffer and assign the new one to it 
+			free(m_str);
+			m_str = pbuffer;
 		}
-		//free the old m_str buffer and assign the new one to it 
-		free(m_str);
-		m_str = pbuffer;
+		else {
+			std::cerr << __FUNCTION__ << ": Unable to allocate memory" << std::endl;
+			return *this;
+		}
 	}
 
 	//copy the second string
@@ -229,19 +255,24 @@ Path & Path::operator+=(const char *str)
 	
 	if (expanded_sz > m_capacity) {
 		//rellocate the character string
+		expanded_sz = (expanded_sz - 1) * 2 + 1;
 		char *pbuffer = (char*)malloc(expanded_sz);
+		if (pbuffer != nullptr) {
+			m_capacity = expanded_sz;
 
-		m_capacity = expanded_sz;
-
-		//copy this m_str
-		pdest = pbuffer;
-		porigin = m_str;
-		while ((*pdest++ = *porigin++) != '\0') {
-			;
+			//copy this m_str
+			pdest = pbuffer;
+			porigin = m_str;
+			while ((*pdest++ = *porigin++) != '\0') {
+				;
+			}
+			//free the old m_str buffer and assign the new one to it 
+			free(m_str);
+			m_str = pbuffer;
 		}
-		//free the old m_str buffer and assign the new one to it 
-		free(m_str);
-		m_str = pbuffer;
+		else {
+			std::cerr << __FUNCTION__ << ": Unable to allocate memory" << std::endl;
+		}
 	}
 	
 	//copy the second string
@@ -297,11 +328,12 @@ Path operator+(const char *lhs, const Path & rhs)
 	//get the separator character from lhs
 	Path::Separator separator = Path::INVALID_SEPARATOR;
 	const char *straux = lhs;
-	while (*straux++ != '\0') {
+	while (*straux != '\0') {
 		if (rhs.is_separator(*straux)) {
 			separator = rhs.get_separator(*straux);
 			break;
 		}
+		++straux;
 	}
 
 	//badly formed path string

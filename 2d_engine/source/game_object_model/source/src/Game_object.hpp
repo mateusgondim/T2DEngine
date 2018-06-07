@@ -29,6 +29,8 @@ namespace gom {
 
 		game_object_id        get_unique_id() const;
 		uint16_t			  get_handle_index() const;
+		bool				  is_active() const { return m_is_active; }
+		void				  set_active(const bool flag);
 		math::Transform     & get_transform_component();
 		gfx::Sprite          *get_sprite_component();
 		gfx::Animator_controller  *get_anim_controller_component();
@@ -43,6 +45,7 @@ namespace gom {
 	private:
 		game_object_id	m_unique_id;
 		uint16_t		m_handle_index;
+		bool			m_is_active;
 
 		//TODO: PERHAPS ADD A MAP COLLISION FUNCTION!!
 	};

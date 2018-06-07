@@ -3,6 +3,8 @@
 #include "Creator.hpp"
 #include "Player.hpp"
 
+#include "vec3.hpp"
+
 #include "Body_2d_def.hpp"
 #include "AABB_2d.hpp"
 #include "Physics_manager.hpp"
@@ -19,7 +21,9 @@ Player_creator::Player_creator(const string_id atlas_id, const string_id anim_co
 	gom::Creator(sizeof(Player)), m_atlas_res_id(atlas_id), m_anim_controller_id(anim_controller_id)
 {
 	//set the body_def to be able to create body_2d objects for the game object
-	m_pbody_def = static_cast<physics_2d::Body_2d_def*>( mem::allocate(sizeof(physics_2d::Body_2d_def)) );
+	void  *pmem = mem::allocate(sizeof(physics_2d::Body_2d_def));
+	m_pbody_def = static_cast<physics_2d::Body_2d_def*>( new (pmem) physics_2d::Body_2d_def());
+
 	
 	math::vec2 pos(10.0f, 12.0f);
 
@@ -30,14 +34,14 @@ Player_creator::Player_creator(const string_id atlas_id, const string_id anim_co
 	m_pbody_def->m_type = physics_2d::Body_2d::Entity_types::DYNAMIC;
 	m_pbody_def->m_mass = 1.0f;
 	m_pbody_def->m_position = pos;
-	m_pbody_def->m_velocity = math::vec2(1.5f, 1.0f);
+	m_pbody_def->m_velocity = math::vec2(0.0f, 0.0f);
 	m_pbody_def->m_vel_threshold = math::vec2(6.0f, 12.0f);
 	m_pbody_def->m_aabb = p_aabb;
 
 	create_anim_controller();
 }
 
-gom::Game_object *Player_creator::create(void *pmem, const uint32_t unique_id, const uint16_t handle_index)
+gom::Game_object *Player_creator::create(void *pmem, const uint32_t unique_id, const uint16_t handle_index, const math::vec3 & wld_pos)
 {
 	//get the sprite_atlas resource 
 	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
@@ -50,7 +54,6 @@ gom::Game_object *Player_creator::create(void *pmem, const uint32_t unique_id, c
 Player_creator::~Player_creator() 
 {
 	mem::free(static_cast<void*>(m_panim_controller), sizeof(gfx::Animator_controller));
-	mem::free(static_cast<void*>(m_pbody_def), sizeof(physics_2d::Body_2d_def));
 }
 
 void Player_creator::create_anim_controller() 

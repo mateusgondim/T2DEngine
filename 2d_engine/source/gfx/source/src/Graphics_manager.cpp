@@ -496,17 +496,20 @@ void gfx::Graphics_manager::render()
 
 		//MAYBE CHECK IF THE THERE IS A BATCH ALLOCATED, I.E, IF m_batches[0] != nullptr
 
-		// add the first sprite to the batch
-		pbatch->add(psprite);
-
+		// add the first sprite to the batch if active
+		if (psprite->is_active()) {
+			pbatch->add(psprite);
+		}
 		// for each sprite on the vector
 		std::vector<Sprite*>::iterator it = m_sprites.begin();
 		++it;
 		for (; it != m_sprites.end(); ++it) {
 			//check if the current sprite belongs to the batch
 			if (  (layer == (*it)->get_layer()) && (a_id == (*it)->get_atlas()->get_id()) ) {
-				// same layer, same atlas_id, add it to the current batch
-				pbatch->add(*it); 
+				// same layer, same atlas_id, add it to the current batch if active
+				if ((*it)->is_active()) {
+					pbatch->add(*it);
+				}
 			}
 			else { 
 				 /* This sprite belongs to another batch. Because the vector is sorted, 
@@ -531,7 +534,10 @@ void gfx::Graphics_manager::render()
 				}
 
 				// start a new batch
-				pbatch->add(*it);
+				//add if active
+				if ((*it)->is_active()) {
+					pbatch->add(*it);
+				}
 			}
 		}
 

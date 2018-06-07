@@ -7,6 +7,7 @@
 #include "Physics_manager.hpp"
 #include "Actor.hpp"
 #include "Gameplay_state.hpp"
+#include "Game_object_handle.hpp"
 
 #include "Player_ducking_state.hpp"
 #include "Player_running_state.hpp"
@@ -20,6 +21,9 @@
 #include "World.hpp"
 #include "AABB_2d.hpp"
 
+#include "Projectile_manager.hpp"
+#include "Game_object_manager.hpp"
+
 #include "runtime_memory_allocator.hpp"
 
 #include <iostream>
@@ -32,6 +36,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 	//auto stream = Input_handler::instance().get_input();
 	string_id is_attacking_param_id = intern_string("is_attacking");
 	string_id player_attacking_state_id = intern_string("player_attacking");
+	string_id knife_obj_id				= intern_string("knife_obj");
 
 	bool on_ground = physics_2d::g_physics_mgr.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
 	//auto iter = std::find_if(stream.begin(), stream.end(),
@@ -128,6 +133,9 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 	const Button & attacking_button = io::get_button_from_action(io::GAME_ACTIONS::ATTACK_01);
 	if ( (attacking_button.m_state == PRESSED) ) {
 		actor.get_anim_controller_component()->set_trigger(is_attacking_param_id);
+		//create projectile
+		gom::Game_object_handle handle = gom::g_game_object_mgr.instantiate(knife_obj_id, actor.get_body_2d_component()->get_position());
+		//gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position());
 	}
 
 	return nullptr;
@@ -144,16 +152,16 @@ void Player_idle_state::begin_tile_collision(gom::Actor & actor, const physics_2
 
 	physics_2d::Body_2d  *pbody = actor.get_body_2d_component();
 
-	if (pbody->get_aabb_2d().p_min.y >= tile_aabb.p_max.y && (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x) ) {
+	if (pbody->get_aabb().p_min.y >= tile_aabb.p_max.y && (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb().p_min.x <= tile_aabb.p_max.x) ) {
 		std::cout << "Floor tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_max.y <= tile_aabb.p_min.y && (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x)) {
+	else if (pbody->get_aabb().p_max.y <= tile_aabb.p_min.y && (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb().p_min.x <= tile_aabb.p_max.x)) {
 		std::cout << "Ceiling tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && (pbody->get_aabb_2d().p_min.y < tile_aabb.p_max.y && pbody->get_aabb_2d().p_max.y > tile_aabb.p_min.y)) {
+	else if (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && (pbody->get_aabb().p_min.y < tile_aabb.p_max.y && pbody->get_aabb().p_max.y > tile_aabb.p_min.y)) {
 		std::cout << "Right wall tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x && (pbody->get_aabb_2d().p_min.y < tile_aabb.p_max.y && pbody->get_aabb_2d().p_max.y > tile_aabb.p_min.y)) {
+	else if (pbody->get_aabb().p_min.x <= tile_aabb.p_max.x && (pbody->get_aabb().p_min.y < tile_aabb.p_max.y && pbody->get_aabb().p_max.y > tile_aabb.p_min.y)) {
 		std::cout << "Left wall tile " << std::endl;
 	}
 	else {
@@ -167,16 +175,16 @@ void Player_idle_state::end_tile_collision(gom::Actor & actor, const physics_2d:
 
 	physics_2d::Body_2d  *pbody = actor.get_body_2d_component();
 
-	if (pbody->get_aabb_2d().p_min.y >= tile_aabb.p_max.y && (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x)) {
+	if (pbody->get_aabb().p_min.y >= tile_aabb.p_max.y && (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb().p_min.x <= tile_aabb.p_max.x)) {
 		std::cout << "Floor tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_max.y <= tile_aabb.p_min.y && (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x)) {
+	else if (pbody->get_aabb().p_max.y <= tile_aabb.p_min.y && (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb().p_min.x <= tile_aabb.p_max.x)) {
 		std::cout << "Ceiling tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && (pbody->get_aabb_2d().p_min.y < tile_aabb.p_max.y && pbody->get_aabb_2d().p_max.y > tile_aabb.p_min.y)) {
+	else if (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && (pbody->get_aabb().p_min.y < tile_aabb.p_max.y && pbody->get_aabb().p_max.y > tile_aabb.p_min.y)) {
 		std::cout << "Right wall tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x && (pbody->get_aabb_2d().p_min.y < tile_aabb.p_max.y && pbody->get_aabb_2d().p_max.y > tile_aabb.p_min.y)) {
+	else if (pbody->get_aabb().p_min.x <= tile_aabb.p_max.x && (pbody->get_aabb().p_min.y < tile_aabb.p_max.y && pbody->get_aabb().p_max.y > tile_aabb.p_min.y)) {
 		std::cout << "Left wall tile " << std::endl;
 	}
 	else {

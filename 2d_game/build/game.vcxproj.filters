@@ -7,6 +7,9 @@
     <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_creator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Projectile_creator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_idle_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -34,6 +37,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_creator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Projectile_creator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_game\source\src\Player_idle_state.hpp">

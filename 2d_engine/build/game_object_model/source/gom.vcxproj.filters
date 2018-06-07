@@ -4,6 +4,12 @@
     <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Projectile_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -19,6 +25,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Game_object.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Projectile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Projectile_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\source\game_object_model\source\src\Actor.hpp">

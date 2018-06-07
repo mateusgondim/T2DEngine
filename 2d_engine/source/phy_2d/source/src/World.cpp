@@ -46,7 +46,7 @@ physics_2d::Body_2d * physics_2d::World::create_body_2d(const Body_2d_def & body
 	Body_2d *pbody = nullptr;
 	void *pmem = m_mem_pool.get_element();
 	if (pmem != nullptr) {
-		pbody = static_cast<Body_2d*>(new (pmem) Body_2d(body_def.m_type, body_def.m_position, body_def.m_mass, body_def.m_aabb));
+		pbody = static_cast<Body_2d*>(new (pmem) Body_2d(&body_def));
 		m_bodies.push_back(pbody);
 	}
 
@@ -571,6 +571,9 @@ void physics_2d::World::update(const float dt)
 	 //update positions, check and solve map collision logic
 
 	for (auto iter = m_bodies.begin(); iter != m_bodies.end(); ++iter) {
+		if (!(*iter)->is_active()) {
+			continue;
+		}
 		switch ((*iter)->get_type()) {
 		case Body_2d::DYNAMIC:
 			if ((*iter)->m_apply_gravity) {

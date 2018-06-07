@@ -304,6 +304,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\World.obj" />
     <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\$(Configuration)\Physics_manager.obj" />
     <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object.obj" />
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Projectile.obj" />
+    <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Projectile_manager.obj" />
     <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Actor.obj" />
     <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Creator.obj" />
     <Object Include="C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\game_object_model\source\gom.dir\$(Configuration)\Game_object_handle.obj" />

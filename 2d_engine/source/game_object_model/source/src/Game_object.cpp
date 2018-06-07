@@ -11,13 +11,13 @@
 
 namespace gom {
 	Game_object::Game_object(const game_object_id unique_id, const uint16_t handle_index) :
-		m_unique_id(unique_id), m_handle_index(handle_index), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+		m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
 
 	Game_object::Game_object(const game_object_id unique_id, const uint16_t handle_index, const math::Transform & transform) 
-		: m_unique_id(unique_id), m_handle_index(handle_index), m_transform(transform), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+		: m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), m_transform(transform), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
 
 	Game_object::Game_object(const game_object_id unique_id, const uint16_t handle_index, const math::vec3 & position)
-		: m_unique_id(unique_id), m_handle_index(handle_index), m_transform(position), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+		: m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), m_transform(position), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
 
 	Game_object::~Game_object()
 	{
@@ -40,6 +40,19 @@ namespace gom {
 		if (m_pbody_2d != nullptr) {
 			physics_2d::g_physics_mgr.get_world()->destroy_body_2d(m_pbody_2d);
 			m_pbody_2d = nullptr;
+		}
+	}
+
+	void Game_object::set_active(const bool flag) 
+	{
+		if (flag != m_is_active) {
+			m_is_active = flag;
+			if (m_pbody_2d != nullptr) {
+				m_pbody_2d->set_active(m_is_active);
+			}
+			if (m_psprite != nullptr) {
+				m_psprite->set_active(m_is_active);
+			}
 		}
 	}
 

@@ -9,6 +9,7 @@
 #include "Graphics_manager.hpp"
 #include "Physics_manager.hpp"
 #include "Game_object_manager.hpp"
+#include "Projectile_manager.hpp"
 
 
 
@@ -20,11 +21,13 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
 	gfx::g_graphics_mgr.init(context_version_major, context_version_minor);
 	physics_2d::g_physics_mgr.init(ptile_map);
 	gom::g_game_object_mgr.init();
+	gom::g_projectile_mgr.init();
 }
 
 
 void engine_shut_down() 
 {
+	gom::g_projectile_mgr.shut_down();
 	gom::g_game_object_mgr.shut_down();
 	physics_2d::g_physics_mgr.shut_down();
 	gfx::g_graphics_mgr.shut_down();

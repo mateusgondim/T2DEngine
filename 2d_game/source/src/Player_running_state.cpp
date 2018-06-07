@@ -110,16 +110,16 @@ void Player_running_state::begin_tile_collision(gom::Actor & actor, const physic
 
 	physics_2d::Body_2d  *pbody = actor.get_body_2d_component();
 
-	if (pbody->get_aabb_2d().p_min.y >= tile_aabb.p_max.y && (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x)) {
+	if (pbody->get_aabb().p_min.y >= tile_aabb.p_max.y && (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb().p_min.x <= tile_aabb.p_max.x)) {
 		std::cout << "Floor tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_max.y <= tile_aabb.p_min.y && (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x)) {
+	else if (pbody->get_aabb().p_max.y <= tile_aabb.p_min.y && (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb().p_min.x <= tile_aabb.p_max.x)) {
 		std::cout << "Ceiling tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && (pbody->get_aabb_2d().p_min.y < tile_aabb.p_max.y && pbody->get_aabb_2d().p_max.y > tile_aabb.p_min.y)) {
+	else if (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && (pbody->get_aabb().p_min.y < tile_aabb.p_max.y && pbody->get_aabb().p_max.y > tile_aabb.p_min.y)) {
 		std::cout << "Right wall tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x && (pbody->get_aabb_2d().p_min.y < tile_aabb.p_max.y && pbody->get_aabb_2d().p_max.y > tile_aabb.p_min.y)) {
+	else if (pbody->get_aabb().p_min.x <= tile_aabb.p_max.x && (pbody->get_aabb().p_min.y < tile_aabb.p_max.y && pbody->get_aabb().p_max.y > tile_aabb.p_min.y)) {
 		std::cout << "Left wall tile " << std::endl;
 	}
 	else {
@@ -132,16 +132,16 @@ void Player_running_state::end_tile_collision(gom::Actor & actor, const physics_
 
 	physics_2d::Body_2d  *pbody = actor.get_body_2d_component();
 
-	if (pbody->get_aabb_2d().p_min.y >= tile_aabb.p_max.y && (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x)) {
+	if (pbody->get_aabb().p_min.y >= tile_aabb.p_max.y && (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb().p_min.x <= tile_aabb.p_max.x)) {
 		std::cout << "Floor tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_max.y <= tile_aabb.p_min.y && (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x)) {
+	else if (pbody->get_aabb().p_max.y <= tile_aabb.p_min.y && (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && pbody->get_aabb().p_min.x <= tile_aabb.p_max.x)) {
 		std::cout << "Ceiling tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_max.x >= tile_aabb.p_min.x && (pbody->get_aabb_2d().p_min.y < tile_aabb.p_max.y && pbody->get_aabb_2d().p_max.y > tile_aabb.p_min.y)) {
+	else if (pbody->get_aabb().p_max.x >= tile_aabb.p_min.x && (pbody->get_aabb().p_min.y < tile_aabb.p_max.y && pbody->get_aabb().p_max.y > tile_aabb.p_min.y)) {
 		std::cout << "Right wall tile" << std::endl;
 	}
-	else if (pbody->get_aabb_2d().p_min.x <= tile_aabb.p_max.x && (pbody->get_aabb_2d().p_min.y < tile_aabb.p_max.y && pbody->get_aabb_2d().p_max.y > tile_aabb.p_min.y)) {
+	else if (pbody->get_aabb().p_min.x <= tile_aabb.p_max.x && (pbody->get_aabb().p_min.y < tile_aabb.p_max.y && pbody->get_aabb().p_max.y > tile_aabb.p_min.y)) {
 		std::cout << "Left wall tile " << std::endl;
 	}
 	else {

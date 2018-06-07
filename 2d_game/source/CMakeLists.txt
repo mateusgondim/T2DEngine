@@ -47,8 +47,8 @@ FIND_PATH(GOM_INCLUDE_DIR NAMES game_object.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/
 FIND_PATH(ENGINE_INCLUDE_DIR NAMES engine.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/../../2d_engine/source/src)
 FIND_LIBRARY(ENGINE_LIBRARY NAMES Engine   HINTS ${CMAKE_CURRENT_LIST_DIR}/../../2d_engine/Build/Debug)
 
-SET(INCLUDE_FILES src/Player.hpp src/Player_creator.hpp src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp src/Player_jumping_state.hpp src/Player_climbing_state.hpp src/Game_coll_listener.hpp src/game.hpp)
-SET(SOURCE_FILES src/Player.cpp  src/Player_creator.cpp src/Player_idle_state.cpp  src/Player_ducking_state.cpp src/Player_running_state.cpp src/Player_jumping_state.cpp src/Player_climbing_state.cpp src/Game_coll_listener.cpp src/game.cpp)
+SET(INCLUDE_FILES src/Player.hpp src/Player_creator.hpp src/Projectile_creator.hpp src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp src/Player_jumping_state.hpp src/Player_climbing_state.hpp src/Game_coll_listener.hpp src/game.hpp)
+SET(SOURCE_FILES src/Player.cpp  src/Player_creator.cpp src/Projectile_creator.cpp src/Player_idle_state.cpp  src/Player_ducking_state.cpp src/Player_running_state.cpp src/Player_jumping_state.cpp src/Player_climbing_state.cpp src/Game_coll_listener.cpp src/game.cpp)
 
 ADD_EXECUTABLE(game ${INCLUDE_FILES} ${SOURCE_FILES} )
 

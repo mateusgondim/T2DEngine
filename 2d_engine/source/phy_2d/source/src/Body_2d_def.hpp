@@ -7,6 +7,15 @@
 
 namespace physics_2d {
 	struct Body_2d_def {
+		Body_2d_def() 
+		{
+			m_type = Body_2d::Entity_types::DYNAMIC;
+			m_position.zero();
+			m_velocity.zero();
+			m_vel_threshold.zero();
+			m_mass = 1;
+		}
+
 		Body_2d::Entity_types	m_type;
 		float					m_mass;
 		math::vec2				m_position;

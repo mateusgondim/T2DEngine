@@ -20,6 +20,7 @@
 
 
 //physics
+#include "Body_2d_def.hpp"
 #include "Body_2d.hpp"
 #include "Collision_listener.hpp"
 #include "Game_coll_listener.hpp"
@@ -54,6 +55,7 @@
 #include "Game_object_manager.hpp"
 
 #include "Player_creator.hpp"
+#include "Projectile_creator.hpp"
 
 //memory
 #include "runtime_memory_allocator.hpp"
@@ -427,9 +429,28 @@ int main(int argc, char *argv[])
 	gom::g_game_object_mgr.register_creator(player_type_id, pplayer_creator);
 
 	//Create the player object
-	gom::Game_object_handle player_handle = gom::g_game_object_mgr.instantiate(player_type_id);
+	gom::Game_object_handle player_handle = gom::g_game_object_mgr.instantiate(player_type_id, math::vec3());
 	Player *pplayer = static_cast<Player*>(gom::g_game_object_mgr.get_by_handle(player_handle));
 	
+	// set the player projectile creator
+	physics_2d::Body_2d_def body_def;
+	body_def.m_position = math::vec2();
+	body_def.m_aabb = physics_2d::AABB_2d(math::vec2(-0.20f, -0.1f), math::vec2(0.20f, 0.1f));
+	body_def.m_type = physics_2d::Body_2d::DYNAMIC;
+	body_def.m_velocity = math::vec2(1.0f, 0.0f);
+
+	// set the player projectile anim_controller
+	gfx::Animator_controller *pcontroller(new gfx::Animator_controller());
+	gfx::Animation_player knife_idle_anim(gfx::Animation({ 7 }, 5));
+	pcontroller->add_state("knife_idle_state", knife_idle_anim);
+
+	//create a type id for the object
+	string_id knife_type_id = intern_string("knife_obj");
+	//creator
+	Projectile_creator *knife_projectile = new Projectile_creator(atlas_id, body_def, pcontroller);
+
+	gom::g_game_object_mgr.register_creator(knife_type_id, knife_projectile);
+
 	gfx::g_graphics_mgr.set_clear_color(math::vec4(0.0f, 0.0f, 0.5f, 1.0f) );
 	gfx::g_graphics_mgr.set_blend_func();
 	gfx::g_graphics_mgr.graphics_enable(gfx::GFX_ENUMS::BLEND);
@@ -453,6 +474,7 @@ int main(int argc, char *argv[])
 	timer.init();
 
 	while (!gfx::g_graphics_mgr.window_should_close()) {
+		
 		//int i = 0;
 		//float physics_update_dt;
 		//last_time = curr_time;
@@ -500,8 +522,9 @@ int main(int argc, char *argv[])
 			
  		}
 		//std::cout <<  "RENDERING AFTER " << i << " world.update() calls" << std::endl;
-		pplayer->update(timer.get_dt());
-		
+		//pplayer->update(timer.get_dt());
+		gom::g_game_object_mgr.update_game_objects(timer.get_dt());
+
 		camera.follow(pplayer->get_body_2d_component()->get_position());
 	
 		V = camera.get_view();
@@ -521,7 +544,7 @@ int main(int argc, char *argv[])
 	}
 
 	std::wcout << "[min dt, max dt] = [" << smmalest_dt * 1000.0f << ", " << bigger_dt * 1000.0f << "]" << std::endl;
-	gom::g_game_object_mgr.destroy(player_handle);
+	//gom::g_game_object_mgr.destroy(player_handle);
 	engine_shut_down();
 	return 0;
 }

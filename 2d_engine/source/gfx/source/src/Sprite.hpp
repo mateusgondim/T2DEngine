@@ -18,14 +18,16 @@ namespace gfx {
 	class Sprite {
 	public:
 		Sprite(const Sprite_atlas *patlas, const uint8_t layer, const float pixels_per_unit = 16.0f);
-		const	math::vec3 *get_vertex_position_vec()  const  { return m_vertices_pos; }
-				math::vec3 *get_vertex_position_vec()         { return m_vertices_pos;}
-		const	math::vec2 *get_vertex_uv_vec()		   const  { return m_vertices_uv; };
-				math::vec2 *get_vertex_uv_vec()	              { return m_vertices_uv; };
-				unsigned    get_pixels_per_unit()	   const  {return m_pixels_per_unit;}
-	    const   Sprite_atlas *get_atlas()		       const;
-				uint8_t get_layer()				const {return m_layer;}
+		const	math::vec3 * get_vertex_position_vec()  const  { return m_vertices_pos; }
+				math::vec3 * get_vertex_position_vec()         { return m_vertices_pos;}
+		const	math::vec2 * get_vertex_uv_vec()		const  { return m_vertices_uv; };
+				math::vec2 * get_vertex_uv_vec()	           { return m_vertices_uv; };
+				unsigned     get_pixels_per_unit()	    const  { return m_pixels_per_unit;}
+				bool		 is_active()			    const  { return m_is_active; }
+	    const   Sprite_atlas *get_atlas()		        const;
+				uint8_t      get_layer()				const  { return m_layer;}
 
+				void         set_active(const bool flag)       { m_is_active = flag;}
 		void   update_pos(const math::vec3 & position, const bool facing_left = true);
 		void   update_uv(const int sprite_no);
 		//bool   is_animated() const;
@@ -39,7 +41,7 @@ namespace gfx {
 		
 		// number of pixels per game world's unit
 		float								 m_pixels_per_unit; // size = 4 bytes | alignment = 4 bytes
-		
+		bool								 m_is_active;
      // scale taking into account the pixels per world unit
 		math::vec2                           m_scale; // size = 8 btyes | alignment = 4 bytes          
 		const Sprite_atlas					*m_patlas;	//MAYBE CHANGE TO AN ID
