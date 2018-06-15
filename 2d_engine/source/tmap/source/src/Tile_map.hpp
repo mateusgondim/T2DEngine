@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
-
+#include <cassert>
 
 #include "Tileset.hpp"
 #include "vec3.hpp"
@@ -42,9 +42,11 @@ public:
 	int tile_width()   const { return m_tile_width;}
 	int tile_height()  const { return m_tile_height; }
 	std::vector<Tileset> & get_tilesets()  { return m_tilesets; }
-	int get_tile_id(const int layer, const int row, const int column) const { return m_map[layer][row][column]; }
+	int get_tile_id(const int layer, const int row, const int column) const;
 	Tile get_tile(const unsigned id) const;
 	float pixels_per_world_unit() const { return m_pixels_per_word_unit; }
+
+	const math::vec3 & get_position() const { return m_position; }
 
 	math::Rect tile_wld_space_bounds(const unsigned row, const unsigned column) const;
 	std::pair<float, float> wld_to_tile_space(const math::vec3 & pos) const;
@@ -67,6 +69,14 @@ private:
 	math::vec3 m_position;  // tile map origin, i.e, the coordinates of the top left tile in world space
 	float     m_pixels_per_word_unit; // how many pixels are equal to 1 world unit, used in scaling
 };
+
+inline int Tile_map::get_tile_id(const int layer, const int row, const int column) const 
+{
+	//assert(row < m_height && "invalid row! outside map border");
+	//assert(column < m_width && "invadlid column! outside maps border");
+	return m_map[layer][row][column];
+}
+
 
 std::ostream & print_tile_map(std::ostream & os, const Tile_map & tile_map);
 

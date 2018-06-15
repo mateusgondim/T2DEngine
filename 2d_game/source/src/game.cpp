@@ -358,19 +358,19 @@ int main(int argc, char *argv[])
 	gfx::Shader   *ptile_map_shader = static_cast<gfx::Shader*>(gfx::g_shader_mgr.load("tile_map_shader", (resources_path + "/shaders/vertex.vert").c_str(), (resources_path + "/shaders/fragment.frag").c_str() ));
 
 	//load the data to render the map into the graphics manager
-	gfx::g_graphics_mgr.set_tile_map_renderer(&tile_map);
+	gfx::g_graphics_mgr.set_tile_map(&tile_map);
 
 	math::mat4 V;
 	
 	int32_t v_loc, p_loc;
 	int32_t sampler_loc;
 
-	gfx::Camera_2d camera(1.0f, 1.0f, 16, 15);
+	//gfx::Camera_2d camera(1.0f, 1.0f, 16, 15, tile_map.width(), tile_map.height());
 
-	math::vec3 p = camera.get_position();
-	p.x = -p.x;
-	p.y = -p.y;
-	V = math::mat4(math::mat4(), p);
+	//math::vec3 p = camera.get_position();
+	//p.x = -p.x;
+	//p.y = -p.y;
+	V = gfx::g_graphics_mgr.get_camera().get_view();
 
 	v_loc = ptile_map_shader->get_uniform_location("V");
 	p_loc = ptile_map_shader->get_uniform_location("P");
@@ -379,7 +379,7 @@ int main(int argc, char *argv[])
 	//set uniforms on current shader program
 	ptile_map_shader->use();
 	gfx::g_graphics_mgr.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());
-	gfx::g_graphics_mgr.uniform_matrix4fv(p_loc, 1, false, camera.projection().value_ptr());
+	gfx::g_graphics_mgr.uniform_matrix4fv(p_loc, 1, false, gfx::g_graphics_mgr.get_camera().projection().value_ptr());
 	gfx::g_graphics_mgr.uniform_1f(sampler_loc, 0);
 
 	///////////////////--------------------------Initialization code------------------ ///////////////////////////////////////////////////////////////////////////
@@ -407,7 +407,7 @@ int main(int argc, char *argv[])
 
 	psprite_shader->use();
 	gfx::g_graphics_mgr.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
-	gfx::g_graphics_mgr.uniform_matrix4fv(psprite_shader->get_uniform_location("P"), 1, false, camera.projection().value_ptr());
+	gfx::g_graphics_mgr.uniform_matrix4fv(psprite_shader->get_uniform_location("P"), 1, false, gfx::g_graphics_mgr.get_camera().projection().value_ptr());
 	gfx::g_graphics_mgr.uniform_1f(psprite_shader->get_uniform_location("tileset"), 0);
 
 	/// Player setup
@@ -473,6 +473,10 @@ int main(int argc, char *argv[])
 	Timer timer;
 	timer.init();
 
+	auto coord = tile_map.wld_to_tile_space(math::vec3(10.0f, 12.0f));
+
+	std::cout << " TILE MAP WIDTH = " << tile_map.width() << "| TILE MAP HEIGHT = " << tile_map.height() << std::endl;
+
 	while (!gfx::g_graphics_mgr.window_should_close()) {
 		
 		//int i = 0;
@@ -525,9 +529,9 @@ int main(int argc, char *argv[])
 		//pplayer->update(timer.get_dt());
 		gom::g_game_object_mgr.update_game_objects(timer.get_dt());
 
-		camera.follow(pplayer->get_body_2d_component()->get_position());
+		gfx::g_graphics_mgr.get_camera().follow(pplayer->get_body_2d_component()->get_position());
 	
-		V = camera.get_view();
+		V = gfx::g_graphics_mgr.get_camera().get_view();
 
 		ptile_map_shader->use();
 		gfx::g_graphics_mgr.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());

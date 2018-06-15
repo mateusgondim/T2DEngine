@@ -14,6 +14,8 @@
 
 #include "runtime_memory_allocator.hpp"
 
+#include <iostream>
+
 namespace gom {
 	Projectile::Projectile(const game_object_id unique_id, const uint16_t handle_index, const math::vec3 & pos, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller) :
 		gom::Game_object(unique_id, handle_index, pos)
@@ -40,6 +42,11 @@ namespace gom {
 
 	void Projectile::update(const float dt) 
 	{
+		if (gfx::g_graphics_mgr.get_camera().is_off_camera(m_pbody_2d->get_position(), 1.0F, 1.0F)) {
+			std::cout << "I'AM OFF CAMERA!!!!!!!" << std::endl;
+			return;
+		}
+
 		m_panimator_controller->update(dt);
 
 		gfx::Animator_state & curr_state = m_panimator_controller->get_current_state();

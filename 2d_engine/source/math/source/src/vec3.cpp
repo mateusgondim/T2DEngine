@@ -12,12 +12,29 @@ math::vec3 & math::vec3::operator+=(const math::vec3 & rhs)
 	return *this;
 }
 
+math::vec3 & math::vec3::operator-=(const math::vec3 & v) 
+{
+	x -= v.x;
+	y -= v.y;
+	z -= v.z;
+
+	return *this;
+}
+
 math::vec3 math::operator+(const math::vec3 & lhs, const math::vec3 & rhs)
 {
 	math::vec3 sum = lhs;
 	sum += rhs;
 
 	return sum;
+}
+
+math::vec3 math::operator-(const math::vec3 & lhs, const math::vec3 & rhs) 
+{
+	vec3 r = lhs;
+	r -= rhs;
+	
+	return r;
 }
 
 math::vec3 math::operator-(const math::vec3 & v)

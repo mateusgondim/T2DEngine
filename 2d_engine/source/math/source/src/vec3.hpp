@@ -11,6 +11,7 @@ namespace math {
 		
 		void   zero() { x = y = z = 0.0f; }
 		vec3 & operator+=(const vec3 & rhs);
+		vec3 & operator-=(const vec3 & v);
 		
 		float x; // 32 bits (4 - byte aligned)
 		float y; // 32 bits (4 - byte aligned)
@@ -18,6 +19,7 @@ namespace math {
 	};
 	
 	vec3 operator+(const vec3 & lhs, const vec3 & rhs);
+	vec3 operator-(const vec3 & lhs, const vec3 & rhs);
 	vec3 operator-(const vec3 & v);
 }
 

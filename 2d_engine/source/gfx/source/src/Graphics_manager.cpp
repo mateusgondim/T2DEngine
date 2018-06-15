@@ -33,7 +33,7 @@ gfx::Graphics_manager::key_callback_ptr gfx::Graphics_manager::s_key_callback = 
 
 gfx::Graphics_manager::Graphics_manager() : m_is_initialized(false) {}
 
-void gfx::Graphics_manager::init(const std::uint8_t context_version_major, const std::uint8_t context_version_minor) 
+void gfx::Graphics_manager::init(const std::uint8_t context_version_major, const std::uint8_t context_version_minor, const float pixels_per_unit)
 {
 	m_context_version_major = context_version_major;
 	m_context_version_minor = context_version_minor;
@@ -42,6 +42,10 @@ void gfx::Graphics_manager::init(const std::uint8_t context_version_major, const
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, m_context_version_major);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, m_context_version_minor);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	m_pixels_per_unit = pixels_per_unit;
+	m_tiles_per_screen_width = 16;
+	m_tiles_per_screen_height = 15;
 
 	//Initialize memory pools
 	//m_shader_pool.alloc_pool(sizeof(Shader), 10, 4);
@@ -53,7 +57,6 @@ void gfx::Graphics_manager::init(const std::uint8_t context_version_major, const
 	// set the capacity of the vector<Sprite> and vector<sprite_batch*> to prevent dynamic allocation at runtime
 	m_sprites.reserve(25);
 	m_batches.reserve(3);
-
 }
 
 bool gfx::Graphics_manager::create_window(const std::int32_t width, const std::int32_t height, const char *ptitle)
@@ -168,6 +171,24 @@ void gfx::Graphics_manager::set_viewport(std::int32_t x, std::int32_t y, std::in
 	
 	//Check opengl's error in GRAPHICS_CONSOLE_DEBUG_MODE
 	gfx_check_error();
+}
+
+void gfx::Graphics_manager::set_tile_map(Tile_map *ptile_map) 
+{
+	m_ptile_map = ptile_map;
+
+	//initialize camera
+	float tile_wld_width = m_ptile_map->tile_width() / m_pixels_per_unit;
+	float tile_wld_height = m_ptile_map->tile_height() / m_pixels_per_unit;
+	math::vec2 map_origin = math::vec2(m_ptile_map->get_position().x, m_ptile_map->get_position().y);
+
+	m_camera.init(tile_wld_width, tile_wld_height, m_tiles_per_screen_width, m_tiles_per_screen_height, m_ptile_map->width(), m_ptile_map->height(), map_origin);
+	set_tile_map_renderer();
+}
+
+gfx::Camera_2d & gfx::Graphics_manager::get_camera() 
+{
+	return m_camera;
 }
 
 /* Load_shader: This function uses a pre allocated memory pool to construct a new  shader object. Using
@@ -558,11 +579,8 @@ void gfx::Graphics_manager::render()
 /*Set_tile_map_renderer: Set up the Opengl's buffers to render the tile_map and,
  * allocates textures used by the map's tilesets.
  */
-void gfx::Graphics_manager::set_tile_map_renderer(Tile_map *ptile_map) 
+void gfx::Graphics_manager::set_tile_map_renderer() 
 {
-	// ASSERT (PTILE_MAP != nullptr)
-	m_ptile_map = ptile_map;
-
 	//load the textures used by the tilesets
 	for (auto & tileset : m_ptile_map->get_tilesets()) {
 		/* Each map layer should use the same tileset

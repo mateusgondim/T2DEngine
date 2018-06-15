@@ -1,36 +1,7 @@
-﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/gfx/source/CMakeLists.txt
-  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/gfx/source/CMakeFiles/generate.stamp is up-to-date.
-  Shader.cpp
-  Shader_manager.cpp
-  Texture_2d.cpp
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\texture_2d.cpp(21): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(536): note: see declaration of 'strdup'
-  Texture_2d_manager.cpp
-  Sprite_atlas.cpp
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite_atlas.cpp(21): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(536): note: see declaration of 'strdup'
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite_atlas.cpp(79): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite_atlas.cpp(81): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite_atlas.cpp(83): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite_atlas.cpp(85): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite_atlas.cpp(100): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(536): note: see declaration of 'strdup'
-  Sprite.cpp
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-  Sprite_atlas_manager.cpp
-  Animation_player.cpp
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\animation_player.cpp(49): warning C4018: '>=': signed/unsigned mismatch
-  Animator_controller_parameter.cpp
-  Animator_controller.cpp
-  Animator_state.cpp
-  Animator_state_transition.cpp
-  Sprite_batch.cpp
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
+﻿  Camera_2d.cpp
   Graphics_manager.cpp
 c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
-  Camera_2d.cpp
   Generating Code...
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\animator_controller.cpp(288): warning C4715: 'gfx::Animator_controller::evaluate_condition': not all control paths return a value
   gfx.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\gfx\source\gfx.dir\Debug\gfx.lib

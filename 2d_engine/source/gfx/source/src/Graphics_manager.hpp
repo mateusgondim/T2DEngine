@@ -7,6 +7,7 @@
 
 #include "Pool_allocator.hpp"
 #include "string_id.hpp"
+#include "Camera_2d.hpp"
 
 #if GRAPHICS_CONSOLE_DEBUG_ENABLE
 
@@ -37,7 +38,7 @@ namespace gfx {
 			        Graphics_manager();
 					~Graphics_manager() = default;
 		//initialization functions
-		void		init(const std::uint8_t context_version_major, const std::uint8_t context_version_minor);
+		void		init(const std::uint8_t context_version_major, const std::uint8_t context_version_minor, const float pixels_per_unit = 16.0f);
 		bool        create_window(const std::int32_t width, const std::int32_t height, const char *ptitle);
 		
 		// Incapsulation of OpenGl and GLFW  functions
@@ -47,7 +48,8 @@ namespace gfx {
 		
 		void		get_framebuffer_size(std::int32_t * pwidth, std::int32_t *pheight);
 		void        set_viewport(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height);
-		
+		Camera_2d & get_camera();
+
 		void		set_clear_color(const math::vec4 & color);
 		void		set_blend_func(); // CHANGE THIS!! PASS PARAMETERS
 		void        graphics_enable(const GFX_ENUMS & gfx_enum);// GRAPHICS_ENUM
@@ -70,8 +72,10 @@ namespace gfx {
 		//atlas_id	load_sprite_atlas(const char *patlas_path);
 
 		//Tile map operations
-		void        set_tile_map_renderer(Tile_map *ptile_map);
+		void		set_tile_map(Tile_map *ptile_map);
 
+		void	    set_tiles_per_screen_width(const float width)  { m_tiles_per_screen_width = width; }
+		void		set_tiles_per_screen_height(const float height) { m_tiles_per_screen_height = height; }
 		//Sprite      *get_sprite_component(const atlas_id id, const sprite_layer layer);
 		//void		 delete_sprite_component(Sprite *psprite);
 		//void		 delete_texture_atlas(const atlas_id id);
@@ -80,13 +84,15 @@ namespace gfx {
 		void         render();
 		
 	private:
+		void        set_tile_map_renderer();
 		static  void key_callback(GLFWwindow *pwindow, int key, int scancode, int action, int mods);
 		void		check_error(const char *pfile_name, std::int32_t line) const;
 		// Global Graphics objects 
 		//std::map<atlas_id, Sprite_atlas*>			m_atlases;
 		//std::map<shader_id, Shader*>				m_shaders;
 		//std::map<texture_id, Texture_2d*>           m_textures;
-		
+		Camera_2d									m_camera;
+
 		std::vector<Sprite_batch*>					m_batches;
 		std::vector<Sprite*>						m_sprites;
 		//std::map<controller_id, Animator_controller*> m_animator_controllers;
@@ -115,6 +121,8 @@ namespace gfx {
 		static key_callback_ptr s_key_callback;
 
 		float			m_pixels_per_unit;
+		float           m_tiles_per_screen_width;
+		float           m_tiles_per_screen_height;
 		bool			m_is_initialized;
 
 	};

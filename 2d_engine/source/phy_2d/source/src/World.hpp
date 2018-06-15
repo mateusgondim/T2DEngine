@@ -31,7 +31,7 @@ namespace physics_2d {
 	public:
 		enum Solver_methods { DISPLACE, ELASTIC };
 		
-		explicit World(const math::vec2 & gravity, const math::vec2 & solid_tile_sensor_line = math::vec2(3.2f, 3.5f) );
+		explicit World(const math::vec2 & gravity, const math::vec2 & solid_tile_sensor_line = math::vec2(3.0f, 3.4f) );
 		World(const World &) = delete;
 		//World(World &&) implement
 		//World & operator=(World &&) implement
