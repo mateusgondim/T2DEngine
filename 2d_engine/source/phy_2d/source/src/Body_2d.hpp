@@ -47,6 +47,7 @@ namespace physics_2d {
 		Body_2d(const Body_2d_def *pbody_def);
 		Entity_types	     m_type;
 		float				 m_mass;
+		float				 m_gravity_scale;
 		math::vec2			 m_position;
 		math::vec2			 m_velocity;
 		math::vec2           m_vel_threshold;
@@ -55,6 +56,7 @@ namespace physics_2d {
 		void *			     m_puser_data;
 		bool			     m_is_active = true;
 		bool                 m_apply_gravity = true;
+		bool				 m_map_collision;
 	};
 
 	inline const math::vec2 & Body_2d::get_position() const 

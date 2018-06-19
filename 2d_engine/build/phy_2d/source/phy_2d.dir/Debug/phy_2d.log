@@ -1,6 +1,6 @@
-﻿  Physics_manager.cpp
-c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
+﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/phy_2d/source/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/phy_2d/source/CMakeFiles/generate.stamp is up-to-date.
+  Body_2d.cpp
   World.cpp
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
@@ -33,5 +33,8 @@ c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.1
               _Other2=float &
           ]
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\utility(202): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+  Physics_manager.cpp
+c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
   Generating Code...
   phy_2d.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\phy_2d\source\phy_2d.dir\Debug\phy_2d.lib

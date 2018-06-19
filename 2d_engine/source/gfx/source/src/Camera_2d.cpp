@@ -38,7 +38,7 @@ void gfx::Camera_2d::init(float tile_width_wld, float tile_height_wld, float til
 {
 	m_tile_width_wld		   =  tile_width_wld;
 	m_tile_height_wld		   =  tile_height_wld;
-	
+
 	set_screen_dim(tiles_per_screen_width, tiles_per_screen_height);
 
 	//set the starting screen's rectangle position
@@ -57,19 +57,47 @@ void gfx::Camera_2d::set_screen_dim(const float tiles_per_screen_width, const fl
 	m_tiles_per_screen_width = tiles_per_screen_width;
 	m_tiles_per_screen_height = tiles_per_screen_height;
 
+	m_aspect_ratio = m_tiles_per_screen_width / m_tiles_per_screen_height;
+
 	float width = m_tiles_per_screen_width * m_tile_width_wld; // the width of the screen in world units
 	float height = m_tiles_per_screen_height * m_tile_height_wld; // the height of the screen in world units
 
-																  //set the screen boundaries 
-	m_screen_p_min.x = -floor(width / 2.0f);
-	m_screen_p_min.y = -floor(height / 2.0f);
+	m_left = -floor(width / 2.0f);
+	m_right = ceil(width / 2.0f);
+	m_bottom  = -floor(height / 2.0f);
+	m_top     = ceil(height / 2.0f);
 
-	m_screen_p_max.x = ceil(width / 2.0f);
-	m_screen_p_max.y = ceil(height / 2.0f);
+	//set the screen boundaries 
+	m_screen_p_min.x = m_left;
+	m_screen_p_min.y = m_bottom;
+
+	m_screen_p_max.x = m_right;
+	m_screen_p_max.y = m_top;
 
 	//set the projection matrix
 	m_projection = math::ortho(m_screen_p_min.x, m_screen_p_max.x, m_screen_p_min.y, m_screen_p_max.y, -1.0, 1.0f);
 
+}
+
+void gfx::Camera_2d::scale(const float device_aspect_ratio) 
+{
+	float x_scale = 1.0f;
+	float y_scale = 1.0f;
+
+	if (m_aspect_ratio > device_aspect_ratio) {
+		y_scale = m_aspect_ratio / device_aspect_ratio;
+	}
+	else {
+		x_scale = device_aspect_ratio / m_aspect_ratio;
+	}
+
+
+	m_screen_p_max.x = m_right * x_scale;
+	m_screen_p_max.y = m_top * y_scale;
+	m_screen_p_min.x = m_left * x_scale;
+	m_screen_p_min.y = m_bottom * y_scale;
+
+	m_projection = math::ortho(m_screen_p_min.x, m_screen_p_max.x, m_screen_p_min.y, m_screen_p_max.y, -1.0, 1.0f);
 }
 
 void gfx::Camera_2d::follow(const math::vec3 & p)

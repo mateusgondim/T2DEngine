@@ -54,6 +54,7 @@
 #include "Game_object_handle.hpp"
 #include "Game_object_manager.hpp"
 
+#include "Projectile_manager.hpp"
 #include "Player_creator.hpp"
 #include "Projectile_creator.hpp"
 
@@ -341,18 +342,23 @@ int main(int argc, char *argv[])
 		std::cout << "ERROR: Could not load Tile_map " << std::endl;
 		return -1;
 	}
-	engine_init(4, 3, &tile_map);
+	engine_init(4, 0, &tile_map);
 	
 	gfx::g_graphics_mgr.set_error_callback(error_callback);
 	gfx::g_graphics_mgr.create_window(512, 480, "2D Game");
 	gfx::g_graphics_mgr.set_key_callback(key_callback);
 
-	int vport_width, vport_height;
+	float current_aspect_ratio = 512.0f / 480.0f;
+	const float target_aspect_ratio = 512.0f / 480.0f;
 
-	gfx::g_graphics_mgr.get_framebuffer_size(&vport_width, &vport_height);
+	int prev_vport_width, prev_vport_height;
+	int curr_vport_width, curr_vport_height;
 
-	gfx::g_graphics_mgr.set_viewport(0, 0, vport_width, vport_height);
+	gfx::g_graphics_mgr.get_framebuffer_size(&prev_vport_width, &prev_vport_height);
 
+	gfx::g_graphics_mgr.set_viewport(0, 0, prev_vport_width, prev_vport_height);
+	curr_vport_width = prev_vport_width;
+	curr_vport_height = prev_vport_height;
 	
 	// CHANGE ABSOLUTE PATH!!!!!!!
 	gfx::Shader   *ptile_map_shader = static_cast<gfx::Shader*>(gfx::g_shader_mgr.load("tile_map_shader", (resources_path + "/shaders/vertex.vert").c_str(), (resources_path + "/shaders/fragment.frag").c_str() ));
@@ -437,7 +443,9 @@ int main(int argc, char *argv[])
 	body_def.m_position = math::vec2();
 	body_def.m_aabb = physics_2d::AABB_2d(math::vec2(-0.20f, -0.1f), math::vec2(0.20f, 0.1f));
 	body_def.m_type = physics_2d::Body_2d::DYNAMIC;
-	body_def.m_velocity = math::vec2(1.0f, 0.0f);
+	body_def.m_velocity = math::vec2(11.0f, 0.0f);
+	body_def.m_gravity_scale = 0.0f;
+	body_def.m_map_collision = false;
 
 	// set the player projectile anim_controller
 	gfx::Animator_controller *pcontroller(new gfx::Animator_controller());
@@ -451,9 +459,9 @@ int main(int argc, char *argv[])
 
 	gom::g_game_object_mgr.register_creator(knife_type_id, knife_projectile);
 
-	gfx::g_graphics_mgr.set_clear_color(math::vec4(0.0f, 0.0f, 0.5f, 1.0f) );
-	gfx::g_graphics_mgr.set_blend_func();
-	gfx::g_graphics_mgr.graphics_enable(gfx::GFX_ENUMS::BLEND);
+	gfx::g_graphics_mgr.set_clear_color(math::vec4(0.0f, 0.0f, 0.0f, 1.0f) );
+	//gfx::g_graphics_mgr.set_blend_func();
+	//gfx::g_graphics_mgr.graphics_enable(gfx::GFX_ENUMS::BLEND);
 
 	
 	//last_time = glfwGetTime();
@@ -529,22 +537,55 @@ int main(int argc, char *argv[])
 		//pplayer->update(timer.get_dt());
 		gom::g_game_object_mgr.update_game_objects(timer.get_dt());
 
+		gom::g_projectile_mgr.update(timer.get_dt());
+
 		gfx::g_graphics_mgr.get_camera().follow(pplayer->get_body_2d_component()->get_position());
 	
 		V = gfx::g_graphics_mgr.get_camera().get_view();
 
 		ptile_map_shader->use();
 		gfx::g_graphics_mgr.uniform_matrix4fv(v_loc, 1, false, V.value_ptr());
+		//gfx::g_graphics_mgr.uniform_matrix4fv(p_loc, 1, false, gfx::g_graphics_mgr.get_camera().projection().value_ptr());
 		
+		gfx::g_graphics_mgr.get_framebuffer_size(&curr_vport_width, &curr_vport_height);
+
+		if ((curr_vport_width != prev_vport_width) || (curr_vport_height != prev_vport_height)) {
+			current_aspect_ratio = (float)curr_vport_width / (float)curr_vport_height;
+			
+			int width = curr_vport_width;
+			int height = (width / target_aspect_ratio + 0.5f);
+
+			if (height > curr_vport_height) {
+				height = curr_vport_height;
+				width = (height * target_aspect_ratio + 0.5f);
+			}
+			int vp_x = (curr_vport_width / 2.0f) - (width / 2);
+			int vp_y = (curr_vport_height / 2.0f) - (height / 2);
+			int vp_width = width + vp_x;
+			int vp_height = height + vp_y;
+			gfx::g_graphics_mgr.set_viewport(vp_x, vp_y, width, height);
+
+			//gfx::g_graphics_mgr.get_camera().scale(aspect_ratio);
+
+			//ptile_map_shader->use();
+			//gfx::g_graphics_mgr.uniform_matrix4fv(p_loc, 1, false, gfx::g_graphics_mgr.get_camera().projection().value_ptr());
+
+			//psprite_shader->use();
+			//gfx::g_graphics_mgr.uniform_matrix4fv(psprite_shader->get_uniform_location("P"), 1, false, gfx::g_graphics_mgr.get_camera().projection().value_ptr());
+
+			//gfx::g_graphics_mgr.set_viewport(0, 0, curr_vport_width, curr_vport_height);
+			prev_vport_width = curr_vport_width;
+			prev_vport_height = curr_vport_height;
+		}
 		
-		gfx::g_graphics_mgr.get_framebuffer_size(&vport_width, &vport_height);
-		gfx::g_graphics_mgr.set_viewport(0, 0, vport_width, vport_height);
 		
 		psprite_shader->use();
 		gfx::g_graphics_mgr.uniform_matrix4fv(psprite_shader->get_uniform_location("V"), 1, false, V.value_ptr());
-		
+		//gfx::g_graphics_mgr.uniform_matrix4fv(psprite_shader->get_uniform_location("P"), 1, false, gfx::g_graphics_mgr.get_camera().projection().value_ptr());
+
 		gfx::g_graphics_mgr.render();
 
+		
 	}
 
 	std::wcout << "[min dt, max dt] = [" << smmalest_dt * 1000.0f << ", " << bigger_dt * 1000.0f << "]" << std::endl;

@@ -7,6 +7,9 @@
 #include "Player_idle_state.hpp"
 #include "Player_climbing_state.hpp"
 
+#include "Game_object_handle.hpp"
+#include "Projectile_manager.hpp"
+
 #include "Animator_controller.hpp"
 #include "Gameplay_state.hpp"
 #include "vec2.hpp"
@@ -27,7 +30,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 {
 	string_id is_attacking_param_id = intern_string("is_attacking");
 	string_id player_attacking_state_id = intern_string("player_attacking");
-	
+	string_id knife_obj_id = intern_string("knife_obj");
 	bool on_ground = physics_2d::g_physics_mgr.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
 
 	if (on_ground) {
@@ -63,6 +66,12 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 	if (attack_button.m_state == PRESSED) {
 		//ANIMATION
 		actor.get_anim_controller_component()->set_trigger("is_attacking");
+		if (actor.get_facing_direction()) {
+			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(-1.0f, 0.0f));
+		}
+		else {
+			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(1.0f, 0.0f));
+		}
 		return nullptr;
 	}
 

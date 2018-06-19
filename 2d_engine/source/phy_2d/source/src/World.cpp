@@ -631,8 +631,8 @@ void physics_2d::World::update(const float dt)
 		switch ((*iter)->get_type()) {
 		case Body_2d::DYNAMIC:
 			if ((*iter)->m_apply_gravity) {
-				(*iter)->m_velocity.x += ((*iter)->m_acceleration.x + m_gravity.x) * dt;
-				(*iter)->m_velocity.y += ((*iter)->m_acceleration.y + m_gravity.y) * dt;
+				(*iter)->m_velocity.x += ((*iter)->m_acceleration.x + m_gravity.x * (*iter)->m_gravity_scale) * dt;
+				(*iter)->m_velocity.y += ((*iter)->m_acceleration.y + m_gravity.y * (*iter)->m_gravity_scale) * dt;
 			//	std::cout << "m_velocity.y = " << (*iter)->m_velocity.y << std::endl;
 			//	std::cout << "m_velocity.x = " << (*iter)->m_velocity.x << std::endl;
 
@@ -664,8 +664,19 @@ void physics_2d::World::update(const float dt)
 				//std::cout << "m_velocity.y = " << (*iter)->m_velocity.y << std::endl;
 				//std::cout << "m_velocity.x = " << (*iter)->m_velocity.x << std::endl;
 			}
-			if ( ( (*iter)->m_velocity.x != 0.0f) || ((*iter)->m_velocity.y != 0.0f) ) {
+			if ( ( ( (*iter)->m_velocity.x != 0.0f) || ((*iter)->m_velocity.y != 0.0f) ) && (*iter)->m_map_collision) {
 				check_n_solve_map_collision(*iter, dt);
+			}
+			else if (!(*iter)->m_map_collision) {
+				(*iter)->m_position.x += (*iter)->m_velocity.x * dt;
+				(*iter)->m_aabb.p_min.x += (*iter)->m_velocity.x * dt;
+				(*iter)->m_aabb.p_max.x += (*iter)->m_velocity.x * dt;
+
+				(*iter)->m_position.y += (*iter)->m_velocity.y; 
+
+				(*iter)->m_aabb.p_min.y += (*iter)->m_velocity.y;
+				(*iter)->m_aabb.p_max.y += (*iter)->m_velocity.y;
+
 			}
 
 			break;

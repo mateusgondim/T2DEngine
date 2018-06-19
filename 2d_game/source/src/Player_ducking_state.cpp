@@ -8,6 +8,9 @@
 #include "Physics_manager.hpp"
 #include "Animator_controller.hpp"
 
+#include "Projectile_manager.hpp"
+#include "Game_object_handle.hpp"
+
 #include "Player_idle_state.hpp"
 
 #include "runtime_memory_allocator.hpp"
@@ -16,7 +19,7 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor)
 {
 	string_id is_attacking_param_id = intern_string("is_attacking");
 	string_id player_attacking_state_id = intern_string("player_ducking_attacking");
-
+	string_id knife_obj_id = intern_string("knife_obj");
 	//check if is attacking, if so, return
 	
 	if ((actor.get_anim_controller_component()->get_current_state().get_state_id() == player_attacking_state_id)) {
@@ -57,7 +60,12 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor)
 		//ANIMATION
 		actor.get_anim_controller_component()->set_trigger("is_attacking");
 		//gameplay
-		//throw projectile...
+		if (actor.get_facing_direction()) {
+			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(-1.0f, 0.0f));
+		}
+		else {
+			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(1.0f, 0.0f));
+		}
 	}
 	return nullptr;
 }

@@ -1,6 +1,11 @@
 #include "vec2.hpp"
 
 
+const math::vec2 math::g_zero_vector(0.0f, 0.0f);
+
+math::vec2::vec2(const math::vec2 & v) : x(v.x), y(v.y) {}
+
+
 math::vec2 & math::vec2::operator+=(const vec2 & v)
 {
 	x += v.x;
@@ -83,4 +88,10 @@ bool math::operator==(const vec2 & lhs, const vec2 & rhs)
 bool math::operator!=(const vec2 & lhs, const vec2 & rhs)
 {
 	return !(lhs == rhs);
+}
+
+std::ostream & math::operator<<(std::ostream & os, const vec2 & rhs) 
+{
+	os << "[" << rhs.x << ", " << rhs.y << "]";
+	return os;
 }

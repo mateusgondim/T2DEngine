@@ -32,6 +32,7 @@ namespace gom {
 		//create the body_2d component
 		m_pbody_2d = physics_2d::g_physics_mgr.get_world()->create_body_2d(*pbody_def);
 		m_pbody_2d->set_user_data(static_cast<void*>(this));
+		m_speed = math::vec2_magnitude(m_pbody_2d->get_velocity());
 
 		//make a copy of the animator controller
 		pmem = mem::allocate(sizeof(gfx::Animator_controller));
@@ -43,7 +44,7 @@ namespace gom {
 	void Projectile::update(const float dt) 
 	{
 		if (gfx::g_graphics_mgr.get_camera().is_off_camera(m_pbody_2d->get_position(), 1.0F, 1.0F)) {
-			std::cout << "I'AM OFF CAMERA!!!!!!!" << std::endl;
+			set_active(false);
 			return;
 		}
 
@@ -53,13 +54,22 @@ namespace gom {
 		if (curr_state.changed_animation_frame()) {
 			m_psprite->update_uv(curr_state.get_curr_anim_frame());
 		}
-		m_psprite->update_pos(m_pbody_2d->get_position());
+		m_psprite->update_pos(m_pbody_2d->get_position(), m_is_facing_right);
 	}
 
-	void Projectile::respawn(const math::vec3 & pos) 
+	void Projectile::set_direction(const math::vec2 & dir) 
+	{
+		math::vec2 vel = m_speed * dir;
+		m_pbody_2d->set_velocity(vel);
+		m_is_facing_right = (dir.x >= 0.0f) ? (true) : (false);
+	}
+
+	void Projectile::respawn(const math::vec3 & pos, const math::vec2 & direction)
 	{
 		m_transform.get_translation() = pos;
+		set_direction(direction);
 		m_pbody_2d->set_position(math::vec2(pos.x, pos.y));
+		
 		set_active(true);
 	}
 }

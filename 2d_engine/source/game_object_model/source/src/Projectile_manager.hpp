@@ -5,7 +5,7 @@
 #include <vector>
 #include <cstdint>
 
-namespace math { struct vec3; }
+namespace math { struct vec2; struct vec3; }
 namespace gom { class Game_object_handle; }
 
 namespace gom {
@@ -17,7 +17,7 @@ namespace gom {
 		void init();
 		void shut_down();
 		void update(const float dt);
-		Game_object_handle spawn_projectile(const type_id id, const math::vec3 & pos);
+		Game_object_handle spawn_projectile(const type_id id, const math::vec3 & pos, const math::vec2 & projectile_dir);
 
 		~Projectile_manager() {}
 	private:

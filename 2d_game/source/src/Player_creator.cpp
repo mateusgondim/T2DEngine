@@ -33,6 +33,7 @@ Player_creator::Player_creator(const string_id atlas_id, const string_id anim_co
 
 	m_pbody_def->m_type = physics_2d::Body_2d::Entity_types::DYNAMIC;
 	m_pbody_def->m_mass = 1.0f;
+	m_pbody_def->m_gravity_scale = 1.0f;
 	m_pbody_def->m_position = pos;
 	m_pbody_def->m_velocity = math::vec2(0.0f, 0.0f);
 	m_pbody_def->m_vel_threshold = math::vec2(6.0f, 12.0f);

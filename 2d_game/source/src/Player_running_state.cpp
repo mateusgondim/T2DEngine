@@ -6,6 +6,9 @@
 #include "Physics_manager.hpp"
 #include "Gameplay_state.hpp"
 
+#include "Game_object_handle.hpp"
+#include "Projectile_manager.hpp"
+
 #include "Player_idle_state.hpp"
 #include "Player_jumping_state.hpp"
 #include "Animation_player.hpp"
@@ -35,7 +38,8 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
 {
 	//auto stream = Input_handler::instance().get_input();
 	bool on_ground = physics_2d::g_physics_mgr.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
-	
+	string_id knife_obj_id = intern_string("knife_obj");
+
 	if (!on_ground) { //player fell
 		actor.get_anim_controller_component()->set_bool("is_running", false);
 		actor.get_anim_controller_component()->set_bool("is_jumping", true);
@@ -72,7 +76,7 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
 		}
 
 		const Button & jump_button = io::get_button_from_action(io::GAME_ACTIONS::JUMP);
-		if ((jump_button.m_state == PRESSED || jump_button.m_state == REPEAT) && on_ground) {
+		if ((jump_button.m_state == PRESSED ) && on_ground) {
 			//std::cout << "Changing  to player_jumping_state " << std::endl;
 			//set the paramter on the animation state machine to make the transition to the new animation
 			actor.get_anim_controller_component()->set_bool("is_running", false);
@@ -91,6 +95,12 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
 			//GAMEPLAY
 			actor.get_body_2d_component()->stop_movement_x();
 			//launch projectile
+			if (actor.get_facing_direction()) {
+				gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(-1.0f, 0.0f));
+			}
+			else {
+				gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(1.0f, 0.0f));
+			}
 
 			void *pmem = mem::allocate(sizeof(Player_idle_state));
 			return static_cast<gom::Gameplay_state*> (new (pmem) Player_idle_state);

@@ -5,6 +5,8 @@
 #include "Game_object_handle.hpp"
 #include "Game_object_manager.hpp"
 
+#include <iostream>
+
 namespace gom {
 	Projectile_manager g_projectile_mgr;
 
@@ -20,19 +22,20 @@ namespace gom {
 		m_vpinactive_projectiles.clear();
 	}
 
-	Game_object_handle Projectile_manager::spawn_projectile(const type_id id, const math::vec3 & pos) 
+	Game_object_handle Projectile_manager::spawn_projectile(const type_id id, const math::vec3 & pos, const math::vec2 & projectile_dir) 
 	{
 		if (m_vpinactive_projectiles.empty()) {
 			Game_object_handle handle = g_game_object_mgr.instantiate(id, pos);
 
 			Projectile * pprojectile = static_cast<Projectile*>(g_game_object_mgr.get_by_handle(handle));
+			pprojectile->set_direction(projectile_dir);
 			m_vpactive_projectiles.push_back(pprojectile);
 
 			return handle;
 		}
 		else {//SEARCH BY TYPE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			Projectile *pprojectile = m_vpinactive_projectiles.back();
-			pprojectile->respawn(pos);
+			pprojectile->respawn(pos, projectile_dir);
 			
 			m_vpinactive_projectiles.pop_back();
 			m_vpactive_projectiles.push_back(pprojectile);

@@ -1,4 +1,9 @@
-﻿  Tile_map.cpp
+﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/tmap/source/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/tmap/source/CMakeFiles/generate.stamp is up-to-date.
+  Tileset.cpp
+c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
+c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
+  Tile_map.cpp
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tile_map.cpp(70): warning C4018: '<': signed/unsigned mismatch

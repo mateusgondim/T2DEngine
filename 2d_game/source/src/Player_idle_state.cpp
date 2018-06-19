@@ -3,6 +3,8 @@
 
 #include "string_id.hpp"
 
+#include "vec2.hpp"
+
 #include "AABB_2d.hpp"
 #include "Physics_manager.hpp"
 #include "Actor.hpp"
@@ -75,7 +77,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 	}
 	if (on_ground) {
 		const Button & jump_button = io::get_button_from_action(io::GAME_ACTIONS::JUMP);
-		if ( jump_button.m_state == PRESSED || jump_button.m_state == REPEAT) {
+		if ( jump_button.m_state == PRESSED) {
 			std::cout << "Changing to Player_jumping_state" << std::endl;
 			actor.get_anim_controller_component()->set_bool("is_jumping", true);
 			
@@ -134,8 +136,13 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 	if ( (attacking_button.m_state == PRESSED) ) {
 		actor.get_anim_controller_component()->set_trigger(is_attacking_param_id);
 		//create projectile
-		gom::Game_object_handle handle = gom::g_game_object_mgr.instantiate(knife_obj_id, actor.get_body_2d_component()->get_position());
-		//gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position());
+		//gom::Game_object_handle handle = gom::g_game_object_mgr.instantiate(knife_obj_id, actor.get_body_2d_component()->get_position());
+		if (actor.get_facing_direction()) {
+			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(-1.0f, 0.0f) );
+		}
+		else {
+			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(1.0f, 0.0f));
+		}
 	}
 
 	return nullptr;

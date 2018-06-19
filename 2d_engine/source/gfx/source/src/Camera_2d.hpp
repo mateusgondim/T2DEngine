@@ -21,6 +21,7 @@ namespace gfx {
 		math::mat4   & get_view() const { return math::mat4(math::mat4(), -m_transform.get_translation()); }
 
 		void           set_screen_dim(const float tiles_per_screen_width, const float tiles_per_screen_height);
+		void		   scale(const float device_aspect_ratio);
 	private:
 		math::Transform  m_transform;
 		math::mat4		 m_projection;			//orthographic projection matrix
@@ -28,6 +29,11 @@ namespace gfx {
 		float			 m_tile_height_wld;		    // in world units
 		float			 m_tiles_per_screen_width;  // the width of the screen in tiles 
 		float			 m_tiles_per_screen_height; // the height of the screen in tiles
+		float			 m_aspect_ratio;
+		float			 m_left;
+		float			 m_right;
+		float			 m_bottom;
+		float			 m_top;
 
 		math::vec2		 m_screen_p_max;
 		math::vec2       m_screen_p_min;
