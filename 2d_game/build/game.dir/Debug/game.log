@@ -1,26 +1,4 @@
-﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_game/source/CMakeLists.txt
-  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/CMakeFiles/generate.stamp is up-to-date.
-  Player.cpp
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-  Player_creator.cpp
-  Projectile_creator.cpp
-  Player_idle_state.cpp
-  Player_ducking_state.cpp
-  Player_running_state.cpp
-  Player_jumping_state.cpp
-  Player_climbing_state.cpp
-  Game_coll_listener.cpp
-  game.cpp
-c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
-c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\sprite.hpp(25): warning C4244: 'return': conversion from 'const float' to 'unsigned int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_game\source\src\game.cpp(556): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_game\source\src\game.cpp(560): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_game\source\src\game.cpp(562): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_game\source\src\game.cpp(563): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-c:\users\mateus\documents\github\demos\2d_engine\source\gfx\source\src\camera_2d.hpp(21): warning C4172: returning address of local variable or temporary
-SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+﻿SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
 glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\Debug\vc120.pdb'; linking object as if no debug info
   game.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_game\build\Debug\game.exe
