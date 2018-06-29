@@ -13,6 +13,7 @@ namespace physics_2d {
 			m_position.zero();
 			m_velocity.zero();
 			m_vel_threshold.zero();
+			m_acceleration.zero();
 			m_mass = 1;
 			m_gravity_scale = 1.0f;
 			m_map_collision = true;

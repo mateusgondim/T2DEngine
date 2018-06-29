@@ -45,12 +45,12 @@ namespace math {
 	std::ostream & operator<<(std::ostream & os, const vec2 & rhs);
 
 	//magnitude
-	inline float vec2_magnitude(const vec2 & v) 
+	inline float vec2_mag(const vec2 & v) 
 	{
 		return sqrt(v.x * v.x + v.y * v.y);
 	}
 
-	extern const vec2 g_zero_vector;
+	extern const vec2 g_zero_vec2;
 }
 
 

@@ -11,7 +11,7 @@ class Input_manager;
 
 class Player_climbing_state : public gom::Gameplay_state {
 public:
-	Player_climbing_state(const bool climbing_from_top = false, const math::vec2 & climbing_vel = math::vec2(0.0f, 0.05f));
+	Player_climbing_state(const bool climbing_from_top = false, const math::vec2 & climbing_vel = math::vec2(0.0f, 2.5f));
 	Gameplay_state *  handle_input(gom::Actor & actor) override;
 	//void update(Actor & actor) override;
 	size_t get_size() const override;

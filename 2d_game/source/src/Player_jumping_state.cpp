@@ -21,9 +21,9 @@
 
 #include "runtime_memory_allocator.hpp"
 
-Player_jumping_state::Player_jumping_state(gom::Actor & actor, float y_acceleration, float x_vel) : Gameplay_state(), m_y_acceleration(y_acceleration), m_x_vel(x_vel)
+Player_jumping_state::Player_jumping_state(gom::Actor & actor, float jump_vel, float x_vel) : Gameplay_state(), m_jump_vel(jump_vel), m_x_vel(x_vel)
 {
-	actor.get_body_2d_component()->add_force(math::vec2(0.0f, m_y_acceleration));
+	actor.get_body_2d_component()->add_to_velocity(math::vec2(0.0f, m_jump_vel));
 }
 
 gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
@@ -55,7 +55,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 			actor.get_anim_controller_component()->set_bool("is_climbing", true);
 			actor.get_body_2d_component()->stop_movement_x();
 			actor.get_body_2d_component()->stop_movement_y();
-			actor.get_body_2d_component()->apply_gravity(false);
+			actor.get_body_2d_component()->set_gravity_scale(0.0f);
 			
 			void *pmem = mem::allocate(sizeof(Player_climbing_state));
 			return static_cast<gom::Gameplay_state*> (new (pmem) Player_climbing_state);
@@ -79,7 +79,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 	if (move_left_button.m_state == PRESSED || move_left_button.m_state == REPEAT) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(true);     //change to running left
-		actor.get_body_2d_component()->add_force(math::vec2(-m_x_vel, 0.0f));
+		actor.get_body_2d_component()->add_to_velocity(math::vec2(-m_x_vel, 0.0f));
 		//std::cout << "-----moving left here---------" << std::endl;
 	}
 	
@@ -87,7 +87,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 	if (move_right_button.m_state == PRESSED || move_right_button.m_state == REPEAT) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(false);     
-		actor.get_body_2d_component()->add_force(math::vec2(m_x_vel, 0.0f));
+		actor.get_body_2d_component()->add_to_velocity(math::vec2(m_x_vel, 0.0f));
 		//std::cout << "-----moving left here---------" << std::endl;
 	}
 	

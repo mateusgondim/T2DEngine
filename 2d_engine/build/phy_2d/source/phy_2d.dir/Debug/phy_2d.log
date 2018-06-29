@@ -8,15 +8,19 @@ c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.
 c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(139): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
 c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(162): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
 c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(170): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(196): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(245): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(309): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(310): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(360): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(422): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(423): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(471): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(567): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(200): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(262): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(263): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(324): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(325): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(386): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(387): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(444): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(445): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(498): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(499): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(590): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(591): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\utility(201): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
   c:\users\mateus\documents\github\demos\2d_engine\source\phy_2d\source\src\world.cpp(88): note: see reference to function template instantiation 'std::pair<unsigned int,unsigned int>::pair<_Ty2&,_Ty2&,0>(_Other1,_Other2) noexcept' being compiled
           with

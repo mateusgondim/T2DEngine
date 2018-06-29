@@ -278,6 +278,28 @@ int load_tile_map(const std::string & path, Tile_map & tile_map)
 		pos_aux = line.find("tileheight");
 		int tile_height = std::stoi(line.substr(line.find_first_of(digits, pos_aux)));
 
+		//check if there is background color
+		pos_aux = line.find("backgroundcolor");
+		math::vec3 background_color(0.0f, 0.0f, 0.0f);
+		if (pos_aux != std::string::npos) {
+			std::string r, g, b;
+			pos_aux = line.find_first_of("#", pos_aux);
+			++pos_aux;
+			//each next two caracters is an hexadecimal number
+			r = line.substr(pos_aux, 2);
+			pos_aux += 2;
+			g = line.substr(pos_aux, 2);
+			pos_aux += 2;
+			b = line.substr(pos_aux, 2);
+			background_color.x = std::stoi(r, nullptr, 16);
+			background_color.y = std::stoi(g, nullptr, 16);
+			background_color.z = std::stoi(b, nullptr, 16);
+
+			//normalize it 
+			background_color /= 255.0f;
+		}
+		std::cout << "---------------BACKGROUND COLOR = " << background_color << std::endl;
+
 		// process the tilesets
 		std::vector<Tileset> tilesets;
 		while ( (std::getline(file_istream, line)) && (line.find("<tileset") != std::string::npos)) {
@@ -336,6 +358,7 @@ int load_tile_map(const std::string & path, Tile_map & tile_map)
 
 		}
 		tile_map = Tile_map(tilesets, layers, layer_count, width, height, tile_width, tile_height);
+		tile_map.set_background_color(background_color);
 
 		file_istream.close();
 

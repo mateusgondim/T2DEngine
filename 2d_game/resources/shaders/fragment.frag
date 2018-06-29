@@ -11,4 +11,7 @@ uniform sampler2D tileset1;
 void main() 
 {
 	color = texture(tileset1, f_uv);
+	if (color.a == 0.0f) {
+		discard;
+	}
 }

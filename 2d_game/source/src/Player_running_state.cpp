@@ -24,13 +24,13 @@
 #include <algorithm>
 
 
-Player_running_state::Player_running_state(gom::Actor & actor, const float acceleration) : Gameplay_state(), m_acceleration(acceleration)
+Player_running_state::Player_running_state(gom::Actor & actor, const float x_vel) : Gameplay_state(), m_x_vel(x_vel)
 {
 	if (actor.get_facing_direction()) {
-		actor.get_body_2d_component()->add_force(math::vec2(-acceleration, 0.0f));
+		actor.get_body_2d_component()->add_to_velocity(math::vec2(-m_x_vel, 0.0f));
 	}
 	else {
-		actor.get_body_2d_component()->add_force(math::vec2(acceleration, 0.0f));
+		actor.get_body_2d_component()->add_to_velocity(math::vec2(m_x_vel, 0.0f));
 	}
 }
 

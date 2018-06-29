@@ -25,9 +25,9 @@ Player_creator::Player_creator(const string_id atlas_id, const string_id anim_co
 	m_pbody_def = static_cast<physics_2d::Body_2d_def*>( new (pmem) physics_2d::Body_2d_def());
 
 	
-	math::vec2 pos(10.0f, 12.0f);
+	math::vec2 pos(10.0f, 42.0f);
 
-	physics_2d::AABB_2d p_aabb(math::vec2(-0.40f, -0.75f), math::vec2(0.40f, 0.75f));
+	physics_2d::AABB_2d p_aabb(math::vec2(-0.32f, -0.44f), math::vec2(0.32f, 0.44f));
 	p_aabb.p_max += pos;
 	p_aabb.p_min += pos;
 
@@ -63,12 +63,12 @@ void Player_creator::create_anim_controller()
 	m_panim_controller = static_cast<gfx::Animator_controller*>( new (pmem) gfx::Animator_controller() );
 	
 	//create the animation players for each animation state
-	gfx::Animation_player player_idle_anim(gfx::Animation({ 5 }, 5));
-	gfx::Animation_player player_running_anim(gfx::Animation({ 8, 10, 9 }, 10));
-	gfx::Animation_player player_jumping_anim(gfx::Animation({ 6 }, 1));
-	gfx::Animation_player player_climbing_anim(gfx::Animation({ 1, 2 }, 6)); // gfx::Animation({3 }, 6) );
-	gfx::Animation_player player_finishing_climbing_anim(gfx::Animation({ 3 }, 6));
-	gfx::Animation_player player_attacking_anim(gfx::Animation({ 13, 14 }, 10, false));
+	gfx::Animation_player player_idle_anim(gfx::Animation({ 30, 31, 32, 33 }, 4));
+	gfx::Animation_player player_running_anim(gfx::Animation({ 38, 39, 40, 41, 34, 35, 36, 37 }, 10));
+	gfx::Animation_player player_jumping_anim(gfx::Animation({ 34, 35, 36, 37 }, 10));
+	gfx::Animation_player player_climbing_anim(gfx::Animation({ 24, 25 }, 5)); // gfx::Animation({3 }, 6) );
+	gfx::Animation_player player_finishing_climbing_anim(gfx::Animation({ 24 }, 6));
+	gfx::Animation_player player_attacking_anim(gfx::Animation({ 20, 21, 22, 23}, 12, false));
 	gfx::Animation_player player_ducking_idle_anim(gfx::Animation({ 4 }, 1));
 	gfx::Animation_player player_ducking_attacking_anim(gfx::Animation({ 11, 12 }, 10, false));
 

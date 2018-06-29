@@ -41,6 +41,7 @@ public:
 	int height()       const { return m_height; }
 	int tile_width()   const { return m_tile_width;}
 	int tile_height()  const { return m_tile_height; }
+	const math::vec3 & get_background_color() const { return m_background_color; }
 	std::vector<Tileset> & get_tilesets()  { return m_tilesets; }
 	int get_tile_id(const int layer, const int row, const int column) const;
 	Tile get_tile(const unsigned id) const;
@@ -54,6 +55,7 @@ public:
 	float world_to_tile_displacement_x(float t_x) const { return t_x / (m_tile_width / m_pixels_per_word_unit) ; }
 	float world_to_tile_displacement_y(float t_y) const { return t_y / (m_tile_height / m_pixels_per_word_unit); }
 
+	void set_background_color(const math::vec3 & color) { m_background_color = color; }
 private:
 	void setup_map(const std::vector<std::vector<std::vector<int>>> & layers);
 
@@ -67,6 +69,7 @@ private:
 	int     m_tile_height;
 
 	math::vec3 m_position;  // tile map origin, i.e, the coordinates of the top left tile in world space
+	math::vec3 m_background_color;
 	float     m_pixels_per_word_unit; // how many pixels are equal to 1 world unit, used in scaling
 };
 

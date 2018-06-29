@@ -6,10 +6,13 @@ c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.
   Tile_map.cpp
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
-c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tile_map.cpp(70): warning C4018: '<': signed/unsigned mismatch
+c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tile_map.cpp(74): warning C4018: '<': signed/unsigned mismatch
   tmx_parser.cpp
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '>=': signed/unsigned mismatch
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tileset.hpp(38): warning C4018: '<=': signed/unsigned mismatch
 c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tmx_parser.cpp(227): warning C4018: '<': signed/unsigned mismatch
+c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tmx_parser.cpp(294): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tmx_parser.cpp(295): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\mateus\documents\github\demos\2d_engine\source\tmap\source\src\tmx_parser.cpp(296): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Generating Code...
   tmap.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\tmap\source\tmap.dir\Debug\tmap.lib

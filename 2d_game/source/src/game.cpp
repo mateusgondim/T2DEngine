@@ -334,7 +334,7 @@ int main(int argc, char *argv[])
 	//$(OutDir);
 	Tile_map tile_map;
 
-	if (!load_tile_map( (resources_path + "/maps/test_map.tmx").c_str(), tile_map)) {
+	if (!load_tile_map( (resources_path + "/maps/level01.tmx").c_str(), tile_map)) {
 		std::cout << "Tile_map was loaded " << std::endl;
 		print_tile_map(std::cout, tile_map);
 	}
@@ -362,6 +362,10 @@ int main(int argc, char *argv[])
 	
 	// CHANGE ABSOLUTE PATH!!!!!!!
 	gfx::Shader   *ptile_map_shader = static_cast<gfx::Shader*>(gfx::g_shader_mgr.load("tile_map_shader", (resources_path + "/shaders/vertex.vert").c_str(), (resources_path + "/shaders/fragment.frag").c_str() ));
+
+	//gfx::g_graphics_mgr.set_clear_color(math::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+	//gfx::g_graphics_mgr.clear_color_buffers();
+
 
 	//load the data to render the map into the graphics manager
 	gfx::g_graphics_mgr.set_tile_map(&tile_map);
@@ -420,7 +424,7 @@ int main(int argc, char *argv[])
 	std::cout << sizeof(void*) << std::endl;
 
 	// load atlas needed for the player sprite
-	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.load("player", (resources_path + "/sprite sheets/character.xml").c_str() ,&gfx::g_texture_2d_mgr));
+	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.load("player", (resources_path + "/sprite sheets/characters.xml").c_str() ,&gfx::g_texture_2d_mgr));
 	
 	//get the atlas resource id
 	string_id atlas_id = patlas->get_id();
@@ -449,7 +453,7 @@ int main(int argc, char *argv[])
 
 	// set the player projectile anim_controller
 	gfx::Animator_controller *pcontroller(new gfx::Animator_controller());
-	gfx::Animation_player knife_idle_anim(gfx::Animation({ 7 }, 5));
+	gfx::Animation_player knife_idle_anim(gfx::Animation({ 19 }, 5));
 	pcontroller->add_state("knife_idle_state", knife_idle_anim);
 
 	//create a type id for the object
@@ -459,9 +463,10 @@ int main(int argc, char *argv[])
 
 	gom::g_game_object_mgr.register_creator(knife_type_id, knife_projectile);
 
-	gfx::g_graphics_mgr.set_clear_color(math::vec4(0.0f, 0.0f, 0.0f, 1.0f) );
-	//gfx::g_graphics_mgr.set_blend_func();
+	//gfx::g_graphics_mgr.set_clear_color(math::vec4(0.0f, 0.0f, 0.0f, 1.0f) );
 	//gfx::g_graphics_mgr.graphics_enable(gfx::GFX_ENUMS::BLEND);
+	//gfx::g_graphics_mgr.set_blend_func();
+	
 
 	
 	//last_time = glfwGetTime();
@@ -474,6 +479,7 @@ int main(int argc, char *argv[])
 	unsigned c = 0;
 	bool on_ground = false;
 	
+
 	//set the shaders for sprite and tile map
 	gfx::g_graphics_mgr.set_tile_map_shader(ptile_map_shader);
 	gfx::g_graphics_mgr.set_sprite_shader(psprite_shader);

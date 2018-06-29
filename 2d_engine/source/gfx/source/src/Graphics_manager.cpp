@@ -79,6 +79,8 @@ bool gfx::Graphics_manager::create_window(const std::int32_t width, const std::i
 		return false;
 	}
 
+	glEnable(GL_SCISSOR_TEST);
+
 	// Now that we have a opengl context, create a batch object to start 
 	void *pbatch_mem = m_batch_pool.get_element();
 	Sprite_batch *pbach = new (pbatch_mem) Sprite_batch(6 * 25);
@@ -168,6 +170,7 @@ void gfx::Graphics_manager::set_viewport(std::int32_t x, std::int32_t y, std::in
 	}
 
 	glViewport(x, y, width, height);
+	glScissor(x, y, width, height);
 	
 	//Check opengl's error in GRAPHICS_CONSOLE_DEBUG_MODE
 	gfx_check_error();
@@ -183,6 +186,10 @@ void gfx::Graphics_manager::set_tile_map(Tile_map *ptile_map)
 	math::vec2 map_origin = math::vec2(m_ptile_map->get_position().x, m_ptile_map->get_position().y);
 
 	m_camera.init(tile_wld_width, tile_wld_height, m_tiles_per_screen_width, m_tiles_per_screen_height, m_ptile_map->width(), m_ptile_map->height(), map_origin);
+	
+	//set background color
+	math::vec3 color = m_ptile_map->get_background_color();
+	set_clear_color(math::vec4(color.x, color.y, color.z, 1.0f));
 	set_tile_map_renderer();
 }
 
@@ -571,8 +578,8 @@ void gfx::Graphics_manager::render()
 		pbatch->render();
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
-	glfwPollEvents();
 	glfwSwapBuffers(m_pwindow);
+	glfwPollEvents();
 }
 
 
@@ -665,6 +672,10 @@ void gfx::Graphics_manager::set_tile_map_renderer()
 
 			// get the uv coordinates of the tile
 			std::uint32_t tile_id = m_ptile_map->get_tile_id(0, i, j);
+
+			if (tile_id == 0) {//empty tile
+				continue;
+			}
 
 			//find witch tileset has the tile width id
 			const Tileset * ptileset = nullptr;

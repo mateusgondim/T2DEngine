@@ -78,7 +78,6 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 	if (on_ground) {
 		const Button & jump_button = io::get_button_from_action(io::GAME_ACTIONS::JUMP);
 		if ( jump_button.m_state == PRESSED) {
-			std::cout << "Changing to Player_jumping_state" << std::endl;
 			actor.get_anim_controller_component()->set_bool("is_jumping", true);
 			
 			void *pmem = mem::allocate(sizeof(Player_jumping_state));
@@ -96,7 +95,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 			//std::cout << "CAN CLIMB NOW!!!" << std::endl;
 			//animation set up
 			actor.get_anim_controller_component()->set_bool("is_climbing", true);
-			actor.get_body_2d_component()->apply_gravity(false);
+			actor.get_body_2d_component()->set_gravity_scale(0.0f);
 			
 			void *pmem = mem::allocate(sizeof(Player_climbing_state));
 			return static_cast<gom::Gameplay_state*> (new (pmem) Player_climbing_state);
@@ -113,12 +112,13 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 		if (climbing) {
 			//animation set up
 			actor.get_anim_controller_component()->set_bool("is_climbing", true);
-			actor.get_body_2d_component()->apply_gravity(false);
+			actor.get_body_2d_component()->set_gravity_scale(0.0f);
 			
 			void *pmem = mem::allocate(sizeof(Player_climbing_state));
 			return static_cast<gom::Gameplay_state*> (new (pmem) Player_climbing_state(true));
 			//return new Player_climbing_state(true);
 		}
+		/*
 		else { // no ladder, change to ducking state
 			//animation
 			actor.get_anim_controller_component()->set_bool("is_ducking", true);
@@ -128,7 +128,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 			return static_cast<gom::Gameplay_state*> (new (pmem) Player_ducking_state);
 
 			//return new Player_ducking_state;
-		}
+		}*/
 
 	}
 

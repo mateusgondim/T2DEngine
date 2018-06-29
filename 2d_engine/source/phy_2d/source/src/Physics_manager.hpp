@@ -14,7 +14,7 @@ namespace physics_2d {
 		
 		World * get_world();
 		
-		void init(Tile_map *pmap, const math::vec2 & gravity = math::vec2(0.0f, -0.9f));
+		void init(Tile_map *pmap, const math::vec2 & gravity = math::vec2(0.0f, -41.0f));
 		void shut_down();
 	private:
 		World *m_pworld;

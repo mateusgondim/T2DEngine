@@ -1,7 +1,0 @@
-﻿  Building Custom Rule C:/glfw-3.2.1/tests/CMakeLists.txt
-  CMake does not need to re-run because C:\Users\mateu\Documents\GitHub\Demos\Fps_demo\build\tests\CMakeFiles\generate.stamp is up-to-date.
-  clipboard.c
-  getopt.c
-  glad.c
-  Generating Code...
-  clipboard.vcxproj -> C:\Users\mateu\Documents\GitHub\Demos\Fps_demo\build\tests\Release\clipboard.exe

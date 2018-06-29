@@ -11,7 +11,7 @@ uniform sampler2D tileset;
 void main() 
 {
 	vec4 tex_color = texture(tileset, f_uv);
-	if ( (tex_color.r == 0.0f) && (tex_color.g == 0.0f) && (tex_color.b == 0.0f) ) { //transparent color
+	if ( (tex_color.a == 0.0f) ) { //transparent color
 		discard;
 	}
 	else {

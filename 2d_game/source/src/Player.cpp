@@ -36,12 +36,14 @@ void Player::handle_input()
 void Player::update(const float dt) 
 {
 	//CHANGE THIS!!! REALLY UGLY, USED ONLY TO MEET A DEALINE. IMPLEMENT A TRIGGER
-	math::vec2 p = m_pbody_2d->get_position();
+	/*math::vec2 p = m_pbody_2d->get_position();
+	
 	if (p.y < -2.0f) { // fell into a pit
 		p.x -= 4.0f;
 		p.y = 12.0f;
 		m_pbody_2d->set_position(p);
 	}
+	*/
 
 	m_panimator_controller->update(dt);
 	

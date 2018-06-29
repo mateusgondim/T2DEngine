@@ -50,7 +50,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 			
 			if (!is_on_ladder) { // have fallen of
 				actor.get_body_2d_component()->stop_movement_y();
-				actor.get_body_2d_component()->apply_gravity(true);
+				actor.get_body_2d_component()->set_gravity_scale(1.0f);
 
 				actor.set_facing_direction(true);
 				actor.get_anim_controller_component()->set_bool("is_climbing", false);
@@ -64,7 +64,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 			const Button & moving_left_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_LEFT);
 			if (moving_left_button.m_state == PRESSED) {
 				actor.get_body_2d_component()->stop_movement_y();
-				actor.get_body_2d_component()->apply_gravity(true);
+				actor.get_body_2d_component()->set_gravity_scale(1.0f);
 
 				actor.set_facing_direction(true);
 				actor.get_anim_controller_component()->set_bool("is_climbing", false);
@@ -78,7 +78,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 			const Button & moving_right_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_RIGHT);
 			if (moving_right_button.m_state == PRESSED) {
 				actor.get_body_2d_component()->stop_movement_y();
-				actor.get_body_2d_component()->apply_gravity(true);
+				actor.get_body_2d_component()->set_gravity_scale(1.0f);
 
 				actor.set_facing_direction(false);
 
@@ -101,7 +101,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 				const Button & moving_down_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_DOWN);
 				if (is_on_ground) {
 					actor.get_body_2d_component()->stop_movement_y();
-					actor.get_body_2d_component()->apply_gravity(true);
+					actor.get_body_2d_component()->set_gravity_scale(1.0f);
 					actor.get_anim_controller_component()->set_bool("is_climbing", false);
 					
 					void *pmem = mem::allocate(sizeof(Player_idle_state));
@@ -109,7 +109,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 					//return new Player_idle_state();
 				}
 
-				if (moving_down_button.m_state == PRESSED) {
+				if (moving_down_button.m_state == PRESSED || moving_down_button.m_state == REPEAT) {
 					actor.get_body_2d_component()->set_velocity(-m_climbing_vel);
 					actor.get_anim_controller_component()->get_current_state().resume_anim();
 				}
@@ -143,7 +143,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 				actor.get_body_2d_component()->translate_by(translation);
 
 				actor.get_body_2d_component()->stop_movement_y();
-				actor.get_body_2d_component()->apply_gravity(true);
+				actor.get_body_2d_component()->set_gravity_scale(1.0f);
 				actor.get_anim_controller_component()->set_bool("is_climbing", false);
 				actor.get_anim_controller_component()->set_bool("finish_climbing", false);
 				

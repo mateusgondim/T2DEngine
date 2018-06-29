@@ -38,12 +38,12 @@ void gfx::Texture_2d::load()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 		std::int32_t  width, height;
-		std::uint8_t  *image = SOIL_load_image(m_image_path, &width, &height, 0, SOIL_LOAD_RGB);
+		std::uint8_t  *image = SOIL_load_image(m_image_path, &width, &height, 0, SOIL_LOAD_RGBA);
 
 		m_width = width;
 		m_height = height;
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 
 		glGenerateMipmap(GL_TEXTURE_2D);
 		SOIL_free_image_data(image);

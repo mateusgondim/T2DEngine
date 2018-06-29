@@ -21,6 +21,10 @@ void Tile_map::setup_map(const std::vector<std::vector<std::vector<int>>> & laye
 //TODO: THROW EXCEPTION OR CHANGE TO TILE* AND RETURN NULLPTR
 Tile Tile_map::get_tile(const unsigned id) const 
 {
+	if (id == 0) {
+		return Tile();
+	}
+
 	for (auto iter = m_tilesets.begin(); iter != m_tilesets.end(); ++iter) {
 		if (iter->is_inside_set(id)) {
 			return iter->get_tile(id);

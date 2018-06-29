@@ -32,7 +32,7 @@ namespace gom {
 		//create the body_2d component
 		m_pbody_2d = physics_2d::g_physics_mgr.get_world()->create_body_2d(*pbody_def);
 		m_pbody_2d->set_user_data(static_cast<void*>(this));
-		m_speed = math::vec2_magnitude(m_pbody_2d->get_velocity());
+		m_speed = math::vec2_mag(m_pbody_2d->get_velocity());
 
 		//make a copy of the animator controller
 		pmem = mem::allocate(sizeof(gfx::Animator_controller));

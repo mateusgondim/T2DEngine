@@ -1,7 +1,7 @@
 #include "vec2.hpp"
 
 
-const math::vec2 math::g_zero_vector(0.0f, 0.0f);
+const math::vec2 math::g_zero_vec2(0.0f, 0.0f);
 
 math::vec2::vec2(const math::vec2 & v) : x(v.x), y(v.y) {}
 
