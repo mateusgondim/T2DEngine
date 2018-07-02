@@ -1,8 +1,0 @@
-﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/math/source/CMakeLists.txt
-  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/math/source/CMakeFiles/generate.stamp is up-to-date.
-  vec2.cpp
-  vec3.cpp
-  mat4.cpp
-  matrix_transform.cpp
-  Generating Code...
-  math.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\math\source\math.dir\Release\math.lib

@@ -1,7 +1,0 @@
-﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/io/source/CMakeLists.txt
-  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/io/source/CMakeFiles/generate.stamp is up-to-date.
-  Button.cpp
-  input_manager.cpp
-  Generating Code...
-c:\users\mateus\documents\github\demos\2d_engine\source\io\source\src\input_manager.cpp(107): warning C4715: 'io::get_button_from_action': not all control paths return a value
-  io.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\io\source\io.dir\Release\io.lib

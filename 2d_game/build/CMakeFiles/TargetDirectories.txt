@@ -1,3 +1,0 @@
-C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/CMakeFiles/game.dir
-C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/Mateus/Documents/GitHub/Demos/2d_game/build/CMakeFiles/ZERO_CHECK.dir

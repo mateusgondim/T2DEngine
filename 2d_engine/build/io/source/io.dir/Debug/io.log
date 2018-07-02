@@ -1,7 +1,0 @@
-﻿  Building Custom Rule C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/source/io/source/CMakeLists.txt
-  CMake does not need to re-run because C:/Users/Mateus/Documents/GitHub/Demos/2d_engine/build/io/source/CMakeFiles/generate.stamp is up-to-date.
-  Button.cpp
-  input_manager.cpp
-  Generating Code...
-c:\users\mateus\documents\github\demos\2d_engine\source\io\source\src\input_manager.cpp(105): warning C4172: returning address of local variable or temporary
-  io.vcxproj -> C:\Users\Mateus\Documents\GitHub\Demos\2d_engine\build\io\source\io.dir\Debug\io.lib
