@@ -88,6 +88,7 @@ void key_callback(int key, int scancode, int action, int mods)
 	io::key_callback(key, scancode, action, mods);
 }
 
+/*
 gfx::Animator_controller *get_player_anim_controller() 
 {
 	gfx::Animator_controller *pcontroller(new gfx::Animator_controller());
@@ -324,7 +325,7 @@ gfx::Animator_controller *get_player_anim_controller()
 
 	std::cout << (*pcontroller);
 	return pcontroller;
-}
+}*/
 
 
 int main(int argc, char *argv[])

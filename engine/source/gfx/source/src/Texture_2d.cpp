@@ -6,7 +6,10 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "SOIL.h"
+
+//#include "SOIL.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 #include <iostream>
 #include <cstdint>
@@ -37,8 +40,10 @@ void gfx::Texture_2d::load()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		std::int32_t  width, height;
-		std::uint8_t  *image = SOIL_load_image(m_image_path, &width, &height, 0, SOIL_LOAD_RGBA);
+		std::int32_t  width, height, num_channels;
+		
+		//std::uint8_t  *image = SOIL_load_image(m_image_path, &width, &height, 0, SOIL_LOAD_RGBA);
+		std::uint8_t	*image = stbi_load(m_image_path, &width, &height, &num_channels, 4);
 
 		m_width = width;
 		m_height = height;
@@ -46,7 +51,9 @@ void gfx::Texture_2d::load()
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 
 		glGenerateMipmap(GL_TEXTURE_2D);
-		SOIL_free_image_data(image);
+		
+		//SOIL_free_image_data(image);
+		stbi_image_free(image);
 		glBindTexture(GL_TEXTURE_2D, 0);
 
 		if (GL_NO_ERROR != glGetError()) {
