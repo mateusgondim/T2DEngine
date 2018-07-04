@@ -3,6 +3,7 @@ A 2d tile based game engine, with a sample platformer game constructed using the
 # Motivation
 The main reason behind the construction of the engine, was to have a first hand learning experience on how to contruct a component based 2d game engine. Its still in its early stages but, it already have some core feattures, as memory management, that can already be used on a game project, as can be shown by the sample game. 
 # Sample game screenshots
+![alt text](screenshots/screenshot01.png)
 # Tech/Framework used
   - [OpenGL/GLFW](http://www.glfw.org/) and [GLEW](http://glew.sourceforge.net/) for rendering. 
   - [stb_image](https://github.com/nothings/stb) for image loading. 
