@@ -1,5 +1,5 @@
 # T2DEngine
-A 2d tile based game engine, with a sample platformer game constructed using the engine
+A 2d tile based game engine, with a sample platformer game constructed using the engine. Still in development.
 # Motivation
 The main reason behind the construction of the engine, was to have a first hand learning experience on how to contruct a component based 2d game engine. Its still in its early stages but, it already have some core feattures, as memory management, that can already be used on a game project, as can be shown by the sample game. 
 # Sample game screenshots
@@ -15,15 +15,15 @@ The T2DEngine is comprised of a group of modules, each one implementing a core f
   - Mem provides a function to allocate aligned memory blocks, defines a pool data structure to manage memory blocks of the same size and, a generic memory allocator.
   - Utility defines types and data structures in unrelated domains used by the engine. As of now, it defines a timer class and a implementation of the crc32 algorithm coupled with a string_id type.
   - Io implements all the input handling
-  - The Rms defines a interface to create resources and resource managers.
+  - Rms defines a interface to create resources and resource managers.
   - Tmap defines all the data structures to load and manage the tile map's data from a .tmx file.
   - Gfx defines a interface to render sprites and tiles using a batching approach, data structures for textures and shader programs and, the engine's animation system.
   - Phy_2d defines a simple 2d world that updates all its body_2d objects according to its position and velocity, it also implements a collision system for detecting intersections between a pair of AABBs or, a AABB with a map's tile.
-  - Gom implements the engine's game object hierarchy and, data structures to manage the game objects.
+  - Gom implements the engine's game object hierarchy and data structures to manage the game objects.
 
-Although some modules are incomplete, there are other modules and classes that can already be used on a game project, either in its current form or with some custom modifications, some of them are:
-  - The Memory module, which provides a [pool data structure](https://github.com/mateusgondim/T2DEngine/blob/master/engine/source/mem/source/src/Pool_allocator.hpp) to manage a collection of memory blocks of the same size. 
-  - The Animation system already have a nice implementation of a [animation state machine](https://github.com/mateusgondim/T2DEngine/blob/master/engine/source/gfx/source/src/Animator_controller.hpp), with the option to add different conditions to each transition, where each condition can operate on booleans, ints and floats parameters.
+Although most modules are incomplete, there are feattures and classes that can already be used on a game project, either in its current form or, with some custom modifications, some of them are:
+  - The [pool data structure](https://github.com/mateusgondim/T2DEngine/blob/master/engine/source/mem/source/src/Pool_allocator.hpp), which manage a collection of memory blocks of the same size. 
+  - The Animation system, which already have a nice implementation of a [animation state machine](https://github.com/mateusgondim/T2DEngine/blob/master/engine/source/gfx/source/src/Animator_controller.hpp), with the option to add different conditions to each transition, where each condition can operate on booleans, ints and floats parameters.
   - The implementation of a [string_id type](https://github.com/mateusgondim/T2DEngine/blob/master/engine/source/utility/source/src/string_id.hpp), using the crc-32 algorithm to generate a 32-bit unsigned value from a string.
   # Code Example
   - Pool data structure usage
