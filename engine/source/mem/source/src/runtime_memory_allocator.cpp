@@ -6,7 +6,7 @@ namespace mem {
 	// internal variables
 	static const unsigned s_BLOCK_SIZES[] = {
 		// 4- increment
-		4,  8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48,
+		8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48,
 		52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96,
 		// 32 - increment
 		128, 160, 192, 224, 256, 288, 320, 352, 384,

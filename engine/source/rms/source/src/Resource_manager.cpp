@@ -10,7 +10,7 @@
 
 namespace rms {
 
-	Resource_manager::Resource_manager(std::string & resource_type, const std::size_t element_sz_bytes, const std::size_t num_elements, const std::size_t aligmnent) 
+	Resource_manager::Resource_manager(const std::string & resource_type, const std::size_t element_sz_bytes, const std::size_t num_elements, const std::size_t aligmnent) 
 		: m_resource_type(resource_type), m_resources_mem_pool(element_sz_bytes, num_elements, aligmnent), m_memory_budget(element_sz_bytes * num_elements) {}
 
 	Resource_manager::~Resource_manager() 

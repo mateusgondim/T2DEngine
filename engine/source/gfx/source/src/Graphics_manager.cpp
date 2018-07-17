@@ -41,6 +41,7 @@ void gfx::Graphics_manager::init(const std::uint8_t context_version_major, const
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, m_context_version_major);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, m_context_version_minor);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	m_pixels_per_unit = pixels_per_unit;
@@ -647,7 +648,7 @@ void gfx::Graphics_manager::set_tile_map_renderer()
 
 	// check if there memory left in the pool
 	if (pbatch_mem == nullptr) {
-		std::cerr << "ERROR(" __FUNCTION__ << "): No memory left in batch pool" << std::endl;
+		std::cerr << "ERROR(" <<  __FUNCTION__ << "): No memory left in batch pool" << std::endl;
 		return;
 	}
 

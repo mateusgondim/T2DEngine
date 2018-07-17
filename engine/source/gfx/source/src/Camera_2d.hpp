@@ -18,7 +18,7 @@ namespace gfx {
 		void           translate(const math::vec3 & t) { m_transform.get_translation() += t; }
 		void		   follow(const math::vec3 & p);
 		bool		   is_off_camera(const math::vec3 & pos, const float width, const float height) const;
-		math::mat4   & get_view() const { return math::mat4(math::mat4(), -m_transform.get_translation()); }
+		math::mat4     get_view() const { return math::mat4(math::mat4(), -m_transform.get_translation()); }
 
 		void           set_screen_dim(const float tiles_per_screen_width, const float tiles_per_screen_height);
 		void		   scale(const float device_aspect_ratio);

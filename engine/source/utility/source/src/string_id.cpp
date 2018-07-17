@@ -2,6 +2,7 @@
 #include "crc32.hpp"
 #include <map>
 #include <cstdint>
+#include <cstdlib>
 
 
 static std::map<string_id, const char *> g_string_table;

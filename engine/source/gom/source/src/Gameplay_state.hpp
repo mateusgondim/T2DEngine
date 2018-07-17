@@ -1,6 +1,6 @@
 #ifndef _GAMEPLAY_STATE_HPP
 #define _GAMEPLAY_STATE_HPP
-
+#include <cstddef>
 //------------------------------------------------------------------------
 /* Gameplay_State: Abstract Base Class, derive this class to create a state of a gameplay state machine for some Actor in the Game. 
  * It has a update() method to implement the behavior of the actor in this gameplay state. Every game object that has multiple gameplay states will have a pointer

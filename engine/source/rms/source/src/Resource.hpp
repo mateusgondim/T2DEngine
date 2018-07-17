@@ -6,7 +6,7 @@
  * by the application. The key thing, is that they must be identified by an unique ID, must be loaded only once and
  * should be retrieved efficiently
  */
-
+#include <cstddef>
 #include "string_id.hpp"
 
 namespace rms { class Resource_manager; }

@@ -343,7 +343,7 @@ int main(int argc, char *argv[])
 		std::cout << "ERROR: Could not load Tile_map " << std::endl;
 		return -1;
 	}
-	engine_init(4, 0, &tile_map);
+	engine_init(3, 2, &tile_map);
 	
 	gfx::g_graphics_mgr.set_error_callback(error_callback);
 	gfx::g_graphics_mgr.create_window(512, 480, "2D Game");

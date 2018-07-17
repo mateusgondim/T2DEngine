@@ -20,7 +20,7 @@ namespace rms {
 	public:
 		typedef std::map<string_id, Resource*> resource_map;
 
-		Resource_manager(std::string & resource_type, const std::size_t element_sz_bytes, const std::size_t num_elements, const std::size_t aligmnent);
+		Resource_manager(const std::string & resource_type, const std::size_t element_sz_bytes, const std::size_t num_elements, const std::size_t aligmnent);
 		virtual ~Resource_manager();
 
 		virtual std::pair<Resource*, bool> create_or_retrieve(const char *name);
