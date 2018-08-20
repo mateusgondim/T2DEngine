@@ -11,7 +11,7 @@ namespace gom { class Game_object_handle; }
 namespace gom {
 	class Projectile_manager {
 	public:
-		typedef uint16_t type_id;
+		typedef uint32_t type_id;
 		Projectile_manager() = default;
 		
 		void init();

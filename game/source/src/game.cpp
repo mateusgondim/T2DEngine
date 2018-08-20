@@ -58,6 +58,9 @@
 #include "Player_creator.hpp"
 #include "Projectile_creator.hpp"
 
+#include "Hover_robot.hpp"
+#include "Hover_robot_creator.hpp"
+
 //memory
 #include "runtime_memory_allocator.hpp"
 
@@ -448,7 +451,7 @@ int main(int argc, char *argv[])
 	body_def.m_position = math::vec2();
 	body_def.m_aabb = physics_2d::AABB_2d(math::vec2(-0.20f, -0.1f), math::vec2(0.20f, 0.1f));
 	body_def.m_type = physics_2d::Body_2d::DYNAMIC;
-	body_def.m_velocity = math::vec2(11.0f, 0.0f);
+	body_def.m_linear_velocity = math::vec2(11.0f, 0.0f);
 	body_def.m_gravity_scale = 0.0f;
 	body_def.m_map_collision = false;
 
@@ -463,6 +466,19 @@ int main(int argc, char *argv[])
 	Projectile_creator *knife_projectile = new Projectile_creator(atlas_id, body_def, pcontroller);
 
 	gom::g_game_object_mgr.register_creator(knife_type_id, knife_projectile);
+
+	// Set the Hover Robor creator
+	Hover_robot_creator * phover_robot_creator = new Hover_robot_creator(atlas_id, 0);
+
+	//create a type id for the Hover_object. THIS SHOULD BE READ FROM A FILE
+	string_id hover_robot_id = intern_string("hover_robot");
+
+	//register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
+	gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator);
+
+	//create the Hover Robot enemy
+	gom::Game_object_handle hover_robot_handle = gom::g_game_object_mgr.instantiate(hover_robot_id, math::vec3());
+	
 
 	//gfx::g_graphics_mgr.set_clear_color(math::vec4(0.0f, 0.0f, 0.0f, 1.0f) );
 	//gfx::g_graphics_mgr.graphics_enable(gfx::GFX_ENUMS::BLEND);
@@ -510,7 +526,7 @@ int main(int argc, char *argv[])
 		float frame_time = timer.get_dt();
 		//std::cout << "delta time shold be " << dt << " | dt = " << frame_time << std::endl;
 		
-		pplayer->handle_input();
+		//pplayer->handle_input();
 		
 		bool  lagging = (frame_time > dt) ? true :false;
 		if (lagging) {

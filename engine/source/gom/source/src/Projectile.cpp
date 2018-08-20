@@ -18,7 +18,7 @@
 
 namespace gom {
 	Projectile::Projectile(const game_object_id unique_id, const uint16_t handle_index, const math::vec3 & pos, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller) :
-		gom::Game_object(unique_id, handle_index, pos)
+		gom::Game_object(unique_id, handle_index, pos), m_hit(false), m_damage(20)
 	{
 		//create the sprite component
 		void *pmem = mem::allocate(sizeof(gfx::Sprite));
@@ -47,14 +47,20 @@ namespace gom {
 			set_active(false);
 			return;
 		}
-
-		m_panimator_controller->update(dt);
-
-		gfx::Animator_state & curr_state = m_panimator_controller->get_current_state();
-		if (curr_state.changed_animation_frame()) {
-			m_psprite->update_uv(curr_state.get_curr_anim_frame());
+		
+		if (m_hit) {
+			set_active(false);
+			return;
 		}
-		m_psprite->update_pos(m_pbody_2d->get_position(), m_is_facing_right);
+		else {
+			m_panimator_controller->update(dt);
+
+			gfx::Animator_state & curr_state = m_panimator_controller->get_current_state();
+			if (curr_state.changed_animation_frame()) {
+				m_psprite->update_uv(curr_state.get_curr_anim_frame());
+			}
+			m_psprite->update_pos(m_pbody_2d->get_position(), m_is_facing_right);
+		}
 	}
 
 	void Projectile::set_direction(const math::vec2 & dir) 
@@ -69,7 +75,7 @@ namespace gom {
 		m_transform.get_translation() = pos;
 		set_direction(direction);
 		m_pbody_2d->set_position(math::vec2(pos.x, pos.y));
-		
+		m_hit = false;
 		set_active(true);
 	}
 }

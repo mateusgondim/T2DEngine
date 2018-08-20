@@ -6,6 +6,8 @@
 #include "vec3.hpp"
 
 #include "Body_2d_def.hpp"
+#include "Collider_2d.hpp"
+#include "Collider_2d_def.hpp"
 #include "AABB_2d.hpp"
 #include "Physics_manager.hpp"
 
@@ -14,6 +16,7 @@
 #include "Animator_controller.hpp"
 #include "Sprite_atlas_manager.hpp"
 
+#include "string_id.hpp"
 #include "runtime_memory_allocator.hpp"
 #include <stdint.h>
 
@@ -35,7 +38,7 @@ Player_creator::Player_creator(const string_id atlas_id, const string_id anim_co
 	m_pbody_def->m_mass = 1.0f;
 	m_pbody_def->m_gravity_scale = 1.0f;
 	m_pbody_def->m_position = pos;
-	m_pbody_def->m_velocity = math::vec2(0.0f, 0.0f);
+	m_pbody_def->m_linear_velocity = math::vec2(0.0f, 0.0f);
 	m_pbody_def->m_vel_threshold = math::vec2(6.0f, 12.0f);
 	m_pbody_def->m_aabb = p_aabb;
 
@@ -48,8 +51,16 @@ gom::Game_object *Player_creator::create(void *pmem, const uint32_t unique_id, c
 	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
 	gom::Actor::atlas_n_layer sprite_data(patlas, 1);
 	
+	//create a collider_def
+	physics_2d::Collider_2d_def coll_def;
+	coll_def.m_aabb = m_pbody_def->m_aabb;
+	coll_def.m_is_trigger = false;
+
 	//call the player's constructor
-	return static_cast<gom::Game_object*>(new (pmem) Player(unique_id, handle_index, sprite_data, m_pbody_def, m_panim_controller));
+	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) Player(unique_id, handle_index, sprite_data, m_pbody_def, m_panim_controller));
+	pgame_object->get_body_2d_component()->create_collider_2d(coll_def);
+	pgame_object->set_tag(m_obj_tag);
+	return pgame_object;
 }
 
 Player_creator::~Player_creator() 

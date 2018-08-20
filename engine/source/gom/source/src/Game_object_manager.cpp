@@ -66,6 +66,8 @@ namespace gom {
 			delete pcreator;
 			return false;
 		}
+		//set the creator's object's tag
+		pcreator->set_obj_tag(obj_type);
 		// add entry on the map
 		m_creators[obj_type] = pcreator;
 

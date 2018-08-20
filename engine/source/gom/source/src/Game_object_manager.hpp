@@ -25,7 +25,7 @@ namespace gom {
 
 	class  Game_object_manager final {
 	public:
-		typedef uint16_t						type_id;
+		typedef uint32_t						type_id;
 		typedef std::map<type_id, Creator*>		creator_map;
 		typedef std::vector<Game_object*>		vpgame_objects;
 		typedef std::vector<Game_object_handle> vgame_object_handles;

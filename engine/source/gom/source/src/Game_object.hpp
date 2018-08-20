@@ -31,6 +31,10 @@ namespace gom {
 		uint16_t			  get_handle_index() const;
 		bool				  is_active() const { return m_is_active; }
 		void				  set_active(const bool flag);
+		
+		void				 set_tag(const uint32_t object_tag) { m_tag = object_tag; }
+		uint32_t			 get_tag() const { return m_tag; }
+
 		math::Transform     & get_transform_component();
 		gfx::Sprite          *get_sprite_component();
 		gfx::Animator_controller  *get_anim_controller_component();
@@ -45,7 +49,11 @@ namespace gom {
 	private:
 		game_object_id	m_unique_id;
 		uint16_t		m_handle_index;
+		
+		uint32_t		m_tag; //tag used to identify the game object's type, as "player" or "enemy"
+
 		bool			m_is_active;
+
 
 		//TODO: PERHAPS ADD A MAP COLLISION FUNCTION!!
 	};

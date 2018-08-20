@@ -5,7 +5,6 @@
 namespace math { struct vec2; struct vec3; class mat4; }
 namespace physics_2d { struct AABB_2d; class Body_2d; class World; }
 namespace gfx { class Sprite; class Animator_controller; }
-class Input_manager;
 
 class Player final : public gom::Actor {
 public:

@@ -44,7 +44,7 @@ void Player::update(const float dt)
 		m_pbody_2d->set_position(p);
 	}
 	*/
-
+	handle_input();
 	m_panimator_controller->update(dt);
 	
 	gfx::Animator_state & curr_state = m_panimator_controller->get_current_state();

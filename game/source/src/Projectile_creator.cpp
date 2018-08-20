@@ -14,6 +14,7 @@
 
 #include "string_id.hpp"
 
+#include "Collider_2d_def.hpp"
 #include "Body_2d_def.hpp"
 
 #include "runtime_memory_allocator.hpp"
@@ -46,7 +47,15 @@ gom::Game_object *Projectile_creator::create(void * pmem, const uint32_t unique_
 	m_pbody_def->m_aabb.p_max += translation;
 	m_pbody_def->m_aabb.p_min += translation;
 
-	return static_cast<gom::Game_object*>(new (pmem) gom::Projectile(unique_id, handle_index, wld_pos, data, m_pbody_def, m_pcontroller));
+	physics_2d::Collider_2d_def coll_def;
+	coll_def.m_aabb = m_pbody_def->m_aabb;
+	coll_def.m_is_trigger = true;
+
+	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) gom::Projectile(unique_id, handle_index, wld_pos, data, m_pbody_def, m_pcontroller));
+	pgame_object->get_body_2d_component()->create_collider_2d(coll_def);
+	pgame_object->set_tag(m_obj_tag);
+
+	return pgame_object;
 }
 
 
