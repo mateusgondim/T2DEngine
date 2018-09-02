@@ -336,8 +336,9 @@ int main(int argc, char *argv[])
 	Path resources_path("../resources", Path::FORWARD_SLASH);
 	// Load tile map
 	//$(OutDir);
-	Tile_map tile_map;
-
+	Tile_map tile_map((resources_path + "/maps/level01.tmx").c_str());
+	print_tile_map(std::cout, tile_map) << std::endl;
+	/*
 	if (!load_tile_map( (resources_path + "/maps/level01.tmx").c_str(), tile_map)) {
 		std::cout << "Tile_map was loaded " << std::endl;
 		print_tile_map(std::cout, tile_map);
@@ -345,7 +346,7 @@ int main(int argc, char *argv[])
 	else {
 		std::cout << "ERROR: Could not load Tile_map " << std::endl;
 		return -1;
-	}
+	}*/
 	engine_init(3, 2, &tile_map);
 	
 	gfx::g_graphics_mgr.set_error_callback(error_callback);

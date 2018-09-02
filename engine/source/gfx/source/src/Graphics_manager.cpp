@@ -500,7 +500,7 @@ void gfx::Graphics_manager::render()
 	//set_current_shader_program(m_tile_map_shader_id); 
 	m_ptile_map_shader->use();
 
-	texture_id text_id = ((m_ptile_map->get_tilesets())[0].get_texture_id());
+	texture_id text_id = ((m_ptile_map->get_tilesets())[0]->get_texture_id());
 
 	//Texture_2d *ptexture = m_textures[text_id];
 	Texture_2d   *ptexture = static_cast<Texture_2d*>(g_texture_2d_mgr.get_by_id(text_id));
@@ -596,7 +596,7 @@ void gfx::Graphics_manager::set_tile_map_renderer()
 		 */
 		
 		//get the file path for the texture of this tileset
-		std::string file_path = tileset.get_texture_file_path();
+		std::string file_path = tileset->get_texture_file_path();
 
 		//get the name of texture file to generate the resource unique
 		auto pos = (file_path.find_last_of('/') == std::string::npos) ? (file_path.find_last_of('\\')) : (file_path.find_last_of('/'));
@@ -606,7 +606,7 @@ void gfx::Graphics_manager::set_tile_map_renderer()
 		//load the texture resource
 		rms::Resource *resource = g_texture_2d_mgr.load(file_name.c_str(), file_path.c_str());
 		if (resource != nullptr) {
-			tileset.set_texture_id(resource->get_id());
+			tileset->set_texture_id(resource->get_id());
 		}
 		else {
 			std::cerr << "ERROR(" << __FILE__ << "): Could not load texture " << file_path << std::endl;
@@ -681,8 +681,8 @@ void gfx::Graphics_manager::set_tile_map_renderer()
 			//find witch tileset has the tile width id
 			const Tileset * ptileset = nullptr;
 			for (auto & tileset : m_ptile_map->get_tilesets()) {
-				if (tileset.is_inside_set(tile_id)) {
-					ptileset = &tileset;
+				if (tileset->is_inside_set(tile_id)) {
+					ptileset = tileset;
 					break;
 				}
 			}

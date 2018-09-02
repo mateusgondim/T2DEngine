@@ -1,6 +1,10 @@
 #include <iostream>
+#include <set>
+#include <cstddef>
 
 #include "Tileset.hpp"
+#include "Property.hpp"
+#include "Tile.hpp"
 #include "vec2.hpp"
 
 
@@ -45,14 +49,31 @@ void Tileset::get_text_coord(const int set_coord, math::vec2 & uv0, math::vec2 &
 	uv3.y = (float)tile_y_top_right / (float)m_set_height; // v for top right
 }
  
+//SHOULD IT DESTROY THE ASSOCIATED TEXTURE???????????????????????????????????????????????????????
+Tileset::~Tileset() 
+{
+	delete[] m_ptiles;
+}
 
-std::ostream & print_tileset(std::ostream & os, const Tileset & tileset) 
+std::ostream & operator<<(std::ostream & os, const Tileset & tileset)
 {
 	os << "Tileset data " << std::endl;
-	os << "<tileset" << " firstgid=" << tileset.m_first_gid  << " tilewidth=" << tileset.m_tile_width << " tileheight=" << tileset.m_tile_height << " margin=" << tileset.m_margin << " spacing=" << tileset.m_spacing
-	   << " tilecount=" << tileset.m_tile_count << " columns=" << tileset.m_columns << " >" << std::endl;
-	os << "<image " << "source= "  << " width=" << tileset.m_set_width << " height=" << tileset.m_set_height << " />" << std::endl;
-	os << "</tilset>" << std::endl;
+	os << "<tileset" << " firstgid=" << tileset.m_first_gid << " tilewidth=" << tileset.m_tile_width << " tileheight=" << tileset.m_tile_height << " margin=" << tileset.m_margin << " spacing=" << tileset.m_spacing
+		<< " tilecount=" << tileset.m_tile_count << " columns=" << tileset.m_columns << " >" << std::endl;
+	os << " <image " << "source= " << tileset.m_texture_file_path << " width=" << tileset.m_set_width << " height=" << tileset.m_set_height << " />" << std::endl;
+	for (size_t i = 0; i != tileset.m_tile_count; ++i) {
+		const Tile *ptile = tileset.m_ptiles + i;
+		os << " <tile id=\"" << tileset.m_first_gid + i  << "\">";
+		if (ptile->m_properties.cbegin() != ptile->m_properties.cend()) {
+			os << "  <properties>" << std::endl;
+			for (std::set<Property>::iterator it = ptile->m_properties.cbegin(); it != ptile->m_properties.cend(); ++it) {
+				os << "\t" << *it << std::endl;
+			}
+			os << "  </properties>" << std::endl;
+		}
+		os << " </tile>" << std::endl;
+	}
+	os << "</tileset>" << std::endl;
 
 	return os;
 }

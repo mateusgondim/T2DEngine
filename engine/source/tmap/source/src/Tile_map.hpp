@@ -4,10 +4,14 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #include <utility>
 #include <cassert>
+#include <stdint.h>
 
 #include "Tileset.hpp"
+#include "Tile_layer.hpp"
+#include "Object_group.hpp"
 #include "vec3.hpp"
 
 
@@ -25,8 +29,10 @@ namespace math { struct Rect; }
 class Tile_map {
 friend std::ostream & print_tile_map(std::ostream & os, const Tile_map & map);
 public:
-	Tile_map() = default;
-	Tile_map(const std::vector<Tileset> & tilesets, const std::vector<std::vector<std::vector<int>>> & layers ,const int layer_count, const int width, const int height, const int tile_width, const int tile_height) : m_pixels_per_word_unit(16)
+        Tile_map(const std::string & tmx_file_path, float pixels_per_unit = 16.0f);
+        //Tile_map() = default;
+	
+        /*Tile_map(const std::vector<Tileset> & tilesets, const std::vector<std::vector<std::vector<int>>> & layers ,const int layer_count, const int width, const int height, const int tile_width, const int tile_height) : m_pixels_per_word_unit(16)
 	{
 		m_tilesets      =  tilesets;
 		m_layer_count   =  layer_count;
@@ -34,50 +40,61 @@ public:
 		m_height        =  height;
 		m_tile_width    =  tile_width;
 		m_tile_height   =  tile_height;
-		setup_map(layers);
-	}
-	int layer_count()  const { return m_layer_count; }
-	int width()        const { return m_width; }
-	int height()       const { return m_height; }
-	int tile_width()   const { return m_tile_width;}
-	int tile_height()  const { return m_tile_height; }
+		//setup_map(layers);
+	}*/
+        ~Tile_map();
+
+//	int             layer_count()  const { return m_layer_count; }
+	int             width()        const { return m_width; }
+	int             height()       const { return m_height; }
+	int             tile_width()   const { return m_tile_width;}
+	int             tile_height()  const { return m_tile_height; }
 	const math::vec3 & get_background_color() const { return m_background_color; }
-	std::vector<Tileset> & get_tilesets()  { return m_tilesets; }
-	int get_tile_id(const int layer, const int row, const int column) const;
-	Tile get_tile(const unsigned id) const;
+	const std::vector<Tileset*> & get_tilesets()  { return m_tilesets; }
+	
+        uint32_t        get_tile_id(uint32_t layer, uint32_t row, uint32_t column) const;
+	const Tile *    get_tile(uint32_t id) const;
 	float pixels_per_world_unit() const { return m_pixels_per_word_unit; }
 
 	const math::vec3 & get_position() const { return m_position; }
 
-	math::Rect tile_wld_space_bounds(const unsigned row, const unsigned column) const;
+	math::Rect      tile_wld_space_bounds(const unsigned row, const unsigned column) const;
 	std::pair<float, float> wld_to_tile_space(const math::vec3 & pos) const;
 
-	float world_to_tile_displacement_x(float t_x) const { return t_x / (m_tile_width / m_pixels_per_word_unit) ; }
-	float world_to_tile_displacement_y(float t_y) const { return t_y / (m_tile_height / m_pixels_per_word_unit); }
+	float           world_to_tile_displacement_x(float t_x) const { return t_x / (m_tile_width / m_pixels_per_word_unit) ; }
+	float           world_to_tile_displacement_y(float t_y) const { return t_y / (m_tile_height / m_pixels_per_word_unit); }
 
-	void set_background_color(const math::vec3 & color) { m_background_color = color; }
+	void            set_background_color(const math::vec3 & color) { m_background_color = color; }
 private:
-	void setup_map(const std::vector<std::vector<std::vector<int>>> & layers);
+	//.void            setup_map(const std::vector<std::vector<std::vector<int>>> & layers);
+        void            parse_map_element_variables(const std::string & line);
+        void            parse_tileset(const std::string & tmx_file_path, const std::string & first_line);
 
-	std::vector<Tileset> m_tilesets;
-	std::vector<std::vector<std::vector<unsigned>>>  m_map; // 3D array, i.e layers of 2d arrays	 
+	std::vector<Tileset*> m_tilesets;
+        std::vector<Tile_layer*> m_layers;
+	std::vector<Object_group*> m_object_layer;
 	
-	int     m_layer_count; // number of layers
-	int     m_width;
-	int     m_height;
-	int     m_tile_width;
-	int     m_tile_height;
+        //std::vector<std::vector<std::vector<unsigned>>>  m_map; // 3D array, i.e layers of 2d arrays	 
+	
+	//int             m_layer_count; // number of layers
+	int             m_width;
+	int             m_height;
+	int             m_tile_width;
+	int             m_tile_height;
 
-	math::vec3 m_position;  // tile map origin, i.e, the coordinates of the top left tile in world space
-	math::vec3 m_background_color;
-	float     m_pixels_per_word_unit; // how many pixels are equal to 1 world unit, used in scaling
+	math::vec3      m_position;  // tile map origin, i.e, the coordinates of the top left tile in world space
+	math::vec3      m_background_color;
+	float           m_pixels_per_word_unit; // how many pixels are equal to 1 world unit, used in scaling
 };
 
-inline int Tile_map::get_tile_id(const int layer, const int row, const int column) const 
+
+inline  uint32_t Tile_map::get_tile_id(uint32_t layer, uint32_t row, uint32_t column) const 
 {
 	//assert(row < m_height && "invalid row! outside map border");
 	//assert(column < m_width && "invadlid column! outside maps border");
-	return m_map[layer][row][column];
+
+        return m_layers[layer]->get_tile_id(row, column);
+	//return m_map[layer][row][column];
 }
 
 
