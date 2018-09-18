@@ -485,6 +485,16 @@ const Tile * Tile_map::get_tile(uint32_t id) const
         return &g_empty_tile;
 }
 
+const Object_group * Tile_map::get_object_group(const char *name) const
+{
+	std::vector<Object_group*>::const_iterator it;
+	for (it = m_object_layer.cbegin(); it != m_object_layer.cend(); ++it) {
+		if (!strcmp(name, (*it)->get_name())) {
+			return *it;
+		}
+	}
+	return nullptr;
+}
 //TAKE INTO  CONSIDERATION THE PIXELS PER_WORLD UNIT
 math::Rect Tile_map::tile_wld_space_bounds(const unsigned row, const unsigned column) const
 {	

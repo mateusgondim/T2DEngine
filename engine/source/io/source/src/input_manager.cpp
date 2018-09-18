@@ -62,9 +62,13 @@ namespace io {
 		case QUIT:
 			std::cout << "QUIT ";
 			break;
+        case RESET:
+                std::cout << "RESET";
+                break;
 		default:
 			std::cout << "UNKOWN ACTION ";
 		}
+        
 		std::cout << "To Key: ";
 		switch (button.m_bound_key) {
 		case KEY_W:
@@ -87,6 +91,10 @@ namespace io {
 			break;
 		case KEY_Q:
 			std::cout << "Q" << std::endl;
+            break;
+        case KEY_R:
+                std::cout << "R" << std::endl;
+                break;
 		default:
 			std::cerr << "UNKWON KEYCODE" << std::endl;
 			return;
@@ -216,7 +224,13 @@ namespace io {
 #endif // !NDEBUG
 			button.m_bound_key = KEY_UP;
 			break;
-		default:
+        case GLFW_KEY_R:
+#ifndef NDEBUG
+                key_name = "R";
+#endif // !NDEBUG
+                button.m_bound_key = KEY_R;
+                break;
+        default:
 			std::cerr << __FUNCTION__ << " : unkown keycode" << std::endl;
 			return;
 		}

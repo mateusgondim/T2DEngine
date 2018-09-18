@@ -50,6 +50,11 @@ gom::Game_object *Player_creator::create(void *pmem, const uint32_t unique_id, c
 	//get the sprite_atlas resource 
 	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
 	gom::Actor::atlas_n_layer sprite_data(patlas, 1);
+
+    math::vec2	tr = math::vec2(wld_pos.x - m_pbody_def->m_position.x, wld_pos.y - m_pbody_def->m_position.y);
+	m_pbody_def->m_position += tr;
+	m_pbody_def->m_aabb.p_max += tr;
+	m_pbody_def->m_aabb.p_min += tr;
 	
 	//create a collider_def
 	physics_2d::Collider_2d_def coll_def;

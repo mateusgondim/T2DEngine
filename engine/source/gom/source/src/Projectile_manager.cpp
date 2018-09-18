@@ -18,9 +18,14 @@ namespace gom {
 
 	void Projectile_manager::shut_down() 
 	{
-		m_vpactive_projectiles.clear();
-		m_vpinactive_projectiles.clear();
+            reset();
 	}
+
+    void Projectile_manager::reset()
+    {
+            m_vpactive_projectiles.clear();
+            m_vpinactive_projectiles.clear();
+    }
 
 	Game_object_handle Projectile_manager::spawn_projectile(const type_id id, const math::vec3 & pos, const math::vec2 & projectile_dir) 
 	{

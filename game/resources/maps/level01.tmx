@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="48" height="45" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#1d212d" nextobjectid="8">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="48" height="45" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#1d212d" nextobjectid="19">
  <tileset firstgid="1" source="../tilesets/level01_tileset.tsx"/>
  <layer name="Tile Layer 1" width="48" height="45">
   <data encoding="csv">
@@ -50,34 +50,26 @@
 46,21,69,21,21,45,21,21,21,69,21,46,21,21,69,21,21,95,21,63,46,21,21,0,90,0,184,0,19,20,85,46,63,69,63,46,21,93,94,21,46,83,69,83,93,94,83,84
 </data>
  </layer>
- <objectgroup name="Collision layer">
-  <object id="1" name="platform" type="static_coll" x="214.667" y="299.333" width="30" height="8">
-   <properties>
-    <property name="test_property" type="bool" value="false"/>
-   </properties>
-  </object>
-  <object id="2" name="Platform" type="static_coll" x="131.333" y="496" width="36.6667" height="8">
-   <properties>
-    <property name="coll_height" type="float" value="23.55"/>
-   </properties>
-  </object>
-  <object id="4" name="tile_platform" type="collider" gid="86" x="618" y="209.333" width="16" height="16">
-   <properties>
-    <property name="another_test_property" type="bool" value="true"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup name="Dynamic objects layer">
-  <object id="5" name="Player_init_pos" type="Spawn" x="148.667" y="64">
+ <objectgroup name="Game_objects">
+  <object id="12" type="hover_robot" x="126.667" y="188">
    <point/>
   </object>
-  <object id="6" name="Hover_robot_init_pos" type="Spawn" x="127.333" y="173.333">
+  <object id="13" type="hover_robot" x="128.667" y="423.333">
    <point/>
   </object>
-  <object id="7" name="robot" type="Spawn" x="440.667" y="385.333">
-   <properties>
-    <property name="testing_float" type="float" value="23.22"/>
-   </properties>
+  <object id="14" type="hover_robot" x="40.6663" y="668">
+   <point/>
+  </object>
+  <object id="15" type="hover_robot" x="568" y="181.333">
+   <point/>
+  </object>
+  <object id="16" type="hover_robot" x="433.333" y="392.667">
+   <point/>
+  </object>
+  <object id="17" type="hover_robot" x="575.333" y="630">
+   <point/>
+  </object>
+  <object id="18" type="Player" x="14" y="25">
    <point/>
   </object>
  </objectgroup>

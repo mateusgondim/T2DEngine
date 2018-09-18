@@ -7,7 +7,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 #Using c++11
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-SET(INCLUDE_FILES  src/Game_object.hpp src/Projectile.hpp src/Projectile_manager.hpp  src/Actor.hpp src/Enemy.hpp src/Creator.hpp src/Gameplay_state.hpp src/Game_object_handle.hpp src/Game_object_manager.hpp)
+SET(INCLUDE_FILES  src/Game_object.hpp src/Projectile.hpp src/Projectile_manager.hpp  src/Actor.hpp src/Enemy.hpp src/Game_object_data.hpp src/Creator.hpp src/Gameplay_state.hpp src/Game_object_handle.hpp src/Game_object_manager.hpp)
 SET(SOURCE_FILES  src/Game_object.cpp  src/Projectile.cpp src/Projectile_manager.cpp  src/Actor.cpp src/Enemy.cpp src/Creator.cpp src/Game_object_handle.cpp src/Game_object_manager.cpp)
 
 ADD_LIBRARY(gom OBJECT ${INCLUDE_FILES} ${SOURCE_FILES})

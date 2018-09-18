@@ -18,6 +18,7 @@ namespace gom {
 		void shut_down();
 		void update(const float dt);
 		Game_object_handle spawn_projectile(const type_id id, const math::vec3 & pos, const math::vec2 & projectile_dir);
+        void               reset();
 
 		~Projectile_manager() {}
 	private:

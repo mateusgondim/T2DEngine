@@ -16,7 +16,6 @@
 #include "Camera_2d.hpp"
 #include "Tile_map.hpp"
 #include "Shader.hpp"
-#include "tmx_parser.hpp"
 
 
 //physics
@@ -72,7 +71,7 @@
 
 #include "engine.hpp"
 
-
+#include "Game_object_data.hpp"
 
 #define FRAME_RATE 60.0f
 
@@ -80,6 +79,7 @@ float curr_time;
 float last_time;
 float dt = 1.0F / FRAME_RATE;
 
+std::vector<gom::Game_object_data> obj_data;
 
 void error_callback(int error, const char * descr)
 {
@@ -331,6 +331,38 @@ gfx::Animator_controller *get_player_anim_controller()
 }*/
 
 
+void load_level_data(const Tile_map *pmap)
+{
+	const Object_group *pgroup = pmap->get_object_group("Game_objects");
+	if (pgroup) {
+		gom::Game_object_data data;
+		math::vec2	pos;
+
+		const std::vector<Object*> & objects = pgroup->get_objects();
+		std::vector<Object*>::const_iterator it;
+		for (it = objects.cbegin(); it != objects.cend(); ++it) {
+			const char *	 pobj_type = (*it)->get_type();
+			//TODO: WE NEED TO CONVERT THE POSITION TO WORLD SPACE
+			pos = pmap->pixels_to_wld_coord((*it)->get_x(), (*it)->get_y());
+			data.object_type_id = intern_string(pobj_type);
+			data.position = math::vec3(pos);
+			obj_data.push_back(data);
+			std::cout << "Object  type \'" << pobj_type << "\' = " << data.object_type_id
+				<< "position = " << data.position << std::endl;
+		}
+	}
+}
+
+void instantiate_level_objects()
+{
+        //create the level's objects
+        std::vector<gom::Game_object_data>::const_iterator	game_obj_iter = obj_data.cbegin();
+        //gom::g_game_object_mgr.instantiate(game_obj_iter->object_type_id, game_obj_iter);
+        for (; game_obj_iter != obj_data.cend(); ++game_obj_iter) {
+                gom::g_game_object_mgr.instantiate(game_obj_iter->object_type_id, game_obj_iter->position);
+        }
+}
+
 int main(int argc, char *argv[])
 {
 	Path resources_path("../resources", Path::FORWARD_SLASH);
@@ -348,6 +380,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}*/
 	engine_init(3, 2, &tile_map);
+	
 	
 	gfx::g_graphics_mgr.set_error_callback(error_callback);
 	gfx::g_graphics_mgr.create_window(512, 480, "2D Game");
@@ -411,6 +444,8 @@ int main(int argc, char *argv[])
 	io::map_action_to_button(io::GAME_ACTIONS::MOVE_UP, Button(io::KEYS::KEY_UP));
 	io::map_action_to_button(io::GAME_ACTIONS::MOVE_DOWN, Button(io::KEYS::KEY_DOWN));
 	io::map_action_to_button(io::GAME_ACTIONS::ATTACK_01, Button(io::KEYS::KEY_S));
+   
+	io::map_action_to_button(io::GAME_ACTIONS::RESET, Button(io::KEYS::KEY_R));
 
 	//gfx::Animator_controller *panim_controller = get_player_anim_controller();
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -438,14 +473,12 @@ int main(int argc, char *argv[])
 	Player_creator *pplayer_creator = new Player_creator(atlas_id, 0);
 
 	//create a type id for the player object. THIS SHOULD BE READ FROM A FILE
-	string_id player_type_id = intern_string("Player_object");
+	string_id player_type_id = intern_string("Player");
 
 	//register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
 	gom::g_game_object_mgr.register_creator(player_type_id, pplayer_creator);
 
-	//Create the player object
-	gom::Game_object_handle player_handle = gom::g_game_object_mgr.instantiate(player_type_id, math::vec3());
-	Player *pplayer = static_cast<Player*>(gom::g_game_object_mgr.get_by_handle(player_handle));
+	
 	
 	// set the player projectile creator
 	physics_2d::Body_2d_def body_def;
@@ -478,7 +511,7 @@ int main(int argc, char *argv[])
 	gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator);
 
 	//create the Hover Robot enemy
-	gom::Game_object_handle hover_robot_handle = gom::g_game_object_mgr.instantiate(hover_robot_id, math::vec3());
+	//gom::Game_object_handle hover_robot_handle = gom::g_game_object_mgr.instantiate(hover_robot_id, math::vec3());
 	
 
 	//gfx::g_graphics_mgr.set_clear_color(math::vec4(0.0f, 0.0f, 0.0f, 1.0f) );
@@ -508,8 +541,21 @@ int main(int argc, char *argv[])
 	auto coord = tile_map.wld_to_tile_space(math::vec3(10.0f, 12.0f));
 
 	std::cout << " TILE MAP WIDTH = " << tile_map.width() << "| TILE MAP HEIGHT = " << tile_map.height() << std::endl;
+	load_level_data(&tile_map);
+    instantiate_level_objects();
+    //Create the player object
+    Player *pplayer = nullptr;
+    std::vector<gom::Game_object_handle>    handles = gom::g_game_object_mgr.find_game_objects_with_type(player_type_id);
+    if (!handles.empty()) {
+            pplayer = static_cast<Player*>(gom::g_game_object_mgr.get_by_handle(handles[0]));
+    }
+    else {
+            std::cout << "ERROR: COULD NOT FIND PLAYER OBJECT ON MANAGER VECTOR" << std::endl;
+    }
+    bool should_restart = false;
+    math::vec2 defaul_cam_pos (10.0f, 42.0f); 
 
-	while (!gfx::g_graphics_mgr.window_should_close()) {
+    while (!gfx::g_graphics_mgr.window_should_close()) {
 		
 		//int i = 0;
 		//float physics_update_dt;
@@ -528,6 +574,11 @@ int main(int argc, char *argv[])
 		//std::cout << "delta time shold be " << dt << " | dt = " << frame_time << std::endl;
 		
 		//pplayer->handle_input();
+
+        const Button & restart_button = io::get_button_from_action(io::GAME_ACTIONS::RESET);
+        if (restart_button.m_state == PRESSED) {
+                should_restart = true;
+        }
 		
 		bool  lagging = (frame_time > dt) ? true :false;
 		if (lagging) {
@@ -563,7 +614,17 @@ int main(int argc, char *argv[])
 
 		gom::g_projectile_mgr.update(timer.get_dt());
 
-		gfx::g_graphics_mgr.get_camera().follow(pplayer->get_body_2d_component()->get_position());
+        if (!pplayer) {
+                //get reference to player object
+                std::vector<gom::Game_object_handle>    handles = gom::g_game_object_mgr.find_game_objects_with_type(player_type_id);
+                if (!handles.empty()) {
+                        pplayer = static_cast<Player*>(gom::g_game_object_mgr.get_by_handle(handles[0]));
+                }
+                else {
+                        std::cout << "ERROR: COULD NOT FIND PLAYER OBJECT ON MANAGER VECTOR" << std::endl;
+                }
+        }
+        gfx::g_graphics_mgr.get_camera().follow(pplayer->get_body_2d_component()->get_position());
 	
 		V = gfx::g_graphics_mgr.get_camera().get_view();
 
@@ -608,12 +669,22 @@ int main(int argc, char *argv[])
 		//gfx::g_graphics_mgr.uniform_matrix4fv(psprite_shader->get_uniform_location("P"), 1, false, gfx::g_graphics_mgr.get_camera().projection().value_ptr());
 
 		gfx::g_graphics_mgr.render();
+        if (should_restart) {
+                should_restart = false;
+                std::cout << "RESETING LEVEL...." << std::endl;
+                //restart projectile manager
+                gom::g_projectile_mgr.reset();
 
-		
-	}
+                //1. reset Game_object_manager
+                gom::g_game_object_mgr.reset();
+                //instantiate the game objects of the level
+                instantiate_level_objects();
+                pplayer = nullptr;
+        }
+    }
 
-	std::wcout << "[min dt, max dt] = [" << smmalest_dt * 1000.0f << ", " << bigger_dt * 1000.0f << "]" << std::endl;
-	//gom::g_game_object_mgr.destroy(player_handle);
-	engine_shut_down();
-	return 0;
+    std::wcout << "[min dt, max dt] = [" << smmalest_dt * 1000.0f << ", " << bigger_dt * 1000.0f << "]" << std::endl;
+    //gom::g_game_object_mgr.destroy(player_handle);
+    engine_shut_down();
+    return 0;
 }

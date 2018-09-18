@@ -13,6 +13,7 @@
 #include "Tile_layer.hpp"
 #include "Object_group.hpp"
 #include "vec3.hpp"
+#include "vec2.hpp"
 
 
 //------------------- TILE MAP---------------------------------------------------------//
@@ -51,10 +52,11 @@ public:
 	int             tile_height()  const { return m_tile_height; }
 	const math::vec3 & get_background_color() const { return m_background_color; }
 	const std::vector<Tileset*> & get_tilesets()  { return m_tilesets; }
-	
+	const Object_group *	get_object_group(const char *name) const;
         uint32_t        get_tile_id(uint32_t layer, uint32_t row, uint32_t column) const;
 	const Tile *    get_tile(uint32_t id) const;
 	float pixels_per_world_unit() const { return m_pixels_per_word_unit; }
+	math::vec2	pixels_to_wld_coord(float x, float y) const;
 
 	const math::vec3 & get_position() const { return m_position; }
 
@@ -97,6 +99,10 @@ inline  uint32_t Tile_map::get_tile_id(uint32_t layer, uint32_t row, uint32_t co
 	//return m_map[layer][row][column];
 }
 
+inline math::vec2 Tile_map::pixels_to_wld_coord(float x, float y) const
+{
+	return math::vec2(m_position.x + x / m_pixels_per_word_unit, m_position.y + (m_height * m_tile_height / m_pixels_per_word_unit - (y / m_pixels_per_word_unit)) );
+}
 
 std::ostream & print_tile_map(std::ostream & os, const Tile_map & tile_map);
 
