@@ -181,12 +181,12 @@ void gfx::Graphics_manager::set_tile_map(Tile_map *ptile_map)
 {
 	m_ptile_map = ptile_map;
 
-	//initialize camera
-	float tile_wld_width = m_ptile_map->tile_width() / m_pixels_per_unit;
-	float tile_wld_height = m_ptile_map->tile_height() / m_pixels_per_unit;
-	math::vec2 map_origin = math::vec2(m_ptile_map->get_position().x, m_ptile_map->get_position().y);
+//	//initialize camera
+//	float tile_wld_width = m_ptile_map->tile_width() / m_pixels_per_unit;
+//	float tile_wld_height = m_ptile_map->tile_height() / m_pixels_per_unit;
+//	math::vec2 map_origin = math::vec2(m_ptile_map->get_position().x, m_ptile_map->get_position().y);
 
-	m_camera.init(tile_wld_width, tile_wld_height, m_tiles_per_screen_width, m_tiles_per_screen_height, m_ptile_map->width(), m_ptile_map->height(), map_origin);
+//	m_camera.init(tile_wld_width, tile_wld_height, m_tiles_per_screen_width, m_tiles_per_screen_height, m_ptile_map->width(), m_ptile_map->height(), map_origin);
 	
 	//set background color
 	math::vec3 color = m_ptile_map->get_background_color();
@@ -194,10 +194,10 @@ void gfx::Graphics_manager::set_tile_map(Tile_map *ptile_map)
 	set_tile_map_renderer();
 }
 
-gfx::Camera_2d & gfx::Graphics_manager::get_camera() 
-{
-	return m_camera;
-}
+//gfx::Camera_2d & gfx::Graphics_manager::get_camera() 
+//{
+//	return m_camera;
+//}
 
 /* Load_shader: This function uses a pre allocated memory pool to construct a new  shader object. Using
    the name of the vertex shader file, a unique identifier is generated for the shader object, this identifier and

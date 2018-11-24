@@ -7,7 +7,7 @@
 
 #include "Pool_allocator.hpp"
 #include "string_id.hpp"
-#include "Camera_2d.hpp"
+//#include "Camera_2d.hpp"
 
 #if GRAPHICS_CONSOLE_DEBUG_ENABLE
 
@@ -48,7 +48,7 @@ namespace gfx {
 		
 		void		get_framebuffer_size(std::int32_t * pwidth, std::int32_t *pheight);
 		void        set_viewport(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height);
-		Camera_2d & get_camera();
+		//Camera_2d & get_camera();
 
 		void		set_clear_color(const math::vec4 & color);
 		void		set_blend_func(); // CHANGE THIS!! PASS PARAMETERS
@@ -76,6 +76,9 @@ namespace gfx {
 
 		void	    set_tiles_per_screen_width(const float width)  { m_tiles_per_screen_width = width; }
 		void		set_tiles_per_screen_height(const float height) { m_tiles_per_screen_height = height; }
+        float       get_pixels_per_wld_unit() const { return m_pixels_per_unit; }
+        float       get_tiles_per_screen_width() const { return m_tiles_per_screen_width; }
+        float       get_tiles_per_screen_height() const { return m_tiles_per_screen_height; }
 		//Sprite      *get_sprite_component(const atlas_id id, const sprite_layer layer);
 		//void		 delete_sprite_component(Sprite *psprite);
 		//void		 delete_texture_atlas(const atlas_id id);
@@ -91,7 +94,7 @@ namespace gfx {
 		//std::map<atlas_id, Sprite_atlas*>			m_atlases;
 		//std::map<shader_id, Shader*>				m_shaders;
 		//std::map<texture_id, Texture_2d*>           m_textures;
-		Camera_2d									m_camera;
+		//Camera_2d									m_camera;
 
 		std::vector<Sprite_batch*>					m_batches;
 		std::vector<Sprite*>						m_sprites;

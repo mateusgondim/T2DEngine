@@ -15,6 +15,7 @@ namespace math {
 		mat4(const mat4 & L, const vec3 & t);
 		mat4 & transpose();
 		const float *value_ptr() const { return &m_elements[0][0]; }
+        void set_translation(const vec3 & t);
 	private:
 		float m_elements[4][4]; // size 512 bits(64 bytes) ( 4 byte aligned)
 	};

@@ -335,6 +335,19 @@ std::int32_t gfx::Shader::get_uniform_location(const std::string & u_name) const
 	return location;
 }
 
+void gfx::Shader::uniform_matrix4fv(std::int32_t location, std::int32_t count, bool is_transposed, const float *pvalue)
+{
+        use();
+        GLboolean transpose = (is_transposed) ? (GL_TRUE) : (GL_FALSE);
+        glUniformMatrix4fv(location, count, transpose, pvalue);
+}
+
+void gfx::Shader::uniform_1f(std::int32_t location, float v0)
+{
+        use();
+        glUniform1f(location, v0);
+}
+
 void gfx::Shader::unload() 
 {
 	// deallocate shader program

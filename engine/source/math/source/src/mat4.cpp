@@ -57,3 +57,11 @@ math::mat4 & math::mat4::transpose()
 	return *this;
 	
 }
+
+
+void math::mat4::set_translation(const math::vec3 & t)
+{
+        m_elements[3][0] = t.x;
+        m_elements[3][1] = t.y;
+        m_elements[3][2] = t.z;
+}

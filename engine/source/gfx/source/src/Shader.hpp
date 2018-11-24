@@ -33,6 +33,8 @@ namespace gfx {
 		void     use()        const;
 		std::uint32_t  get_program() const { return m_program; }
 		std::int32_t   get_uniform_location(const std::string & u_name) const;
+        void uniform_matrix4fv(std::int32_t location, std::int32_t count, bool is_transposed, const float *pvalue);
+        void uniform_1f(std::int32_t location, float v0);
 		//void    bind_attrib(const std::string & name, )
 	private:
 		std::uint32_t m_program;

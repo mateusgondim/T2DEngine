@@ -7,4 +7,10 @@ namespace gom {
 		m_unique_id		=  game_object.get_unique_id();
 		m_handle_index  =  game_object.get_handle_index();
 	}
+
+    void Game_object_handle::bind(const Game_object & game_object)
+    {
+        m_unique_id		=  game_object.get_unique_id();
+		m_handle_index  =  game_object.get_handle_index();
+    }
 }
