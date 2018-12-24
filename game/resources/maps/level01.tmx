@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="48" height="45" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#1d212d" nextobjectid="19">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="48" height="45" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#1d212d" nextobjectid="27">
  <tileset firstgid="1" source="../tilesets/level01_tileset.tsx"/>
  <layer name="Tile Layer 1" width="48" height="45">
   <data encoding="csv">
@@ -51,25 +51,28 @@
 </data>
  </layer>
  <objectgroup name="Game_objects">
-  <object id="12" type="hover_robot" x="126.667" y="188">
+  <object id="18" type="Player" x="72.333" y="201">
    <point/>
   </object>
-  <object id="13" type="hover_robot" x="128.667" y="423.333">
+  <object id="19" type="hover_robot" x="127.5" y="426.834">
    <point/>
   </object>
-  <object id="14" type="hover_robot" x="40.6663" y="668">
+  <object id="21" type="hover_robot" x="149.5" y="699.334">
    <point/>
   </object>
-  <object id="15" type="hover_robot" x="568" y="181.333">
+  <object id="22" type="hover_robot" x="224" y="193.834">
    <point/>
   </object>
-  <object id="16" type="hover_robot" x="433.333" y="392.667">
+  <object id="23" type="hover_robot" x="695" y="218.834">
    <point/>
   </object>
-  <object id="17" type="hover_robot" x="575.333" y="630">
+  <object id="24" type="hover_robot" x="405" y="395.834">
    <point/>
   </object>
-  <object id="18" type="Player" x="14" y="25">
+  <object id="25" type="hover_robot" x="318.5" y="699.334">
+   <point/>
+  </object>
+  <object id="26" type="hover_robot" x="624" y="699.834">
    <point/>
   </object>
  </objectgroup>
