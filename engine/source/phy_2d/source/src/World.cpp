@@ -10,6 +10,7 @@
 
 #include "Tile_map.hpp"
 #include "Rect.hpp"
+#include "ray3.hpp"
 #include "Tile.hpp"
 
 #include <algorithm>
@@ -326,6 +327,29 @@ bool physics_2d::World::is_body_2d_on_ground(const physics_2d::Body_2d * pbody) 
 	return false;
 }
 
+bool physics_2d::World::trace_on_map(const math::ray3 & r, const Tile **pphit, const unsigned steps) const
+{
+        math::vec3 p(math::g_zero_vec3);
+        std::pair<float, float> tile_coord;
+        const Tile *ptile;
+        const float tile_sz_wld_units = m_pmap->tile_height() / m_pmap->pixels_per_world_unit();
+
+        for (unsigned i = 0; i != steps; ++i) {
+                p = r.origin + r.direction * (i * tile_sz_wld_units);
+                if (!m_pmap->is_inside_map(p)) { //is outside
+                        return true;
+                }
+                //get point in tile space and corresponding tile
+                tile_coord = m_pmap->wld_to_tile_space(p);
+                ptile = m_pmap->get_tile(m_pmap->get_tile_id(0, tile_coord.first, tile_coord.second));
+                if (ptile->m_is_obstacle || ptile->m_is_one_way) {
+                        pphit = &ptile;
+                        return true;
+                }
+        }
+        return false;
+}
+
 void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, const float dt) 
 {
 	//compute the direction the body moved according to the velocity magnitude
@@ -410,6 +434,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 
 		if ( (obstacle_border.x - sensor_line_width) < desired_x_position && pclosest_obstacle_tile->m_is_obstacle ) { // if collided with the map
 		//	std::cout << "Body collided with tile [" << closest_obstacle_row << ", " << closest_obstacle_column << "]" << std::endl;
+        //        std::cout << "Body Collided moving RIGHT, WITH TILE: " << closest_obstacle_row << ", " << closest_obstacle_column << "]" << std::endl;
 			
 			float x_offset = (obstacle_border.x - sensor_line_width) - pbody->get_collider()->get_aabb().p_max.x;
 
@@ -433,7 +458,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 			const Tile *pbottom_tile = m_pmap->get_tile(m_pmap->get_tile_id(0, tile_up_left.first, tile_up_left.second));
 		        const Tile *pup_tile     = m_pmap->get_tile(m_pmap->get_tile_id(0, tile_bottom_left.first, tile_bottom_left.second));
 
-			if ((!pbottom_tile->m_is_obstacle && !pbottom_tile->m_is_one_way) && (!pup_tile->m_is_obstacle && !pup_tile->m_is_one_way)) {
+			if (!pbottom_tile->m_is_obstacle && !pup_tile->m_is_obstacle) {
 				pbody->m_velocity.x = 0.0f;
 				pbody->m_acceleration.x = 0.0f;
 
@@ -537,6 +562,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 		//std::cout << obstacle_border.x + obstacle_border.width + FLOAT_ROUNDOFF << " and " << desired_x_position - FLOAT_ROUNDOFF << std::endl;
 		if ( (obstacle_border.x + obstacle_border.width + sensor_line_width > desired_x_position ) && pclosest_obstacle_tile->m_is_obstacle){ //collided
 		//	std::cout << "Body collided with tile [" << closest_obstacle_row << ", " << closest_obstacle_column << "]" << std::endl;
+       //         std::cout << "BODY COLLIDED MOVING LEFT, WITH TILE:" << closest_obstacle_row << ", " << closest_obstacle_column << "]" << std::endl;
 			
 			float  x_offset = (obstacle_border.x + obstacle_border.width + sensor_line_width) - pbody->get_collider()->get_aabb().p_min.x;
 			
@@ -561,7 +587,7 @@ void physics_2d::World::check_n_solve_map_collision(physics_2d::Body_2d *pbody, 
 			const Tile *ptop_tile    =  m_pmap->get_tile(m_pmap->get_tile_id(0, tile_top_right.first, tile_top_right.second));
 			const Tile *pbottom_tile =  m_pmap->get_tile(m_pmap->get_tile_id(0, tile_bottom_right.first, tile_bottom_right.second));
 
-			if ((!ptop_tile->m_is_obstacle && !ptop_tile->m_is_one_way) && (!pbottom_tile->m_is_obstacle && !pbottom_tile->m_is_one_way)) {
+			if (!ptop_tile->m_is_obstacle && !pbottom_tile->m_is_obstacle) {
 				pbody->m_velocity.x = 0.0f;
 				pbody->m_acceleration.x = 0.0f;
 

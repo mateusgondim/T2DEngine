@@ -7,6 +7,7 @@
 #include <vector>
 #include <cstddef>
 #include "Pool_allocator.hpp"
+#include "Tile.hpp"
 
 /*World: Part of the physics engine, this class represents a 
  * world populated with 2d bodies, this bodies are affected
@@ -20,7 +21,7 @@
 #define MAX_CONTACTS 80
 
 class Tile_map;
-namespace math { struct Rect; }
+namespace math { struct Rect; struct ray3; }
 
 namespace physics_2d { class Collision_listener; struct Body_2d_def; struct Collider_2d_proxy ; class Broadphase; }
 
@@ -60,6 +61,7 @@ namespace physics_2d {
 		bool     try_climbing_ladder(Body_2d * pbody, const bool is_climbing_up);
 		bool     is_body_on_ladder(Body_2d *   pbody);
 		bool     is_on_ladder_top_tile(const Body_2d * pbody, math::Rect & ladder_bounds) const;
+        bool     trace_on_map(const math::ray3 & r, const Tile **phit, const unsigned steps) const;
 	private:
 		void add_to_contact_list(Collider_2d_proxy *pprox_a, Collider_2d_proxy *pproxy_b);
 		void remove_from_contact_list(physics_2d::Contact_node *pcontact);

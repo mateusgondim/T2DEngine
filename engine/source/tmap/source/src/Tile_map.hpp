@@ -59,6 +59,7 @@ public:
 	math::vec2	pixels_to_wld_coord(float x, float y) const;
 
 	const math::vec3 & get_position() const { return m_position; }
+    bool is_inside_map(const math::vec3 & p_wld) const;
 
 	math::Rect      tile_wld_space_bounds(const unsigned row, const unsigned column) const;
 	std::pair<float, float> wld_to_tile_space(const math::vec3 & pos) const;
@@ -97,6 +98,19 @@ inline  uint32_t Tile_map::get_tile_id(uint32_t layer, uint32_t row, uint32_t co
 
         return m_layers[layer]->get_tile_id(row, column);
 	//return m_map[layer][row][column];
+}
+
+//checks if a point in world space is inside the tile map
+inline bool Tile_map::is_inside_map(const math::vec3 & p_wld) const
+{
+        float tile_width_wld = m_tile_width / m_pixels_per_word_unit;
+        float tile_height_wld = m_tile_height / m_pixels_per_word_unit;
+        if ((p_wld.x < m_position.x + m_width * tile_width_wld) && (p_wld.x > m_position.x) && (p_wld.y < m_position.y + m_height * tile_height_wld) && (p_wld.y > m_position.y)) {
+                return true;
+        }
+        else {
+                return false;
+        }
 }
 
 inline math::vec2 Tile_map::pixels_to_wld_coord(float x, float y) const
