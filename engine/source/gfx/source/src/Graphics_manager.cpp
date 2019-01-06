@@ -506,6 +506,7 @@ void gfx::Graphics_manager::render()
 	Texture_2d   *ptexture = static_cast<Texture_2d*>(g_texture_2d_mgr.get_by_id(text_id));
 	ptexture->use();
 	m_pmap_batch->render();
+    glBindTexture(GL_TEXTURE_2D, 0);
 
 	//render the sprites
 	//set_current_shader_program(m_sprite_shader_id);

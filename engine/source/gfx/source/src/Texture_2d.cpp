@@ -7,7 +7,6 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-//#include "SOIL.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -173,13 +172,13 @@ gfx::Texture_2d::~Texture_2d()
 
 void gfx::Texture_2d::use(const std::uint32_t unit) const
 {
-	if (glIsTexture(m_texture_id) == GL_TRUE) {
+	//if (glIsTexture(m_texture_id) == GL_TRUE) {
 		glActiveTexture(GL_TEXTURE0 + unit);
 		glBindTexture(GL_TEXTURE_2D, m_texture_id);
-	}
-	else {
-		std::cerr << __FUNCTION__ << " failed to use texture: " << m_texture_id << " is not a name of a texture, use load_texture(image_path) to load a 2d texture" << std::endl;
-	}
+	// }
+	// else {
+	// 	std::cerr << __FUNCTION__ << " failed to use texture: " << m_texture_id << " is not a name of a texture, use load_texture(image_path) to load a 2d texture" << std::endl;
+	// }
 }
 
 

@@ -370,8 +370,7 @@ void gfx::Animator_controller::update(const float dt)
 gfx::Animator_state & gfx::Animator_controller::get_current_state()
 {
 	std::map<string_id, Animator_state>::iterator it = m_state_machine.find(m_current_state_id);
-	assert(it != m_state_machine.end());
-
+	//assert(it != m_state_machine.end());
 	return it->second;	
 }
 

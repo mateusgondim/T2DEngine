@@ -78,12 +78,16 @@ namespace gom
 
                 m_camera.init(tile_wld_width, tile_wld_height, gfx::g_graphics_mgr.get_tiles_per_screen_width(), gfx::g_graphics_mgr.get_tiles_per_screen_height(), m_ptile_map->width(), m_ptile_map->height(), map_origin);
 
-                m_pmap_shader->uniform_matrix4fv(m_pmap_shader->get_uniform_location("V"), 1, false, m_camera.get_view().value_ptr());
+                m_tile_map_view_loc = m_pmap_shader->get_uniform_location("V");
+
+                m_pmap_shader->uniform_matrix4fv(m_tile_map_view_loc, 1, false, m_camera.get_view().value_ptr());
                 m_pmap_shader->uniform_matrix4fv(m_pmap_shader->get_uniform_location("P"), 1, false, m_camera.projection().value_ptr());
                 m_pmap_shader->uniform_1f(m_pmap_shader->get_uniform_location("tileset1"), 0);
                 gfx::g_graphics_mgr.set_tile_map_shader(m_pmap_shader);
 
-                m_psprite_shader->uniform_matrix4fv(m_psprite_shader->get_uniform_location("V"), 1, false, m_camera.get_view().value_ptr());
+                m_sprites_view_loc = m_psprite_shader->get_uniform_location("V");
+
+                m_psprite_shader->uniform_matrix4fv(m_sprites_view_loc, 1, false, m_camera.get_view().value_ptr());
                 m_psprite_shader->uniform_matrix4fv(m_psprite_shader->get_uniform_location("P"), 1, false, m_camera.projection().value_ptr());
                 m_psprite_shader->uniform_1f(m_psprite_shader->get_uniform_location("tileset"), 0);
                 gfx::g_graphics_mgr.set_sprite_shader(m_psprite_shader);
@@ -111,7 +115,8 @@ namespace gom
 
         void Level_manager::tick()
         {
-                std::cout << "FPS: " << m_timer.get_fps() << std::endl;
+                //std::cout << "FPS: " << m_timer.get_fps() << std::endl;
+               //std::cout << "FRAME TIME: " << m_timer.get_dt() << std::endl;
 
                 m_timer.update();
                 m_lag += m_timer.get_dt();
@@ -123,13 +128,13 @@ namespace gom
                         m_should_restart = true;
                 }
 
-                bool  lagging = (frame_time > m_dt) ? true : false;
-                if (lagging) {
-                        std::cout << "WE ARE BEHIND SCHEDULE by !!!!! " << (frame_time - m_dt) * 1000.0f << std::endl;
-                }
-                else {
-                        std::cout << "WE ARE ON SCHEDULE" << std::endl;
-                }
+                //bool  lagging = (frame_time > m_dt) ? true : false;
+                //if (lagging) {
+                //        std::cout << "WE ARE BEHIND SCHEDULE by !!!!! " << (frame_time - m_dt) * 1000.0f << std::endl;
+                //}
+                //else {
+                //        std::cout << "WE ARE ON SCHEDULE" << std::endl;
+                //}
 
                 while (m_lag >= m_dt) {
                         physics_2d::g_physics_mgr.get_world()->update(m_timer.get_fixed_dt());
@@ -143,7 +148,7 @@ namespace gom
                 //update the level's camera
                 m_camera.update(m_timer.get_dt());
 
-                m_pmap_shader->uniform_matrix4fv(m_pmap_shader->get_uniform_location("V"), 1, false, m_camera.get_view().value_ptr());
+                m_pmap_shader->uniform_matrix4fv(m_tile_map_view_loc, 1, false, m_camera.get_view().value_ptr());
 
                 gfx::g_graphics_mgr.get_framebuffer_size(&m_curr_vport_width, &m_curr_vport_height);
 
@@ -167,7 +172,7 @@ namespace gom
                         m_prev_vport_height = m_curr_vport_height;
                 }
 
-                m_psprite_shader->uniform_matrix4fv(m_psprite_shader->get_uniform_location("V"), 1, false, m_camera.get_view().value_ptr());
+                m_psprite_shader->uniform_matrix4fv(m_sprites_view_loc, 1, false, m_camera.get_view().value_ptr());
 
                 gfx::g_graphics_mgr.render();
 

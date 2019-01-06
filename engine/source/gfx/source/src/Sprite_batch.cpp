@@ -77,27 +77,30 @@ void gfx::Sprite_batch::add(const gfx::Sprite  *psprite)
 	const math::vec3  *position			=  psprite->get_vertex_position_vec();
 	const math::vec2  *texture_coord	=  psprite->get_vertex_uv_vec();
 
-	const std::size_t vec_sz = 6; // sprites allways have 6 vertices
+	const std::size_t vec_sz = VERTICES_PER_SPRITE;
 
 	if ((m_max_num_vertices - m_num_used_vertices) < vec_sz) {
 		std::cout << __FUNCTION__ << " there is not enough room for " << vec_sz << " vertices in this batch. This batch already have "
 			<< m_num_used_vertices << " vertices and can only store " << m_max_num_vertices << std::endl;
 	}
 	else {
-		std::vector<Vertex1P1C1UV> vertices; //change this!! it involvers dynamic memory allocation, maybe add a data member to Sprite_batch
+		//std::vector<Vertex1P1C1UV> vertices; //change this!! it involvers dynamic memory allocation, maybe add a data member to Sprite_batch
 		for (int i = 0; i < vec_sz; ++i) {
-			Vertex1P1C1UV vertex(position[i], math::vec4(), texture_coord[i]);
-			vertices.push_back(vertex);
+			//Vertex1P1C1UV vertex(position[i], math::vec4(), texture_coord[i]);
+			//vertices.push_back(vertex);
+            m_sprite_aux_buffer[i].m_pos = position[i];
+            m_sprite_aux_buffer[i].m_col = math::vec4();
+            m_sprite_aux_buffer[i].m_uv = texture_coord[i];
 		}
 		//transfer data to vbo
 		glBindVertexArray(m_vao);
 		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
-		glBufferSubData(GL_ARRAY_BUFFER, m_num_used_vertices * sizeof(Vertex1P1C1UV), vertices.size() * sizeof(Vertex1P1C1UV), &vertices[0]);
+		glBufferSubData(GL_ARRAY_BUFFER, m_num_used_vertices * sizeof(Vertex1P1C1UV), vec_sz * sizeof(Vertex1P1C1UV), &m_sprite_aux_buffer[0]);
 
 		glBindVertexArray(0);
 
-		m_num_used_vertices += vertices.size();
+		m_num_used_vertices += vec_sz;
 
 	}
 }

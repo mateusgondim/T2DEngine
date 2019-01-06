@@ -40,6 +40,8 @@ namespace gom
                 int                                             m_prev_vport_height;
                 int                                             m_curr_vport_width;
                 int                                             m_curr_vport_height;
+                int32_t                                         m_sprites_view_loc;
+                int32_t                                         m_tile_map_view_loc;
                 bool                                            m_should_restart;
 
         };
