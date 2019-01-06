@@ -1,8 +1,11 @@
 #ifndef _SPRITE_BATCH_HPP
 
 #define _SPRITE_BATCH_HPP
+
+#define VERTICES_PER_SPRITE 6
 #include <vector>
 #include <cstdint>
+#include "Vertex1P1C1UV.hpp"
 
 /*Sprite_batch: part of the graphics system, this class is responsable for
  * creating a vao for rendering a group of sprites.
@@ -27,6 +30,7 @@ namespace gfx {
 	private:
 		std::uint32_t	m_max_num_vertices;
 		std::uint32_t	m_num_used_vertices;
+        Vertex1P1C1UV   m_sprite_aux_buffer[VERTICES_PER_SPRITE];
 		std::uint32_t	m_vao;
 		std::uint32_t	m_vbo;
 		bool			m_is_static;
