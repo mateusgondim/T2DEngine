@@ -8,6 +8,8 @@
 #include "World.hpp"
 #include "Physics_manager.hpp"
 
+#include "Projectile.hpp"
+
 #include "Sprite.hpp"
 #include "Sprite_atlas.hpp"
 #include "Graphics_manager.hpp"
@@ -57,6 +59,19 @@ namespace gom {
 			m_pstate = nullptr;
 		}
 	}
+
+    void Actor::projectile_collision(Projectile *pprojectile)
+    {
+            //By default, destroy projectile and Actor
+
+            /* change to set animator to collision, something like pprojectile->get_anim_controller()->set_trigger("explosion"). Remove the set_active(false)
+             * leave it to the Projectile to set itself to false, AFTER  the collision animation is complete.
+             * Change to get the damage and subtract from current health
+             * if heath <= 0, destroy enemy
+             */
+            m_health -= pprojectile->get_damage();
+            pprojectile->set_hit(true);
+    }
 
 	void Actor::begin_tile_collision(const physics_2d::AABB_2d & tile_aabb)
 	{

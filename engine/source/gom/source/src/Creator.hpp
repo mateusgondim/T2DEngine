@@ -20,12 +20,15 @@ namespace gom {
 
 		virtual Game_object *create(void * pmem, const uint32_t unique_id, const uint16_t handle_index, const math::vec3 & wld_pos) = 0;
 		
-		void		 set_obj_tag(const uint32_t tag) { m_obj_tag = tag; }
-		uint32_t     get_obj_tag() const { return m_obj_tag; }
+		void		 set_obj_type(const uint32_t type) { m_obj_type = type; }
+		uint32_t     get_obj_type() const { return m_obj_type; }
+        void         set_obj_tag(const uint32_t tag) { m_obj_tag = tag; }
+        uint32_t     get_obj_tag() const { return m_obj_tag; }
 		std::size_t  get_size()    const { return m_size; }
 	protected:
 		physics_2d::Body_2d_def *m_pbody_def; // used to create Body_2d for game objects that need physics simulation
-		uint32_t				 m_obj_tag;
+		uint32_t				 m_obj_type;
+        uint32_t                 m_obj_tag;
 	private:
 		std::size_t m_size; // size in bytes
 	};

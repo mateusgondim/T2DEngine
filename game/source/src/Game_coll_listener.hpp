@@ -13,9 +13,13 @@ public:
 	void begin_body_collision(physics_2d::Body_2d * pbody_a, physics_2d::Body_2d * pbody_b) const override;
 	void end_body_collision(physics_2d::Body_2d * pbody_a, physics_2d::Body_2d * pbody_b) const override;
 private:
-	string_id m_player_id;
-	string_id m_hover_robot_id;
-	string_id m_player_projectile_id;
+	string_id     m_player_id;
+	string_id     m_hover_robot_id;
+	string_id     m_player_projectile_id;
+    string_id     m_player_tag;
+    string_id     m_enemies_tag;
+    string_id     m_player_projectile_tag;
+    string_id     m_enemy_projectile_tag;
 
 	//void begin_tile_collision(physics_2d::Body_2d & b, const physics_2d::AABB_2d & tile_aabb) const override;
 	//void end_tile_collision(physics_2d::Body_2d   & b, const physics_2d::AABB_2d & tile_aabb) const override;

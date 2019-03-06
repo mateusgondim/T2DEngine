@@ -11,6 +11,8 @@
 #include "Projectile_manager.hpp"
 #include "Game_object_handle.hpp"
 
+#include "Player.hpp"
+#include "Player_taking_hit_state.hpp"
 #include "Player_idle_state.hpp"
 
 #include "runtime_memory_allocator.hpp"
@@ -21,6 +23,15 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor)
 	string_id player_attacking_state_id = intern_string("player_ducking_attacking");
 	string_id knife_obj_id = intern_string("knife_obj");
 	//check if is attacking, if so, return
+
+    //check if is taking a hit
+    Player *pplayer = static_cast<Player*>(&actor);
+    if (pplayer->is_taking_hit()) {
+            actor.get_anim_controller_component()->set_bool("is_ducking", false);
+            actor.get_anim_controller_component()->set_bool("is_taking_hit", true);
+            void *pmem = mem::allocate(sizeof(Player_taking_hit_state));
+            return static_cast<gom::Gameplay_state*> (new (pmem) Player_taking_hit_state(actor));
+    }
 	
 	if ((actor.get_anim_controller_component()->get_current_state().get_state_id() == player_attacking_state_id)) {
 		return nullptr;

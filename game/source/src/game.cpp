@@ -81,6 +81,12 @@ int main(int argc, char *argv[])
         Game_coll_listener game_coll_listener;
         physics_2d::g_physics_mgr.get_world()->set_collision_listener(&game_coll_listener);
 
+        // create game tags
+        string_id player_tag = intern_string("Player");
+        string_id enemy_tag = intern_string("Enemy");
+        string_id player_projectile_tag = intern_string("p_projectile");
+        string_id enemy_projectile_tag = intern_string("e_projectile");
+
        /// Player setup
 
         // Get atlas needed for the player sprite
@@ -96,7 +102,7 @@ int main(int argc, char *argv[])
         string_id player_type_id = intern_string("Player");
 
         //register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
-        gom::g_game_object_mgr.register_creator(player_type_id, pplayer_creator);
+        gom::g_game_object_mgr.register_creator(player_type_id, pplayer_creator, player_tag);
 
         // set the player projectile creator
         physics_2d::Body_2d_def body_def;
@@ -116,7 +122,7 @@ int main(int argc, char *argv[])
         string_id knife_type_id = intern_string("knife_obj");
         //creator
         Projectile_creator *knife_projectile = new Projectile_creator(atlas_id, body_def, pcontroller);
-        gom::g_game_object_mgr.register_creator(knife_type_id, knife_projectile);
+        gom::g_game_object_mgr.register_creator(knife_type_id, knife_projectile, player_projectile_tag);
 
         // Set the Hover Robor creator
         Hover_robot_creator * phover_robot_creator = new Hover_robot_creator(atlas_id, 0);
@@ -125,7 +131,7 @@ int main(int argc, char *argv[])
         string_id hover_robot_id = intern_string("hover_robot");
 
         //register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
-        gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator);
+        gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator, enemy_tag);
 
         std::cout << " TILE MAP WIDTH = " << tile_map.width() << "| TILE MAP HEIGHT = " << tile_map.height() << std::endl;
 
