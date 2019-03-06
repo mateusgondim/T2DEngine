@@ -185,7 +185,7 @@ namespace gom
                 m_htracking_obj.bind(*pgame_object);
                 Game_object *pgame_obj = g_game_object_mgr.get_by_handle(m_htracking_obj);
                 if (pgame_obj) {
-                        m_tracking_obj_type_id = pgame_obj->get_tag();
+                        m_tracking_obj_type_id = pgame_obj->get_type();
                         m_is_tracking = true;
                         return true;
                 }

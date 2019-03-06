@@ -9,6 +9,8 @@
 #include "Game_object_handle.hpp"
 #include "Projectile_manager.hpp"
 
+#include "Player.hpp"
+#include "Player_taking_hit_state.hpp"
 #include "Player_idle_state.hpp"
 #include "Player_jumping_state.hpp"
 #include "Animation_player.hpp"
@@ -39,6 +41,15 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
 	//auto stream = Input_handler::instance().get_input();
 	bool on_ground = physics_2d::g_physics_mgr.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
 	string_id knife_obj_id = intern_string("knife_obj");
+
+    //check if is taking a hit
+    Player *pplayer = static_cast<Player*>(&actor);
+    if (pplayer->is_taking_hit()) {
+            actor.get_anim_controller_component()->set_bool("is_taking_hit", true);
+            actor.get_anim_controller_component()->set_bool("is_running", false);
+            void *pmem = mem::allocate(sizeof(Player_taking_hit_state));
+            return static_cast<gom::Gameplay_state*> (new (pmem) Player_taking_hit_state(actor));
+    }
 
 	if (!on_ground) { //player fell
 		actor.get_anim_controller_component()->set_bool("is_running", false);

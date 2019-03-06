@@ -90,7 +90,8 @@ gom::Game_object * Hover_robot_creator::create(void * pmem, const uint32_t uniqu
 
 	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) Hover_robot(unique_id, handle_index, sprite_data, m_pbody_def, m_panim_controller));
 	pgame_object->get_body_2d_component()->create_collider_2d(coll_def);
-	pgame_object->set_tag(m_obj_tag);
+	pgame_object->set_type(m_obj_type);
+    pgame_object->set_tag(m_obj_tag);
 
 	return pgame_object;
 }

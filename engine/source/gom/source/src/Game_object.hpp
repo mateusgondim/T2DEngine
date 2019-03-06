@@ -32,8 +32,11 @@ namespace gom {
                 bool				  is_active() const { return m_is_active; }
                 void				  set_active(const bool flag);
 
-                void				 set_tag(const uint32_t object_tag) { m_tag = object_tag; }
-                uint32_t			 get_tag() const { return m_tag; }
+                void				 set_type(const uint32_t object_type) { m_type = object_type; }
+                uint32_t			 get_type() const { return m_type; }
+
+                void                set_tag(const uint32_t object_tag) { m_tag = object_tag; }
+                uint32_t            get_tag() const { return m_tag; }
 
                 math::Transform     & get_transform_component();
                 gfx::Sprite          *get_sprite_component();
@@ -50,7 +53,8 @@ namespace gom {
                 game_object_id	m_unique_id;
                 uint16_t		m_handle_index;
 
-                uint32_t		m_tag; //tag used to identify the game object's type, as "player" or "enemy"
+                uint32_t        m_type; // type used to identify the specific game object's type, as "player" or "hover_robot" 
+                uint32_t        m_tag;  // value used to identify a broader group of game objects, as 'Enemies', 'Items' etc
 
                 bool			m_is_active;
 

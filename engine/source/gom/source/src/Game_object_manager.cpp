@@ -59,7 +59,7 @@ namespace gom
                 }
         }
 
-        bool	Game_object_manager::register_creator(const type_id obj_type, Creator *pcreator)
+        bool	Game_object_manager::register_creator(const type_id obj_type, Creator *pcreator, const uint32_t obj_tag)
         {
                 //check if there is already a creator assigned to this id
                 creator_map::iterator it = m_creators.find(obj_type);
@@ -67,8 +67,12 @@ namespace gom
                         delete pcreator;
                         return false;
                 }
-                //set the creator's object's tag
-                pcreator->set_obj_tag(obj_type);
+                //set the creator's object's type
+                pcreator->set_obj_type(obj_type);
+
+                if (obj_tag != -1) {
+                        pcreator->set_obj_tag(obj_tag);
+                }
                 // add entry on the map
                 m_creators[obj_type] = pcreator;
 
@@ -274,7 +278,7 @@ namespace gom
                 vgame_object_handles            handles;
                 vpgame_objects::iterator        it = m_game_objects.begin();
                 for (; it != m_game_objects.end(); ++it) {
-                        if (type == (*it)->get_tag()) {
+                        if (type == (*it)->get_type()) {
                                 handles.push_back(Game_object_handle(*(*it)));
                         }
                 }

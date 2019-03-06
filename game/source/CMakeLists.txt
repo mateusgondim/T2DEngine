@@ -53,8 +53,8 @@ if(APPLE)
 	FIND_LIBRARY(COREVIDEO_LIBRARY CoreVideo)
 endif()
 
-SET(INCLUDE_FILES src/Hover_robot.hpp src/Hover_robot_creator.hpp src/Player.hpp src/Player_creator.hpp src/Projectile_creator.hpp src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp src/Player_jumping_state.hpp src/Player_climbing_state.hpp src/Game_coll_listener.hpp src/game.hpp)
-SET(SOURCE_FILES src/Hover_robot.cpp  src/Hover_robot_creator.cpp src/Player.cpp  src/Player_creator.cpp src/Projectile_creator.cpp src/Player_idle_state.cpp  src/Player_ducking_state.cpp src/Player_running_state.cpp src/Player_jumping_state.cpp src/Player_climbing_state.cpp src/Game_coll_listener.cpp src/game.cpp)
+SET(INCLUDE_FILES src/Hover_robot.hpp src/Hover_robot_creator.hpp src/Player.hpp src/Player_creator.hpp src/Projectile_creator.hpp src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp src/Player_jumping_state.hpp src/Player_climbing_state.hpp src/Player_taking_hit_state.hpp src/Game_coll_listener.hpp src/game.hpp)
+SET(SOURCE_FILES src/Hover_robot.cpp  src/Hover_robot_creator.cpp src/Player.cpp  src/Player_creator.cpp src/Projectile_creator.cpp src/Player_idle_state.cpp  src/Player_ducking_state.cpp src/Player_running_state.cpp src/Player_jumping_state.cpp src/Player_climbing_state.cpp src/Player_taking_hit_state.cpp src/Game_coll_listener.cpp src/game.cpp)
 
 ADD_EXECUTABLE(game ${INCLUDE_FILES} ${SOURCE_FILES} )
 

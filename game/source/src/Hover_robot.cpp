@@ -1,6 +1,6 @@
 #include "Hover_robot.hpp"
-#include "Enemy.hpp"
 
+#include "Actor.hpp"
 #include "Animator_controller.hpp"
 #include "Animator_state.hpp"
 #include "Sprite.hpp"
@@ -15,12 +15,19 @@
 #include "Physics_manager.hpp"
 
 Hover_robot::Hover_robot(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left)
-	: Enemy(unique_id, handle_index, sprite_data, pbody_def, pcontroller, facing_left, 100, 25) 
+	: Actor(unique_id, handle_index, sprite_data, pbody_def, pcontroller, facing_left) 
 {
+        m_health = 100;
+        m_damage = 25;
         m_velocity.x = -1.0f;
         m_velocity.y = 0.0f;
         get_body_2d_component()->add_to_velocity(m_velocity);
 
+}
+
+void Hover_robot::actor_collision(gom::Actor *pactor)
+{
+        return;
 }
 
 void Hover_robot::update(const float dt) 

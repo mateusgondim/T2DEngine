@@ -1,5 +1,7 @@
 #include "Player_climbing_state.hpp"
 
+#include "Player.hpp"
+#include "Player_taking_hit_state.hpp"
 #include "Player_idle_state.hpp"
 #include "Player_jumping_state.hpp"
 
@@ -31,6 +33,16 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 	bool is_on_ladder = physics_2d::g_physics_mgr.get_world()->is_body_on_ladder(actor.get_body_2d_component());
 	bool is_on_ladder_top = physics_2d::g_physics_mgr.get_world()->is_on_ladder_top_tile(actor.get_body_2d_component(), bounds);
 	bool is_on_ground = physics_2d::g_physics_mgr.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
+
+    //check if is taking a hit
+    Player *pplayer = static_cast<Player*>(&actor);
+    if (pplayer->is_taking_hit()) {
+            actor.get_anim_controller_component()->set_bool("is_taking_hit", true);
+            actor.get_anim_controller_component()->set_bool("is_climbing", false);
+            void *pmem = mem::allocate(sizeof(Player_taking_hit_state));
+            return static_cast<gom::Gameplay_state*> (new (pmem) Player_taking_hit_state(actor));
+    }
+
 	//climbing from top animation and small displacement
 	if (m_from_top) {
 		if (m_anim_clip == 0) {

@@ -64,7 +64,8 @@ gom::Game_object *Player_creator::create(void *pmem, const uint32_t unique_id, c
 	//call the player's constructor
 	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) Player(unique_id, handle_index, sprite_data, m_pbody_def, m_panim_controller));
 	pgame_object->get_body_2d_component()->create_collider_2d(coll_def);
-	pgame_object->set_tag(m_obj_tag);
+	pgame_object->set_type(m_obj_type);
+    pgame_object->set_tag(m_obj_tag);
 	return pgame_object;
 }
 
@@ -87,6 +88,7 @@ void Player_creator::create_anim_controller()
 	gfx::Animation_player player_attacking_anim(gfx::Animation({ 20, 21, 22, 23}, 12, false));
 	gfx::Animation_player player_ducking_idle_anim(gfx::Animation({ 4 }, 1));
 	gfx::Animation_player player_ducking_attacking_anim(gfx::Animation({ 11, 12 }, 10, false));
+    gfx::Animation_player player_taking_hit_anim(gfx::Animation({29, 28, 27, 26}, 10));
 
 	//add the parameters to the controller
 	m_panim_controller->add_parameter("is_running", gfx::Animator_controller_parameter::Type::BOOL);;
@@ -95,6 +97,7 @@ void Player_creator::create_anim_controller()
 	m_panim_controller->add_parameter("is_ducking", gfx::Animator_controller_parameter::Type::BOOL);
 	m_panim_controller->add_parameter("is_attacking", gfx::Animator_controller_parameter::Type::TRIGGER);
 	m_panim_controller->add_parameter("finish_climbing", gfx::Animator_controller_parameter::Type::BOOL);
+    m_panim_controller->add_parameter("is_taking_hit", gfx::Animator_controller_parameter::Type::BOOL);
 
 	
 	gfx::Animator_state & player_idle_state = m_panim_controller->add_state("player_idle", player_idle_anim);
@@ -105,6 +108,7 @@ void Player_creator::create_anim_controller()
 	gfx::Animator_state & player_attacking_state = m_panim_controller->add_state("player_attacking", player_attacking_anim);
 	gfx::Animator_state & player_ducking_idle_state = m_panim_controller->add_state("player_ducking_idle", player_ducking_idle_anim);
 	gfx::Animator_state & player_ducking_attacking_state = m_panim_controller->add_state("player_ducking_attacking", player_ducking_attacking_anim);
+    gfx::Animator_state & player_taking_hit_state = m_panim_controller->add_state("player_taking_hit", player_taking_hit_anim);
 
 	//transitions from player idle
 	gfx::Animator_state_transition & idle_to_ducking_idle = player_idle_state.add_transition("player_ducking_idle");
@@ -122,16 +126,23 @@ void Player_creator::create_anim_controller()
 	gfx::Animator_state_transition & idle_to_jumping = player_idle_state.add_transition("player_jumping");
 	idle_to_jumping.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_jumping");
 
+    gfx::Animator_state_transition & idle_to_taking_hit = player_idle_state.add_transition("player_taking_hit");
+    idle_to_taking_hit.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_taking_hit");
+
 	gfx::Animator_state_transition & running_to_attack = player_running_state.add_transition("player_attacking");
 	running_to_attack.add_condition(gfx::Animator_condition::Mode::IF, 1, "is_attacking");
 
 	gfx::Animator_state_transition & running_to_idle = player_running_state.add_transition("player_idle");
 	running_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_running");
 	running_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_jumping");
+    running_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_taking_hit");
 
 	gfx::Animator_state_transition & running_to_jumping = player_running_state.add_transition("player_jumping");
 	running_to_jumping.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_jumping");
 	running_to_jumping.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_running");
+
+    gfx::Animator_state_transition & running_to_taking_hit = player_running_state.add_transition("player_taking_hit");
+    running_to_taking_hit.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_taking_hit");
 
 	gfx::Animator_state_transition & jumping_to_attacking = player_jumping_state.add_transition("player_attacking");
 	jumping_to_attacking.add_condition(gfx::Animator_condition::Mode::IF, 1, "is_attacking");
@@ -140,14 +151,19 @@ void Player_creator::create_anim_controller()
 	jumping_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_jumping");
 	jumping_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_running");
 	jumping_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_climbing");
+    jumping_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_taking_hit");
 
 	gfx::Animator_state_transition & jumping_to_running = player_jumping_state.add_transition("player_running");
 	jumping_to_running.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_jumping");
 	jumping_to_running.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_running");
+    jumping_to_running.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_taking_hit");
 
 	gfx::Animator_state_transition & jumping_to_climbing = player_jumping_state.add_transition("player_climbing");
 	jumping_to_climbing.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_climbing");
 	jumping_to_climbing.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_jumping");
+
+    gfx::Animator_state_transition & jumping_to_taking_hit = player_jumping_state.add_transition("player_taking_hit");
+    jumping_to_taking_hit.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_taking_hit");
 
 	gfx::Animator_state_transition & climbing_to_finish_climbing = player_climbing_state.add_transition("player_finishing_climbing");
 	climbing_to_finish_climbing.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "finish_climbing");
@@ -161,6 +177,9 @@ void Player_creator::create_anim_controller()
 	climbing_to_jumping.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_climbing");
 	climbing_to_jumping.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_jumping");
 
+    gfx::Animator_state_transition & climbing_to_taking_hit = player_climbing_state.add_transition("player_taking_hit");
+    climbing_to_taking_hit.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_taking_hit");
+
 	gfx::Animator_state_transition & finish_climbing_to_idle = player_finishing_climbing_state.add_transition("player_idle");
 	finish_climbing_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_climbing");
 	finish_climbing_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "finish_climbing");
@@ -173,6 +192,9 @@ void Player_creator::create_anim_controller()
 	attacking_to_idle.add_condition(gfx::Animator_condition::Mode::IF_NOT, 0, "is_attacking");
 	attacking_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_jumping");
 
+    gfx::Animator_state_transition & attacking_to_taking_hit = player_attacking_state.add_transition("player_taking_hit");
+    attacking_to_taking_hit.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_taking_hit");
+
 	gfx::Animator_state_transition & attacking_to_jumping = player_attacking_state.add_transition("player_jumping");
 	attacking_to_jumping.add_condition(gfx::Animator_condition::Mode::IF_NOT, 0, "is_attacking");
 	attacking_to_jumping.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_jumping");
@@ -183,7 +205,15 @@ void Player_creator::create_anim_controller()
 	gfx::Animator_state_transition & ducking_idle_to_ducking_attacking = player_ducking_idle_state.add_transition("player_ducking_attacking");
 	ducking_idle_to_ducking_attacking.add_condition(gfx::Animator_condition::Mode::IF, 1, "is_attacking");
 
+    gfx::Animator_state_transition & ducking_idle_to_taking_hit = player_ducking_idle_state.add_transition("player_taking_hit");
+    ducking_idle_to_taking_hit.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_taking_hit");
+
 	gfx::Animator_state_transition & ducking_attacking_to_ducking_idle = player_ducking_attacking_state.add_transition("player_ducking_idle");
 	ducking_attacking_to_ducking_idle.add_condition(gfx::Animator_condition::Mode::IF_NOT, 0, "is_attacking");
 
+    gfx::Animator_state_transition & ducking_attacking_to_taking_hit = player_ducking_attacking_state.add_transition("player_taking_hit");
+    ducking_attacking_to_taking_hit.add_condition(gfx::Animator_condition::Mode::EQUALS, 1, "is_taking_hit");
+
+    gfx::Animator_state_transition & taking_hit_to_idle = player_taking_hit_state.add_transition("player_idle");
+    taking_hit_to_idle.add_condition(gfx::Animator_condition::Mode::EQUALS, 0, "is_taking_hit");
 }

@@ -53,7 +53,8 @@ gom::Game_object *Projectile_creator::create(void * pmem, const uint32_t unique_
 
 	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) gom::Projectile(unique_id, handle_index, wld_pos, data, m_pbody_def, m_pcontroller));
 	pgame_object->get_body_2d_component()->create_collider_2d(coll_def);
-	pgame_object->set_tag(m_obj_tag);
+	pgame_object->set_type(m_obj_type);
+    pgame_object->set_tag(m_obj_tag);
 
 	return pgame_object;
 }

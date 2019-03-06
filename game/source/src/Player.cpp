@@ -15,10 +15,12 @@
 
 
 Player::Player(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left) :
-	Actor(unique_id, handle_index, sprite_data, pbody_def, pcontroller, facing_left), m_life(100)
+	Actor(unique_id, handle_index, sprite_data, pbody_def, pcontroller, facing_left)
 {
 	void *pmem = mem::allocate(sizeof(Player_idle_state));
 	m_pstate = static_cast<gom::Gameplay_state*>(new (pmem) Player_idle_state());
+    m_health = 100;
+    m_taking_hit = false;
 }
 
 
@@ -33,17 +35,14 @@ void Player::handle_input()
 	 }
 }
 
+void Player::actor_collision(gom::Actor *pactor)
+{
+        m_health -= pactor->get_attack_points();
+        m_taking_hit = true;
+}
+
 void Player::update(const float dt) 
 {
-	//CHANGE THIS!!! REALLY UGLY, USED ONLY TO MEET A DEALINE. IMPLEMENT A TRIGGER
-	/*math::vec2 p = m_pbody_2d->get_position();
-	
-	if (p.y < -2.0f) { // fell into a pit
-		p.x -= 4.0f;
-		p.y = 12.0f;
-		m_pbody_2d->set_position(p);
-	}
-	*/
 	handle_input();
 	m_panimator_controller->update(dt);
 	
