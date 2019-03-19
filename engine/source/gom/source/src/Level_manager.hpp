@@ -1,6 +1,7 @@
 #ifndef _LEVEL_MANAGER_HPP
 #define _LEVEL_MANAGER_HPP
 #include <vector>
+#include <stdint.h>
 #include "Path.hpp"
 #include "Timer.hpp"
 #include "Camera_2d.hpp"
@@ -21,6 +22,7 @@ namespace gom
                 void tick();
                 void restart();
                 Camera_2d & get_camera();
+                bool is_game_clock_paused() const { return m_timer.is_paused(); }
                 //void next_level();
         private:
                 void            load_level_objects();
@@ -32,6 +34,9 @@ namespace gom
                 gfx::Shader*                                    m_psprite_shader;
                 gfx::Shader*                                    m_pmap_shader;
                 Timer                                           m_timer;
+                uint64_t                                        m_last_time_cycles;
+                uint64_t                                        m_curr_time_cycles;
+                float                                           m_delta_time_seconds;
                 float                                           m_lag;
                 static const float                              m_dt;
                 float                                           m_target_aspect_ratio;

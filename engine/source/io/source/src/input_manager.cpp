@@ -230,6 +230,9 @@ namespace io {
 #endif // !NDEBUG
                 button.m_bound_key = KEY_R;
                 break;
+        case GLFW_KEY_P:
+                button.m_bound_key = KEY_P;
+                break;
         default:
 			std::cerr << __FUNCTION__ << " : unkown keycode" << std::endl;
 			return;
@@ -258,9 +261,9 @@ namespace io {
 			break;
 		}
 
-#ifndef NDEBUG
-		//std::cout << __FUNCTION__ << " DEBUG: " << "key: " << key_name << " | action: " << action_name << std::endl;
-#endif // !NDEBUG
+// #ifndef NDEBUG
+// 		std::cout << __FUNCTION__ << " DEBUG: " << "key: " << key_name << " | action: " << action_name << std::endl;
+// #endif // !NDEBUG
 
 		buttons[button.m_bound_key].update(new_action);
 		/*
