@@ -1,5 +1,10 @@
 #include "Level_manager.hpp"
 
+#define GLEW_STATIC
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
+
 #include "Tile_map.hpp"
 #include "Path.hpp"
 #include "Shader.hpp"
@@ -105,28 +110,51 @@ namespace gom
                 io::map_action_to_button(io::GAME_ACTIONS::ATTACK_01, Button(io::KEYS::KEY_S));
 
                 io::map_action_to_button(io::GAME_ACTIONS::RESET, Button(io::KEYS::KEY_R));
+                io::map_action_to_button(io::GAME_ACTIONS::PAUSE, Button(io::KEYS::KEY_P));
 
                 instantiate_level_objects();
 
-                //initialize timer
-                m_timer.init();
+                //initialize timers
+                Timer::init();
+                // m_timer.init();
+                m_last_time_cycles = glfwGetTimerValue();
                 m_lag = 0.0f;
         }
 
         void Level_manager::tick()
         {
+                const Button & pause_button = io::get_button_from_action(io::GAME_ACTIONS::PAUSE);
+                bool is_paused = m_timer.is_paused();
+                if (pause_button.m_state == PRESSED) {
+                        is_paused = !is_paused;
+                //        std::cout << "PRESSED PAUSE BUTTON. New state is: " << is_paused << std::endl;
+                        m_timer.set_paused(is_paused);
+                }
                 //std::cout << "FPS: " << m_timer.get_fps() << std::endl;
                //std::cout << "FRAME TIME: " << m_timer.get_dt() << std::endl;
 
-                m_timer.update();
-                m_lag += m_timer.get_dt();
+               // m_timer.update();
+                //////////////////////////////////////////
+                m_curr_time_cycles = glfwGetTimerValue();
+                m_delta_time_seconds = Timer::cycles_to_seconds(m_curr_time_cycles - m_last_time_cycles);
+                m_last_time_cycles = m_curr_time_cycles;
 
-                float frame_time = m_timer.get_dt();
+
+                uint64_t last_game_time_cycles = m_timer.get_time_cycles();
+                m_timer.update(m_delta_time_seconds);
+                float game_delta_time_seconds = Timer::cycles_to_seconds(m_timer.get_time_cycles() - last_game_time_cycles);
+
+                ////////////////////////////////////////
+                // m_lag += m_timer.get_dt();
+                m_lag += game_delta_time_seconds;
+
+                //float frame_time = m_timer.get_dt();
 
                 const Button & restart_button = io::get_button_from_action(io::GAME_ACTIONS::RESET);
                 if (restart_button.m_state == PRESSED) {
                         m_should_restart = true;
                 }
+
 
                 //bool  lagging = (frame_time > m_dt) ? true : false;
                 //if (lagging) {
@@ -137,17 +165,22 @@ namespace gom
                 //}
 
                 while (m_lag >= m_dt) {
-                        physics_2d::g_physics_mgr.get_world()->update(m_timer.get_fixed_dt());
+                        physics_2d::g_physics_mgr.get_world()->update(m_timer.get_fixed_delta_time_seconds());
                         m_lag -= m_dt;
                 }
 
                 //update the level's game objects
-                gom::g_game_object_mgr.update_game_objects(m_timer.get_dt());
-                //update the projectile manager
-                gom::g_projectile_mgr.update(m_timer.get_dt());
-                //update the level's camera
-                m_camera.update(m_timer.get_dt());
+                //gom::g_game_object_mgr.update_game_objects(m_timer.get_dt());
+                gom::g_game_object_mgr.update_game_objects(game_delta_time_seconds);
 
+                //update the projectile manager
+                // gom::g_projectile_mgr.update(m_timer.get_dt());
+                gom::g_projectile_mgr.update(game_delta_time_seconds);
+
+                //update the level's camera
+                //m_camera.update(m_timer.get_dt());
+                m_camera.update(game_delta_time_seconds);
+                
                 m_pmap_shader->uniform_matrix4fv(m_tile_map_view_loc, 1, false, m_camera.get_view().value_ptr());
 
                 gfx::g_graphics_mgr.get_framebuffer_size(&m_curr_vport_width, &m_curr_vport_height);

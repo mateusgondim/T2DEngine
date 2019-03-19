@@ -7,7 +7,6 @@
 
 #include "Pool_allocator.hpp"
 #include "string_id.hpp"
-//#include "Camera_2d.hpp"
 
 #if GRAPHICS_CONSOLE_DEBUG_ENABLE
 
