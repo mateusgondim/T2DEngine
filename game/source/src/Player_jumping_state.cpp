@@ -19,7 +19,8 @@
 #include "Body_2d.hpp"
 #include "World.hpp"
 #include "Physics_manager.hpp"
-#include "input_manager.hpp"
+#include "Input_manager.hpp"
+#include "Abstract_game_actions_index.hpp"
 
 #include "runtime_memory_allocator.hpp"
 
@@ -58,8 +59,8 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		return nullptr;
 	}
 
-	const Button & climb_up_button = io::get_button_from_action(io::GAME_ACTIONS::CLIMB_UP);
-	if (climb_up_button.m_state == PRESSED) {
+    bool is_climb_up_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::CLIMB_UP);
+	if (is_climb_up_pressed) {
 		bool is_on_ladder = physics_2d::g_physics_mgr.get_world()->try_climbing_ladder(actor.get_body_2d_component(), true);
 		if (is_on_ladder) {
 			actor.get_anim_controller_component()->set_bool("is_jumping", false);
@@ -73,8 +74,8 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		}
 	}
 
-	const Button & attack_button = io::get_button_from_action(io::GAME_ACTIONS::ATTACK_01);
-	if (attack_button.m_state == PRESSED) {
+    bool is_attack_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::ATTACK_01);
+	if (is_attack_pressed) {
 		//ANIMATION
 		actor.get_anim_controller_component()->set_trigger("is_attacking");
 		if (actor.get_facing_direction()) {
@@ -86,23 +87,23 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		return nullptr;
 	}
 
-	const Button & move_left_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_LEFT);
-	if (move_left_button.m_state == PRESSED || move_left_button.m_state == REPEAT) {
+    bool is_move_left_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_LEFT);
+	if (is_move_left_pressed) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(true);     //change to running left
 		actor.get_body_2d_component()->add_to_velocity(math::vec2(-m_x_vel, 0.0f));
 		//std::cout << "-----moving left here---------" << std::endl;
 	}
 	
-	const Button & move_right_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_RIGHT);
-	if (move_right_button.m_state == PRESSED || move_right_button.m_state == REPEAT) {
+    bool is_move_right_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_RIGHT);
+	if (is_move_right_pressed) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(false);     
 		actor.get_body_2d_component()->add_to_velocity(math::vec2(m_x_vel, 0.0f));
 		//std::cout << "-----moving left here---------" << std::endl;
 	}
 	
-	if ((move_left_button.m_state == RELEASED) && (move_right_button.m_state == RELEASED)) {
+	if (!is_move_left_pressed && !is_move_right_pressed) {
 		actor.get_body_2d_component()->stop_movement_x();
 	}
 	

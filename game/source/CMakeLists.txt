@@ -27,7 +27,7 @@ FIND_PATH(MEM_INCLUDE_DIR NAMES memory_allocator.hpp HINTS ${CMAKE_CURRENT_LIST_
 FIND_PATH(RMS_INCLUDE_DIR NAMES Resource.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/rms/source/src)
 
 #INPUT SYSTEM
-FIND_PATH(IO_INCLUDE_DIR NAMES Button.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/io/source/src)
+FIND_PATH(IO_INCLUDE_DIR NAMES Input_manager.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/io/source/src)
 
 #TILE MAP
 FIND_PATH(TMAP_INCLUDE_DIR NAMES Tile.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/tmap/source/src)
@@ -53,7 +53,7 @@ if(APPLE)
 	FIND_LIBRARY(COREVIDEO_LIBRARY CoreVideo)
 endif()
 
-SET(INCLUDE_FILES src/Hover_robot.hpp src/Hover_robot_creator.hpp src/Player.hpp src/Player_creator.hpp src/Projectile_creator.hpp src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp src/Player_jumping_state.hpp src/Player_climbing_state.hpp src/Player_taking_hit_state.hpp src/Game_coll_listener.hpp src/game.hpp)
+SET(INCLUDE_FILES src/Abstract_game_actions_index.hpp src/Hover_robot.hpp src/Hover_robot_creator.hpp src/Player.hpp src/Player_creator.hpp src/Projectile_creator.hpp src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp src/Player_jumping_state.hpp src/Player_climbing_state.hpp src/Player_taking_hit_state.hpp src/Game_coll_listener.hpp src/game.hpp)
 SET(SOURCE_FILES src/Hover_robot.cpp  src/Hover_robot_creator.cpp src/Player.cpp  src/Player_creator.cpp src/Projectile_creator.cpp src/Player_idle_state.cpp  src/Player_ducking_state.cpp src/Player_running_state.cpp src/Player_jumping_state.cpp src/Player_climbing_state.cpp src/Player_taking_hit_state.cpp src/Game_coll_listener.cpp src/game.cpp)
 
 ADD_EXECUTABLE(game ${INCLUDE_FILES} ${SOURCE_FILES} )

@@ -28,9 +28,6 @@
 
 gfx::Graphics_manager gfx::g_graphics_mgr;
 
-//MISSING INITIALIZATION OF ERRORCALLBACK AND KEYCALLBACK
-gfx::Graphics_manager::key_callback_ptr gfx::Graphics_manager::s_key_callback = nullptr;
-
 gfx::Graphics_manager::Graphics_manager() : m_is_initialized(false) {}
 
 void gfx::Graphics_manager::init(const std::uint8_t context_version_major, const std::uint8_t context_version_minor, const float pixels_per_unit)
@@ -108,20 +105,11 @@ void gfx::Graphics_manager::set_error_callback(error_callback_ptr fptr)
 
 void gfx::Graphics_manager::set_key_callback(key_callback_ptr fptr) 
 {
-	// if this is the first time this function is called, register the static member function with GLFW callback
-	if (s_key_callback == nullptr) {
-		glfwSetKeyCallback(m_pwindow, gfx::Graphics_manager::key_callback);
-	}
-	// set the function to call whenever a key event occurs
-	s_key_callback = fptr;
+    if (fptr) {
+		glfwSetKeyCallback(m_pwindow, fptr);
+    }
 }
 
-void gfx::Graphics_manager::key_callback(GLFWwindow *pwindow, int key, int scancode, int action, int mods) 
-{
-	if (s_key_callback != nullptr) {
-		(*s_key_callback)(key, scancode, action, mods);
-	}
-}
 
 void gfx::Graphics_manager::set_clear_color(const math::vec4 & color) 
 {
@@ -194,10 +182,6 @@ void gfx::Graphics_manager::set_tile_map(Tile_map *ptile_map)
 	set_tile_map_renderer();
 }
 
-//gfx::Camera_2d & gfx::Graphics_manager::get_camera() 
-//{
-//	return m_camera;
-//}
 
 /* Load_shader: This function uses a pre allocated memory pool to construct a new  shader object. Using
    the name of the vertex shader file, a unique identifier is generated for the shader object, this identifier and

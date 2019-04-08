@@ -32,7 +32,7 @@ namespace gfx {
 		typedef		std::uint8_t	sprite_layer;
 
 		typedef     void (*error_callback_ptr) (int, const char*);
-		typedef     void (*key_callback_ptr)   (int, int, int, int);
+		typedef     void (*key_callback_ptr)   (GLFWwindow *, int, int, int, int);
 	public:
 			        Graphics_manager();
 					~Graphics_manager() = default;
@@ -87,7 +87,7 @@ namespace gfx {
 		
 	private:
 		void        set_tile_map_renderer();
-		static  void key_callback(GLFWwindow *pwindow, int key, int scancode, int action, int mods);
+		// static  void key_callback(GLFWwindow *pwindow, int key, int scancode, int action, int mods);
 		void		check_error(const char *pfile_name, std::int32_t line) const;
 		// Global Graphics objects 
 		//std::map<atlas_id, Sprite_atlas*>			m_atlases;
@@ -120,7 +120,6 @@ namespace gfx {
 		std::uint8_t	m_context_version_major; 
 		std::uint8_t	m_context_version_minor;
 
-		static key_callback_ptr s_key_callback;
 
 		float			m_pixels_per_unit;
 		float           m_tiles_per_screen_width;

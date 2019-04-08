@@ -1,5 +1,6 @@
 
 #include "game.hpp"
+#include "Abstract_game_actions_index.hpp"
 
 #include <iostream>
 #include <memory>
@@ -12,6 +13,9 @@
 #include "matrix_transform.hpp"
 
 #include "Timer.hpp"
+#include "Keyboard_button_mapper.hpp"
+#include "Abstract_keyboard_index.hpp"
+#include "Input_manager.hpp"
 
 #include "Camera_2d.hpp"
 #include "Tile_map.hpp"
@@ -77,6 +81,10 @@ int main(int argc, char *argv[])
         
         engine_init(3, 2, &tile_map);
 
+        
+
+        io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_LEFT);
+
         //Set physics engine collision listener
         Game_coll_listener game_coll_listener;
         physics_2d::g_physics_mgr.get_world()->set_collision_listener(&game_coll_listener);
@@ -136,11 +144,22 @@ int main(int argc, char *argv[])
         std::cout << " TILE MAP WIDTH = " << tile_map.width() << "| TILE MAP HEIGHT = " << tile_map.height() << std::endl;
 
         gom::g_level_mgr.init();
+
+        //Set up the game's control scheme
+        io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
+        control_scheme.map_action_to_button(Abstract_game_actions_index::MOVE_LEFT, io::Abstract_keyboard_index::KEY_LEFT);
+        control_scheme.map_action_to_button(Abstract_game_actions_index::MOVE_RIGHT, io::Abstract_keyboard_index::KEY_RIGHT);
+        control_scheme.map_action_to_button(Abstract_game_actions_index::MOVE_DOWN, io::Abstract_keyboard_index::KEY_DOWN);
+        control_scheme.map_action_to_button(Abstract_game_actions_index::CLIMB_DOWN, io::Abstract_keyboard_index::KEY_DOWN);
+        control_scheme.map_action_to_button(Abstract_game_actions_index::MOVE_UP, io::Abstract_keyboard_index::KEY_UP);
+        control_scheme.map_action_to_button(Abstract_game_actions_index::CLIMB_UP, io::Abstract_keyboard_index::KEY_UP);
+        control_scheme.map_action_to_button(Abstract_game_actions_index::JUMP, io::Abstract_keyboard_index::KEY_A);
+        control_scheme.map_action_to_button(Abstract_game_actions_index::ATTACK_01, io::Abstract_keyboard_index::KEY_S);
+
         gom::g_level_mgr.get_camera().track(player_type_id);
-         while (!gfx::g_graphics_mgr.window_should_close()) 
-         {
-                 gom::g_level_mgr.tick();
-         }
-         engine_shut_down();
-         return 0;
+        while (!gfx::g_graphics_mgr.window_should_close()) {
+                gom::g_level_mgr.tick();
+        }
+        engine_shut_down();
+        return 0;
 }

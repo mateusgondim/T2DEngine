@@ -6,7 +6,7 @@
 #include "Shader_manager.hpp"
 #include "Texture_2d_manager.hpp"
 #include "Sprite_atlas_manager.hpp"
-#include "input_manager.hpp"
+#include "Input_abstraction_layer.hpp"
 
 #include "Graphics_manager.hpp"
 #include "Physics_manager.hpp"
@@ -14,10 +14,6 @@
 #include "Projectile_manager.hpp"
 #include "Level_manager.hpp"
 
-static void key_callback(int key, int scancode, int action, int mods)
-{
-        io::key_callback(key, scancode, action, mods);
-}
 
 static void error_callback(int error, const char * descr)
 {
@@ -37,7 +33,7 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
     // ----------------------------------------New initialization code--------------------------------------------------------------------------------------------
     gfx::g_graphics_mgr.set_error_callback(error_callback);
     gfx::g_graphics_mgr.create_window(512, 480, "2D Game Project");
-    gfx::g_graphics_mgr.set_key_callback(key_callback);
+    gfx::g_graphics_mgr.set_key_callback(io::Input_abstraction_layer::keyboard_callback);
     
     Path resources_path("../resources", Path::FORWARD_SLASH);
     gom::g_level_mgr.load(resources_path, ptile_map);

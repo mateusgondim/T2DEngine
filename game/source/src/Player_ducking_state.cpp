@@ -3,7 +3,8 @@
 #include "AABB_2d.hpp"
 #include "Actor.hpp"
 #include "Gameplay_state.hpp"
-#include "input_manager.hpp"
+#include "Input_manager.hpp"
+#include "Abstract_game_actions_index.hpp"
 #include "World.hpp"
 #include "Physics_manager.hpp"
 #include "Animator_controller.hpp"
@@ -38,8 +39,8 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor)
 	}
 
 	//check if released ducking button, if so, return to idle
-	const Button & move_down_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_DOWN);
-	if (move_down_button.m_state == RELEASED) {
+    bool is_move_down_released = io::g_input_mgr.get_button_up(Abstract_game_actions_index::MOVE_DOWN);
+	if (is_move_down_released) {
 		//ANIMATION
 		actor.get_anim_controller_component()->set_bool("is_ducking", false);
 		//Gameplay
@@ -50,24 +51,24 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor)
 	}
 
 	//check if pressed left or right, if so, change orientation
-	const Button & move_left_button   = io::get_button_from_action(io::GAME_ACTIONS::MOVE_LEFT);
-	if (move_left_button.m_state == PRESSED) {
+    bool is_move_left_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::MOVE_LEFT);
+	if (is_move_left_pressed) {
 		//change orientation
 		actor.set_facing_direction(true);
 		return nullptr;
 	}
 	else { 
-		const Button & move_right_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_RIGHT);
-		if (move_right_button.m_state == PRESSED) {
+        bool is_move_right_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::MOVE_RIGHT);
+		if (is_move_right_pressed) {
 			actor.set_facing_direction(false);
 			return nullptr;
 		}
 	}
 	
 	//check if pressed attack button, if so, attack
-	const Button & attacking_button = io::get_button_from_action(io::GAME_ACTIONS::ATTACK_01);
+    bool is_attack_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::ATTACK_01);
 
-	if (attacking_button.m_state == PRESSED) {
+	if (is_attack_pressed) {
 		//ANIMATION
 		actor.get_anim_controller_component()->set_trigger("is_attacking");
 		//gameplay
