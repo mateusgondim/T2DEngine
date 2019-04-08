@@ -14,7 +14,10 @@
 #include "Texture_2d_manager.hpp"               
 #include "Sprite_atlas_manager.hpp"
 
-#include "input_manager.hpp"
+#include "Keyboard_button_mapper.hpp"
+#include "Abstract_keyboard_index.hpp"
+#include "Abstract_engine_actions_index.hpp"
+#include "Input_manager.hpp"
 
 #include "Game_object.hpp"
 #include "Game_object_handle.hpp"
@@ -99,18 +102,20 @@ namespace gom
 
                 gfx::g_graphics_mgr.set_tile_map(m_ptile_map);
 
-                // Initialize Input_manager
-                io::map_action_to_button(io::GAME_ACTIONS::MOVE_LEFT, Button(io::KEYS::KEY_LEFT));
-                io::map_action_to_button(io::GAME_ACTIONS::JUMP, Button(io::KEYS::KEY_A));
-                io::map_action_to_button(io::GAME_ACTIONS::MOVE_RIGHT, Button(io::KEYS::KEY_RIGHT));
-                io::map_action_to_button(io::GAME_ACTIONS::CLIMB_UP, Button(io::KEYS::KEY_UP));
-                io::map_action_to_button(io::GAME_ACTIONS::CLIMB_DOWN, Button(io::KEYS::KEY_DOWN));
-                io::map_action_to_button(io::GAME_ACTIONS::MOVE_UP, Button(io::KEYS::KEY_UP));
-                io::map_action_to_button(io::GAME_ACTIONS::MOVE_DOWN, Button(io::KEYS::KEY_DOWN));
-                io::map_action_to_button(io::GAME_ACTIONS::ATTACK_01, Button(io::KEYS::KEY_S));
+                // Initialize the default control scheme
+                io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
 
-                io::map_action_to_button(io::GAME_ACTIONS::RESET, Button(io::KEYS::KEY_R));
-                io::map_action_to_button(io::GAME_ACTIONS::PAUSE, Button(io::KEYS::KEY_P));
+                control_scheme.map_action_to_button(io::Abstract_engine_actions_index::PAUSE, io::Abstract_keyboard_index::KEY_P);
+                control_scheme.map_action_to_button(io::Abstract_engine_actions_index::RESET_LEVEL, io::Abstract_keyboard_index::KEY_R);
+                // io::map_action_to_button(io::GAME_ACTIONS::MOVE_LEFT, Button(io::KEYS::KEY_LEFT));
+                // io::map_action_to_button(io::GAME_ACTIONS::JUMP, Button(io::KEYS::KEY_A));
+                // io::map_action_to_button(io::GAME_ACTIONS::MOVE_RIGHT, Button(io::KEYS::KEY_RIGHT));
+                // io::map_action_to_button(io::GAME_ACTIONS::CLIMB_UP, Button(io::KEYS::KEY_UP));
+                // io::map_action_to_button(io::GAME_ACTIONS::CLIMB_DOWN, Button(io::KEYS::KEY_DOWN));
+                // io::map_action_to_button(io::GAME_ACTIONS::MOVE_UP, Button(io::KEYS::KEY_UP));
+                // io::map_action_to_button(io::GAME_ACTIONS::MOVE_DOWN, Button(io::KEYS::KEY_DOWN));
+                // io::map_action_to_button(io::GAME_ACTIONS::ATTACK_01, Button(io::KEYS::KEY_S));
+
 
                 instantiate_level_objects();
 
@@ -123,11 +128,13 @@ namespace gom
 
         void Level_manager::tick()
         {
-                const Button & pause_button = io::get_button_from_action(io::GAME_ACTIONS::PAUSE);
+                io::g_input_mgr.pool_events();
+
+                bool pause_pressed = io::g_input_mgr.get_button_down(io::Abstract_engine_actions_index::PAUSE);
+
                 bool is_paused = m_timer.is_paused();
-                if (pause_button.m_state == PRESSED) {
+                if (pause_pressed) {
                         is_paused = !is_paused;
-                //        std::cout << "PRESSED PAUSE BUTTON. New state is: " << is_paused << std::endl;
                         m_timer.set_paused(is_paused);
                 }
                 //std::cout << "FPS: " << m_timer.get_fps() << std::endl;
@@ -150,11 +157,10 @@ namespace gom
 
                 //float frame_time = m_timer.get_dt();
 
-                const Button & restart_button = io::get_button_from_action(io::GAME_ACTIONS::RESET);
-                if (restart_button.m_state == PRESSED) {
+                bool restart_pressed = io::g_input_mgr.get_button_down(io::Abstract_engine_actions_index::RESET_LEVEL);
+                if (restart_pressed) {
                         m_should_restart = true;
                 }
-
 
                 //bool  lagging = (frame_time > m_dt) ? true : false;
                 //if (lagging) {

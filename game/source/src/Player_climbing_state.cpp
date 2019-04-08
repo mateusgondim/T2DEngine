@@ -4,6 +4,7 @@
 #include "Player_taking_hit_state.hpp"
 #include "Player_idle_state.hpp"
 #include "Player_jumping_state.hpp"
+#include "Abstract_game_actions_index.hpp"
 
 #include "Animator_controller.hpp"
 #include "Actor.hpp"
@@ -12,8 +13,7 @@
 #include "Collider_2d.hpp"
 #include "World.hpp"
 #include "Physics_manager.hpp"
-#include "Button.hpp"
-#include "input_manager.hpp"
+#include "Input_manager.hpp"
 #include "Rect.hpp"
 
 #include "runtime_memory_allocator.hpp"
@@ -74,8 +74,8 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 				//return new Player_jumping_state(actor, 0.0f);
 			}
 
-			const Button & moving_left_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_LEFT);
-			if (moving_left_button.m_state == PRESSED) {
+            bool move_left_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::MOVE_LEFT);
+			if (move_left_pressed) {
 				actor.get_body_2d_component()->stop_movement_y();
 				actor.get_body_2d_component()->set_gravity_scale(1.0f);
 
@@ -88,8 +88,8 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 				//return new Player_jumping_state(actor, 0.0f);
 			}
 
-			const Button & moving_right_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_RIGHT);
-			if (moving_right_button.m_state == PRESSED) {
+            bool move_right_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::MOVE_RIGHT);
+			if (move_right_pressed) {
 				actor.get_body_2d_component()->stop_movement_y();
 				actor.get_body_2d_component()->set_gravity_scale(1.0f);
 
@@ -105,13 +105,13 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 
 
 			//std::cout << __FUNCTION__ << ": INSIDE LADDER" << std::endl;
-			const Button & moving_up_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_UP);
-			if (moving_up_button.m_state == PRESSED) {
+            bool move_up_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_UP);
+			if (move_up_pressed) {
 				actor.get_body_2d_component()->set_velocity(m_climbing_vel);
 				actor.get_anim_controller_component()->get_current_state().resume_anim();
 			}
 			else {
-				const Button & moving_down_button = io::get_button_from_action(io::GAME_ACTIONS::MOVE_DOWN);
+                    bool move_down_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_DOWN);
 				if (is_on_ground) {
 					actor.get_body_2d_component()->stop_movement_y();
 					actor.get_body_2d_component()->set_gravity_scale(1.0f);
@@ -122,11 +122,11 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 					//return new Player_idle_state();
 				}
 
-				if (moving_down_button.m_state == PRESSED || moving_down_button.m_state == REPEAT) {
+				if (move_down_pressed) {
 					actor.get_body_2d_component()->set_velocity(-m_climbing_vel);
 					actor.get_anim_controller_component()->get_current_state().resume_anim();
 				}
-				else if (moving_down_button.m_state == RELEASED && moving_up_button.m_state == RELEASED) {
+				else if (!move_down_pressed && !move_up_pressed) {
 					actor.get_body_2d_component()->stop_movement_y();
 					actor.get_anim_controller_component()->get_current_state().pause_anim();
 				}

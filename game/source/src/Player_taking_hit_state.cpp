@@ -18,7 +18,6 @@
 #include "Body_2d.hpp"
 #include "World.hpp"
 #include "Physics_manager.hpp"
-#include "input_manager.hpp"
 
 #include "runtime_memory_allocator.hpp"
 

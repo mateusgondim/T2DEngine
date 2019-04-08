@@ -7,7 +7,6 @@
 #include "vec2.hpp"
 
 namespace physics_2d { class World; }
-class Input_manager;
 
 class Player_climbing_state : public gom::Gameplay_state {
 public:

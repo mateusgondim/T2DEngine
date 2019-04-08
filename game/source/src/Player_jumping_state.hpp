@@ -6,7 +6,6 @@
 
 namespace gom { class Actor; }
 namespace physics_2d { struct AABB_2d; }
-class Input_manager;
 
 class Player_jumping_state : public gom::Gameplay_state {
 public:
