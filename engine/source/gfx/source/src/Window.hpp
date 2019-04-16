@@ -5,6 +5,7 @@
 #include <string>
 
 struct GLFWwindow;
+namespace gfx { class Glfw_manager; }
 namespace gfx
 {
         /**
@@ -15,6 +16,7 @@ namespace gfx
          * registering of callbacks that are fired by io events on the window.
          */
         class Window {
+                friend class Glfw_manager;
         public:
                                         Window(int width, int height, const char * ptitle);
                                         Window(Window &) = delete;
