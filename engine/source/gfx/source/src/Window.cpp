@@ -18,6 +18,11 @@ namespace gfx
                 return std::make_pair(width, height);
         }
 
+        void Window::set_title(const char * ptitle)
+        {
+                glfwSetWindowTitle(m_pglfw_window, ptitle);
+        }
+
         bool Window::should_close() const
         {
                 return glfwWindowShouldClose(m_pglfw_window);

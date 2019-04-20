@@ -28,6 +28,7 @@ namespace gfx
                                         ~Window();
 
                 std::pair<int, int>     get_framebuffer_size() const;
+                void                    set_title(const char * ptitle);
                 bool                    should_close() const;
                 void                    swap_buffers();
                 bool                    is_initialized() const;
