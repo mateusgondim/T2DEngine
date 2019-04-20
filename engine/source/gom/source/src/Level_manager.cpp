@@ -9,6 +9,7 @@
 #include "Path.hpp"
 #include "Shader.hpp"
 #include "Shader_manager.hpp"
+#include "Window.hpp"
 #include "Graphics_manager.hpp"
 #include "Sprite_atlas.hpp"
 #include "Texture_2d_manager.hpp"               
@@ -32,6 +33,7 @@
 #include "mat4.hpp"
 
 #include <vector>
+#include <utility>
 
 namespace gom
 {
@@ -73,7 +75,13 @@ namespace gom
                 m_target_aspect_ratio = m_curr_aspect_ratio;
 
                 //set variables to control the aspect ratio if the user changes the screen dimensions
-                gfx::g_graphics_mgr.get_framebuffer_size(&m_prev_vport_width, &m_prev_vport_height);
+
+                gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
+                std::pair<int, int> window_dimensions = prender_window->get_framebuffer_size();
+                
+                //gfx::g_graphics_mgr.get_framebuffer_size(&m_prev_vport_width, &m_prev_vport_height);
+                m_prev_vport_width = window_dimensions.first;
+                m_prev_vport_height = window_dimensions.second;
 
                 gfx::g_graphics_mgr.set_viewport(0, 0, m_prev_vport_width, m_prev_vport_height);
                 m_curr_vport_width = m_prev_vport_width;
@@ -189,7 +197,11 @@ namespace gom
                 
                 m_pmap_shader->uniform_matrix4fv(m_tile_map_view_loc, 1, false, m_camera.get_view().value_ptr());
 
-                gfx::g_graphics_mgr.get_framebuffer_size(&m_curr_vport_width, &m_curr_vport_height);
+                gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
+                std::pair<int, int> window_dimensions = prender_window->get_framebuffer_size();
+                //gfx::g_graphics_mgr.get_framebuffer_size(&m_curr_vport_width, &m_curr_vport_height);
+                m_curr_vport_width = window_dimensions.first;
+                m_curr_vport_height = window_dimensions.second;
 
                 if ((m_curr_vport_width != m_prev_vport_width) || (m_curr_vport_height != m_prev_vport_height)) {
                         m_curr_aspect_ratio = (float)m_curr_vport_width / (float)m_curr_vport_height;

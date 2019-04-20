@@ -4,6 +4,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include "Window.hpp"
+#include "Glfw_manager.hpp"
 #include "string_id.hpp"
 #include "Shader.hpp"
 #include "Sprite.hpp"
@@ -30,85 +32,83 @@ gfx::Graphics_manager gfx::g_graphics_mgr;
 
 gfx::Graphics_manager::Graphics_manager() : m_is_initialized(false) {}
 
-void gfx::Graphics_manager::init(const std::uint8_t context_version_major, const std::uint8_t context_version_minor, const float pixels_per_unit)
+bool gfx::Graphics_manager::init(int window_width, int window_height, const char * ptitle, float pixels_per_unit)
 {
-	m_context_version_major = context_version_major;
-	m_context_version_minor = context_version_minor;
-	//init GLFW
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, m_context_version_major);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, m_context_version_minor);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
 	m_pixels_per_unit = pixels_per_unit;
 	m_tiles_per_screen_width = 16;
 	m_tiles_per_screen_height = 15;
 
-	//Initialize memory pools
-	//m_shader_pool.alloc_pool(sizeof(Shader), 10, 4);
-	//m_atlas_pool.alloc_pool(sizeof(Sprite_atlas), 6, 4);
-	//m_sprite_pool.alloc_pool(sizeof(Sprite), 25, 4);
 	m_batch_pool.alloc_pool(sizeof(Sprite_batch), 3, 4);
-	//m_texture_pool.alloc_pool(sizeof(Texture_2d), 5, 4);
 
-	// set the capacity of the vector<Sprite> and vector<sprite_batch*> to prevent dynamic allocation at runtime
+	// set the capacity of the vector<Sprite> and vector<sprite_batch*> to prevent 
+    // dynamic allocation at runtime
 	m_sprites.reserve(25);
 	m_batches.reserve(3);
-}
 
-bool gfx::Graphics_manager::create_window(const std::int32_t width, const std::int32_t height, const char *ptitle)
-{
-	m_pwindow = glfwCreateWindow(width, height, ptitle, NULL, NULL);
+    // Create render window
+    m_prender_window = Glfw_manager::create_window(window_width, window_height, ptitle);
 
-	if (!m_pwindow) {
-		shut_down();
-		return false;
-	}
-	glfwMakeContextCurrent(m_pwindow);
-	glfwSwapInterval(1);
-
-
-	glewExperimental = GL_TRUE; // allow to use all of opengl core profile
-
-	if (glewInit() != GLEW_OK) {
-		std::cerr << "Failed to initialize GLEW" << std::endl;
-		shut_down();
-		return false;
-	}
-
-	glEnable(GL_SCISSOR_TEST);
-
-	// Now that we have a opengl context, create a batch object to start 
-	void *pbatch_mem = m_batch_pool.get_element();
-	Sprite_batch *pbach = new (pbatch_mem) Sprite_batch(6 * 25);
-	m_batches.push_back(pbach);
-
-	m_is_initialized = true;
-	return true;
-}
-
-/* There is a problem: the graphics manager is doing work not related to graphics
- * because it needs to encapsulate GLFW's other functionalities, as mouse and keyboard callbacks,
- * window information ect. So we need to find a way to move this work to another class, perhaps
- * the Engine class could do divide the work with the Graphics manager
- */
-bool gfx::Graphics_manager::window_should_close() const 
-{
-	return (m_is_initialized) ? (glfwWindowShouldClose(m_pwindow)) : (true);
-}
-
-void gfx::Graphics_manager::set_error_callback(error_callback_ptr fptr) 
-{
-	glfwSetErrorCallback(fptr);
-}
-
-void gfx::Graphics_manager::set_key_callback(key_callback_ptr fptr) 
-{
-    if (fptr) {
-		glfwSetKeyCallback(m_pwindow, fptr);
+    if (!m_prender_window->is_initialized()) {
+            shut_down();
+            return false;
     }
+
+    Glfw_manager::make_context_current(m_prender_window);
+    Glfw_manager::swap_interval(1);
+
+    glewExperimental = GL_TRUE;
+    if (glewInit() != GLEW_OK) {
+            std::cerr << "Failed to initialize GLEW" << std::endl;
+            shut_down();
+            return false;
+    }
+
+    glEnable(GL_SCISSOR_TEST);
+
+    // Now that we have a opengl context, create a batch object to start 
+    void *pbatch_mem = m_batch_pool.get_element();
+    Sprite_batch *pbach = new (pbatch_mem) Sprite_batch(6 * 25);
+    m_batches.push_back(pbach);
+
+    m_is_initialized = true;
+    return true;
 }
+
+gfx::Window * gfx::Graphics_manager::get_render_window()
+{
+        return m_prender_window;
+}
+
+// bool gfx::Graphics_manager::create_window(const std::int32_t width, const std::int32_t height, const char *ptitle)
+// {
+// 	m_pwindow = glfwCreateWindow(width, height, ptitle, NULL, NULL);
+// 
+// 	if (!m_pwindow) {
+// 		shut_down();
+// 		return false;
+// 	}
+// 	glfwMakeContextCurrent(m_pwindow);
+// 	glfwSwapInterval(1);
+// 
+// 
+// 	glewExperimental = GL_TRUE; // allow to use all of opengl core profile
+// 
+// 	if (glewInit() != GLEW_OK) {
+// 		std::cerr << "Failed to initialize GLEW" << std::endl;
+// 		shut_down();
+// 		return false;
+// 	}
+// 
+// 	glEnable(GL_SCISSOR_TEST);
+// 
+// 	// Now that we have a opengl context, create a batch object to start 
+// 	void *pbatch_mem = m_batch_pool.get_element();
+// 	Sprite_batch *pbach = new (pbatch_mem) Sprite_batch(6 * 25);
+// 	m_batches.push_back(pbach);
+// 
+// 	m_is_initialized = true;
+// 	return true;
+// }
 
 
 void gfx::Graphics_manager::set_clear_color(const math::vec4 & color) 
@@ -143,14 +143,6 @@ void gfx::Graphics_manager::set_blend_func()
 	gfx_check_error();
 }
 
-void gfx::Graphics_manager::get_framebuffer_size(std::int32_t *pwidth, std::int32_t *pheight) 
-{
-	if (!m_is_initialized) {
-		//PRINT MESSAGE;
-		return;
-	}
-	glfwGetFramebufferSize(m_pwindow, pwidth, pheight);
-}
 
 void gfx::Graphics_manager::set_viewport(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height) 
 {
@@ -564,8 +556,8 @@ void gfx::Graphics_manager::render()
 		pbatch->render();
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
-	glfwSwapBuffers(m_pwindow);
-	glfwPollEvents();
+    m_prender_window->swap_buffers();
+    Glfw_manager::poll_events();
 }
 
 
@@ -766,9 +758,8 @@ void gfx::Graphics_manager::shut_down()
 		m_texture_pool.free_element(static_cast<void*>(ptexture));
 	}
 	*/
-	//Shut down GLFW
-	glfwTerminate();
-
+    delete m_prender_window;
+    m_prender_window = nullptr;
 	m_is_initialized = false;
 }
 

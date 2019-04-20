@@ -18,9 +18,8 @@
 
 #endif
 
-struct GLFWwindow;
 class  Tile_map;
-namespace gfx { class Sprite; class Shader; class Sprite_batch; }
+namespace gfx { class Window; class Sprite; class Shader; class Sprite_batch; }
 namespace math { struct vec4; }
 
 namespace gfx {
@@ -30,24 +29,15 @@ namespace gfx {
 		typedef		string_id       texture_id;
 		typedef		string_id		shader_id;
 		typedef		std::uint8_t	sprite_layer;
-
-		typedef     void (*error_callback_ptr) (int, const char*);
-		typedef     void (*key_callback_ptr)   (GLFWwindow *, int, int, int, int);
 	public:
-			        Graphics_manager();
-					~Graphics_manager() = default;
+            Graphics_manager();
+            ~Graphics_manager() = default;
 		//initialization functions
-		void		init(const std::uint8_t context_version_major, const std::uint8_t context_version_minor, const float pixels_per_unit = 16.0f);
-		bool        create_window(const std::int32_t width, const std::int32_t height, const char *ptitle);
+            bool		init(int window_width, int window_height, const char * ptitle, float pixels_per_unit = 16.0f);
+            Window  *   get_render_window();
+		//bool        create_window(const std::int32_t width, const std::int32_t height, const char *ptitle);
 		
-		// Incapsulation of OpenGl and GLFW  functions
-		bool        window_should_close() const;
-		void        set_error_callback(error_callback_ptr fptr);
-		void		set_key_callback(key_callback_ptr fptr);
-		
-		void		get_framebuffer_size(std::int32_t * pwidth, std::int32_t *pheight);
 		void        set_viewport(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height);
-		//Camera_2d & get_camera();
 
 		void		set_clear_color(const math::vec4 & color);
 		void		set_blend_func(); // CHANGE THIS!! PASS PARAMETERS
@@ -93,11 +83,9 @@ namespace gfx {
 		//std::map<atlas_id, Sprite_atlas*>			m_atlases;
 		//std::map<shader_id, Shader*>				m_shaders;
 		//std::map<texture_id, Texture_2d*>           m_textures;
-		//Camera_2d									m_camera;
 
 		std::vector<Sprite_batch*>					m_batches;
 		std::vector<Sprite*>						m_sprites;
-		//std::map<controller_id, Animator_controller*> m_animator_controllers;
 
 		// memory allocators
 		//Pool_allocator								m_atlas_pool;
@@ -114,19 +102,14 @@ namespace gfx {
 		gfx::Shader									*m_psprite_shader; // the id for the shader used to render the sprites
 		gfx::Shader									*m_ptile_map_shader; // the id for the shader used to render the Tile map
 
-		// Opengl Context data
-		GLFWwindow		*m_pwindow; // GLFW window
-		//Opengl's context version
-		std::uint8_t	m_context_version_major; 
-		std::uint8_t	m_context_version_minor;
-
+        Window *m_prender_window;
 
 		float			m_pixels_per_unit;
 		float           m_tiles_per_screen_width;
 		float           m_tiles_per_screen_height;
 		bool			m_is_initialized;
-
 	};
+
 	extern  Graphics_manager g_graphics_mgr;
 	bool	sprite_sort(const gfx::Sprite *lhs, const gfx::Sprite *rhs);
 }
