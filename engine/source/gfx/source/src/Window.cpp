@@ -5,17 +5,17 @@
 namespace gfx
 {
         Window::Window(int width, int height, const char * ptitle) : 
-                m_width(width), m_height(height), m_title(title)
+                m_width(width), m_height(height), m_title(ptitle)
         {
                 m_pglfw_window = glfwCreateWindow(width, height, ptitle, NULL, NULL);
         }
 
 
-        std::pair<int, int> Window::get_framebuffer_size()
+        std::pair<int, int> Window::get_framebuffer_size() const
         {
                 int width, height;
                 glfwGetFramebufferSize(m_pglfw_window, &width, &height);
-                return std::make_pair<int, int>(width, height);
+                return std::make_pair(width, height);
         }
 
         bool Window::should_close() const
@@ -28,7 +28,7 @@ namespace gfx
                 glfwSwapBuffers(m_pglfw_window);
         }
 
-        bool Window::is_window_initialized() const
+        bool Window::is_initialized() const
         {
                 if (m_pglfw_window) {
                         return true;

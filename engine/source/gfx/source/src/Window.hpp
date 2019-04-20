@@ -30,7 +30,7 @@ namespace gfx
                 std::pair<int, int>     get_framebuffer_size() const;
                 bool                    should_close() const;
                 void                    swap_buffers();
-                bool                    is_window_initialized() const;
+                bool                    is_initialized() const;
 
         private:
                 void                    destroy();
