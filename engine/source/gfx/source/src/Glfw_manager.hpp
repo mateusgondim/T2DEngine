@@ -12,7 +12,7 @@ namespace gfx
                 typedef void (*key_callback_ptr) (GLFWwindow *, int, int, int, int);
                 typedef void (*error_callback_ptr) (int const char *);
         public:
-                static void          init();
+                static void          init(int context_version_major, int context_version_minor);
                 static void          terminate();
                 static void          window_hint(int hint, int value);
                 static Window *      create_window(int width, int height, const char *ptitle);

@@ -8,9 +8,15 @@ namespace gfx
         using Glfw_manager::error_callback_ptr;
         using Glfw_manager::key_callback_ptr;
 
-        static void Glfw_manager::init()
+        void Glfw_manager::init(int context_version_major, int context_version_minor)
         {
                 glfwInit();
+                glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, context_version_major);
+                glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, context_version_minor);
+                // Use a forward-compatible context
+                glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+                // Use OpenGl core profile
+                glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         }
 
         static void Glfw_manager::window_hint(int hint, int value)
