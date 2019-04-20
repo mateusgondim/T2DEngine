@@ -23,6 +23,11 @@ namespace gfx
                 glfwSetWindowTitle(m_pglfw_window, ptitle);
         }
 
+        void Window::set_size(int width, int height)
+        {
+                glfwSetWindowSize(m_pglfw_window, width, height);
+        }
+
         bool Window::should_close() const
         {
                 return glfwWindowShouldClose(m_pglfw_window);

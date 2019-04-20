@@ -29,6 +29,7 @@ namespace gfx
 
                 std::pair<int, int>     get_framebuffer_size() const;
                 void                    set_title(const char * ptitle);
+                void                    set_size(int width, int height);
                 bool                    should_close() const;
                 void                    swap_buffers();
                 bool                    is_initialized() const;
