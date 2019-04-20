@@ -49,6 +49,7 @@
 #include "Texture_2d_manager.hpp"
 #include "Sprite_atlas.hpp"
 #include "Sprite_atlas_manager.hpp"
+#include "Window.hpp"
 #include "Graphics_manager.hpp"
 
 //gom
@@ -157,7 +158,9 @@ int main(int argc, char *argv[])
         control_scheme.map_action_to_button(Abstract_game_actions_index::ATTACK_01, io::Abstract_keyboard_index::KEY_S);
 
         gom::g_level_mgr.get_camera().track(player_type_id);
-        while (!gfx::g_graphics_mgr.window_should_close()) {
+
+        gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
+        while (!prender_window->should_close()) {
                 gom::g_level_mgr.tick();
         }
         engine_shut_down();
