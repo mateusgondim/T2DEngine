@@ -1,6 +1,7 @@
 #ifndef _GLFW_MANAGER_HPP
 #define _GLFW_MANAGER_HPP
 
+struct GLFWwindow;
 namespace gfx { class Window; }
 namespace gfx
 {
@@ -9,9 +10,9 @@ namespace gfx
          *
          */
         class Glfw_manager {
-                typedef void (*key_callback_ptr) (GLFWwindow *, int, int, int, int);
-                typedef void (*error_callback_ptr) (int const char *);
         public:
+                typedef void(*key_callback_ptr) (GLFWwindow *, int, int, int, int);
+                typedef void(*error_callback_ptr) (int, const char *);
                 static void          init(int context_version_major, int context_version_minor);
                 static void          terminate();
                 static void          window_hint(int hint, int value);
