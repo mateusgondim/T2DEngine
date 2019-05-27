@@ -7,6 +7,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 #Using c++11
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+include(cmake/preprocessor.cmake)
+include(cmake/util.cmake)
+
 FIND_PACKAGE(glfw3 3.2 REQUIRED)
 FIND_PACKAGE(OpenGL    REQUIRED)
 FIND_PACKAGE(GLEW      REQUIRED)
