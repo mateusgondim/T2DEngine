@@ -1,6 +1,8 @@
 #ifndef _CRC32_HPP
 #define _CRC32_HPP
 
+#define SID(string) string
+
 #include <cstdint>
 
 extern std::uint32_t crc_table[256];
