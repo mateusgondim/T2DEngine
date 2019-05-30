@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 2.6.4 FATAL_ERROR)
-project(sid_preprocessor VERSION 0.1 LANGUAGES CXX)
+cmake_minimum_required(VERSION 2.6.4)
+project(sid_preprocessor)
 
 set(include_files src/main.hpp)
 set(source_files src/main.cpp)
