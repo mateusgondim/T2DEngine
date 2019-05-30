@@ -46,6 +46,7 @@ FIND_PATH(GOM_INCLUDE_DIR NAMES game_object.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/
 
 ADD_SUBDIRECTORY(math/source)
 ADD_SUBDIRECTORY(utility/source)
+ADD_SUBDIRECTORY(sid_preprocessor/source)
 ADD_SUBDIRECTORY(mem/source)
 ADD_SUBDIRECTORY(rms/source)
 ADD_SUBDIRECTORY(io/source)
