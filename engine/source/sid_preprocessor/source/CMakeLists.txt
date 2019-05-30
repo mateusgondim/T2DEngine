@@ -11,7 +11,7 @@ target_include_directories(sid_preprocessor PUBLIC
 			   $<INSTALL_INTERFACE:include>
 			   PRIVATE src ${UTILITY_INCLUDE_DIR} )
 
-target_link_libraries(sid_preprocessor $<TARGET_OBJECTS:utility>)
+target_link_libraries(sid_preprocessor ${GLFW3_LIBRARY} $<TARGET_OBJECTS:utility>)
 export(TARGETS sid_preprocessor FILE SidPreprocessorConfig.cmake)
 
 
