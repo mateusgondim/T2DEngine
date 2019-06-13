@@ -12,7 +12,7 @@ namespace io
          */
         class Input_manager {
         public:
-                void pool_events(); // RENAME!!!!!!! IS POLL
+                void poll_events(); 
                 // void init();
                 // void shut_down();
 

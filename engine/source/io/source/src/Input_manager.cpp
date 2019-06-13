@@ -8,7 +8,7 @@ io::Input_manager io::g_input_mgr;
 
 namespace io {
 
-        void Input_manager::pool_events()
+        void Input_manager::poll_events()
         {
                 m_keyboard_state.update_buttons();
         }

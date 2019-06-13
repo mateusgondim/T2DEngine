@@ -136,7 +136,7 @@ namespace gom
 
         void Level_manager::tick()
         {
-                io::g_input_mgr.pool_events();
+                io::g_input_mgr.poll_events();
 
                 bool pause_pressed = io::g_input_mgr.get_button_down(io::Abstract_engine_actions_index::PAUSE);
 
