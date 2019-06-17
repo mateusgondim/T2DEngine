@@ -17,7 +17,6 @@
 
 #include "Keyboard_button_mapper.hpp"
 #include "Abstract_keyboard_index.hpp"
-#include "Abstract_engine_actions_index.hpp"
 #include "Input_manager.hpp"
 
 #include "Game_object.hpp"
@@ -31,6 +30,7 @@
 #include "Physics_manager.hpp"
 
 #include "mat4.hpp"
+#include "crc32.hpp"
 
 #include <vector>
 #include <utility>
@@ -113,17 +113,9 @@ namespace gom
                 // Initialize the default control scheme
                 io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
 
-                control_scheme.map_action_to_button(io::Abstract_engine_actions_index::PAUSE, io::Abstract_keyboard_index::KEY_P);
-                control_scheme.map_action_to_button(io::Abstract_engine_actions_index::RESET_LEVEL, io::Abstract_keyboard_index::KEY_R);
-                // io::map_action_to_button(io::GAME_ACTIONS::MOVE_LEFT, Button(io::KEYS::KEY_LEFT));
-                // io::map_action_to_button(io::GAME_ACTIONS::JUMP, Button(io::KEYS::KEY_A));
-                // io::map_action_to_button(io::GAME_ACTIONS::MOVE_RIGHT, Button(io::KEYS::KEY_RIGHT));
-                // io::map_action_to_button(io::GAME_ACTIONS::CLIMB_UP, Button(io::KEYS::KEY_UP));
-                // io::map_action_to_button(io::GAME_ACTIONS::CLIMB_DOWN, Button(io::KEYS::KEY_DOWN));
-                // io::map_action_to_button(io::GAME_ACTIONS::MOVE_UP, Button(io::KEYS::KEY_UP));
-                // io::map_action_to_button(io::GAME_ACTIONS::MOVE_DOWN, Button(io::KEYS::KEY_DOWN));
-                // io::map_action_to_button(io::GAME_ACTIONS::ATTACK_01, Button(io::KEYS::KEY_S));
-
+                control_scheme.map_action_to_button(SID('pause'), io::Abstract_keyboard_index::KEY_P);
+                control_scheme.map_action_to_button(SID('reset_level'), 
+                                                    io::Abstract_keyboard_index::KEY_R);
 
                 instantiate_level_objects();
 
@@ -138,7 +130,7 @@ namespace gom
         {
                 io::g_input_mgr.poll_events();
 
-                bool pause_pressed = io::g_input_mgr.get_button_down(io::Abstract_engine_actions_index::PAUSE);
+                bool pause_pressed = io::g_input_mgr.get_button_down(SID('pause'));
 
                 bool is_paused = m_timer.is_paused();
                 if (pause_pressed) {
@@ -165,7 +157,7 @@ namespace gom
 
                 //float frame_time = m_timer.get_dt();
 
-                bool restart_pressed = io::g_input_mgr.get_button_down(io::Abstract_engine_actions_index::RESET_LEVEL);
+                bool restart_pressed = io::g_input_mgr.get_button_down(SID('reset_level'));
                 if (restart_pressed) {
                         m_should_restart = true;
                 }
