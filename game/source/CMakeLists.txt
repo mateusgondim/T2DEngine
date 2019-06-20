@@ -79,7 +79,7 @@ endif()
 
 set(source_dir src)
 
-SET(include_files src/Abstract_game_actions_index.hpp src/Hover_robot.hpp src/Hover_robot_creator.hpp
+SET(include_files src/Hover_robot.hpp src/Hover_robot_creator.hpp
                   src/Player.hpp src/Player_creator.hpp src/Projectile_creator.hpp 
 		  src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp
 		  src/Player_jumping_state.hpp src/Player_climbing_state.hpp 
