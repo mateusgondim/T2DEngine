@@ -20,7 +20,7 @@
 #include "Animator_controller.hpp"
 
 #include "Input_manager.hpp"
-#include "Abstract_game_actions_index.hpp"
+#include "crc32.hpp"
 #include "Body_2d.hpp"
 #include "World.hpp"
 #include "AABB_2d.hpp"
@@ -56,7 +56,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 		return nullptr;
 	}
 
-    bool is_move_left_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_LEFT);
+    bool is_move_left_pressed = io::g_input_mgr.get_button(SID('move_left'));
 
 	if (is_move_left_pressed) {
 		//std::cout << "chaging state to Player_running_state| dir= left" << std::endl;
@@ -70,7 +70,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 		return static_cast<gom::Gameplay_state*> (new (pmem) Player_running_state(actor));
 	}
 	
-    bool is_move_right_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_RIGHT);
+    bool is_move_right_pressed = io::g_input_mgr.get_button(SID('move_right'));
 	
 	if (is_move_right_pressed) {
 		//std::cout << "Changing state to Player_running_state | dir = right" << std::endl;
@@ -84,7 +84,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 		return static_cast<gom::Gameplay_state*> (new (pmem) Player_running_state(actor));
 	}
 	if (on_ground) {
-        bool is_jump_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::JUMP);
+        bool is_jump_pressed = io::g_input_mgr.get_button(SID('jump'));
 		if (is_jump_pressed) {
 			actor.get_anim_controller_component()->set_bool("is_jumping", true);
 			
@@ -95,7 +95,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 		}
 	}
 
-    bool is_climb_up_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::CLIMB_UP);
+    bool is_climb_up_pressed = io::g_input_mgr.get_button_down(SID('climb_up'));
 	if (is_climb_up_pressed) {
 		bool climbing = physics_2d::g_physics_mgr.get_world()->try_climbing_ladder(actor.get_body_2d_component(), true);
 		if (climbing) {
@@ -113,7 +113,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 		//}
 	}
 
-    bool is_climb_down_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::CLIMB_DOWN);
+    bool is_climb_down_pressed = io::g_input_mgr.get_button_down(SID('climb_down'));
 	if (is_climb_down_pressed) {
 		bool climbing = physics_2d::g_physics_mgr.get_world()->try_climbing_ladder(actor.get_body_2d_component(), false);// climb_down = tru
 		if (climbing) {
@@ -139,7 +139,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 
 	}
 
-    bool is_attack_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::ATTACK_01);
+    bool is_attack_pressed = io::g_input_mgr.get_button_down(SID('attack_01'));
 	if (is_attack_pressed) {
 		actor.get_anim_controller_component()->set_trigger(is_attacking_param_id);
 		//create projectile

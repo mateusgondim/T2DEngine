@@ -4,7 +4,6 @@
 #include "Player_taking_hit_state.hpp"
 #include "Player_idle_state.hpp"
 #include "Player_jumping_state.hpp"
-#include "Abstract_game_actions_index.hpp"
 
 #include "Animator_controller.hpp"
 #include "Actor.hpp"
@@ -16,6 +15,7 @@
 #include "Input_manager.hpp"
 #include "Rect.hpp"
 
+#include "crc32.hpp"
 #include "runtime_memory_allocator.hpp"
 
 Player_climbing_state::Player_climbing_state(const bool climbing_from_top, const math::vec2 & climbing_vel) :
@@ -74,7 +74,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 				//return new Player_jumping_state(actor, 0.0f);
 			}
 
-            bool move_left_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::MOVE_LEFT);
+            bool move_left_pressed = io::g_input_mgr.get_button_down(SID('move_left'));
 			if (move_left_pressed) {
 				actor.get_body_2d_component()->stop_movement_y();
 				actor.get_body_2d_component()->set_gravity_scale(1.0f);
@@ -88,7 +88,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 				//return new Player_jumping_state(actor, 0.0f);
 			}
 
-            bool move_right_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::MOVE_RIGHT);
+            bool move_right_pressed = io::g_input_mgr.get_button_down(SID('move_right'));
 			if (move_right_pressed) {
 				actor.get_body_2d_component()->stop_movement_y();
 				actor.get_body_2d_component()->set_gravity_scale(1.0f);
@@ -104,14 +104,13 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 			}
 
 
-			//std::cout << __FUNCTION__ << ": INSIDE LADDER" << std::endl;
-            bool move_up_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_UP);
+            bool move_up_pressed = io::g_input_mgr.get_button(SID('move_up'));
 			if (move_up_pressed) {
 				actor.get_body_2d_component()->set_velocity(m_climbing_vel);
 				actor.get_anim_controller_component()->get_current_state().resume_anim();
 			}
 			else {
-                    bool move_down_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_DOWN);
+                    bool move_down_pressed = io::g_input_mgr.get_button(SID('move_down'));
 				if (is_on_ground) {
 					actor.get_body_2d_component()->stop_movement_y();
 					actor.get_body_2d_component()->set_gravity_scale(1.0f);

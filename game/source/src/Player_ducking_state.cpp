@@ -4,7 +4,6 @@
 #include "Actor.hpp"
 #include "Gameplay_state.hpp"
 #include "Input_manager.hpp"
-#include "Abstract_game_actions_index.hpp"
 #include "World.hpp"
 #include "Physics_manager.hpp"
 #include "Animator_controller.hpp"
@@ -16,6 +15,7 @@
 #include "Player_taking_hit_state.hpp"
 #include "Player_idle_state.hpp"
 
+#include "crc32.hpp"
 #include "runtime_memory_allocator.hpp"
 
 gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor)
@@ -39,7 +39,7 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor)
 	}
 
 	//check if released ducking button, if so, return to idle
-    bool is_move_down_released = io::g_input_mgr.get_button_up(Abstract_game_actions_index::MOVE_DOWN);
+    bool is_move_down_released = io::g_input_mgr.get_button_up(SID('move_down'));
 	if (is_move_down_released) {
 		//ANIMATION
 		actor.get_anim_controller_component()->set_bool("is_ducking", false);
@@ -51,14 +51,14 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor)
 	}
 
 	//check if pressed left or right, if so, change orientation
-    bool is_move_left_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::MOVE_LEFT);
+    bool is_move_left_pressed = io::g_input_mgr.get_button_down(SID('move_left'));
 	if (is_move_left_pressed) {
 		//change orientation
 		actor.set_facing_direction(true);
 		return nullptr;
 	}
 	else { 
-        bool is_move_right_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::MOVE_RIGHT);
+        bool is_move_right_pressed = io::g_input_mgr.get_button_down(SID('move_right'));
 		if (is_move_right_pressed) {
 			actor.set_facing_direction(false);
 			return nullptr;
@@ -66,7 +66,7 @@ gom::Gameplay_state * Player_ducking_state::handle_input(gom::Actor & actor)
 	}
 	
 	//check if pressed attack button, if so, attack
-    bool is_attack_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::ATTACK_01);
+    bool is_attack_pressed = io::g_input_mgr.get_button_down(SID('attack_01'));
 
 	if (is_attack_pressed) {
 		//ANIMATION

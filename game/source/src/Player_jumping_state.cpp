@@ -20,7 +20,7 @@
 #include "World.hpp"
 #include "Physics_manager.hpp"
 #include "Input_manager.hpp"
-#include "Abstract_game_actions_index.hpp"
+#include "crc32.hpp"
 
 #include "runtime_memory_allocator.hpp"
 
@@ -59,7 +59,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		return nullptr;
 	}
 
-    bool is_climb_up_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::CLIMB_UP);
+    bool is_climb_up_pressed = io::g_input_mgr.get_button_down(SID('climb_up'));
 	if (is_climb_up_pressed) {
 		bool is_on_ladder = physics_2d::g_physics_mgr.get_world()->try_climbing_ladder(actor.get_body_2d_component(), true);
 		if (is_on_ladder) {
@@ -74,7 +74,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		}
 	}
 
-    bool is_attack_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::ATTACK_01);
+    bool is_attack_pressed = io::g_input_mgr.get_button_down(SID('attack_01'));
 	if (is_attack_pressed) {
 		//ANIMATION
 		actor.get_anim_controller_component()->set_trigger("is_attacking");
@@ -87,7 +87,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		return nullptr;
 	}
 
-    bool is_move_left_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_LEFT);
+    bool is_move_left_pressed = io::g_input_mgr.get_button(SID('move_left'));
 	if (is_move_left_pressed) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(true);     //change to running left
@@ -95,7 +95,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		//std::cout << "-----moving left here---------" << std::endl;
 	}
 	
-    bool is_move_right_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_RIGHT);
+    bool is_move_right_pressed = io::g_input_mgr.get_button(SID('move_right'));
 	if (is_move_right_pressed) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(false);     
