@@ -20,6 +20,7 @@
 #include "Physics_manager.hpp"
 
 #include "runtime_memory_allocator.hpp"
+#include "crc32.hpp"
 
 Player_taking_hit_state::Player_taking_hit_state(gom::Actor & actor, float jump_vel, float x_vel) : Gameplay_state()
 {
@@ -36,7 +37,7 @@ gom::Gameplay_state * Player_taking_hit_state::handle_input(gom::Actor & actor)
                 //set the paramter on the animation state machine to make the transition to the new animation
                 Player *pplayer = static_cast<Player*>(&actor);
                 pplayer->set_taking_hit(false);
-                actor.get_anim_controller_component()->set_bool("is_taking_hit", false);
+                actor.get_anim_controller_component()->set_bool(SID('is_taking_hit'), false);
                 actor.get_body_2d_component()->stop_movement_x();
 
                 void *pmem = mem::allocate(sizeof(Player_idle_state));

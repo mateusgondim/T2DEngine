@@ -45,7 +45,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
     //check if is taking a hit
     Player *pplayer = static_cast<Player*>(&actor);
     if (pplayer->is_taking_hit()) {
-            actor.get_anim_controller_component()->set_bool("is_taking_hit", true);
+            actor.get_anim_controller_component()->set_bool(SID('is_taking_hit'), true);
             void *pmem = mem::allocate(sizeof(Player_taking_hit_state));
             return static_cast<gom::Gameplay_state*> (new (pmem) Player_taking_hit_state(actor));
     }
@@ -62,7 +62,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 		//std::cout << "chaging state to Player_running_state| dir= left" << std::endl;
 		actor.set_facing_direction(true);     //change to running left
 		 //set the parameter on the  animation state machine
-		actor.get_anim_controller_component()->set_bool("is_running", true);
+		actor.get_anim_controller_component()->set_bool(SID('is_running'), true);
 		
 		
 		
@@ -76,7 +76,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 		//std::cout << "Changing state to Player_running_state | dir = right" << std::endl;
 			
 		//set the parameter on the animation state machine
-		actor.get_anim_controller_component()->set_bool("is_running", true);
+		actor.get_anim_controller_component()->set_bool(SID('is_running'), true);
 
 		actor.set_facing_direction(false);///change to running right
 		
@@ -86,7 +86,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 	if (on_ground) {
         bool is_jump_pressed = io::g_input_mgr.get_button(SID('jump'));
 		if (is_jump_pressed) {
-			actor.get_anim_controller_component()->set_bool("is_jumping", true);
+			actor.get_anim_controller_component()->set_bool(SID('is_jumping'), true);
 			
 			void *pmem = mem::allocate(sizeof(Player_jumping_state));
 			gom::Gameplay_state *pstate = static_cast<gom::Gameplay_state*> (new (pmem) Player_jumping_state(actor));
@@ -101,7 +101,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 		if (climbing) {
 			//std::cout << "CAN CLIMB NOW!!!" << std::endl;
 			//animation set up
-			actor.get_anim_controller_component()->set_bool("is_climbing", true);
+			actor.get_anim_controller_component()->set_bool(SID('is_climbing'), true);
 			actor.get_body_2d_component()->set_gravity_scale(0.0f);
 			
 			void *pmem = mem::allocate(sizeof(Player_climbing_state));
@@ -118,7 +118,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 		bool climbing = physics_2d::g_physics_mgr.get_world()->try_climbing_ladder(actor.get_body_2d_component(), false);// climb_down = tru
 		if (climbing) {
 			//animation set up
-			actor.get_anim_controller_component()->set_bool("is_climbing", true);
+			actor.get_anim_controller_component()->set_bool(SID('is_climbing'), true);
 			actor.get_body_2d_component()->set_gravity_scale(0.0f);
 			
 			void *pmem = mem::allocate(sizeof(Player_climbing_state));

@@ -46,15 +46,15 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
     //check if is taking a hit
     Player *pplayer = static_cast<Player*>(&actor);
     if (pplayer->is_taking_hit()) {
-            actor.get_anim_controller_component()->set_bool("is_taking_hit", true);
-            actor.get_anim_controller_component()->set_bool("is_running", false);
+            actor.get_anim_controller_component()->set_bool(SID('is_taking_hit'), true);
+            actor.get_anim_controller_component()->set_bool(SID('is_running'), false);
             void *pmem = mem::allocate(sizeof(Player_taking_hit_state));
             return static_cast<gom::Gameplay_state*> (new (pmem) Player_taking_hit_state(actor));
     }
 
 	if (!on_ground) { //player fell
-		actor.get_anim_controller_component()->set_bool("is_running", false);
-		actor.get_anim_controller_component()->set_bool("is_jumping", true);
+		actor.get_anim_controller_component()->set_bool(SID('is_running'), false);
+		actor.get_anim_controller_component()->set_bool(SID('is_jumping'), true);
 		//actor.get_body_2d()->stop_movement_x();
 
 
@@ -67,7 +67,7 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
 			if (is_move_left_released) {
 				//std::cout << "chaging state to Player_idle" << std::endl;
 				//set the paramter on the animation state machine to make the transition to the new animation
-				actor.get_anim_controller_component()->set_bool("is_running", false);
+				actor.get_anim_controller_component()->set_bool(SID('is_running'), false);
 				actor.get_body_2d_component()->stop_movement_x();
 				
 				void *pmem = mem::allocate(sizeof(Player_idle_state));
@@ -79,7 +79,7 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
 			if (is_move_right_released) {
 				//std::cout << "changing state to player_idle" << std::endl;
 				//set the paramter on the animation state machine to make the transition to the new animation
-				actor.get_anim_controller_component()->set_bool("is_running", false);
+				actor.get_anim_controller_component()->set_bool(SID('is_running'), false);
 				actor.get_body_2d_component()->stop_movement_x();
 				
 				void *pmem = mem::allocate(sizeof(Player_idle_state));
@@ -91,8 +91,8 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
 		if (is_jump_pressed && on_ground) {
 			//std::cout << "Changing  to player_jumping_state " << std::endl;
 			//set the paramter on the animation state machine to make the transition to the new animation
-			actor.get_anim_controller_component()->set_bool("is_running", false);
-			actor.get_anim_controller_component()->set_bool("is_jumping", true);
+			actor.get_anim_controller_component()->set_bool(SID('is_running'), false);
+			actor.get_anim_controller_component()->set_bool(SID('is_jumping'), true);
 			//actor.get_body_2d()->stop_movement_x();
 			
 			void *pmem = mem::allocate(sizeof(Player_jumping_state));
@@ -101,8 +101,8 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
         bool is_attack_pressed = io::g_input_mgr.get_button_down(SID('attack_01'));
 		if (is_attack_pressed) {
 			//ANIMATION
-			actor.get_anim_controller_component()->set_bool("is_running", false);
-			actor.get_anim_controller_component()->set_trigger("is_attacking");
+			actor.get_anim_controller_component()->set_bool(SID('is_running'), false);
+			actor.get_anim_controller_component()->set_trigger(SID('is_attacking'));
 			
 			//GAMEPLAY
 			actor.get_body_2d_component()->stop_movement_x();

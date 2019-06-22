@@ -37,8 +37,8 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
     //check if is taking a hit
     Player *pplayer = static_cast<Player*>(&actor);
     if (pplayer->is_taking_hit()) {
-            actor.get_anim_controller_component()->set_bool("is_taking_hit", true);
-            actor.get_anim_controller_component()->set_bool("is_climbing", false);
+            actor.get_anim_controller_component()->set_bool(SID('is_taking_hit'), true);
+            actor.get_anim_controller_component()->set_bool(SID('is_climbing'), false);
             void *pmem = mem::allocate(sizeof(Player_taking_hit_state));
             return static_cast<gom::Gameplay_state*> (new (pmem) Player_taking_hit_state(actor));
     }
@@ -47,13 +47,13 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 	if (m_from_top) {
 		if (m_anim_clip == 0) {
 			actor.get_body_2d_component()->set_velocity(-m_climbing_vel);
-			actor.get_anim_controller_component()->set_bool("finish_climbing", true);
+			actor.get_anim_controller_component()->set_bool(SID('finish_climbing'), true);
 			m_anim_clip = 1;
 		}
 		if (bounds.y > actor.get_body_2d_component()->get_collider()->get_aabb().p_max.y) {
 			actor.get_body_2d_component()->stop_movement_y();
 			//actor.get_anim_controller_component()->switch_curr_state_anim_clip(0);
-			actor.get_anim_controller_component()->set_bool("finish_climbing", false);
+			actor.get_anim_controller_component()->set_bool(SID('finish_climbing'), false);
 			m_from_top = false;
 		}
 		return nullptr;
@@ -66,8 +66,8 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 				actor.get_body_2d_component()->set_gravity_scale(1.0f);
 
 				actor.set_facing_direction(true);
-				actor.get_anim_controller_component()->set_bool("is_climbing", false);
-				actor.get_anim_controller_component()->set_bool("is_jumping", true);
+				actor.get_anim_controller_component()->set_bool(SID('is_climbing'), false);
+				actor.get_anim_controller_component()->set_bool(SID('is_jumping'), true);
 				
 				void *pmem = mem::allocate(sizeof(Player_jumping_state));
 				return static_cast<gom::Gameplay_state*> (new (pmem) Player_jumping_state(actor, 0.0f));
@@ -80,8 +80,8 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 				actor.get_body_2d_component()->set_gravity_scale(1.0f);
 
 				actor.set_facing_direction(true);
-				actor.get_anim_controller_component()->set_bool("is_climbing", false);
-				actor.get_anim_controller_component()->set_bool("is_jumping", true);
+				actor.get_anim_controller_component()->set_bool(SID('is_climbing'), false);
+				actor.get_anim_controller_component()->set_bool(SID('is_jumping'), true);
 				
 				void *pmem = mem::allocate(sizeof(Player_jumping_state));
 				return static_cast<gom::Gameplay_state*> (new (pmem) Player_jumping_state(actor, 0.0f));
@@ -95,8 +95,8 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 
 				actor.set_facing_direction(false);
 
-				actor.get_anim_controller_component()->set_bool("is_climbing", false);
-				actor.get_anim_controller_component()->set_bool("is_jumping", true);
+				actor.get_anim_controller_component()->set_bool(SID('is_climbing'), false);
+				actor.get_anim_controller_component()->set_bool(SID('is_jumping'), true);
 				
 				void *pmem = mem::allocate(sizeof(Player_jumping_state));
 				return static_cast<gom::Gameplay_state*> (new (pmem) Player_jumping_state(actor, 0.0f));
@@ -114,7 +114,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 				if (is_on_ground) {
 					actor.get_body_2d_component()->stop_movement_y();
 					actor.get_body_2d_component()->set_gravity_scale(1.0f);
-					actor.get_anim_controller_component()->set_bool("is_climbing", false);
+					actor.get_anim_controller_component()->set_bool(SID('is_climbing'), false);
 					
 					void *pmem = mem::allocate(sizeof(Player_idle_state));
 					return static_cast<gom::Gameplay_state*> (new (pmem) Player_idle_state);
@@ -137,7 +137,7 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 					m_reached_top = true;
 					actor.get_body_2d_component()->set_velocity(math::vec2(0.0f, m_climbing_vel.y));
 					//start climbing off animation
-					actor.get_anim_controller_component()->set_bool("finish_climbing", true);
+					actor.get_anim_controller_component()->set_bool(SID('finish_climbing'), true);
 					//actor.get_anim_controller_component()->switch_curr_state_anim_clip(1);
 					return nullptr;
 				}
@@ -156,8 +156,8 @@ gom::Gameplay_state * Player_climbing_state::handle_input(gom::Actor & actor)
 
 				actor.get_body_2d_component()->stop_movement_y();
 				actor.get_body_2d_component()->set_gravity_scale(1.0f);
-				actor.get_anim_controller_component()->set_bool("is_climbing", false);
-				actor.get_anim_controller_component()->set_bool("finish_climbing", false);
+				actor.get_anim_controller_component()->set_bool(SID('is_climbing'), false);
+				actor.get_anim_controller_component()->set_bool(SID('finish_climbing'), false);
 				
 				//actor.get_anim_controller_component()->switch_curr_state_anim_clip(0);
 				
