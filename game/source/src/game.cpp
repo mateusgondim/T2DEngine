@@ -1,7 +1,5 @@
 
 #include "game.hpp"
-#include "Abstract_game_actions_index.hpp"
-
 #include <iostream>
 #include <memory>
 
@@ -68,6 +66,7 @@
 #include "runtime_memory_allocator.hpp"
 
 //utility
+#include "crc32.hpp"
 #include "string_id.hpp"
 #include "Path.hpp"
 
@@ -81,10 +80,6 @@ int main(int argc, char *argv[])
         print_tile_map(std::cout, tile_map) << std::endl;
         
         engine_init(3, 2, &tile_map);
-
-        
-
-        io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_LEFT);
 
         //Set physics engine collision listener
         Game_coll_listener game_coll_listener;
@@ -148,14 +143,22 @@ int main(int argc, char *argv[])
 
         //Set up the game's control scheme
         io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
-        control_scheme.map_action_to_button(Abstract_game_actions_index::MOVE_LEFT, io::Abstract_keyboard_index::KEY_LEFT);
-        control_scheme.map_action_to_button(Abstract_game_actions_index::MOVE_RIGHT, io::Abstract_keyboard_index::KEY_RIGHT);
-        control_scheme.map_action_to_button(Abstract_game_actions_index::MOVE_DOWN, io::Abstract_keyboard_index::KEY_DOWN);
-        control_scheme.map_action_to_button(Abstract_game_actions_index::CLIMB_DOWN, io::Abstract_keyboard_index::KEY_DOWN);
-        control_scheme.map_action_to_button(Abstract_game_actions_index::MOVE_UP, io::Abstract_keyboard_index::KEY_UP);
-        control_scheme.map_action_to_button(Abstract_game_actions_index::CLIMB_UP, io::Abstract_keyboard_index::KEY_UP);
-        control_scheme.map_action_to_button(Abstract_game_actions_index::JUMP, io::Abstract_keyboard_index::KEY_A);
-        control_scheme.map_action_to_button(Abstract_game_actions_index::ATTACK_01, io::Abstract_keyboard_index::KEY_S);
+        control_scheme.map_action_to_button(SID('move_left'),
+                                            io::Abstract_keyboard_index::KEY_LEFT);
+        control_scheme.map_action_to_button(SID('move_right'), 
+                                            io::Abstract_keyboard_index::KEY_RIGHT);
+        control_scheme.map_action_to_button(SID('move_down'),
+                                            io::Abstract_keyboard_index::KEY_DOWN);
+        control_scheme.map_action_to_button(SID('climb_down'),
+                                            io::Abstract_keyboard_index::KEY_DOWN);
+        control_scheme.map_action_to_button(SID('move_up'),
+                                            io::Abstract_keyboard_index::KEY_UP);
+        control_scheme.map_action_to_button(SID('climb_up'),
+                                            io::Abstract_keyboard_index::KEY_UP);
+        control_scheme.map_action_to_button(SID('jump'),
+                                            io::Abstract_keyboard_index::KEY_A);
+        control_scheme.map_action_to_button(SID('attack_01'),
+                                            io::Abstract_keyboard_index::KEY_S);
 
         gom::g_level_mgr.get_camera().track(player_type_id);
 

@@ -20,7 +20,7 @@
 #include "World.hpp"
 #include "Physics_manager.hpp"
 #include "Input_manager.hpp"
-#include "Abstract_game_actions_index.hpp"
+#include "crc32.hpp"
 
 #include "runtime_memory_allocator.hpp"
 
@@ -39,8 +39,8 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
     //check if is taking a hit
     Player *pplayer = static_cast<Player*>(&actor);
     if (pplayer->is_taking_hit()) {
-            actor.get_anim_controller_component()->set_bool("is_taking_hit", true);
-            actor.get_anim_controller_component()->set_bool("is_jumping", false);
+            actor.get_anim_controller_component()->set_bool(SID('is_taking_hit'), true);
+            actor.get_anim_controller_component()->set_bool(SID('is_jumping'), false);
             void *pmem = mem::allocate(sizeof(Player_taking_hit_state));
             return static_cast<gom::Gameplay_state*> (new (pmem) Player_taking_hit_state(actor));
     }
@@ -48,7 +48,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 	if (on_ground) {
 		//std::cout << "changing state to player_idle" << std::endl;
 		//set the paramter on the animation state machine to make the transition to the new animation
-		actor.get_anim_controller_component()->set_bool("is_jumping", false);
+		actor.get_anim_controller_component()->set_bool(SID('is_jumping'), false);
 		actor.get_body_2d_component()->stop_movement_x();
 		
 		void *pmem = mem::allocate(sizeof(Player_idle_state));
@@ -59,12 +59,12 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		return nullptr;
 	}
 
-    bool is_climb_up_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::CLIMB_UP);
+    bool is_climb_up_pressed = io::g_input_mgr.get_button_down(SID('climb_up'));
 	if (is_climb_up_pressed) {
 		bool is_on_ladder = physics_2d::g_physics_mgr.get_world()->try_climbing_ladder(actor.get_body_2d_component(), true);
 		if (is_on_ladder) {
-			actor.get_anim_controller_component()->set_bool("is_jumping", false);
-			actor.get_anim_controller_component()->set_bool("is_climbing", true);
+			actor.get_anim_controller_component()->set_bool(SID('is_jumping'), false);
+			actor.get_anim_controller_component()->set_bool(SID('is_climbing'), true);
 			actor.get_body_2d_component()->stop_movement_x();
 			actor.get_body_2d_component()->stop_movement_y();
 			actor.get_body_2d_component()->set_gravity_scale(0.0f);
@@ -74,10 +74,10 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		}
 	}
 
-    bool is_attack_pressed = io::g_input_mgr.get_button_down(Abstract_game_actions_index::ATTACK_01);
+    bool is_attack_pressed = io::g_input_mgr.get_button_down(SID('attack_01'));
 	if (is_attack_pressed) {
 		//ANIMATION
-		actor.get_anim_controller_component()->set_trigger("is_attacking");
+		actor.get_anim_controller_component()->set_trigger(SID('is_attacking'));
 		if (actor.get_facing_direction()) {
 			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(-1.0f, 0.0f));
 		}
@@ -87,7 +87,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		return nullptr;
 	}
 
-    bool is_move_left_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_LEFT);
+    bool is_move_left_pressed = io::g_input_mgr.get_button(SID('move_left'));
 	if (is_move_left_pressed) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(true);     //change to running left
@@ -95,7 +95,7 @@ gom::Gameplay_state * Player_jumping_state::handle_input(gom::Actor & actor)
 		//std::cout << "-----moving left here---------" << std::endl;
 	}
 	
-    bool is_move_right_pressed = io::g_input_mgr.get_button(Abstract_game_actions_index::MOVE_RIGHT);
+    bool is_move_right_pressed = io::g_input_mgr.get_button(SID('move_right'));
 	if (is_move_right_pressed) {
 		actor.get_body_2d_component()->stop_movement_x();
 		actor.set_facing_direction(false);     

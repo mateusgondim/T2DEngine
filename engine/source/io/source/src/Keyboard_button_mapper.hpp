@@ -16,11 +16,12 @@ namespace io
         class Keyboard_button_mapper {
         public:
                 Keyboard_button_mapper() = default;
-                explicit Keyboard_button_mapper(const std::map<unsigned, unsigned> & actions_to_buttons) 
+                explicit Keyboard_button_mapper(const std::map<uint32_t, uint32_t> & actions_to_buttons) 
                         : m_action_to_button(actions_to_buttons) {}
-                bool map_action_to_button(unsigned action, unsigned button) 
+
+                bool map_action_to_button(uint32_t action, uint32_t button) 
                 { 
-                        std::map<unsigned, unsigned>::const_iterator it = m_action_to_button.find(action);
+                        std::map<uint32_t, uint32_t>::const_iterator it = m_action_to_button.find(action);
                         if (it == m_action_to_button.cend()) {
                                 m_action_to_button[action] = button;
                                 return true;
@@ -31,9 +32,9 @@ namespace io
                 }
 
                 // Converts a user defined index to the associated keyboard's key bitmask
-                uint64_t get_button_mask_from_action(unsigned action) const 
+                uint64_t get_button_mask_from_action(uint32_t action) const 
                 { 
-                        std::map<unsigned, unsigned>::const_iterator it = m_action_to_button.find(action);
+                        std::map<uint32_t, uint32_t>::const_iterator it = m_action_to_button.find(action);
                         if (it != m_action_to_button.cend()) {
                                 return 1ULL << (it->second);
                         }
@@ -42,7 +43,7 @@ namespace io
                         }
                 }
         private:
-                std::map<unsigned, unsigned> m_action_to_button;
+                std::map<uint32_t, uint32_t> m_action_to_button;
         };
 }
 

@@ -12,16 +12,16 @@ namespace io
          */
         class Input_manager {
         public:
-                void pool_events(); // RENAME!!!!!!! IS POLL
+                void poll_events(); 
                 // void init();
                 // void shut_down();
 
                 // Returns true if the button was pressed this frame
-                bool    get_button_down(unsigned action_index) const;
+                bool    get_button_down(uint32_t action_index) const;
                 // Returns true if button was released this frame
-                bool    get_button_up(unsigned action_index) const;
+                bool    get_button_up(uint32_t action_index) const;
                 // Returns true if button is pressed
-                bool    get_button(unsigned action_index) const;
+                bool    get_button(uint32_t action_index) const;
                 Keyboard_button_mapper  & get_keyboard_control_scheme() { return m_keyboard_control_scheme; }
         private:
                 Keyboard_state          m_keyboard_state;
