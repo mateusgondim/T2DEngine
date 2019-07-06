@@ -10,6 +10,24 @@ Variant::Variant(bool bvalue) : m_type(TYPE_BOOL), m_as_bool(bvalue) {}
 
 Variant::Variant(uint32_t uivalue) : m_type(TYPE_STRING_ID), m_as_string_id(uivalue) {}
 
+Variant::Variant(const Variant & v) : m_type(v.m_type)
+{
+        switch (m_type) {
+        case TYPE_INTEGER:
+                m_as_integer = v.m_as_integer;
+                break;
+        case TYPE_FLOAT:
+                m_as_float = v.m_as_float;
+                break;
+        case TYPE_BOOL:
+                m_as_bool = v.m_as_bool;
+                break;
+        case TYPE_STRING_ID:
+                m_as_string_id = v.m_as_string_id;
+                break;
+        }
+}
+
 Variant & Variant::operator=(const Variant & rhs)
 {
         switch (rhs.m_type) {

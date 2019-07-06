@@ -12,6 +12,7 @@
  */
 struct Variant {
         Variant() : m_type(TYPE_INTEGER), m_as_integer(0) {}
+        Variant(const Variant & v);
         Variant(int32_t ivalue);
         Variant(float   fvalue);
         Variant(bool    bvalue);
