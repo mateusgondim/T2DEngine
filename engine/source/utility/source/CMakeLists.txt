@@ -9,7 +9,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(include_files src/Timer.hpp src/crc32.hpp src/string_id.hpp src/Path.hpp src/Variant.hpp
-                  src/Event_arguments.hpp)
+                  src/Event_arguments.hpp src/Event.hpp)
 
 set(source_files  src/Timer.cpp src/crc32.cpp src/string_id.cpp src/Path.cpp src/Variant.cpp
                   src/Event_arguments.cpp)
