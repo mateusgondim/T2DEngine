@@ -5,7 +5,6 @@
 #include "Game_object.hpp"
 #include "Actor.hpp"
 #include "Projectile.hpp"
-#include "Enemy.hpp"
 #include "Player.hpp"
 #include "string_id.hpp"
 
