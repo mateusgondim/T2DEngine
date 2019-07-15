@@ -4,6 +4,7 @@
 #include "Graphics_manager.hpp"
 #include "Body_2d.hpp"
 #include "Animator_controller.hpp"
+#include "Event.hpp"
 
 #include "runtime_memory_allocator.hpp"
 #include "World.hpp"
@@ -55,6 +56,8 @@ namespace gom {
 			}
 		}
 	}
+
+    void Game_object::on_event(Event & event) {}
 
 	Game_object::game_object_id Game_object::get_unique_id() const
 	{

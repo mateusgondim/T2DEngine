@@ -15,6 +15,7 @@
 
 namespace gfx { class Sprite; class Animator_controller; }
 namespace physics_2d { class Body_2d; }
+class Event;
 namespace gom {
 
         class Game_object {
@@ -44,6 +45,7 @@ namespace gom {
                 physics_2d::Body_2d  *get_body_2d_component();
 
                 virtual void update(const float dt) = 0;
+                virtual void on_event(Event & event);
         protected:
                 math::Transform				 m_transform;//
                 gfx::Sprite					*m_psprite;// 4 bytes
