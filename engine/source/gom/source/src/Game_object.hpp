@@ -23,8 +23,11 @@ namespace gom {
                 typedef uint32_t game_object_id;
 
                 Game_object(const game_object_id unique_id, const uint16_t handle_index);
-                Game_object(const game_object_id unique_id, const uint16_t handle_index, const math::Transform & transform);
-                Game_object(const game_object_id unique_id, const uint16_t handle_index, const math::vec3 & position);
+                Game_object(const game_object_id unique_id, const uint16_t handle_index,
+                            const math::Transform & transform);
+
+                Game_object(const game_object_id unique_id, const uint16_t handle_index,
+                            const math::vec3 & position);
                 //MISSING COPY CONTROLL!!!!!!!!
                 virtual ~Game_object();
 
@@ -59,9 +62,6 @@ namespace gom {
                 uint32_t        m_tag;  // value used to identify a broader group of game objects, as 'Enemies', 'Items' etc
 
                 bool			m_is_active;
-
-
-                //TODO: PERHAPS ADD A MAP COLLISION FUNCTION!!
         };
 }
 #endif // !_GAME_OBJECT_HPP
