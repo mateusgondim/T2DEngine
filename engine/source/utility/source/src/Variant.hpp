@@ -17,6 +17,7 @@ struct Variant {
         Variant(float   fvalue);
         Variant(bool    bvalue);
         Variant(uint32_t uivalue);
+        Variant(uint16_t uivalue);
 
         Variant & operator=(const Variant & rhs);
 
@@ -26,6 +27,7 @@ struct Variant {
                 TYPE_FLOAT,
                 TYPE_BOOL,
                 TYPE_STRING_ID,
+                TYPE_UINT16,
                 TYPE_COUNT // number of unique types
         };
 
@@ -35,6 +37,7 @@ struct Variant {
                 int             m_as_integer;
                 float           m_as_float;
                 bool            m_as_bool;
+                uint16_t        m_as_uint16;
                 uint32_t        m_as_string_id;
         };
 };
