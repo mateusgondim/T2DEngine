@@ -24,7 +24,10 @@
 #include <iostream>
 
 namespace gom {
-	Projectile::Projectile(const game_object_id unique_id, const uint16_t handle_index, const math::vec3 & pos, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller) :
+	Projectile::Projectile(const game_object_id unique_id, const uint16_t handle_index,
+                           const math::vec3 & pos, atlas_n_layer & sprite_data,
+                           physics_2d::Body_2d_def *pbody_def,
+                           const gfx::Animator_controller *pcontroller) :
 		gom::Game_object(unique_id, handle_index, pos), m_hit(false), m_damage(20)
 	{
 		//create the sprite component
@@ -52,8 +55,6 @@ namespace gom {
     {
             switch (event.get_type()) {
             case SID('EVENT_BEGIN_COLLISION'): {
-                    // std::cout << __FUNCTION__ << ": Receving an EVENT_BEGIN_COLLISION"
-                    //         << std::endl;
                     if (m_hit) {
                             break;
                     }
@@ -89,13 +90,10 @@ namespace gom {
                     break;
             }
             case SID('EVENT_END_COLLISION'):
-                    //std::cout << __FUNCTION__ << ": Receiving an EVENT_END_COLLISION" << std::endl;
                     break;
             case SID('EVENT_ATTACK'):
-                    //std::cout << __FUNCTION__ << " Receiving an EVENT_ATTACK" << std::endl;
                     break;
             case SID('EVENT_HIT_TARGET'):
-                    //std::cout << __FUNCTION__ << ": Receiving an EVENT_HIT_TARGET" << std::endl;
                     m_hit = true;
                     break;
             }

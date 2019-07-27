@@ -12,9 +12,10 @@ namespace gom {
 	class Projectile : public Game_object {
 	public:
 		typedef std::pair <const gfx::Sprite_atlas*, uint8_t> atlas_n_layer;
-		Projectile(const game_object_id unique_id, const uint16_t handle_index, const math::vec3 & pos, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller);
-		//Projectile(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller);
-		
+		Projectile(const game_object_id unique_id, const uint16_t handle_index,
+                   const math::vec3 & pos, atlas_n_layer & sprite_data,
+                   physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller);
+
 		void set_direction(const math::vec2 & dir);
 		void set_hit(const bool is_hit);
 		bool get_hit() const;
