@@ -57,10 +57,6 @@ Event_arguments::key_type Event_arguments::find_key_or_index(const key_type key)
 {
         int index = Event_arguments::index_from_value(key);
         const Argument *pargument = nullptr;
-#ifndef NDEBUG
-        std::cout << __FUNCTION__ << ": Trying to find key '" << std::hex << key
-                << "', starting at index '" << index << "'" << std::endl;
-#endif // !NDEBUG
 
         pargument = &m_hash_table[index];
         if (pargument->key == key || pargument->key == -1) {
@@ -71,9 +67,6 @@ Event_arguments::key_type Event_arguments::find_key_or_index(const key_type key)
         for (uint32_t j = 1; j != Event_arguments::s_table_size; ++j) {
                 i = Event_arguments::index_from_value(index + j * j);
                 pargument = &m_hash_table[i];
-#ifndef NDEBUG
-                std::cout << "Probing at index: " << i << std::endl;
-#endif // !NDEBUG
 
                 if (pargument->key == key || pargument->key == -1) {
                         return i;
@@ -83,9 +76,7 @@ Event_arguments::key_type Event_arguments::find_key_or_index(const key_type key)
                 i = index - displacement;
                 i = (i < 0) ? (i + Event_arguments::s_table_size) : (i);
                 pargument = &m_hash_table[i];
-#ifndef NDEBUG
-                std::cout << "Probing at index: " << i << std::endl;
-#endif // !NDEBUG
+
                 if (pargument->key == key || pargument->key == -1) {
                         return i;
                 }
