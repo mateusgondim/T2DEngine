@@ -6,6 +6,10 @@
 #include "vec2.hpp"
 #include "vec3.hpp"
 #include "mat4.hpp"
+#include "crc32.hpp"
+#include "Variant.hpp"
+#include "Event_arguments.hpp"
+#include "Event.hpp"
 #include "Gameplay_state.hpp"
 #include "Player_idle_state.hpp"
 #include "Animator_state.hpp"
@@ -13,6 +17,8 @@
 #include "Sprite.hpp"
 #include "Body_2d.hpp"
 #include "Level_manager.hpp"
+
+#include <iostream>
 
 
 Player::Player(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left) :
@@ -36,6 +42,30 @@ void Player::handle_input()
 	 }
 }
 
+void Player::on_event(Event & event)
+{
+        switch (event.get_type()) {
+        case SID('EVENT_BEGIN_COLLISION'):
+        //        std::cout << __FUNCTION__ << ": Receiving EVENT_BEGIN_COLLISION" << std::endl;
+                break;
+        case SID('EVENT_END_COLLISION') :
+                // std::cout << __FUNCTION__ << ": Receiving EVENT_END_COLLISION" << std::endl;
+                break;
+        case SID('EVENT_ATTACK'): {
+                // std::cout << __FUNCTION__ << ": Receiving EVENT_ATTACK" << std::endl;
+                const Variant * pattack_arg = event.get_arguments().find(SID('attack_points'));
+                m_health -= pattack_arg->m_as_integer;
+                m_taking_hit = true;
+                break;
+        }
+        default:
+                // std::cout << __FUNCTION__ << ": Receiving UNRECOGNIZABLE Event" << std::endl;
+                break;
+
+        }
+}
+
+// REMOVE THIS FUNCTION
 void Player::actor_collision(gom::Actor *pactor)
 {
         m_health -= pactor->get_attack_points();
