@@ -18,9 +18,10 @@ namespace gom {
 	class Actor : public Game_object {
 	public:
 		typedef std::pair < const gfx::Sprite_atlas*, uint8_t> atlas_n_layer;
-		Actor(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left = true);
 
-		virtual ~Actor();
+		Actor(const game_object_id unique_id, const uint16_t handle_index,
+              atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def,
+              const gfx::Animator_controller *pcontroller, bool facing_left = true);
 
 		virtual ~Actor();
 

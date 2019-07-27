@@ -19,16 +19,15 @@
 #include "runtime_memory_allocator.hpp"
 
 
-
-
-
 //TAKE OUT MAGIC NUMBER 16 ON SPRITE CONSTRUCTOR
 //Actor::Actor(const cgm::vec3 & pos, const cgm::mat4 & orientation, const std::string & texture_file, State *pstate, const AABB_2d & aabb, const cgm::vec2 & velocity, bool facing_left)
 //	: Renderable_game_object(pos, orientation, texture_file), m_pstate(pstate), m_aabb(aabb), m_velocity(velocity), m_facing_left(facing_left) {}
 namespace gom {
 
-	Actor::Actor(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left)
-		: Game_object(unique_id, handle_index, pbody_def->m_position), m_pstate(nullptr), m_velocity(pbody_def->m_linear_velocity), m_facing_left(facing_left)
+	Actor::Actor(const game_object_id unique_id, const uint16_t handle_index,
+                 atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def,
+                 const gfx::Animator_controller *pcontroller, bool facing_left) : 
+                   Game_object(unique_id, handle_index, pbody_def->m_position), m_pstate(nullptr), m_velocity(pbody_def->m_linear_velocity), m_facing_left(facing_left)
 	{
 		//create sprite component
 		void *pmem = mem::allocate(sizeof(gfx::Sprite));
