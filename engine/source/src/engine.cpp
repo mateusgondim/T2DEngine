@@ -10,11 +10,15 @@
 
 #include "Glfw_manager.hpp"
 #include "Graphics_manager.hpp"
+#include "World.hpp"
 #include "Physics_manager.hpp"
 #include "Game_object_manager.hpp"
 #include "Projectile_manager.hpp"
 #include "Level_manager.hpp"
+#include "Engine_collision_listener.hpp"
 
+
+static Engine_collision_listener *pcollision_listener = nullptr;
 
 static void error_callback(int error, const char * descr)
 {
@@ -39,6 +43,9 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
     
     Path resources_path("../resources", Path::FORWARD_SLASH);
     gom::g_level_mgr.load(resources_path, ptile_map);
+        // set Engine's default collision listener
+        pcollision_listener = new Engine_collision_listener;
+        physics_2d::g_physics_mgr.get_world()->set_collision_listener(pcollision_listener);
 }
 
 
@@ -53,4 +60,5 @@ void engine_shut_down()
 	gfx::g_sprite_atlas_mgr.unload_all();
 	gfx::g_texture_2d_mgr.unload_all();
 	gfx::g_shader_mgr.unload_all();
+        delete pcollision_listener;
 }
