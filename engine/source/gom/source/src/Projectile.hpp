@@ -6,6 +6,7 @@
 namespace gfx { class Sprite_atlas; class Animator_controller; }
 namespace physics_2d { struct Body_2d_def; }
 namespace math { struct vec2; struct vec3; }
+class Event;
 
 namespace gom {
 	class Projectile : public Game_object {
@@ -20,6 +21,7 @@ namespace gom {
 		int  get_damage() const;
 		void respawn(const math::vec3 & pos, const math::vec2 & direction);
 		void update(const float dt) override;
+        void on_event(Event & event) override;
 	private:
 		int   m_damage;
 		float m_speed;
