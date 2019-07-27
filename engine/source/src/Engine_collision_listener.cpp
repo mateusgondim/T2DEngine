@@ -9,7 +9,7 @@ Engine_collision_listener::Engine_collision_listener()
 {
        m_begin_collision_id = get_crc32("EVENT_BEGIN_COLLISION");
        m_end_collision_id = get_crc32("EVENT_END_COLLISION");
-       m_object_handle_id = get_crc32("object_handle");
+       m_game_object_handle_index = get_crc32("game_object_handle_index");
 }
 
 void Engine_collision_listener::send_collision_event(gom::Game_object * pfrom_object, 
@@ -18,7 +18,7 @@ void Engine_collision_listener::send_collision_event(gom::Game_object * pfrom_ob
 {
         Event coll_event(event_type);
         Event_arguments & arguments = coll_event.get_arguments();
-        arguments.insert(m_object_handle_id, pfrom_object->get_handle_index());
+        arguments.insert(m_game_object_handle_index, pfrom_object->get_handle_index());
 
         pto_object->on_event(coll_event);
 }

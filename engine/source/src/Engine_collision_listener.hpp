@@ -18,6 +18,6 @@ private:
 
         std::uint32_t           m_begin_collision_id;
         std::uint32_t           m_end_collision_id;
-        std::uint32_t           m_object_handle_id;
+        std::uint32_t           m_game_object_handle_index;
 };
 #endif // !_ENGINE_COLLISION_LISTENER_HPP
