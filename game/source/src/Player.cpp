@@ -21,8 +21,10 @@
 #include <iostream>
 
 
-Player::Player(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left) :
-	Actor(unique_id, handle_index, sprite_data, pbody_def, pcontroller, facing_left)
+Player::Player(const game_object_id unique_id, const uint16_t handle_index,
+               atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def,
+               const gfx::Animator_controller *pcontroller, bool facing_left) :
+	             Actor(unique_id, handle_index, sprite_data, pbody_def, pcontroller, facing_left)
 {
 	void *pmem = mem::allocate(sizeof(Player_idle_state));
 	m_pstate = static_cast<gom::Gameplay_state*>(new (pmem) Player_idle_state());
@@ -46,20 +48,16 @@ void Player::on_event(Event & event)
 {
         switch (event.get_type()) {
         case SID('EVENT_BEGIN_COLLISION'):
-        //        std::cout << __FUNCTION__ << ": Receiving EVENT_BEGIN_COLLISION" << std::endl;
                 break;
         case SID('EVENT_END_COLLISION') :
-                // std::cout << __FUNCTION__ << ": Receiving EVENT_END_COLLISION" << std::endl;
                 break;
         case SID('EVENT_ATTACK'): {
-                // std::cout << __FUNCTION__ << ": Receiving EVENT_ATTACK" << std::endl;
                 const Variant * pattack_arg = event.get_arguments().find(SID('attack_points'));
                 m_health -= pattack_arg->m_as_integer;
                 m_taking_hit = true;
                 break;
         }
         default:
-                // std::cout << __FUNCTION__ << ": Receiving UNRECOGNIZABLE Event" << std::endl;
                 break;
 
         }
