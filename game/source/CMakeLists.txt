@@ -83,13 +83,13 @@ SET(include_files src/Hover_robot.hpp src/Hover_robot_creator.hpp
                   src/Player.hpp src/Player_creator.hpp src/Projectile_creator.hpp 
 		  src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp
 		  src/Player_jumping_state.hpp src/Player_climbing_state.hpp 
-		  src/Player_taking_hit_state.hpp src/Game_coll_listener.hpp src/game.hpp)
+		  src/Player_taking_hit_state.hpp src/game.hpp)
 
 SET(unprocessed_source_files Hover_robot.cpp  Hover_robot_creator.cpp Player.cpp
                              Player_creator.cpp Projectile_creator.cpp Player_idle_state.cpp
 		             Player_ducking_state.cpp Player_running_state.cpp 
 			     Player_jumping_state.cpp Player_climbing_state.cpp 
-			     Player_taking_hit_state.cpp Game_coll_listener.cpp game.cpp)
+			     Player_taking_hit_state.cpp game.cpp)
 
 set(preprocessed_files "")
 preprocess_source_files("${unprocessed_source_files}" preprocessed_files
