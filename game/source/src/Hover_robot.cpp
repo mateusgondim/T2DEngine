@@ -35,13 +35,6 @@ Hover_robot::Hover_robot(const game_object_id unique_id, const uint16_t handle_i
 
 }
 
-// DELETE THIS FUNCTION
- void Hover_robot::actor_collision(gom::Actor *pactor)
- {
-         return;
- }
-
-
 void Hover_robot::on_event(Event & event)
 {
         switch (event.get_type()) {

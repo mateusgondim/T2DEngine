@@ -14,7 +14,6 @@ public:
                 atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, 
                 const gfx::Animator_controller *pcontroller, bool facing_left = true);
 
-    void Hover_robot::actor_collision(gom::Actor *pactor) override;
 	void update(const float dt) override;
     void on_event(Event & event) override;
 };
