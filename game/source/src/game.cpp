@@ -23,8 +23,6 @@
 //physics
 #include "Body_2d_def.hpp"
 #include "Body_2d.hpp"
-#include "Collision_listener.hpp"
-#include "Game_coll_listener.hpp"
 #include "World.hpp"
 #include "Physics_manager.hpp"
 
@@ -80,10 +78,6 @@ int main(int argc, char *argv[])
         print_tile_map(std::cout, tile_map) << std::endl;
         
         engine_init(3, 2, &tile_map);
-
-        //Set physics engine collision listener
-        Game_coll_listener game_coll_listener;
-        physics_2d::g_physics_mgr.get_world()->set_collision_listener(&game_coll_listener);
 
         // create game tags
         string_id player_tag = intern_string("Player");
