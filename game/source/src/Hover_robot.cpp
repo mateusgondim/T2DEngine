@@ -39,7 +39,6 @@ void Hover_robot::on_event(Event & event)
 {
         switch (event.get_type()) {
         case SID('EVENT_BEGIN_COLLISION'): {
-                //std::cout << __FUNCTION__ << ": Receiving EVENT_BEGIN_COLLISION" << std::endl;
                 // Get colliding Game Object
                 const Variant *phandle_arg = event.get_arguments()
                                                   .find(SID('game_object_handle_index'));
@@ -64,10 +63,8 @@ void Hover_robot::on_event(Event & event)
                 break;
         }
         case SID('EVENT_END_COLLISION'):
-                //std::cout << __FUNCTION__ << ": Receiving EVENT_END_COLLISION" << std::endl;
                 break;
         case SID('EVENT_PROJECTILE_ATTACK'): {
-                //std::cout << __FUNCTION__ << ": Receiving EVENT_PROJECTILE_ATTACK" << std::endl;
                 // Get colliding Projectile
                 const Variant *phandle_arg = event.get_arguments()
                                                   .find(SID('game_object_handle_index'));
