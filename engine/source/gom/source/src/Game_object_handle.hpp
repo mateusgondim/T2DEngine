@@ -9,6 +9,9 @@ namespace gom {
 	friend Game_object_manager;
 	public:
 		typedef uint32_t game_object_id;
+        Game_object_handle(const game_object_id guid, const uint16_t handle_index) :
+                m_unique_id(guid), m_handle_index(handle_index) {}
+
 		Game_object_handle() : m_unique_id(0), m_handle_index(0) {} // 0 is a invalid guid
 		explicit Game_object_handle(const Game_object & game_object);
 
