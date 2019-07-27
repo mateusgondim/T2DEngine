@@ -14,7 +14,6 @@ public:
                const gfx::Animator_controller *pcontroller, bool facing_left = true);
 
         void            handle_input();
-        void            actor_collision(gom::Actor *pactor) override;
         void            update(const float dt) override;
         bool            is_taking_hit() const { return m_taking_hit; }
         void            set_taking_hit(const bool taking_hit) { m_taking_hit = taking_hit; }

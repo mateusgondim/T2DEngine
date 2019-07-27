@@ -65,13 +65,6 @@ void Player::on_event(Event & event)
         }
 }
 
-// REMOVE THIS FUNCTION
-void Player::actor_collision(gom::Actor *pactor)
-{
-        m_health -= pactor->get_attack_points();
-        m_taking_hit = true;
-}
-
 void Player::update(const float dt) 
 {
         if (!gom::g_level_mgr.is_game_clock_paused()) {
