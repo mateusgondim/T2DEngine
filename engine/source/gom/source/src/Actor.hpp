@@ -22,10 +22,7 @@ namespace gom {
 
 		virtual ~Actor();
 
-        // logic code for when actor collides with another actor
-        virtual void actor_collision(Actor *pactor) = 0;
-        //  logic code for collision between a actor and a projectile
-        virtual void projectile_collision(Projectile * pprojectile);
+		virtual ~Actor();
 
 		math::vec2 &	 get_velocity() { return m_velocity; }
 		Gameplay_state*  get_state() { return m_pstate; }
