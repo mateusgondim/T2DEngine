@@ -23,8 +23,6 @@
 //physics
 #include "Body_2d_def.hpp"
 #include "Body_2d.hpp"
-#include "Collision_listener.hpp"
-#include "Game_coll_listener.hpp"
 #include "World.hpp"
 #include "Physics_manager.hpp"
 
@@ -81,16 +79,6 @@ int main(int argc, char *argv[])
         
         engine_init(3, 2, &tile_map);
 
-        //Set physics engine collision listener
-        Game_coll_listener game_coll_listener;
-        physics_2d::g_physics_mgr.get_world()->set_collision_listener(&game_coll_listener);
-
-        // create game tags
-        string_id player_tag = intern_string("Player");
-        string_id enemy_tag = intern_string("Enemy");
-        string_id player_projectile_tag = intern_string("p_projectile");
-        string_id enemy_projectile_tag = intern_string("e_projectile");
-
        /// Player setup
 
         // Get atlas needed for the player sprite
@@ -106,12 +94,14 @@ int main(int argc, char *argv[])
         string_id player_type_id = intern_string("Player");
 
         //register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
-        gom::g_game_object_mgr.register_creator(player_type_id, pplayer_creator, player_tag);
+        gom::g_game_object_mgr.register_creator(player_type_id, pplayer_creator, SID('Player'));
 
         // set the player projectile creator
         physics_2d::Body_2d_def body_def;
         body_def.m_position = math::vec2();
-        body_def.m_aabb = physics_2d::AABB_2d(math::vec2(-0.20f, -0.1f), math::vec2(0.20f, 0.1f));
+        body_def.m_aabb = physics_2d::AABB_2d(math::vec2(-0.20f, -0.1f),
+                                              math::vec2(0.20f, 0.1f));
+
         body_def.m_type = physics_2d::Body_2d::DYNAMIC;
         body_def.m_linear_velocity = math::vec2(11.0f, 0.0f);
         body_def.m_gravity_scale = 0.0f;
@@ -125,8 +115,10 @@ int main(int argc, char *argv[])
         //create a type id for the object
         string_id knife_type_id = intern_string("knife_obj");
         //creator
-        Projectile_creator *knife_projectile = new Projectile_creator(atlas_id, body_def, pcontroller);
-        gom::g_game_object_mgr.register_creator(knife_type_id, knife_projectile, player_projectile_tag);
+        Projectile_creator *knife_projectile = new Projectile_creator(atlas_id,
+                                                                      body_def, pcontroller);
+        gom::g_game_object_mgr.register_creator(knife_type_id, knife_projectile, 
+                                                SID('p_projectile'));
 
         // Set the Hover Robor creator
         Hover_robot_creator * phover_robot_creator = new Hover_robot_creator(atlas_id, 0);
@@ -135,9 +127,10 @@ int main(int argc, char *argv[])
         string_id hover_robot_id = intern_string("hover_robot");
 
         //register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
-        gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator, enemy_tag);
+        gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator, SID('Enemy'));
 
-        std::cout << " TILE MAP WIDTH = " << tile_map.width() << "| TILE MAP HEIGHT = " << tile_map.height() << std::endl;
+        std::cout << " TILE MAP WIDTH = " << tile_map.width() << "| TILE MAP HEIGHT = "
+                  << tile_map.height() << std::endl;
 
         gom::g_level_mgr.init();
 

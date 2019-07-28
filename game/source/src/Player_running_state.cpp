@@ -41,7 +41,6 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
 {
 	//auto stream = Input_handler::instance().get_input();
 	bool on_ground = physics_2d::g_physics_mgr.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
-	string_id knife_obj_id = intern_string("knife_obj");
 
     //check if is taking a hit
     Player *pplayer = static_cast<Player*>(&actor);
@@ -108,10 +107,14 @@ gom::Gameplay_state * Player_running_state::handle_input(gom::Actor & actor)
 			actor.get_body_2d_component()->stop_movement_x();
 			//launch projectile
 			if (actor.get_facing_direction()) {
-				gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(-1.0f, 0.0f));
+				gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(SID('knife_obj'),
+                                                                                        actor.get_body_2d_component()->get_position(),
+                                                                                        math::vec2(-1.0f, 0.0f));
 			}
 			else {
-				gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(1.0f, 0.0f));
+				gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(SID('knife_obj'), 
+                                                                                        actor.get_body_2d_component()->get_position(),
+                                                                                        math::vec2(1.0f, 0.0f));
 			}
 
 			void *pmem = mem::allocate(sizeof(Player_idle_state));

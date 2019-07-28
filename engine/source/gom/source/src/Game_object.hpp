@@ -15,6 +15,7 @@
 
 namespace gfx { class Sprite; class Animator_controller; }
 namespace physics_2d { class Body_2d; }
+class Event;
 namespace gom {
 
         class Game_object {
@@ -22,8 +23,11 @@ namespace gom {
                 typedef uint32_t game_object_id;
 
                 Game_object(const game_object_id unique_id, const uint16_t handle_index);
-                Game_object(const game_object_id unique_id, const uint16_t handle_index, const math::Transform & transform);
-                Game_object(const game_object_id unique_id, const uint16_t handle_index, const math::vec3 & position);
+                Game_object(const game_object_id unique_id, const uint16_t handle_index,
+                            const math::Transform & transform);
+
+                Game_object(const game_object_id unique_id, const uint16_t handle_index,
+                            const math::vec3 & position);
                 //MISSING COPY CONTROLL!!!!!!!!
                 virtual ~Game_object();
 
@@ -44,6 +48,7 @@ namespace gom {
                 physics_2d::Body_2d  *get_body_2d_component();
 
                 virtual void update(const float dt) = 0;
+                virtual void on_event(Event & event);
         protected:
                 math::Transform				 m_transform;//
                 gfx::Sprite					*m_psprite;// 4 bytes
@@ -57,9 +62,6 @@ namespace gom {
                 uint32_t        m_tag;  // value used to identify a broader group of game objects, as 'Enemies', 'Items' etc
 
                 bool			m_is_active;
-
-
-                //TODO: PERHAPS ADD A MAP COLLISION FUNCTION!!
         };
 }
 #endif // !_GAME_OBJECT_HPP

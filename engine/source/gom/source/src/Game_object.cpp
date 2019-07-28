@@ -4,6 +4,7 @@
 #include "Graphics_manager.hpp"
 #include "Body_2d.hpp"
 #include "Animator_controller.hpp"
+#include "Event.hpp"
 
 #include "runtime_memory_allocator.hpp"
 #include "World.hpp"
@@ -11,13 +12,17 @@
 
 namespace gom {
 	Game_object::Game_object(const game_object_id unique_id, const uint16_t handle_index) :
-		m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+		m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), 
+        m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
 
 	Game_object::Game_object(const game_object_id unique_id, const uint16_t handle_index, const math::Transform & transform) 
-		: m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), m_transform(transform), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+		: m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), 
+          m_transform(transform), m_psprite(nullptr), m_panimator_controller(nullptr),
+          m_pbody_2d(nullptr) {}
 
 	Game_object::Game_object(const game_object_id unique_id, const uint16_t handle_index, const math::vec3 & position)
-		: m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), m_transform(position), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+		: m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), m_transform(position),
+          m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
 
 	Game_object::~Game_object()
 	{
@@ -55,6 +60,8 @@ namespace gom {
 			}
 		}
 	}
+
+    void Game_object::on_event(Event & event) {}
 
 	Game_object::game_object_id Game_object::get_unique_id() const
 	{

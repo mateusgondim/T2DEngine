@@ -18,14 +18,12 @@ namespace gom {
 	class Actor : public Game_object {
 	public:
 		typedef std::pair < const gfx::Sprite_atlas*, uint8_t> atlas_n_layer;
-		Actor(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left = true);
+
+		Actor(const game_object_id unique_id, const uint16_t handle_index,
+              atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def,
+              const gfx::Animator_controller *pcontroller, bool facing_left = true);
 
 		virtual ~Actor();
-
-        // logic code for when actor collides with another actor
-        virtual void actor_collision(Actor *pactor) = 0;
-        //  logic code for collision between a actor and a projectile
-        virtual void projectile_collision(Projectile * pprojectile);
 
 		math::vec2 &	 get_velocity() { return m_velocity; }
 		Gameplay_state*  get_state() { return m_pstate; }

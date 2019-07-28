@@ -1,5 +1,6 @@
 #include "Hover_robot.hpp"
 
+#include "Game_object_handle.hpp"
 #include "Actor.hpp"
 #include "Animator_controller.hpp"
 #include "Animator_state.hpp"
@@ -8,14 +9,23 @@
 #include "vec3.hpp"
 #include "ray3.hpp"
 #include "AABB_2d.hpp"
+#include "crc32.hpp"
+#include "Variant.hpp"
+#include "Event_arguments.hpp"
+#include "Event.hpp"
 #include "Collider_2d.hpp"
 #include "Body_2d.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
 #include "Physics_manager.hpp"
+#include "Game_object_manager.hpp"
 
-Hover_robot::Hover_robot(const game_object_id unique_id, const uint16_t handle_index, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller, bool facing_left)
-	: Actor(unique_id, handle_index, sprite_data, pbody_def, pcontroller, facing_left) 
+#include <cstdint>
+
+Hover_robot::Hover_robot(const game_object_id unique_id, const uint16_t handle_index,
+                         atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, 
+                         const gfx::Animator_controller *pcontroller, bool facing_left) : 
+                           Actor(unique_id, handle_index, sprite_data, pbody_def, pcontroller, facing_left) 
 {
         m_health = 100;
         m_damage = 25;
@@ -25,9 +35,63 @@ Hover_robot::Hover_robot(const game_object_id unique_id, const uint16_t handle_i
 
 }
 
-void Hover_robot::actor_collision(gom::Actor *pactor)
+void Hover_robot::on_event(Event & event)
 {
-        return;
+        switch (event.get_type()) {
+        case SID('EVENT_BEGIN_COLLISION'): {
+                // Get colliding Game Object
+                const Variant *phandle_arg = event.get_arguments()
+                                                  .find(SID('game_object_handle_index'));
+
+                const Variant *pobject_id_arg = event.get_arguments().find(SID('game_object_id'));
+                gom::Game_object_handle handle(pobject_id_arg->m_as_string_id,
+                                               phandle_arg->m_as_uint16);
+
+                Game_object * pgame_object = gom::g_game_object_mgr.get_by_handle(handle);
+                if (!pgame_object) {
+                        std::cout << __FUNCTION__ << " ERROR: Could not find Game object"
+                                << std::endl;
+                        break;
+                }
+
+                // Create attack Event
+                Event attack_event(SID('EVENT_ATTACK'));
+                attack_event.get_arguments().insert(SID('attack_points'), get_attack_points());
+
+                // send to game object
+                pgame_object->on_event(attack_event);
+                break;
+        }
+        case SID('EVENT_END_COLLISION'):
+                break;
+        case SID('EVENT_PROJECTILE_ATTACK'): {
+                // Get colliding Projectile
+                const Variant *phandle_arg = event.get_arguments()
+                                                  .find(SID('game_object_handle_index'));
+
+                const Variant *pobject_id_arg = event.get_arguments().find(SID('game_object_id'));
+                gom::Game_object_handle handle(pobject_id_arg->m_as_string_id,
+                                               phandle_arg->m_as_uint16);
+
+                Game_object * pgame_object = gom::g_game_object_mgr.get_by_handle(handle);
+                if (!pgame_object) {
+                        std::cout << __FUNCTION__ << " ERROR: Could not find Game object"
+                                << std::endl;
+                        break;
+                }
+                const Variant * pattack_points_arg = event.get_arguments()
+                        .find(SID('attack_points'));
+                m_health -= pattack_points_arg->m_as_integer;
+
+                // send hit target event
+                Event hit_target_event(SID('EVENT_HIT_TARGET'));
+                pgame_object->on_event(hit_target_event);
+                break;
+        }
+        default:
+                std::cout << __FUNCTION__ << ": Receiving UNRECOGNIZABLE Event" << std::endl;
+                break;
+        }
 }
 
 void Hover_robot::update(const float dt) 

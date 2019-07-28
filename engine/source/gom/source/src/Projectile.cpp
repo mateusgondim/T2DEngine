@@ -5,6 +5,10 @@
 
 #include "vec2.hpp"
 #include "vec3.hpp"
+#include "crc32.hpp"
+#include "Variant.hpp"
+#include "Event_arguments.hpp"
+#include "Event.hpp"
 
 #include "Body_2d_def.hpp"
 #include "World.hpp"
@@ -20,7 +24,10 @@
 #include <iostream>
 
 namespace gom {
-	Projectile::Projectile(const game_object_id unique_id, const uint16_t handle_index, const math::vec3 & pos, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller) :
+	Projectile::Projectile(const game_object_id unique_id, const uint16_t handle_index,
+                           const math::vec3 & pos, atlas_n_layer & sprite_data,
+                           physics_2d::Body_2d_def *pbody_def,
+                           const gfx::Animator_controller *pcontroller) :
 		gom::Game_object(unique_id, handle_index, pos), m_hit(false), m_damage(20)
 	{
 		//create the sprite component
@@ -43,6 +50,54 @@ namespace gom {
 			m_panimator_controller = static_cast<gfx::Animator_controller*>(new (pmem) gfx::Animator_controller(*pcontroller));
 		}
 	}
+
+    void Projectile::on_event(Event & event)
+    {
+            switch (event.get_type()) {
+            case SID('EVENT_BEGIN_COLLISION'): {
+                    if (m_hit) {
+                            break;
+                    }
+
+                    const Variant *phandle_arg = event.get_arguments()
+                            .find(SID('game_object_handle_index'));
+
+                    const Variant *pobject_id_arg = event.get_arguments()
+                            .find(SID('game_object_id'));
+
+                    gom::Game_object_handle handle_to_target(pobject_id_arg->m_as_string_id,
+                            phandle_arg->m_as_uint16);
+
+                    Game_object * pgame_object = gom::g_game_object_mgr.get_by_handle(handle_to_target);
+                    if (!pgame_object) {
+                            std::cout << __FUNCTION__ << " ERROR: Could not find game object"
+                                    << std::endl;
+                            break;
+                    }
+
+                    // create Projectile Attack Event
+                    Event projectile_attack(SID('EVENT_PROJECTILE_ATTACK'));
+                    projectile_attack.get_arguments().insert(SID('game_object_id'),
+                            get_unique_id());
+
+                    projectile_attack.get_arguments().insert(SID('game_object_handle_index'),
+                            get_handle_index());
+
+                    projectile_attack.get_arguments().insert(SID('attack_points'), get_damage());
+
+                    // send event
+                    pgame_object->on_event(projectile_attack);
+                    break;
+            }
+            case SID('EVENT_END_COLLISION'):
+                    break;
+            case SID('EVENT_ATTACK'):
+                    break;
+            case SID('EVENT_HIT_TARGET'):
+                    m_hit = true;
+                    break;
+            }
+    }
 
 	void Projectile::update(const float dt) 
 	{
