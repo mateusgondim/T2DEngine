@@ -37,11 +37,6 @@
 //TODO: SWITCH ON ACTION BUTTONS, I.E. ATTACK, RUN_RIGHT, ETC
 gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 {
-	//auto stream = Input_handler::instance().get_input();
-	string_id is_attacking_param_id = intern_string("is_attacking");
-	string_id player_attacking_state_id = intern_string("player_attacking");
-	string_id knife_obj_id				= intern_string("knife_obj");
-
     //check if is taking a hit
     Player *pplayer = static_cast<Player*>(&actor);
     if (pplayer->is_taking_hit()) {
@@ -52,7 +47,7 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 
 	bool on_ground = physics_2d::g_physics_mgr.get_world()->is_body_2d_on_ground(actor.get_body_2d_component());
 		
-	if ((actor.get_anim_controller_component()->get_current_state().get_state_id() == player_attacking_state_id)) { //still playing attacking animation, cant move
+	if ((actor.get_anim_controller_component()->get_current_state().get_state_id() == SID('player_attacking'))) { //still playing attacking animation, cant move
 		return nullptr;
 	}
 
@@ -141,14 +136,14 @@ gom::Gameplay_state * Player_idle_state::handle_input(gom::Actor & actor)
 
     bool is_attack_pressed = io::g_input_mgr.get_button_down(SID('attack_01'));
 	if (is_attack_pressed) {
-		actor.get_anim_controller_component()->set_trigger(is_attacking_param_id);
+		actor.get_anim_controller_component()->set_trigger(SID('is_attacking'));
 		//create projectile
 		//gom::Game_object_handle handle = gom::g_game_object_mgr.instantiate(knife_obj_id, actor.get_body_2d_component()->get_position());
 		if (actor.get_facing_direction()) {
-			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(-1.0f, 0.0f) );
+			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(SID('knife_obj'), actor.get_body_2d_component()->get_position(), math::vec2(-1.0f, 0.0f) );
 		}
 		else {
-			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(knife_obj_id, actor.get_body_2d_component()->get_position(), math::vec2(1.0f, 0.0f));
+			gom::Game_object_handle handle = gom::g_projectile_mgr.spawn_projectile(SID('knife_obj'), actor.get_body_2d_component()->get_position(), math::vec2(1.0f, 0.0f));
 		}
 	}
 
