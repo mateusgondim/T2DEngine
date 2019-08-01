@@ -9,15 +9,13 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(source_dir src)
 
-SET(include_files  src/Game_object.hpp src/Projectile.hpp src/Projectile_manager.hpp
-                   src/Actor.hpp src/Game_object_data.hpp src/Creator.hpp
-		   src/Camera_2d.hpp src/Gameplay_state.hpp src/Game_object_handle.hpp
-		   src/Game_object_manager.hpp src/Level_manager.hpp)
+set(include_files  src/Game_object.hpp src/Projectile.hpp src/Projectile_manager.hpp
+                   src/Actor.hpp src/Creator.hpp src/Camera_2d.hpp src/Gameplay_state.hpp 
+		   src/Game_object_handle.hpp src/Game_object_manager.hpp)
 
-SET(unprocessed_source_files  Game_object.cpp  Projectile.cpp Projectile_manager.cpp  
+set(unprocessed_source_files  Game_object.cpp  Projectile.cpp Projectile_manager.cpp  
                               Actor.cpp Creator.cpp Camera_2d.cpp
-			      Game_object_handle.cpp Game_object_manager.cpp 
-			      Level_manager.cpp)
+			      Game_object_handle.cpp Game_object_manager.cpp)
 
 set(preprocessed_files "")
 preprocess_source_files("${unprocessed_source_files}" preprocessed_files
