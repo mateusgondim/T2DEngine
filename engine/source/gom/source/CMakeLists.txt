@@ -36,6 +36,8 @@ INCLUDE_DIRECTORIES(${GLFW3_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${OPENGL_INCLUDE_DI
 ADD_LIBRARY(gom OBJECT ${include_files} ${preprocessed_files} 
                        ${full_unprocessed_sources_name})
 
+add_dependencies(gom sid_preprocessor)
+
 TARGET_INCLUDE_DIRECTORIES(gom PUBLIC "${CMAKE_CURRENT_LIST_DIR}/${source_dir}" 
                                        ${MATH_INCLUDE_DIR} ${MEM_INCLUDE_DIR} 
                                        ${RMS_INCLUDE_DIR} ${UTILITY_INCLUDE_DIR}
