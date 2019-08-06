@@ -15,50 +15,55 @@ find_package(sid_preprocessor REQUIRED)
 include(${CMAKE_CURRENT_LIST_DIR}/../../engine/source/cmake/preprocessor.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/../../engine/source/cmake/util.cmake)
 
-#GRAPHICS_SYSTEM
+# GRAPHICS_SYSTEM
 find_path(GFX_INCLUDE_DIR 
           NAMES texture_2d.hpp 
 	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/gfx/source/src)
 
-#UTILITY
+# UTILITY
 find_path(UTILITY_INCLUDE_DIR 
           NAMES Timer.hpp 
 	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/utility/source/src)
 
-#MATH
+# MATH
 find_path(MATH_INCLUDE_DIR 
           NAMES vec2.hpp 
 	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/math/source/src)
 
-#MEM
+# MEM
 find_path(MEM_INCLUDE_DIR 
           NAMES memory_allocator.hpp 
 	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/mem/source/src)
 
-#RMS
+# RMS
 find_path(RMS_INCLUDE_DIR 
 	  NAMES Resource.hpp 
 	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/rms/source/src)
 
-#INPUT SYSTEM
+# INPUT SYSTEM
 find_path(IO_INCLUDE_DIR 
 	  NAMES Input_manager.hpp 
 	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/io/source/src)
 
-#TILE MAP
+# TILE MAP
 find_path(TMAP_INCLUDE_DIR 
 	  NAMES Tile.hpp 
 	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/tmap/source/src)
 
-#PHYSISCS_SYSTEM
+# PHYSISCS_SYSTEM
 find_path(PHY_2D_INCLUDE_DIR 
 	  NAMES Body_2d.hpp 
 	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/phy_2d/source/src)
 
-#GAME OBJECT MODEL
+# GAME OBJECT MODEL
 find_path(GOM_INCLUDE_DIR 
           NAMES game_object.hpp 
 	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/gom/source/src)
+
+# LEVEL MANAGEMENT 
+find_path(LEVEL_MANAGEMENT_INCLUDE_DIR
+          NAMES Level_manager.hpp
+	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/level_management/source/src)
 
 #ENGINE
 find_path(ENGINE_INCLUDE_DIR 
@@ -129,5 +134,6 @@ target_include_directories(game PUBLIC "${CMAKE_CURRENT_LIST_DIR}/${source_dir}"
 					${MEM_INCLUDE_DIR} ${RMS_INCLUDE_DIR} 
 					${IO_INCLUDE_DIR} ${UTILITY_INCLUDE_DIR} 
 					${TMAP_INCLUDE_DIR} ${PHY_2D_INCLUDE_DIR} 
-					${GOM_INCLUDE_DIR} ${ENGINE_INCLUDE_DIR})
+					${GOM_INCLUDE_DIR} ${LEVEL_MANAGEMENT_INCLUDE_DIR}
+					${ENGINE_INCLUDE_DIR})
 
