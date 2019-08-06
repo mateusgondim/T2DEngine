@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include "Path.hpp"
 #include "Timer.hpp"
-#include "Camera_2d.hpp"
 #include "Game_object_data.hpp"
 
 namespace gfx { class Shader; }
@@ -21,14 +20,12 @@ namespace level_management
               //  void shut_down();
                 void tick();
                 void restart();
-                gom::Camera_2d & get_camera();
                 bool is_game_clock_paused() const { return m_timer.is_paused(); }
                 //void next_level();
         private:
                 void            load_level_objects();
                 void            instantiate_level_objects();
                 Path*                                           m_presources_path = nullptr;
-                gom::Camera_2d                                  m_camera;
                 std::vector<Game_object_data>                   m_level_data;
                 Tile_map*                                       m_ptile_map;
                 gfx::Shader*                                    m_psprite_shader;
@@ -51,10 +48,5 @@ namespace level_management
 
         };
         extern Level_manager g_level_mgr;
-
-        inline gom::Camera_2d & Level_manager::get_camera()
-        {
-                return m_camera;
-        }
 }
 #endif // !_LEVEL_MANAGER_HPP
