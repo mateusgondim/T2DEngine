@@ -32,6 +32,9 @@ include_directories(${GLFW3_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${OPENGL_INCLUDE_DI
 add_library(level_management OBJECT ${include_files} ${preprocessed_files} 
                                     ${full_unprocessed_sources_name})
 
+add_dependencies(level_management sid_preprocessor)
+add_dependencies(level_management gom)
+
 target_include_directories(level_management PUBLIC "${CMAKE_CURRENT_LIST_DIR}/${source_dir}" 
                                                     ${MATH_INCLUDE_DIR} ${MEM_INCLUDE_DIR} 
                                                     ${RMS_INCLUDE_DIR} ${UTILITY_INCLUDE_DIR}
