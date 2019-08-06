@@ -12,7 +12,7 @@
    is able to create a Game_object of the specific type.
  */
 namespace math { struct vec3; }
-namespace gom { class Game_object; class Creator; class Game_object_handle; }
+namespace gom { class Game_object; class Creator; class Game_object_handle; class Camera_2d; }
 
 namespace gom {
 
@@ -46,6 +46,8 @@ namespace gom {
                 Game_object			        *get_by_handle(const Game_object_handle & handle);
                 vgame_object_handles        find_game_objects_with_type(uint32_t type);
 
+                void                        set_main_camera(Camera_2d * pmain_camera);
+                Camera_2d *                 get_main_camera();
         private:
                 void				  destroy_requested_game_objects();
 
@@ -58,6 +60,9 @@ namespace gom {
                 vpgame_objects			   m_game_objects;
                 vpgame_objects			   m_game_objects_to_add;
                 vgame_object_handles	   m_game_objects_to_destroy;
+
+
+                Camera_2d               *m_pmain_camera;
         };
         extern Game_object_manager g_game_object_mgr;
 

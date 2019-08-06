@@ -4,6 +4,7 @@
 #include "Creator.hpp"
 #include "Game_object_handle.hpp"
 #include "runtime_memory_allocator.hpp"
+#include "Camera_2d.hpp"
 
 #include "vec3.hpp"
 
@@ -56,6 +57,11 @@ namespace gom
                 //delete creators
                 for (creator_map::iterator it = m_creators.begin(); it != m_creators.end(); ++it) {
                         delete (it->second);
+                }
+
+                // deallocate main camera
+                if (m_pmain_camera) {
+                        delete m_pmain_camera;
                 }
         }
 
@@ -311,5 +317,15 @@ namespace gom
         bool gom::sort_by_guid(const gom::Game_object* lhs, const gom::Game_object* rhs)
         {
                 return lhs->get_unique_id() < rhs->get_unique_id();
+        }
+
+        void Game_object_manager::set_main_camera(gom::Camera_2d * pmain_camera)
+        {
+                m_pmain_camera = pmain_camera;
+        }
+
+        gom::Camera_2d * Game_object_manager::get_main_camera()
+        {
+                return m_pmain_camera;
         }
 }
