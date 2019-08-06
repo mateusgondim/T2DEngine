@@ -43,3 +43,5 @@ TARGET_INCLUDE_DIRECTORIES(gom PUBLIC "${CMAKE_CURRENT_LIST_DIR}/${source_dir}"
                                        ${RMS_INCLUDE_DIR} ${UTILITY_INCLUDE_DIR}
 				       ${TMAP_INCLUDE_DIR} ${IO_INCLUDE_DIR}
 				       ${GFX_INCLUDE_DIR} ${PHY_2D_INCLUDE_DIR})
+
+export(TARGETS gom FILE gomConfig.cmake)
