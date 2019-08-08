@@ -65,7 +65,7 @@ void Player::on_event(Event & event)
 
 void Player::update(const float dt) 
 {
-        if (!gom::g_level_mgr.is_game_clock_paused()) {
+        if (!level_management::g_level_mgr.is_game_clock_paused()) {
                 handle_input();
         }
 	m_panimator_controller->update(dt);
