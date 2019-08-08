@@ -4,7 +4,7 @@
 #include "string_id.hpp"
 #include "vec3.hpp"
 
-namespace gom {
+namespace level_management {
 	struct Game_object_data {
 		string_id	object_type_id;
 		math::vec3	position;

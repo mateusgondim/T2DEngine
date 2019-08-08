@@ -1,7 +1,6 @@
 #include "Projectile.hpp"
 #include "Game_object.hpp"
 #include "Camera_2d.hpp"
-#include "Level_manager.hpp"
 
 #include "vec2.hpp"
 #include "vec3.hpp"
@@ -101,7 +100,8 @@ namespace gom {
 
 	void Projectile::update(const float dt) 
 	{
-		if (g_level_mgr.get_camera().is_off_camera(m_pbody_2d->get_position(), 1.0F, 1.0F)) {
+            Camera_2d *plevel_camera = g_game_object_mgr.get_main_camera();
+		if (plevel_camera->is_off_camera(m_pbody_2d->get_position(), 1.0F, 1.0F)) {
 			set_active(false);
 			return;
 		}

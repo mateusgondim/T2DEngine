@@ -4,13 +4,12 @@
 #include <stdint.h>
 #include "Path.hpp"
 #include "Timer.hpp"
-#include "Camera_2d.hpp"
+#include "Game_object_data.hpp"
 
-namespace gom { struct Game_object_data; }
 namespace gfx { class Shader; }
 class Tile_map;
 
-namespace gom
+namespace level_management
 {
         class Level_manager final {
         public:
@@ -21,15 +20,13 @@ namespace gom
               //  void shut_down();
                 void tick();
                 void restart();
-                Camera_2d & get_camera();
                 bool is_game_clock_paused() const { return m_timer.is_paused(); }
                 //void next_level();
         private:
                 void            load_level_objects();
                 void            instantiate_level_objects();
-                Path*                                            m_presources_path = nullptr;
-                Camera_2d                                       m_camera;
-                std::vector<gom::Game_object_data>              m_level_data;
+                Path*                                           m_presources_path = nullptr;
+                std::vector<Game_object_data>                   m_level_data;
                 Tile_map*                                       m_ptile_map;
                 gfx::Shader*                                    m_psprite_shader;
                 gfx::Shader*                                    m_pmap_shader;
@@ -51,10 +48,5 @@ namespace gom
 
         };
         extern Level_manager g_level_mgr;
-
-        inline Camera_2d & Level_manager::get_camera()
-        {
-                return m_camera;
-        }
 }
 #endif // !_LEVEL_MANAGER_HPP
