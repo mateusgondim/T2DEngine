@@ -153,7 +153,8 @@ int main(int argc, char *argv[])
         control_scheme.map_action_to_button(SID('attack_01'),
                                             io::Abstract_keyboard_index::KEY_S);
 
-        gom::g_level_mgr.get_camera().track(player_type_id);
+        gom::Camera_2d *pmain_camera = gom::g_game_object_mgr.get_main_camera();
+        pmain_camera->track(player_type_id);
 
         gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
         while (!prender_window->should_close()) {
