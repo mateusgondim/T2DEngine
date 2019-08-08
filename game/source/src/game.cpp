@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
         std::cout << " TILE MAP WIDTH = " << tile_map.width() << "| TILE MAP HEIGHT = "
                   << tile_map.height() << std::endl;
 
-        gom::g_level_mgr.init();
+        level_management::g_level_mgr.init();
 
         //Set up the game's control scheme
         io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
 
         gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
         while (!prender_window->should_close()) {
-                gom::g_level_mgr.tick();
+                level_management::g_level_mgr.tick();
         }
         engine_shut_down();
         return 0;
