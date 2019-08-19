@@ -11,7 +11,6 @@
  * add new ones if necessary.
  */
  //TODO: CHANGE THE ORIENTATION TO BE A 3X3 MATRIX!
- //TODO: MANAGE COPY CONTROLL!!!!
 
 namespace gfx { class Sprite; class Animator_controller; }
 namespace physics_2d { class Body_2d; }
@@ -30,7 +29,6 @@ namespace gom {
 
                 Game_object(const game_object_id unique_id, const uint16_t handle_index,
                             const math::vec3 & position);
-                //MISSING COPY CONTROLL!!!!!!!!
                 virtual ~Game_object();
                 Game_object(const Game_object & game_object) = delete;
                 Game_object(Game_object && game_object) = delete;
