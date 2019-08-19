@@ -263,8 +263,8 @@ namespace gom
 
         Game_object_manager::vgame_object_handles Game_object_manager::find_game_objects_with_type(uint32_t type)
         {
-                vgame_object_handles            handles;
-                vpgame_objects::iterator        it = m_game_objects.begin();
+                vgame_object_handles  handles;
+                vpgame_objects::iterator  it = m_game_objects.begin();
                 for (; it != m_game_objects.end(); ++it) {
                         if (type == (*it)->get_type()) {
                                 handles.push_back(Game_object_handle(*(*it)));
