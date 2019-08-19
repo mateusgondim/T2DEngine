@@ -32,6 +32,9 @@ namespace gom {
                             const math::vec3 & position);
                 //MISSING COPY CONTROLL!!!!!!!!
                 virtual ~Game_object();
+                Game_object(const Game_object & game_object) = delete;
+                Game_object(Game_object && game_object) = delete;
+                Game_object & operator=(const Game_object & rhs) = delete;
 
                 game_object_id        get_unique_id() const;
                 uint16_t			  get_handle_index() const;
