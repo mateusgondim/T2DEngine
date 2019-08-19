@@ -31,6 +31,8 @@ namespace gom {
                 Game_object(Game_object && game_object) = delete;
                 Game_object & operator=(const Game_object & rhs) = delete;
 
+                void                  destroy();
+
                 game_object_id        get_unique_id() const;
                 uint16_t			  get_handle_index() const;
                 bool				  is_active() const { return m_is_active; }

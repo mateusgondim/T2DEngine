@@ -33,6 +33,10 @@ namespace gom {
             m_transform = math::Transform(position);
     }
 
+    void Game_object::destroy()
+    {
+            gom::g_game_object_mgr.request_destruction(Game_object_handle(*this));
+    }
 
 	Game_object::~Game_object()
 	{
