@@ -16,6 +16,8 @@ namespace gom {
 		explicit Game_object_handle(const Game_object & game_object);
 
         void bind(const Game_object & game_object);
+        game_object_id          get_unique_id() const { return m_unique_id; }
+        uint16_t                get_index() const { return m_handle_index; }
 	private:
 		game_object_id m_unique_id;
 		uint16_t	   m_handle_index;
