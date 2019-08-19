@@ -54,6 +54,9 @@ namespace gom {
                 void                        set_main_camera(Camera_2d * pmain_camera);
                 Camera_2d *                 get_main_camera();
         private:
+                Game_object_handle          register_game_object(Game_object *pgame_object,
+                                                                 std::size_t object_sz);
+
                 void				  destroy_requested_game_objects();
 
                 static const uint16_t      m_MAX_GAME_OBJECTS = 1024;

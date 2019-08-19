@@ -100,52 +100,34 @@ namespace gom
                         return Game_object_handle();
                 }
 
+                Game_object *pgame_object = it->second->create(wld_pos);
+                return  Game_object_handle(*pgame_object);
+        }
+
+        Game_object_handle Game_object_manager::register_game_object(Game_object * pgame_object,
+                                                                     std::size_t object_sz)
+        {
                 //get the next free handle index for storing this game object
                 uint16_t handle_index = m_next_free_index;
 
                 //generate a new unique id for this object
-                uint32_t unique_id = m_next_guid;
+                uint32_t unique_id = m_next_guid++;
 
-                // get the object's size in bytes
-                std::size_t obj_sz = (it->second)->get_size();
+                m_next_free_index = m_ahandle_table[m_next_free_index].m_next_free_index;
 
-                //get a memory block large enough to store the object
-                void *pmem = mem::allocate(obj_sz);
+                //set the handle entry data
+                m_ahandle_table[handle_index].m_next_free_index = 0;//invalid 
+                m_ahandle_table[handle_index].m_game_object_sz = object_sz;
+                m_ahandle_table[handle_index].m_pgame_object = pgame_object;
 
-                if (pmem == nullptr) {
-                        std::cerr << "ERROR(" << __FUNCTION__ << "): Could not allocate space for a new Game Object" << std::endl;
-                        return Game_object_handle();
-                }
+                //add it to the vector of game objects to be added to the main vector
+                m_game_objects_to_add.push_back(pgame_object);
 
-                // create the requested Game Object
-                Game_object * pgame_obj = it->second->create(pmem, m_next_guid, handle_index, wld_pos);
+                //set to be inactive, is not yet on the game
+                pgame_object->set_active(false);
 
-                if (pgame_obj != nullptr) {
-                        //if the creation was succefull, update the next_guid and next_handle
-                        m_next_free_index = m_ahandle_table[m_next_free_index].m_next_free_index;
-                        ++m_next_guid;
-
-                        //set the handle entry data
-                        m_ahandle_table[handle_index].m_next_free_index = 0;//invalid 
-                        m_ahandle_table[handle_index].m_game_object_sz = obj_sz;
-                        m_ahandle_table[handle_index].m_pgame_object = pgame_obj;
-
-                        //add it to the vector of game objects to be added to the main vector
-                        m_game_objects_to_add.push_back(pgame_obj);
-
-                        //set to be inactive, is not yet on the game
-                        pgame_obj->set_active(false);
-
-                        //return the handle for the created game object
-                        return Game_object_handle(*pgame_obj);
-                }
-                else {
-                        //give back the memory
-                        mem::free(pmem, obj_sz);
-                        std::cerr << "ERROR(" << __FUNCTION__ << "): Could not create game object" << std::endl;
-                        return Game_object_handle();
-                }
-
+                //return the handle for the registered game object
+                return Game_object_handle(unique_id, handle_index);
         }
 
         void Game_object_manager::request_destruction(const Game_object_handle & handle)
