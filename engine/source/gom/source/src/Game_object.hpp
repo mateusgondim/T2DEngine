@@ -53,6 +53,7 @@ namespace gom {
                 virtual void update(const float dt) = 0;
                 virtual void on_event(Event & event);
         protected:
+                virtual ~Game_object();
                 math::Transform				 m_transform;//
                 gfx::Sprite					*m_psprite;// 4 bytes
                 gfx::Animator_controller	*m_panimator_controller; // 4 bytes
