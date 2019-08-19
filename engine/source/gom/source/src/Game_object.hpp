@@ -15,10 +15,12 @@
 
 namespace gfx { class Sprite; class Animator_controller; }
 namespace physics_2d { class Body_2d; }
+namespace gom { class Game_object_manager; }
 class Event;
-namespace gom {
 
+namespace gom {
         class Game_object {
+                friend Game_object_manager;
         public:
                 typedef uint32_t game_object_id;
 
