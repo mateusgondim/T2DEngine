@@ -23,13 +23,10 @@ namespace gom {
         public:
                 typedef uint32_t game_object_id;
 
-                Game_object(const game_object_id unique_id, const uint16_t handle_index);
-                Game_object(const game_object_id unique_id, const uint16_t handle_index,
-                            const math::Transform & transform);
+                Game_object(std::size_t alloc_sz);
+                Game_object(std::size_t alloc_sz, const math::Transform & transform);
+                Game_object(std::size_t alloc_sz, const math::vec3 & position);
 
-                Game_object(const game_object_id unique_id, const uint16_t handle_index,
-                            const math::vec3 & position);
-                virtual ~Game_object();
                 Game_object(const Game_object & game_object) = delete;
                 Game_object(Game_object && game_object) = delete;
                 Game_object & operator=(const Game_object & rhs) = delete;
