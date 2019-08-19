@@ -32,15 +32,18 @@ namespace gom {
                 typedef std::vector<Game_object*>		        vpgame_objects;
                 typedef std::vector<Game_object_handle>         vgame_object_handles;
 
-                //constructor and destructor
                 Game_object_manager() = default;
                 ~Game_object_manager() = default;
 
                 void				        init();
                 void				        shut_down();
 
-                bool				        register_creator(const type_id obj_type, Creator *pcreator, const uint32_t obj_tag = -1);
-                Game_object_handle          instantiate(const type_id obj_type, const math::vec3 & wld_pos);
+                bool				        register_creator(const type_id obj_type, Creator *pcreator,
+                                                             const uint32_t obj_tag = -1);
+
+                Game_object_handle          instantiate(const type_id obj_type,
+                                                        const math::vec3 & wld_pos);
+
                 void				        request_destruction(const Game_object_handle & handle);
                 void				        update_game_objects(const float dt);
                 void                        reset();
