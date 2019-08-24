@@ -21,8 +21,10 @@
 
 #include <utility>
 
-Projectile_creator::Projectile_creator(const string_id atlas_id, const physics_2d::Body_2d_def & body_def ,const gfx::Animator_controller *panim_controller) : 
-	gom::Creator(sizeof(gom::Projectile)), m_atlas_res_id(atlas_id)
+Projectile_creator::Projectile_creator(const string_id atlas_id,
+                                       const physics_2d::Body_2d_def & body_def,
+                                       const gfx::Animator_controller *panim_controller) : 
+        gom::Creator(), m_atlas_res_id(atlas_id)
 {
 	//create body_2d_def
 	void *pmem = mem::allocate(sizeof(physics_2d::Body_2d_def));
@@ -35,7 +37,7 @@ Projectile_creator::Projectile_creator(const string_id atlas_id, const physics_2
 	m_pcontroller = static_cast<gfx::Animator_controller*>(new (pmem) gfx::Animator_controller(*panim_controller));
 }
 
-gom::Game_object *Projectile_creator::create(void * pmem, const uint32_t unique_id, const uint16_t handle_index, const math::vec3 & wld_pos) 
+gom::Game_object *Projectile_creator::create(const math::vec3 & wld_pos) 
 {
 	//get the data to create sprite component
 	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
@@ -51,7 +53,9 @@ gom::Game_object *Projectile_creator::create(void * pmem, const uint32_t unique_
 	coll_def.m_aabb = m_pbody_def->m_aabb;
 	coll_def.m_is_trigger = true;
 
-	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) gom::Projectile(unique_id, handle_index, wld_pos, data, m_pbody_def, m_pcontroller));
+    std::size_t object_sz = sizeof(gom::Projectile);
+    void *pmem = mem::allocate(object_sz);
+    gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) gom::Projectile(object_sz, wld_pos, data, m_pbody_def, m_pcontroller));
 	pgame_object->get_body_2d_component()->create_collider_2d(coll_def);
 	pgame_object->set_type(m_obj_type);
     pgame_object->set_tag(m_obj_tag);
