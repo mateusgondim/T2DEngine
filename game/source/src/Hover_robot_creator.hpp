@@ -12,7 +12,7 @@ namespace gfx { class Animator_controller; }
 class Hover_robot_creator : public gom::Creator {
 public:
 	Hover_robot_creator(const string_id atlas_res_id, const string_id anim_controll_id);
-	gom::Game_object * create(void * pmem, const uint32_t unique_id, const uint16_t handle_index, const math::vec3 & wld_pos) override;
+	gom::Game_object * create(const math::vec3 & wld_pos) override;
 
 	~Hover_robot_creator() override;
 private:
