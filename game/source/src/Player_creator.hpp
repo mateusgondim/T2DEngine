@@ -13,7 +13,7 @@ namespace math { struct vec3; }
 class Player_creator : public gom::Creator {
 public:
 	Player_creator(const string_id atlas_id, const string_id anim_controller_id);
-	gom::Game_object *create(void * pmem, const uint32_t unique_id, const uint16_t handle_index, const math::vec3 & wld_pos) override;
+	gom::Game_object *create(const math::vec3 & wld_pos) override;
 
 	~Player_creator() override;
 private:

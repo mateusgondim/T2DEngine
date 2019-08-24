@@ -21,7 +21,7 @@
 #include <stdint.h>
 
 Player_creator::Player_creator(const string_id atlas_id, const string_id anim_controller_id) :
-	gom::Creator(sizeof(Player)), m_atlas_res_id(atlas_id), m_anim_controller_id(anim_controller_id)
+	gom::Creator(), m_atlas_res_id(atlas_id), m_anim_controller_id(anim_controller_id)
 {
 	//set the body_def to be able to create body_2d objects for the game object
 	void  *pmem = mem::allocate(sizeof(physics_2d::Body_2d_def));
@@ -45,24 +45,27 @@ Player_creator::Player_creator(const string_id atlas_id, const string_id anim_co
 	create_anim_controller();
 }
 
-gom::Game_object *Player_creator::create(void *pmem, const uint32_t unique_id, const uint16_t handle_index, const math::vec3 & wld_pos)
+gom::Game_object *Player_creator::create(const math::vec3 & wld_pos)
 {
 	//get the sprite_atlas resource 
 	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
 	gom::Actor::atlas_n_layer sprite_data(patlas, 1);
 
-    math::vec2	tr = math::vec2(wld_pos.x - m_pbody_def->m_position.x, wld_pos.y - m_pbody_def->m_position.y);
+    math::vec2	tr = math::vec2(wld_pos.x - m_pbody_def->m_position.x,
+                                wld_pos.y - m_pbody_def->m_position.y);
 	m_pbody_def->m_position += tr;
 	m_pbody_def->m_aabb.p_max += tr;
 	m_pbody_def->m_aabb.p_min += tr;
 	
-	//create a collider_def
 	physics_2d::Collider_2d_def coll_def;
 	coll_def.m_aabb = m_pbody_def->m_aabb;
 	coll_def.m_is_trigger = false;
 
-	//call the player's constructor
-	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) Player(unique_id, handle_index, sprite_data, m_pbody_def, m_panim_controller));
+    std::size_t obj_sz = sizeof(Player);
+    void *pmem = mem::allocate(obj_sz);
+    gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) Player(obj_sz, sprite_data, m_pbody_def, m_panim_controller));
+
+
 	pgame_object->get_body_2d_component()->create_collider_2d(coll_def);
 	pgame_object->set_type(m_obj_type);
     pgame_object->set_tag(m_obj_tag);
