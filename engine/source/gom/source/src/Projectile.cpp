@@ -20,14 +20,14 @@
 #include "Game_object_manager.hpp"
 #include "runtime_memory_allocator.hpp"
 
+#include <cstddef>
 #include <iostream>
 
 namespace gom {
-	Projectile::Projectile(const game_object_id unique_id, const uint16_t handle_index,
-                           const math::vec3 & pos, atlas_n_layer & sprite_data,
+	Projectile::Projectile(std::size_t object_sz, const math::vec3 & pos, atlas_n_layer & sprite_data,
                            physics_2d::Body_2d_def *pbody_def,
                            const gfx::Animator_controller *pcontroller) :
-		gom::Game_object(unique_id, handle_index, pos), m_hit(false), m_damage(20)
+		gom::Game_object(object_sz, pos), m_hit(false), m_damage(20)
 	{
 		//create the sprite component
 		void *pmem = mem::allocate(sizeof(gfx::Sprite));

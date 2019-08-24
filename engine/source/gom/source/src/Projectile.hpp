@@ -2,6 +2,7 @@
 #define _PROJECTILE_HPP
 #include "Game_object.hpp"
 #include <utility>
+#include <cstddef>
 
 namespace gfx { class Sprite_atlas; class Animator_controller; }
 namespace physics_2d { struct Body_2d_def; }
@@ -12,8 +13,7 @@ namespace gom {
 	class Projectile : public Game_object {
 	public:
 		typedef std::pair <const gfx::Sprite_atlas*, uint8_t> atlas_n_layer;
-		Projectile(const game_object_id unique_id, const uint16_t handle_index,
-                   const math::vec3 & pos, atlas_n_layer & sprite_data,
+		Projectile(std::size_t object_sz, const math::vec3 & pos, atlas_n_layer & sprite_data,
                    physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller);
 
 		void set_direction(const math::vec2 & dir);
