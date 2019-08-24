@@ -3,6 +3,7 @@
 
 
 #include <utility>
+#include <cstddef>
 #include "vec2.hpp"
 #include "Game_object.hpp"
 
@@ -19,8 +20,7 @@ namespace gom {
 	public:
 		typedef std::pair < const gfx::Sprite_atlas*, uint8_t> atlas_n_layer;
 
-		Actor(const game_object_id unique_id, const uint16_t handle_index,
-              atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def,
+		Actor(std::size_t object_sz, atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def,
               const gfx::Animator_controller *pcontroller, bool facing_left = true);
 
 		virtual ~Actor();

@@ -5,24 +5,38 @@
 #include "Body_2d.hpp"
 #include "Animator_controller.hpp"
 #include "Event.hpp"
+#include "Game_object_handle.hpp"
+#include "Game_object_manager.hpp"
 
 #include "runtime_memory_allocator.hpp"
 #include "World.hpp"
 #include "Physics_manager.hpp"
 
 namespace gom {
-	Game_object::Game_object(const game_object_id unique_id, const uint16_t handle_index) :
-		m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), 
-        m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+	Game_object::Game_object(std::size_t alloc_sz) : 
+        m_is_active(true), m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr)
+    {
+            Game_object_handle handle = g_game_object_mgr.register_game_object(this, alloc_sz);
+            m_unique_id = handle.get_unique_id();
+            m_handle_index = handle.get_index();
+    }
 
-	Game_object::Game_object(const game_object_id unique_id, const uint16_t handle_index, const math::Transform & transform) 
-		: m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), 
-          m_transform(transform), m_psprite(nullptr), m_panimator_controller(nullptr),
-          m_pbody_2d(nullptr) {}
+    Game_object::Game_object(std::size_t alloc_sz, const math::Transform & transform) : 
+            Game_object(alloc_sz) 
+    {
+            m_transform = transform;
+    }
 
-	Game_object::Game_object(const game_object_id unique_id, const uint16_t handle_index, const math::vec3 & position)
-		: m_unique_id(unique_id), m_handle_index(handle_index), m_is_active(true), m_transform(position),
-          m_psprite(nullptr), m_panimator_controller(nullptr), m_pbody_2d(nullptr) {}
+	Game_object::Game_object(std::size_t alloc_sz, const math::vec3 & position)
+		: Game_object(alloc_sz) 
+    {
+            m_transform = math::Transform(position);
+    }
+
+    void Game_object::destroy()
+    {
+            gom::g_game_object_mgr.request_destruction(Game_object_handle(*this));
+    }
 
 	Game_object::~Game_object()
 	{

@@ -21,10 +21,10 @@
 #include <iostream>
 
 
-Player::Player(const game_object_id unique_id, const uint16_t handle_index,
-               atlas_n_layer & sprite_data, physics_2d::Body_2d_def *pbody_def,
-               const gfx::Animator_controller *pcontroller, bool facing_left) :
-	             Actor(unique_id, handle_index, sprite_data, pbody_def, pcontroller, facing_left)
+Player::Player(std::size_t object_sz, atlas_n_layer & sprite_data,
+               physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller,
+               bool facing_left) :
+	             Actor(object_sz, sprite_data, pbody_def, pcontroller, facing_left)
 {
 	void *pmem = mem::allocate(sizeof(Player_idle_state));
 	m_pstate = static_cast<gom::Gameplay_state*>(new (pmem) Player_idle_state());

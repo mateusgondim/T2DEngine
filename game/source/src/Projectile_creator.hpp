@@ -12,7 +12,7 @@ namespace physics_2d { struct Body_2d_def; }
 class Projectile_creator : public gom::Creator {
 public:
 	Projectile_creator(const string_id atlas_id, const physics_2d::Body_2d_def & body_def, const gfx::Animator_controller *panim_controller);
-	gom::Game_object *create(void * pmem, const uint32_t unique_id, const uint16_t handle_index, const math::vec3 & wld_pos) override;
+	gom::Game_object *create(const math::vec3 & wld_pos) override;
 
 	~Projectile_creator() override;
 private:

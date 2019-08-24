@@ -22,8 +22,9 @@
 
 #include "runtime_memory_allocator.hpp"
 
-Hover_robot_creator::Hover_robot_creator(const string_id atlas_res_id, const string_id anim_controll_id) 
-	: gom::Creator(sizeof(Hover_robot)), m_atlas_res_id(atlas_res_id), m_anim_controller_id(anim_controll_id)
+Hover_robot_creator::Hover_robot_creator(const string_id atlas_res_id,
+                                         const string_id anim_controll_id) : 
+        gom::Creator(), m_atlas_res_id(atlas_res_id), m_anim_controller_id(anim_controll_id)
 {
 	void *pmem = mem::allocate(sizeof(physics_2d::Body_2d_def));
 	if (pmem) {
@@ -70,7 +71,7 @@ Hover_robot_creator::~Hover_robot_creator()
 	mem::free(static_cast<void*>(m_panim_controller), sizeof(gfx::Animator_controller));
 }
 
-gom::Game_object * Hover_robot_creator::create(void * pmem, const uint32_t unique_id, const uint16_t handle_index, const math::vec3 & wld_pos) 
+gom::Game_object * Hover_robot_creator::create(const math::vec3 & wld_pos) 
 {
 	// get the data for creating the sprite componenent
 	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
@@ -81,14 +82,15 @@ gom::Game_object * Hover_robot_creator::create(void * pmem, const uint32_t uniqu
 	m_pbody_def->m_aabb.p_max += tr;
 	m_pbody_def->m_aabb.p_min += tr;
 
-	//create a collider_def
 	physics_2d::Collider_2d_def coll_def;
 	coll_def.m_aabb = m_pbody_def->m_aabb;
 	coll_def.m_is_trigger = true;
 
 
 
-	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) Hover_robot(unique_id, handle_index, sprite_data, m_pbody_def, m_panim_controller));
+    std::size_t object_sz = sizeof(Hover_robot);
+    void *pmem = mem::allocate(object_sz);
+	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) Hover_robot(object_sz, sprite_data, m_pbody_def, m_panim_controller));
 	pgame_object->get_body_2d_component()->create_collider_2d(coll_def);
 	pgame_object->set_type(m_obj_type);
     pgame_object->set_tag(m_obj_tag);

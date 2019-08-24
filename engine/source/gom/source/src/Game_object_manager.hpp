@@ -4,6 +4,7 @@
 #include <vector>
 #include <stdint.h>
 
+#include "Game_object.hpp"
 
 /* Game_object_manager: class responsable to instantiate and store all the game objects
    in the world. All the objects are stored in a handle table and should only be accessed by
@@ -12,7 +13,7 @@
    is able to create a Game_object of the specific type.
  */
 namespace math { struct vec3; }
-namespace gom { class Game_object; class Creator; class Game_object_handle; class Camera_2d; }
+namespace gom {class Creator; class Game_object_handle; class Camera_2d; }
 
 namespace gom {
 
@@ -24,21 +25,25 @@ namespace gom {
 
 
         class  Game_object_manager final {
+                friend Game_object::Game_object(std::size_t);
         public:
                 typedef uint32_t	                           	type_id;
                 typedef std::map<type_id, Creator*>	           	creator_map;
                 typedef std::vector<Game_object*>		        vpgame_objects;
                 typedef std::vector<Game_object_handle>         vgame_object_handles;
 
-                //constructor and destructor
                 Game_object_manager() = default;
                 ~Game_object_manager() = default;
 
                 void				        init();
                 void				        shut_down();
 
-                bool				        register_creator(const type_id obj_type, Creator *pcreator, const uint32_t obj_tag = -1);
-                Game_object_handle          instantiate(const type_id obj_type, const math::vec3 & wld_pos);
+                bool				        register_creator(const type_id obj_type, Creator *pcreator,
+                                                             const uint32_t obj_tag = -1);
+
+                Game_object_handle          instantiate(const type_id obj_type,
+                                                        const math::vec3 & wld_pos);
+
                 void				        request_destruction(const Game_object_handle & handle);
                 void				        update_game_objects(const float dt);
                 void                        reset();
@@ -49,6 +54,9 @@ namespace gom {
                 void                        set_main_camera(Camera_2d * pmain_camera);
                 Camera_2d *                 get_main_camera();
         private:
+                Game_object_handle          register_game_object(Game_object *pgame_object,
+                                                                 std::size_t object_sz);
+
                 void				  destroy_requested_game_objects();
 
                 static const uint16_t      m_MAX_GAME_OBJECTS = 1024;

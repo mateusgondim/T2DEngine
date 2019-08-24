@@ -11,25 +11,27 @@
  * add new ones if necessary.
  */
  //TODO: CHANGE THE ORIENTATION TO BE A 3X3 MATRIX!
- //TODO: MANAGE COPY CONTROLL!!!!
 
 namespace gfx { class Sprite; class Animator_controller; }
 namespace physics_2d { class Body_2d; }
+namespace gom { class Game_object_manager; }
 class Event;
-namespace gom {
 
+namespace gom {
         class Game_object {
+                friend Game_object_manager;
         public:
                 typedef uint32_t game_object_id;
 
-                Game_object(const game_object_id unique_id, const uint16_t handle_index);
-                Game_object(const game_object_id unique_id, const uint16_t handle_index,
-                            const math::Transform & transform);
+                Game_object(std::size_t alloc_sz);
+                Game_object(std::size_t alloc_sz, const math::Transform & transform);
+                Game_object(std::size_t alloc_sz, const math::vec3 & position);
 
-                Game_object(const game_object_id unique_id, const uint16_t handle_index,
-                            const math::vec3 & position);
-                //MISSING COPY CONTROLL!!!!!!!!
-                virtual ~Game_object();
+                Game_object(const Game_object & game_object) = delete;
+                Game_object(Game_object && game_object) = delete;
+                Game_object & operator=(const Game_object & rhs) = delete;
+
+                void                  destroy();
 
                 game_object_id        get_unique_id() const;
                 uint16_t			  get_handle_index() const;
@@ -50,6 +52,7 @@ namespace gom {
                 virtual void update(const float dt) = 0;
                 virtual void on_event(Event & event);
         protected:
+                virtual ~Game_object();
                 math::Transform				 m_transform;//
                 gfx::Sprite					*m_psprite;// 4 bytes
                 gfx::Animator_controller	*m_panimator_controller; // 4 bytes
