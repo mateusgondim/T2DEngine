@@ -14,10 +14,15 @@ namespace math {
 
         Rect(const vec2 & min, const vec2 & max);
 
-		float x;
-		float y;
-		float width;
-		float height;
+        vec2    center() const;
+        vec2    max() const;
+        vec2    min() const;
+
+
+		float   x;
+		float   y;
+		float   width;
+		float   height;
 	};
 }
 #endif // !_RECT_HPP

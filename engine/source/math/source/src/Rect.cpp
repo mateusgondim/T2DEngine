@@ -14,4 +14,20 @@ namespace math
                 height = y - min.y;
         }
 
+        vec2 Rect::center() const
+        {
+                return vec2((x + width) / 2, (y - height) / 2);
+        }
+
+        vec2 Rect::max() const
+        {
+                return vec2(x + width, y);
+        }
+
+        vec2 Rect::min() const
+        {
+                return vec2(x, y - height);
+        }
+
+
 }
