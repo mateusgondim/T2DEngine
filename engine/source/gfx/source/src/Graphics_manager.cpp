@@ -556,8 +556,12 @@ void gfx::Graphics_manager::render()
 		pbatch->render();
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
-    m_prender_window->swap_buffers();
-    Glfw_manager::poll_events();
+}
+
+void gfx::Graphics_manager::swap_and_poll() const
+{
+        m_prender_window->swap_buffers();
+        Glfw_manager::poll_events();
 }
 
 
