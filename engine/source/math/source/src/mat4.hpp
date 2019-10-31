@@ -5,6 +5,7 @@ namespace math { struct vec3; struct vec4; }
 
 namespace math {
 	class mat4 {
+    friend struct vec4;
 	friend	mat4 translate(const vec3 & t_vec);
 	friend	vec4 vec4_times_mat4(const vec4 & vec, const mat4 & transf);
 	friend	mat4 ortho(float l, float r, float b, float t, float n, float f);
