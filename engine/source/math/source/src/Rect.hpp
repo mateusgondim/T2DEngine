@@ -1,6 +1,7 @@
 #ifndef _RECT_HPP
 
 #define _RECT_HPP
+#include "vec2.hpp"
 
 namespace math {
         /**
@@ -11,6 +12,7 @@ namespace math {
 		Rect(const float x, const float y, const float width, const float height) : 
                 x(x), y(y), width(width), height(height) {}
 
+        Rect(const vec2 & min, const vec2 & max);
 
 		float x;
 		float y;
