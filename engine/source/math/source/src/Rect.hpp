@@ -3,9 +3,13 @@
 #define _RECT_HPP
 
 namespace math {
-	struct Rect {
-		Rect() = default;
-		Rect(const float x, const float y, const float width, const float height) : x(x), y(y), width(width), height(height) {}
+        /**
+         * (x,y) top-left corner
+         */
+	struct Rect final {
+		Rect();
+		Rect(const float x, const float y, const float width, const float height) : 
+                x(x), y(y), width(width), height(height) {}
 
 
 		float x;
