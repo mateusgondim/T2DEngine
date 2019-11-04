@@ -50,6 +50,11 @@ gfx::Sprite_batch::Sprite_batch(const unsigned max_num_vertices, const bool is_s
 
 }
 
+void gfx::Sprite_batch::reset()
+{
+        m_num_used_vertices = 0;
+}
+
 
 //add(): add vertices to the buffer 
 void gfx::Sprite_batch::add(const std::vector<gfx::Vertex1P1C1UV> & vertices) 

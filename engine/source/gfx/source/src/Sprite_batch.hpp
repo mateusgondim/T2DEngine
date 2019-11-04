@@ -25,6 +25,7 @@ namespace gfx {
 		void    add(const Sprite *psprite);
 	
 		void	render();
+        void    reset();
 
 		~Sprite_batch(); // deallocate opengl Resources
 	private:
