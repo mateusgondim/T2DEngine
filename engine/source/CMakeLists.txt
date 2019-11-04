@@ -44,6 +44,9 @@ find_path(PHY_2D_INCLUDE_DIR NAMES Body_2d.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/p
 # GAME OBJECT MODEL
 find_path(GOM_INCLUDE_DIR NAMES Game_object.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/gom/source/src)
 
+# UI
+find_path(UI_INCLUDE_DIR NAMES Widget.hpp HINTS ${CMAKE_CURRENT_LIST_DIR}/ui/source/src)
+
 # LEVEL MANAGEMENT
 find_path(LEVEL_MANAGEMENT_INCLUDE_DIR 
           NAMES Level_manager.hpp 
@@ -59,6 +62,7 @@ add_subdirectory(gfx/source)
 add_subdirectory(tmap/source)
 add_subdirectory(phy_2d/source)
 add_subdirectory(gom/source)
+add_subdirectory(ui/source)
 add_subdirectory(level_management/source)
 
 set(include_files  src/engine.hpp src/Engine_collision_listener.hpp)
@@ -67,7 +71,7 @@ set(source_files   src/engine.cpp src/Engine_collision_listener.cpp)
 add_library(engine ${include_files} ${source_files} $<TARGET_OBJECTS:gfx> $<TARGET_OBJECTS:math> 
                    $<TARGET_OBJECTS:mem> $<TARGET_OBJECTS:io> $<TARGET_OBJECTS:utility> 
 		   $<TARGET_OBJECTS:rms> $<TARGET_OBJECTS:tmap> $<TARGET_OBJECTS:phy_2d> 
-		   $<TARGET_OBJECTS:gom> $<TARGET_OBJECTS:level_management>)
+		   $<TARGET_OBJECTS:gom> $<TARGET_OBJECTS:ui> $<TARGET_OBJECTS:level_management>)
 
 target_include_directories(engine PUBLIC ${GLFW3_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} 
                                           ${OPENGL_INCLUDE_DIR} ${GFX_INCLUDE_DIR} 
@@ -75,5 +79,5 @@ target_include_directories(engine PUBLIC ${GLFW3_INCLUDE_DIR} ${GLEW_INCLUDE_DIR
 					  ${IO_INCLUDE_DIR} ${UTILITY_INCLUDE_DIR} 
 					  ${RMS_INCLUDE_DIR} ${TMAP_INCLUDE_DIR} 
 					  ${PHY_2D_INCLUDE_DIR} ${GOM_INCLUDE_DIR}
-					  ${LEVEL_MANAGEMENT_INCLUDE_DIR})
+					  ${UI_INCLUDE_DIR} ${LEVEL_MANAGEMENT_INCLUDE_DIR})
 
