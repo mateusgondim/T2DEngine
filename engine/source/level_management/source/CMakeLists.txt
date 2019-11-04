@@ -34,10 +34,11 @@ add_library(level_management OBJECT ${include_files} ${preprocessed_files}
 
 add_dependencies(level_management sid_preprocessor)
 add_dependencies(level_management gom)
+add_dependencies(level_management ui)
 
 target_include_directories(level_management PUBLIC "${CMAKE_CURRENT_LIST_DIR}/${source_dir}" 
                                                     ${MATH_INCLUDE_DIR} ${MEM_INCLUDE_DIR} 
                                                     ${RMS_INCLUDE_DIR} ${UTILITY_INCLUDE_DIR}
 				                    ${TMAP_INCLUDE_DIR} ${IO_INCLUDE_DIR}
 				                    ${GFX_INCLUDE_DIR} ${PHY_2D_INCLUDE_DIR}
-						    ${GOM_INCLUDE_DIR})
+						    ${GOM_INCLUDE_DIR} ${UI_INCLUDE_DIR})
