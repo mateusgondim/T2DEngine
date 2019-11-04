@@ -34,9 +34,9 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
          * initialized
          */
 
-        // initalize GLFW library
+        // Initalize GLFW library
         gfx::Glfw_manager::init(context_version_major, context_version_minor);
-	//initialize the  engine global managers
+        // Initialize the  engine global managers
         gfx::g_graphics_mgr.init(512, 480, "2D Game Project");
         physics_2d::g_physics_mgr.init(ptile_map);
         gom::g_game_object_mgr.init();
