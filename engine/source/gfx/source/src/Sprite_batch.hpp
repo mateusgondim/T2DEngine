@@ -14,14 +14,19 @@
  * is kept on the batch's data member 'm_texture_id', witch is the conversion of the texture
  * file name to a unsigned of 32 bits using the crc32 algorithm
  */
-//Forward declaration to prevent includes
 namespace gfx { class Sprite; struct Vertex1P1C1UV; }
+
+/* TODO: Refactor
+ * - Remove m_sprite_aux_buffer data member
+ * - delete all the copy controll member functions
+ */
 
 namespace gfx {
 	class Sprite_batch {
 	public:
 				Sprite_batch(const unsigned max_num_vertices, const bool is_static = false);
 		void	add(const std::vector<Vertex1P1C1UV> & vertices);
+        void    add(const Vertex1P1C1UV * pvertex_buffer, const std::size_t buffer_sz);
 		void    add(const Sprite *psprite);
 	
 		void	render();

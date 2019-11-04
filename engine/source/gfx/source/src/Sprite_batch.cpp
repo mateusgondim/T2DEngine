@@ -56,6 +56,28 @@ void gfx::Sprite_batch::reset()
 }
 
 
+
+void gfx::Sprite_batch::add(const gfx::Vertex1P1C1UV * pvertex_buffer, const std::size_t buffer_sz)
+{
+        if ((m_max_num_vertices - m_num_used_vertices) < buffer_sz) {
+                std::cout << __FUNCTION__ << " there is not enough room for " << buffer_sz 
+                          << " vertices in this batch. This batch already have " 
+                          << m_num_used_vertices << " vertices and can only store " 
+                          << m_max_num_vertices << std::endl;
+        }
+        else {
+                glBindVertexArray(m_vao);
+                glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+
+                glBufferSubData(GL_ARRAY_BUFFER, m_num_used_vertices * sizeof(Vertex1P1C1UV),
+                                buffer_sz * sizeof(Vertex1P1C1UV), pvertex_buffer);
+
+                glBindVertexArray(0);
+
+                m_num_used_vertices += buffer_sz;
+        }
+}
+
 //add(): add vertices to the buffer 
 void gfx::Sprite_batch::add(const std::vector<gfx::Vertex1P1C1UV> & vertices) 
 {
