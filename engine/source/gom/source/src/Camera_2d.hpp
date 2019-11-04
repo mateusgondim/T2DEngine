@@ -23,6 +23,7 @@ namespace gom {
         bool           track(const uint32_t obj_type);
 		bool		   is_off_camera(const math::vec3 & pos, const float width, const float height) const;
 		const math::mat4  &  get_view() const;
+        math::Rect     get_screen_rect() const;
 
         void update(const float dt);
 
@@ -59,6 +60,11 @@ namespace gom {
     inline const math::mat4 & Camera_2d::get_view() const
     {
             return m_view;
+    }
+
+    inline math::Rect Camera_2d::get_screen_rect() const
+    {
+            return math::Rect(m_screen_p_min, m_screen_p_max);
     }
 
     inline void Camera_2d::update_view()
