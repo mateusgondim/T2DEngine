@@ -32,6 +32,10 @@
 #include "mat4.hpp"
 #include "crc32.hpp"
 
+#include "Widget.hpp"
+#include "Canvas.hpp"
+#include "UI_manager.hpp"
+
 #include <vector>
 #include <utility>
 
@@ -233,6 +237,10 @@ namespace level_management
                                                     plevel_camera->get_view().value_ptr());
 
                 gfx::g_graphics_mgr.render();
+
+                ui::g_ui_mgr.render();
+
+                gfx::g_graphics_mgr.swap_and_poll();
 
                 if (m_should_restart) {
                         restart();
