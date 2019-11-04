@@ -19,6 +19,8 @@
 #include "Abstract_keyboard_index.hpp"
 #include "Input_manager.hpp"
 
+#include "Resource.hpp"
+
 #include "Game_object.hpp"
 #include "Game_object_handle.hpp"
 #include "Game_object_data.hpp"
@@ -31,6 +33,10 @@
 
 #include "mat4.hpp"
 #include "crc32.hpp"
+
+#include "Widget.hpp"
+#include "Canvas.hpp"
+#include "UI_manager.hpp"
 
 #include <vector>
 #include <utility>
@@ -58,6 +64,13 @@ namespace level_management
 
                 //load sprite shader
                 m_psprite_shader = static_cast<gfx::Shader*>(gfx::g_shader_mgr.load("sprite_shader", (*m_presources_path + "/shaders/sprite.vert").c_str(), (*m_presources_path + "/shaders/sprite.frag").c_str()));
+
+                // load default widget shader
+                rms::Resource * pshader_res = gfx::g_shader_mgr.load("widget_shader",
+                                                                     (*m_presources_path + "/shaders/test_ui.vert").c_str(),
+                                                                     (*m_presources_path + "/shaders/test_ui.frag").c_str());
+
+                ui::g_ui_mgr.set_widgets_shader(*static_cast<gfx::Shader*>(pshader_res));
 
                 //load the data necessary to instantiate the level's game objects 
                 load_level_objects();
@@ -131,6 +144,15 @@ namespace level_management
                 control_scheme.map_action_to_button(SID('pause'), io::Abstract_keyboard_index::KEY_P);
                 control_scheme.map_action_to_button(SID('reset_level'), 
                                                     io::Abstract_keyboard_index::KEY_R);
+
+                // WIDGET TEST
+                math::Rect screen_rect = plevel_camera->get_screen_rect();
+                ui::Canvas *pcanvas = ui::g_ui_mgr.create_canvas(screen_rect);
+
+                math::Rect widget_rect(screen_rect.x, screen_rect.y,
+                                       screen_rect.width / 4.0f, screen_rect.height / 6.0f);
+                ui::Widget *pwidget = pcanvas->create_widget(widget_rect);
+                
 
                 instantiate_level_objects();
 
@@ -233,6 +255,10 @@ namespace level_management
                                                     plevel_camera->get_view().value_ptr());
 
                 gfx::g_graphics_mgr.render();
+
+                ui::g_ui_mgr.render();
+
+                gfx::g_graphics_mgr.swap_and_poll();
 
                 if (m_should_restart) {
                         restart();

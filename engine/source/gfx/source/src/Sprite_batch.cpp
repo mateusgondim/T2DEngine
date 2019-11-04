@@ -35,11 +35,13 @@ gfx::Sprite_batch::Sprite_batch(const unsigned max_num_vertices, const bool is_s
 	glEnableVertexAttribArray(0);
 
 	//vertex color
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex1P1C1UV), (GLvoid*)offsetof(Vertex1P1C1UV, m_col));
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex1P1C1UV),
+                         (GLvoid*)offsetof(Vertex1P1C1UV, m_col));
 	glEnableVertexAttribArray(1);
 
 	//vertex uv coordinate
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex1P1C1UV), (GLvoid*)offsetof(Vertex1P1C1UV, m_uv));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex1P1C1UV),
+                         (GLvoid*)offsetof(Vertex1P1C1UV, m_uv));
 	glEnableVertexAttribArray(2);
 
 	glBindVertexArray(0);
@@ -50,6 +52,33 @@ gfx::Sprite_batch::Sprite_batch(const unsigned max_num_vertices, const bool is_s
 
 }
 
+void gfx::Sprite_batch::reset()
+{
+        m_num_used_vertices = 0;
+}
+
+
+
+void gfx::Sprite_batch::add(const gfx::Vertex1P1C1UV * pvertex_buffer, const std::size_t buffer_sz)
+{
+        if ((m_max_num_vertices - m_num_used_vertices) < buffer_sz) {
+                std::cout << __FUNCTION__ << " there is not enough room for " << buffer_sz 
+                          << " vertices in this batch. This batch already have " 
+                          << m_num_used_vertices << " vertices and can only store " 
+                          << m_max_num_vertices << std::endl;
+        }
+        else {
+                glBindVertexArray(m_vao);
+                glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+
+                glBufferSubData(GL_ARRAY_BUFFER, m_num_used_vertices * sizeof(Vertex1P1C1UV),
+                                buffer_sz * sizeof(Vertex1P1C1UV), pvertex_buffer);
+
+                glBindVertexArray(0);
+
+                m_num_used_vertices += buffer_sz;
+        }
+}
 
 //add(): add vertices to the buffer 
 void gfx::Sprite_batch::add(const std::vector<gfx::Vertex1P1C1UV> & vertices) 
@@ -84,7 +113,6 @@ void gfx::Sprite_batch::add(const gfx::Sprite  *psprite)
 			<< m_num_used_vertices << " vertices and can only store " << m_max_num_vertices << std::endl;
 	}
 	else {
-		//std::vector<Vertex1P1C1UV> vertices; //change this!! it involvers dynamic memory allocation, maybe add a data member to Sprite_batch
 		for (int i = 0; i < vec_sz; ++i) {
 			//Vertex1P1C1UV vertex(position[i], math::vec4(), texture_coord[i]);
 			//vertices.push_back(vertex);

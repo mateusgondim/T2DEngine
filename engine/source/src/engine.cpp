@@ -14,6 +14,7 @@
 #include "Physics_manager.hpp"
 #include "Game_object_manager.hpp"
 #include "Projectile_manager.hpp"
+#include "UI_manager.hpp"
 #include "Level_manager.hpp"
 #include "Engine_collision_listener.hpp"
 
@@ -33,13 +34,14 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
          * initialized
          */
 
-        // initalize GLFW library
+        // Initalize GLFW library
         gfx::Glfw_manager::init(context_version_major, context_version_minor);
-	//initialize the  engine global managers
+        // Initialize the  engine global managers
         gfx::g_graphics_mgr.init(512, 480, "2D Game Project");
         physics_2d::g_physics_mgr.init(ptile_map);
         gom::g_game_object_mgr.init();
         gom::g_projectile_mgr.init();
+        ui::g_ui_mgr.init();
 
         gfx::Glfw_manager::set_error_callback(error_callback);
         gfx::Glfw_manager::set_key_callback(gfx::g_graphics_mgr.get_render_window(),
@@ -56,6 +58,7 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
 
 void engine_shut_down() 
 {
+        ui::g_ui_mgr.shut_down();
         gom::g_projectile_mgr.shut_down();
         gom::g_game_object_mgr.shut_down();
         physics_2d::g_physics_mgr.shut_down();

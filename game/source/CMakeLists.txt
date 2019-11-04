@@ -60,6 +60,11 @@ find_path(GOM_INCLUDE_DIR
           NAMES game_object.hpp 
 	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/gom/source/src)
 
+# UI
+find_path(UI_INCLUDE_DIR
+          NAMES Widget.hpp
+	  HINTS ${CMAKE_CURRENT_LIST_DIR}/../../engine/source/ui/source/src)
+
 # LEVEL MANAGEMENT 
 find_path(LEVEL_MANAGEMENT_INCLUDE_DIR
           NAMES Level_manager.hpp
@@ -130,10 +135,11 @@ elseif(WIN32 OR UNIX)
 endif()
 
 target_include_directories(game PUBLIC "${CMAKE_CURRENT_LIST_DIR}/${source_dir}" 
-                                        ${GFX_INCLUDE_DIR} ${MATH_INCLUDE_DIR} 
-					${MEM_INCLUDE_DIR} ${RMS_INCLUDE_DIR} 
-					${IO_INCLUDE_DIR} ${UTILITY_INCLUDE_DIR} 
+                                        ${GFX_INCLUDE_DIR}  ${MATH_INCLUDE_DIR} 
+					${MEM_INCLUDE_DIR}  ${RMS_INCLUDE_DIR} 
+					${IO_INCLUDE_DIR}   ${UTILITY_INCLUDE_DIR} 
 					${TMAP_INCLUDE_DIR} ${PHY_2D_INCLUDE_DIR} 
-					${GOM_INCLUDE_DIR} ${LEVEL_MANAGEMENT_INCLUDE_DIR}
+					${GOM_INCLUDE_DIR}  ${UI_INCLUDE_DIR}
+					${LEVEL_MANAGEMENT_INCLUDE_DIR}
 					${ENGINE_INCLUDE_DIR})
 

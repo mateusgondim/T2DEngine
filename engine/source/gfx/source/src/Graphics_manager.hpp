@@ -74,6 +74,7 @@ namespace gfx {
 		//void		 delete_shader(const shader_id id);
 
 		void         render();
+        void         swap_and_poll() const;
 		
 	private:
 		void        set_tile_map_renderer();
