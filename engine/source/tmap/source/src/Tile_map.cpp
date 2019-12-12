@@ -33,7 +33,7 @@ parse map header/element
 
 static const Tile g_empty_tile;
 
-Tile_map::Tile_map(const std::string & tmx_file_path, float pixels_per_unit) : m_pixels_per_word_unit(pixels_per_unit)
+Tile_map::Tile_map(const std::string & tmx_file_path)
 {
         std::ifstream file_istream;
         std::string   line;
@@ -260,6 +260,8 @@ void Tile_map::parse_map_element_variables(const std::string & line)
         m_height = height;
         m_tile_width = tile_width;
         m_tile_height = tile_height;
+
+        m_pixels_per_word_unit = m_tile_width;
 }
 
 void Tile_map::parse_tileset(const std::string & tmx_file_path, const std::string & first_line)
