@@ -32,7 +32,8 @@ gfx::Graphics_manager gfx::g_graphics_mgr;
 
 gfx::Graphics_manager::Graphics_manager() : m_is_initialized(false) {}
 
-bool gfx::Graphics_manager::init(int window_width, int window_height, const char * ptitle, float pixels_per_unit)
+bool gfx::Graphics_manager::init(int window_width, int window_height, float viewport_scale,
+                                 const char * ptitle, float pixels_per_unit)
 {
 	m_pixels_per_unit = pixels_per_unit;
 	m_tiles_per_screen_width = 16;
@@ -46,7 +47,8 @@ bool gfx::Graphics_manager::init(int window_width, int window_height, const char
 	m_batches.reserve(3);
 
     // Create render window
-    m_prender_window = Glfw_manager::create_window(window_width, window_height, ptitle);
+    m_prender_window = Glfw_manager::create_window(window_width, window_height, viewport_scale,
+                                                   ptitle);
 
     if (!m_prender_window->is_initialized()) {
             shut_down();

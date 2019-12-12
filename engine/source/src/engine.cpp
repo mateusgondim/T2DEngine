@@ -11,6 +11,7 @@
 #include "Glfw_manager.hpp"
 #include "Graphics_manager.hpp"
 #include "World.hpp"
+#include "Tile_map.hpp"
 #include "Physics_manager.hpp"
 #include "Game_object_manager.hpp"
 #include "Projectile_manager.hpp"
@@ -37,7 +38,8 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
         // Initalize GLFW library
         gfx::Glfw_manager::init(context_version_major, context_version_minor);
         // Initialize the  engine global managers
-        gfx::g_graphics_mgr.init(512, 480, "2D Game Project");
+        gfx::g_graphics_mgr.init(256, 240, 2.0f, "2D Game Project",
+                                 ptile_map->pixels_per_world_unit());
         physics_2d::g_physics_mgr.init(ptile_map);
         gom::g_game_object_mgr.init();
         gom::g_projectile_mgr.init();

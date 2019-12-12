@@ -83,23 +83,6 @@ namespace level_management
          */
         void Level_manager::init()
         {
-                //set the current and target aspect ratio of the screen
-                m_curr_aspect_ratio = static_cast<float>(m_ptile_map->width()) / static_cast<float>(m_ptile_map->height());
-                m_target_aspect_ratio = m_curr_aspect_ratio;
-
-                //set variables to control the aspect ratio if the user changes the screen dimensions
-
-                gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
-                std::pair<int, int> window_dimensions = prender_window->get_framebuffer_size();
-                
-                //gfx::g_graphics_mgr.get_framebuffer_size(&m_prev_vport_width, &m_prev_vport_height);
-                m_prev_vport_width = window_dimensions.first;
-                m_prev_vport_height = window_dimensions.second;
-
-                gfx::g_graphics_mgr.set_viewport(0, 0, m_prev_vport_width, m_prev_vport_height);
-                m_curr_vport_width = m_prev_vport_width;
-                m_curr_vport_height = m_prev_vport_height;
-
                 //initialize camera
                 float tile_wld_width = m_ptile_map->tile_width() / gfx::g_graphics_mgr.get_pixels_per_wld_unit();
                 float tile_wld_height = m_ptile_map->tile_height() / gfx::g_graphics_mgr.get_pixels_per_wld_unit();
@@ -226,30 +209,7 @@ namespace level_management
                                                  plevel_camera->get_view().value_ptr());
 
                 gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
-                std::pair<int, int> window_dimensions = prender_window->get_framebuffer_size();
-                //gfx::g_graphics_mgr.get_framebuffer_size(&m_curr_vport_width, &m_curr_vport_height);
-                m_curr_vport_width = window_dimensions.first;
-                m_curr_vport_height = window_dimensions.second;
-
-                if ((m_curr_vport_width != m_prev_vport_width) || (m_curr_vport_height != m_prev_vport_height)) {
-                        m_curr_aspect_ratio = (float)m_curr_vport_width / (float)m_curr_vport_height;
-
-                        int width = m_curr_vport_width;
-                        int height = (width / m_target_aspect_ratio + 0.5f);
-
-                        if (height > m_curr_vport_height) {
-                                height = m_curr_vport_height;
-                                width = (height * m_target_aspect_ratio + 0.5f);
-                        }
-                        int vp_x = (m_curr_vport_width / 2.0f) - (width / 2);
-                        int vp_y = (m_curr_vport_height / 2.0f) - (height / 2);
-                        int vp_width = width + vp_x;
-                        int vp_height = height + vp_y;
-                        gfx::g_graphics_mgr.set_viewport(vp_x, vp_y, width, height);
-
-                        m_prev_vport_width = m_curr_vport_width;
-                        m_prev_vport_height = m_curr_vport_height;
-                }
+                prender_window->update_viewport();
 
                 m_psprite_shader->uniform_matrix4fv(m_sprites_view_loc, 1, false,
                                                     plevel_camera->get_view().value_ptr());

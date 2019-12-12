@@ -33,7 +33,8 @@ namespace gfx {
             Graphics_manager();
             ~Graphics_manager() = default;
 		//initialization functions
-            bool		init(int window_width, int window_height, const char * ptitle, float pixels_per_unit = 16.0f);
+            bool		init(int window_width, int window_height, float viewport_scale,
+                             const char * ptitle, float pixels_per_unit);
             Window  *   get_render_window();
 		//bool        create_window(const std::int32_t width, const std::int32_t height, const char *ptitle);
 		

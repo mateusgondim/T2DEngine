@@ -16,7 +16,8 @@ namespace gfx
                 static void          init(int context_version_major, int context_version_minor);
                 static void          terminate();
                 static void          window_hint(int hint, int value);
-                static Window *      create_window(int width, int height, const char *ptitle);
+                static Window *      create_window(int width, int height, float viewport_scale,
+                                                   const char *ptitle);
                 static void          swap_interval(int interval);
                 static void          make_context_current(Window * pwindow);
                 static void          poll_events();
