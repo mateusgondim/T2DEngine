@@ -21,9 +21,10 @@ namespace gfx
                 glfwWindowHint(hint, value);
         }
 
-        Window * Glfw_manager::create_window(int width, int height, const char * ptitle)
+        Window * Glfw_manager::create_window(int width, int height, float viewport_scale,
+                                             const char * ptitle)
         {
-                return new Window(width, height, ptitle);
+                return new Window(width, height, viewport_scale, ptitle);
         }
 
         void Glfw_manager::swap_interval(int interval)
