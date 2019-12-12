@@ -28,6 +28,7 @@ namespace gfx
 
                                         ~Window();
 
+                void                    update_viewport();
                 std::pair<int, int>     get_framebuffer_size() const;
                 void                    set_title(const char * ptitle);
                 void                    set_size(int width, int height);
