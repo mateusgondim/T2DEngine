@@ -83,23 +83,6 @@ namespace level_management
          */
         void Level_manager::init()
         {
-                //set the current and target aspect ratio of the screen
-                m_curr_aspect_ratio = static_cast<float>(m_ptile_map->width()) / static_cast<float>(m_ptile_map->height());
-                m_target_aspect_ratio = m_curr_aspect_ratio;
-
-                //set variables to control the aspect ratio if the user changes the screen dimensions
-
-                gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
-                std::pair<int, int> window_dimensions = prender_window->get_framebuffer_size();
-                
-                //gfx::g_graphics_mgr.get_framebuffer_size(&m_prev_vport_width, &m_prev_vport_height);
-                m_prev_vport_width = window_dimensions.first;
-                m_prev_vport_height = window_dimensions.second;
-
-                gfx::g_graphics_mgr.set_viewport(0, 0, m_prev_vport_width, m_prev_vport_height);
-                m_curr_vport_width = m_prev_vport_width;
-                m_curr_vport_height = m_prev_vport_height;
-
                 //initialize camera
                 float tile_wld_width = m_ptile_map->tile_width() / gfx::g_graphics_mgr.get_pixels_per_wld_unit();
                 float tile_wld_height = m_ptile_map->tile_height() / gfx::g_graphics_mgr.get_pixels_per_wld_unit();
