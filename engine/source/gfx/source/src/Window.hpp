@@ -37,6 +37,10 @@ namespace gfx
         private:
                 void                    destroy();
                 GLFWwindow *            m_pglfw_window;
+                int                     m_virtual_width;
+                int                     m_virtual_height;
+                float                   m_virtual_aspect_ratio;
+                float                   m_scale;
                 int                     m_width;
                 int                     m_height;
                 std::string             m_title;
