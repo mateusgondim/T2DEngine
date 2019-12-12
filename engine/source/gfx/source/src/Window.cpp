@@ -4,10 +4,14 @@
 #include <utility>
 namespace gfx
 {
-        Window::Window(int width, int height, const char * ptitle) : 
-                m_width(width), m_height(height), m_title(ptitle)
+        Window::Window(int width, int height, float scale, const char * ptitle) : 
+                m_virtual_width(width), m_virtual_height(height),
+                m_virtual_aspect_ratio((float)width / height), m_scale(scale),
+                m_width(width * scale), m_height(height * scale), m_title(ptitle)
         {
-                m_pglfw_window = glfwCreateWindow(width, height, ptitle, NULL, NULL);
+                m_pglfw_window = glfwCreateWindow(m_width, m_height, ptitle, NULL, NULL);
+                glfwSetWindowSizeLimits(m_pglfw_window, m_virtual_width, m_virtual_height,
+                                        GLFW_DONT_CARE, GLFW_DONT_CARE);
         }
 
 

@@ -18,7 +18,8 @@ namespace gfx
         class Window {
                 friend class Glfw_manager;
         public:
-                                        Window(int width, int height, const char * ptitle);
+                                        Window(int width, int height, float scale,
+                                               const char * ptitle);
                                         Window(Window &) = delete;
                                         Window(Window &&) = delete;
                                         
