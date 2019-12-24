@@ -23,7 +23,7 @@ namespace gfx {
 		bool   changed_frame() const { return m_changed_frame; }
 	private:
 		Animation						   m_animation;
-		int								   m_current_frame;
+		Animation::frameids_size_type	   m_current_frame;
 		float							   m_seconds_per_frame;
 		float							   m_next_frame_time;
 		float                              m_local_clock;
