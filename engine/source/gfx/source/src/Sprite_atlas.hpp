@@ -17,7 +17,8 @@ namespace gfx { class Texture_2d; class Texture_2d_manager; }
 
 namespace gfx {
 	class Sprite_atlas : public rms::Resource {
-	friend rms::Resource *gfx::Sprite_atlas_manager::load(const char *name, const char *file_path, gfx::Texture_2d_manager *texture_manager);
+	friend rms::Resource *gfx::Sprite_atlas_manager::load(const char *name, const char *file_path,
+                                                          gfx::Texture_2d_manager *texture_manager);
 	public:
 		Sprite_atlas(rms::Resource_manager *pcreator, const char *name);
 
