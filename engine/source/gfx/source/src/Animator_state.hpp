@@ -25,7 +25,7 @@ namespace gfx {
 		Animation_player & get_animation_player() { return m_anim_player; }
 
 		bool changed_animation_frame() const { return m_anim_player.changed_frame(); }
-		unsigned get_curr_anim_frame() const { return m_anim_player.get_frame(); }
+		string_id get_curr_anim_frame() const { return m_anim_player.get_frame(); }
 		
 		void update(const float dt);
 		void pause_anim();
