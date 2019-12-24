@@ -1,8 +1,10 @@
 #include "Sprite.hpp"
 #include "Sprite_atlas.hpp"
+#include "string_id.hpp"
 #include "Rect.hpp"
 #include "vec3.hpp"
 #include "vec2.hpp"
+#include "Graphics_manager.hpp"
 
 #include <stdint.h>
 #include <string>
@@ -15,27 +17,25 @@ gfx::Sprite::Sprite(const Sprite_atlas *patlas, const std::uint8_t layer) :
         m_is_active(true), m_size_in_wld_units(), m_patlas(patlas), m_layer(layer) {}
 
 
-
-void gfx::Sprite::update_uv(const int sprite_no)
+void gfx::Sprite::update_uv(const string_id sprite_id)
 {
-	math::Rect rect;
-	float sprite_width, sprite_height;
-	m_patlas->get_text_coord(sprite_no, &rect, &sprite_width, &sprite_height);
-	//tgs::Rect rect = m_atlas->get_text_coord(0);
-	if ( (m_scale.x != sprite_width / m_pixels_per_unit) || (m_scale.y != sprite_height / m_pixels_per_unit) ) {
-		m_scale.x = sprite_width / m_pixels_per_unit;
-		m_scale.y = sprite_height / m_pixels_per_unit;
-	}
+    const Atlas_image & image = m_patlas->get_image_data(sprite_id);
+	
+    m_size_in_wld_units.x = image.m_width / gfx::g_graphics_mgr.get_pixels_per_wld_unit();
+    m_size_in_wld_units.y = image.m_height / gfx::g_graphics_mgr.get_pixels_per_wld_unit();
 
-	m_vertices_uv[0] = math::vec2(rect.x, rect.y + rect.height); //uv1
-	m_vertices_uv[1] = math::vec2(rect.x + rect.width, rect.y + rect.height); //uv2
-	m_vertices_uv[2] = math::vec2(rect.x + rect.width, rect.y); //uv3
+	m_vertices_uv[0] = math::vec2(image.m_texture_coordinates.x,
+                                  image.m_texture_coordinates.y + image.m_texture_coordinates.height);
 
-	m_vertices_uv[3] =   m_vertices_uv[2]; //uv3
-	m_vertices_uv[4] = math::vec2(rect.x, rect.y); // uv0
-	m_vertices_uv[5] =   m_vertices_uv[0]; //uv1	
+	m_vertices_uv[1] = math::vec2(image.m_texture_coordinates.x + image.m_texture_coordinates.width,
+                                  image.m_texture_coordinates.y + image.m_texture_coordinates.height);
 
-	//std::cout << "updating uv coordinate to " << sprite_no << std::endl;
+	m_vertices_uv[2] = math::vec2(image.m_texture_coordinates.x + image.m_texture_coordinates.width,
+                                  image.m_texture_coordinates.y);
+
+	m_vertices_uv[3] =   m_vertices_uv[2];
+	m_vertices_uv[4] = math::vec2(image.m_texture_coordinates.x, image.m_texture_coordinates.y);
+	m_vertices_uv[5] =   m_vertices_uv[0];
 }
 
 void gfx::Sprite::update_pos(const math::vec3 & pos, const bool facing_left)

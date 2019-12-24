@@ -1,6 +1,7 @@
 #ifndef _SPRITE_HPP
 #define _SPRITE_HPP
 
+#include "string_id.hpp"
 #include "vec2.hpp"
 #include "vec3.hpp"
 #include <stdint.h>
@@ -28,7 +29,7 @@ namespace gfx {
 
 				void         set_active(const bool flag)       { m_is_active = flag;}
 		void   update_pos(const math::vec3 & position, const bool facing_left = true);
-		void   update_uv(const int sprite_no);
+		void   update_uv(const string_id sprite_id);
 		//bool   is_animated() const;
 		//void   update_animation(const float dt, Animator_controller *pcontroller);
 
