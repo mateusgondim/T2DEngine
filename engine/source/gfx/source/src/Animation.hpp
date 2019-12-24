@@ -2,12 +2,17 @@
 #define _ANIMATION_HPP
 
 #include <vector>
+#include "string_id.hpp"
 /*Animation: class that stores a vector of indices that represent frames of a animation in 
  * a sprite atlas, the animation can be looped and has a frames per second attribute
  */
 namespace gfx {
 	class Animation {
 	public:
+            typedef std::vector<string_id> frameids_vec;
+            typedef std::vector<string_id>::size_type frameids_size_type;
+
+
 		Animation() : m_frame_count(0) {}
 		Animation(const std::vector<unsigned> & frames, const float frames_per_second, const bool loop = true) : 
 			m_frames(frames), m_frames_per_second(frames_per_second), m_loop(loop), m_playback_rate(1.0f)
