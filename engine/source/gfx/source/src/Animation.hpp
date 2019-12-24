@@ -20,13 +20,13 @@ namespace gfx {
 			m_frame_count = m_frames.size();
 		}
 
-		float							  frames_per_second()          const { return m_frames_per_second; }
-		std::vector<unsigned>::size_type  num_frames()				   const { return m_frame_count; }
-		bool							  loop()			           const { return m_loop; }
-		unsigned						  get_frame(const int  index)  const { return m_frames[index]; }
-		float							  duration()                   const { return m_frames_per_second * m_frame_count; }
-		float                             get_playback_rate()          const { return m_playback_rate; }
-		void                              set_playback_rate(const float r) { m_playback_rate = r; }
+		float					frames_per_second()        const { return m_frames_per_second; }
+		frameids_size_type      num_frames()			   const { return m_frame_count; }
+		bool				    loop()			           const { return m_loop; }
+		string_id				get_frame(const frameids_size_type index)  const { return m_frames[index]; }
+		float				    duration()                 const { return m_frames_per_second * m_frame_count; }
+		float                   get_playback_rate()        const { return m_playback_rate; }
+		void                    set_playback_rate(const float r) { m_playback_rate = r; }
 	private:
 		bool				    m_loop;
 		float				    m_frames_per_second;
