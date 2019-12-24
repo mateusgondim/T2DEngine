@@ -2,6 +2,7 @@
 #define _ANIMATION_PLAYER_HPP
 
 #include <utility>
+#include "string_id.hpp"
 #include "Animation.hpp"
 
 /*Animation_player: class that stores a animation and,
@@ -18,7 +19,7 @@ namespace gfx {
 		void pause();
 		void resume();
 		void start_from_beg();
-		unsigned get_frame() const { return (m_current_frame < 0) ?(m_animation.get_frame(0)) :(m_animation.get_frame(m_current_frame) ); } //m_current_frame = -1 before first update
+        string_id get_frame() const;
 		bool    is_playing() const { return m_playing; }
 		bool   changed_frame() const { return m_changed_frame; }
 	private:
@@ -30,6 +31,15 @@ namespace gfx {
 		bool							   m_playing;
 		bool							   m_changed_frame;
 	};
+
+    inline string_id Animation_player::get_frame() const
+    {
+            Animation::frameids_size_type undefined_frame = -1;
+            if (m_current_frame == undefined_frame) {
+                    return m_animation.get_frame(0);
+            }
+            return m_animation.get_frame(m_current_frame);
+    }
 }
 
 #endif // !_ANIMATION_PLAYER_HPP
