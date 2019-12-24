@@ -31,16 +31,10 @@ namespace gfx {
 
 		//Sprite_atlas(const std::string & file_name, const string_id id);
 		
-		//Texture_2d &      get_texture()		    { return m_texture; }
-		
-		//string_id			get_string_id()		   const { return m_id; }
 		gfx::Texture_2d *get_texture();
 		void get_text_coord(const int sprite_no, math::Rect * prect, float * px_width, float *px_height) const;
 		
-		//~Sprite_atlas();
 	private:
-		//string_id				m_id;					// size 4 bytes | alignment 4 bytes
-		
 		gfx::Texture_2d   *m_ptexture;				// size 16 bytes | alignment 4 bytes
 	    char			  *m_atlas_file_path;
 		char			  *m_texture_file_path;
