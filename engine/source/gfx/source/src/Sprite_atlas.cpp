@@ -66,12 +66,13 @@ void gfx::Sprite_atlas::load()
 			std::string digits("0123456789");
 			//get atlas witdth and height
 			pos = line.find("width");
-			//m_image_size.x = std::stoi(line.substr(line.find_first_of(digits, pos)));
+			int texture_width = std::stoi(line.substr(line.find_first_of(digits, pos)));
 
 			pos = line.find("height");
-			//m_image_size.y = std::stoi(line.substr(line.find_first_of(digits, pos)));
+			int texture_height = std::stoi(line.substr(line.find_first_of(digits, pos)));
 
 			//loop trough all the sprite lines
+            std::string sprite_name;
 			while (std::getline(in, line) && (line.find("<sprite") != std::string::npos)) { // for every sprite int the atlas
 				float x, y, w, h;
 				//	std::cout << line << std::endl;
@@ -84,15 +85,26 @@ void gfx::Sprite_atlas::load()
 				pos = line.find("h", pos);
 				h = std::stoi(line.substr(line.find_first_of(digits, pos)));
 
-				//std::cout << "x=" << x << " y=" << y << " w=" << w << " h=" << h << std::endl;;
+                pos = line.find("n");
+                pos = line.find("\"", pos);
+                auto last_pos = line.find(".", pos);
+                last_pos = (last_pos == std::string::npos) ? (line.find("\"", pos + 1)) : (last_pos);
 
-				math::Rect rect(x, y, w, h);
-				m_vrec.push_back(rect);
+                sprite_name = line.substr(pos + 1, last_pos - (pos + 1));
+
+                // Calculate the normalized texture coordinates
+				math::Rect texture_coordinates(x/texture_width, y/texture_height,
+                                               w/texture_width, h/texture_height);
+
+                Atlas_image atlas_image;
+                atlas_image.m_texture_coordinates = texture_coordinates;
+                atlas_image.m_width = w;
+                atlas_image.m_height = h;
+
+                m_images.insert(std::make_pair(get_crc32(sprite_name.c_str()), atlas_image));
 			}
-			// load the texture
-			//m_texture = Texture_2d(texture_file);
-			//set this atlas texture file path
 
+			//set this atlas texture file path
 			if (m_texture_file_path != nullptr) {
 				free(m_texture_file_path);
 			}
