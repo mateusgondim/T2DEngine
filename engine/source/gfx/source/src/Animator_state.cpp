@@ -4,7 +4,8 @@
 
 gfx::Animator_state::Animator_state(string_id name_id) : m_name_id(name_id) {}
 
-gfx::Animator_state::Animator_state(string_id name_id, const gfx::Animation_player & anim_player) : m_name_id(name_id) , m_anim_player(anim_player) {}
+gfx::Animator_state::Animator_state(string_id name_id, const gfx::Animation_player & anim_player) : 
+        m_name_id(name_id) , m_anim_player(anim_player) {}
 
 gfx::Animator_state_transition & gfx::Animator_state::add_transition(const char *destination_state_name) 
 {
