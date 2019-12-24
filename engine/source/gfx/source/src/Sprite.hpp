@@ -17,7 +17,7 @@ namespace gfx { class Sprite_atlas; }
 namespace gfx {
 	class Sprite {
 	public:
-		Sprite(const Sprite_atlas *patlas, const uint8_t layer, const float pixels_per_unit = 16.0f);
+		Sprite(const Sprite_atlas *patlas, const uint8_t layer);
 		const	math::vec3 * get_vertex_position_vec()  const  { return m_vertices_pos; }
 				math::vec3 * get_vertex_position_vec()         { return m_vertices_pos;}
 		const	math::vec2 * get_vertex_uv_vec()		const  { return m_vertices_uv; };
