@@ -5,7 +5,7 @@
 #include "Sprite_atlas_manager.hpp"
 #include "Rect.hpp"
 #include "string_id.hpp"
-#include <vector>
+#include <map>
 
 /*Sprite_atlas: this class stores all the data associated with
  * a sprite atlas necessary for rendering it, including the texture_2d  
@@ -47,8 +47,8 @@ namespace gfx {
 	    char			  *m_atlas_file_path;
 		char			  *m_texture_file_path;
 
-	// pixel coordinates of each sprite on the texture atlas
-		std::vector<math::Rect>	m_vrec;					// 12 bytes size 4 byte aligment 
+        // Data for each sprite on the texture atlas
+        std::map<string_id, Atlas_image>  m_images;
 
 	  //TODO: SCALE THE VERTICES IN THE POSITION VECTOR WHEN CHANGING THE CURRENT VERTEX UV COORDINATES			
 	};
