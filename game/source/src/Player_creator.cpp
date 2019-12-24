@@ -17,6 +17,7 @@
 #include "Sprite_atlas_manager.hpp"
 
 #include "string_id.hpp"
+#include "crc32.hpp"
 #include "runtime_memory_allocator.hpp"
 #include <stdint.h>
 
@@ -83,16 +84,42 @@ void Player_creator::create_anim_controller()
 	m_panim_controller = static_cast<gfx::Animator_controller*>( new (pmem) gfx::Animator_controller() );
 	
 	//create the animation players for each animation state
-	gfx::Animation_player player_idle_anim(gfx::Animation({ 30, 31, 32, 33 }, 4));
-	gfx::Animation_player player_running_anim(gfx::Animation({ 38, 39, 40, 41, 34, 35, 36, 37 }, 10));
-	gfx::Animation_player player_jumping_anim(gfx::Animation({ 34, 35, 36, 37 }, 10));
-	gfx::Animation_player player_climbing_anim(gfx::Animation({ 24, 25 }, 5)); // gfx::Animation({3 }, 6) );
-	gfx::Animation_player player_finishing_climbing_anim(gfx::Animation({ 24 }, 6));
-	gfx::Animation_player player_attacking_anim(gfx::Animation({ 20, 21, 22, 23}, 12, false));
+    
+	gfx::Animation_player player_idle_anim(gfx::Animation({ SID('hero_idle01'),
+                                                            SID('hero_idle02'),
+                                                            SID('hero_idle03'),
+                                                            SID('hero_idle04') }, 4));
+
+	gfx::Animation_player player_running_anim(gfx::Animation({ SID('hero_running01'),
+                                                               SID('hero_running02'),
+                                                               SID('hero_running03'),
+                                                               SID('hero_running04'),
+                                                               SID('hero_jumping01'),
+                                                               SID('hero_jumping02'),
+                                                               SID('hero_jumping03'),
+                                                               SID('hero_jumping04') }, 10));
+
+	gfx::Animation_player player_jumping_anim(gfx::Animation({ SID('hero_jumping01'),
+                                                               SID('hero_jumping02'),
+                                                               SID('hero_jumping03'),
+                                                               SID('hero_jumping04') }, 10));
+
+    
+	gfx::Animation_player player_climbing_anim(gfx::Animation({ SID('hero_climbing01'),
+                                                                SID('hero_climbing02') }, 5));
+
+	gfx::Animation_player player_finishing_climbing_anim(gfx::Animation({ SID('hero_climbing01') }, 6));
+    
+	gfx::Animation_player player_attacking_anim(gfx::Animation({ SID('hero_attacking01'),
+                                                                 SID('hero_attacking02'),
+                                                                 SID('hero_attacking03'),
+                                                                 SID('hero_attacking04') }, 12, false));
 	gfx::Animation_player player_ducking_idle_anim(gfx::Animation({ 4 }, 1));
 	gfx::Animation_player player_ducking_attacking_anim(gfx::Animation({ 11, 12 }, 10, false));
-    gfx::Animation_player player_taking_hit_anim(gfx::Animation({29, 28, 27, 26}, 10));
-
+    gfx::Animation_player player_taking_hit_anim(gfx::Animation({ SID('hero_damage01'),
+                                                                  SID('hero_damage02'),
+                                                                  SID('hero_damage03'),
+                                                                  SID('hero_damage04') }, 10));
 	//add the parameters to the controller
 	m_panim_controller->add_parameter("is_running", gfx::Animator_controller_parameter::Type::BOOL);;
 	m_panim_controller->add_parameter("is_jumping", gfx::Animator_controller_parameter::Type::BOOL);
