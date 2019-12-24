@@ -40,7 +40,7 @@ namespace gfx {
 		//Sprite_atlas(const std::string & file_name, const string_id id);
 		
 		gfx::Texture_2d *get_texture();
-		void get_text_coord(const int sprite_no, math::Rect * prect, float * px_width, float *px_height) const;
+		const Atlas_image & get_image_data(const string_id image_id) const;
 		
 	private:
 		gfx::Texture_2d   *m_ptexture;				// size 16 bytes | alignment 4 bytes

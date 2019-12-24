@@ -3,9 +3,11 @@
 #include "Resource_manager.hpp"
 #include "Texture_2d.hpp"
 #include "string_id.hpp"
+#include "crc32.hpp"
 #include "Rect.hpp"
 
 #include <string>
+#include <utility>
 #include <iostream>
 #include <fstream>
 
@@ -209,43 +211,18 @@ gfx::Sprite_atlas::Sprite_atlas(const std::string & file_name, const string_id i
 }*/
 
 //get the uv coordinates for the sprite number 'sprite_no' in the texture atlas
-void gfx::Sprite_atlas::get_text_coord(const int sprite_no, math::Rect *prect, float * px_width, float * px_height) const
+const gfx::Atlas_image & gfx::Sprite_atlas::get_image_data(const string_id image_id) const
 {
-	
-//	cgm::vec2 uv0, uv1, uv2, uv3;
-	const math::Rect & rect = m_vrec[sprite_no];
+        std::map<string_id, Atlas_image>::const_iterator iter = m_images.find(image_id);
+        if (iter != m_images.cend()) {
+                return iter->second;
+        }
 
-//	uv0.x = rect.x / m_image_size.x;
-//	uv0.y = rect.y / m_image_size.y;
-
-//	uv1.x = uv0.x;
-//	uv1.y = uv0.y + rect.height / m_image_size.y;
-
-//	uv2.x = uv0.x + rect.width / m_image_size.x;
-//	uv2.y = uv1.y;
-
-//	uv3.x = uv2.x;
-//	uv3.y = uv0.y;
-	prect->x       = rect.x / m_ptexture->get_width();
-	prect->y       =  rect.y / m_ptexture->get_height();
-	prect->width   =  rect.width / m_ptexture->get_width();
-	prect->height  =  rect.height / m_ptexture->get_height();
-	
-	*px_width  = rect.width;
-	*px_height = rect.height;
-
-	//return Rect(rect.x / m_image_size.x, rect.y / m_image_size.y, rect.width / m_image_size.x, rect.height / m_image_size.y);
-
-	/*
-	m_vertices_uv.clear();
-	m_vertices_uv.push_back(uv1);
-	m_vertices_uv.push_back(uv2);
-	m_vertices_uv.push_back(uv3);
-
-	m_vertices_uv.push_back(uv3);
-	m_vertices_uv.push_back(uv0);
-	m_vertices_uv.push_back(uv1);
-	*/
+        // if the texture is not found, return the coordinates for a
+        // 'default error texture', such as a pink quad
+        string_id error_texture_id = get_crc32("TEXTURE_NOT_FOUND");
+        iter = m_images.find(error_texture_id);
+        return iter->second;
 }
 
 /*
