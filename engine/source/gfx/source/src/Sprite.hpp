@@ -22,7 +22,6 @@ namespace gfx {
 				math::vec3 * get_vertex_position_vec()         { return m_vertices_pos;}
 		const	math::vec2 * get_vertex_uv_vec()		const  { return m_vertices_uv; };
 				math::vec2 * get_vertex_uv_vec()	           { return m_vertices_uv; };
-				unsigned     get_pixels_per_unit()	    const  { return m_pixels_per_unit;}
 				bool		 is_active()			    const  { return m_is_active; }
 	    const   Sprite_atlas *get_atlas()		        const;
 				uint8_t      get_layer()				const  { return m_layer;}
@@ -39,8 +38,6 @@ namespace gfx {
 		math::vec3							 m_vertices_pos[POS_ARRAY_SZ]; // size = 72 bytes | alignment = 4 bytes
 		math::vec2							 m_vertices_uv[UV_ARRAY_SZ];	// size = 48 bytes | alignment = 4 bytes
 		
-		// number of pixels per game world's unit
-		float								 m_pixels_per_unit; // size = 4 bytes | alignment = 4 bytes
 		bool								 m_is_active;
      // scale taking into account the pixels per world unit
 		math::vec2                           m_scale; // size = 8 btyes | alignment = 4 bytes          
