@@ -39,8 +39,7 @@ namespace gfx {
 		math::vec2							 m_vertices_uv[UV_ARRAY_SZ];	// size = 48 bytes | alignment = 4 bytes
 		
 		bool								 m_is_active;
-     // scale taking into account the pixels per world unit
-		math::vec2                           m_scale; // size = 8 btyes | alignment = 4 bytes          
+        math::vec2                           m_size_in_wld_units;
 		const Sprite_atlas					*m_patlas;	//MAYBE CHANGE TO AN ID
 		uint8_t								 m_layer;
 		
