@@ -28,11 +28,11 @@ namespace gfx {
 		float                             get_playback_rate()          const { return m_playback_rate; }
 		void                              set_playback_rate(const float r) { m_playback_rate = r; }
 	private:
-		bool				              m_loop;
-		float				              m_frames_per_second;
-		float                             m_playback_rate;
-		std::vector<unsigned>::size_type  m_frame_count;
-		std::vector<unsigned>			  m_frames;
+		bool				    m_loop;
+		float				    m_frames_per_second;
+		float                   m_playback_rate;
+        frameids_size_type      m_frame_count;
+        frameids_vec			m_frames;
 	};
 }
 
