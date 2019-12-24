@@ -10,6 +10,7 @@
 
 #include <iostream>
 
+#include "crc32.hpp"
 #include "Sprite_atlas.hpp"
 #include "Animator_controller.hpp"
 #include "Animation_player.hpp"
@@ -61,9 +62,13 @@ void Hover_robot_creator::create_anim_controller()
 
 	m_panim_controller = static_cast<gfx::Animator_controller*>(new (pmem) gfx::Animator_controller);
 	
-	gfx::Animation_player idle_anim(gfx::Animation({ 53,54, 55, 56 }, 4));
+    gfx::Animation idle_anim({ SID('robot_idle01'), SID('robot_idle02'),
+                               SID('robot_idle03'), SID('robot_idle04') }, 4);
+            
+	gfx::Animation_player idle_player(idle_anim);
 
-	gfx::Animator_state & idle_state = m_panim_controller->add_state("hover_robot_idle", idle_anim);
+	gfx::Animator_state & idle_state = m_panim_controller->add_state("hover_robot_idle",
+                                                                     idle_player);
 }
 
 Hover_robot_creator::~Hover_robot_creator() 
