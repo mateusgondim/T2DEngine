@@ -40,16 +40,18 @@ void gfx::Sprite::update_uv(const string_id sprite_id)
 
 void gfx::Sprite::update_pos(const math::vec3 & pos, const bool facing_left)
 {
-	m_scale.x = (facing_left) ? (m_scale.x) : (-m_scale.x);
+	m_size_in_wld_units.x = (facing_left) ? (m_size_in_wld_units.x) : (-m_size_in_wld_units.x);
 
-	m_vertices_pos[0] = math::vec3(-(m_scale.x / 2.0f), -(m_scale.y / 2.0f), 0.0f) + pos;
-	m_vertices_pos[1] = math::vec3(m_scale.x / 2.0f, -(m_scale.y / 2.0f), 0.0f) + pos;
-	m_vertices_pos[2] = math::vec3(m_scale.x / 2.0f, m_scale.y / 2.0f, 0.0f) + pos;
+    math::vec2 half_length(m_size_in_wld_units.x / 2.0f, m_size_in_wld_units.y / 2.0f);
+
+	m_vertices_pos[0] = math::vec3(-half_length.x, -half_length.y, 0.0f) + pos;
+	m_vertices_pos[1] = math::vec3(half_length.x, -half_length.y, 0.0f) + pos;
+	m_vertices_pos[2] = math::vec3(half_length.x, half_length.y, 0.0f) + pos;
 	m_vertices_pos[3] = m_vertices_pos[2];
-	m_vertices_pos[4] = math::vec3(-(m_scale.x / 2.0f), m_scale.y / 2.0f, 0.0f) + pos;
+	m_vertices_pos[4] = math::vec3(-half_length.x, half_length.y, 0.0f) + pos;
 	m_vertices_pos[5] = m_vertices_pos[0];
 
-	m_scale.x = (facing_left) ? (m_scale.x) : (-m_scale.x);
+	m_size_in_wld_units.x = (facing_left) ? (m_size_in_wld_units.x) : (-m_size_in_wld_units.x);
 }
 
 
