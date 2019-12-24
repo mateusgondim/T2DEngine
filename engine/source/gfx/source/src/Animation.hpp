@@ -14,11 +14,10 @@ namespace gfx {
 
 
 		Animation() : m_frame_count(0) {}
-		Animation(const std::vector<unsigned> & frames, const float frames_per_second, const bool loop = true) : 
-			m_frames(frames), m_frames_per_second(frames_per_second), m_loop(loop), m_playback_rate(1.0f)
-		{
-			m_frame_count = m_frames.size();
-		}
+		Animation(const frameids_vec & frames, const float frames_per_second,
+                  const bool loop = true) : 
+                m_loop(loop), m_frames_per_second(frames_per_second), m_playback_rate(1.0f),
+                m_frame_count(frames.size()), m_frames(frames) {}
 
 		float					frames_per_second()        const { return m_frames_per_second; }
 		frameids_size_type      num_frames()			   const { return m_frame_count; }
