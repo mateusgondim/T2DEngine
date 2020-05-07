@@ -24,10 +24,10 @@ namespace ui
                 explicit Widget(Canvas & parent_canvas);
                          Widget(Canvas & parent_canvas, const math::Rect & rect,
                                 const std::size_t obj_sz = sizeof(Widget));
+                virtual vertex_data     get_view_space_vertices() const;
                 // Button * pbutton_component;
                 Canvas *         m_pparent_canvas;
                 math::Rect       m_rect;
-                void             get_view_space_vertices(gfx::Vertex1P1C1UV * pbuffer) const;
         };
 }
 #endif // !_WIDGET_HPP

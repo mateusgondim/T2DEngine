@@ -1,5 +1,6 @@
 #include "Widget.hpp"
 #include "Canvas.hpp"
+#include "UI_manager.hpp"
 #include "Event.hpp"
 #include "Game_object.hpp"
 #include "Vertex1P1C1UV.hpp"
@@ -21,7 +22,8 @@ namespace ui
 
         void Widget::on_event(Event & event) {}
 
-        void Widget::get_view_space_vertices(gfx::Vertex1P1C1UV *pbuffer) const
+        // TODO: Use a stack allocator instead of the static global g_vertex_buffer
+        Widget::vertex_data Widget::get_view_space_vertices() const
         {
                 math::vec4  bottom_left_pos(m_rect.min());
                 math::vec4  bottom_right_pos(bottom_left_pos.x + m_rect.width,
@@ -39,6 +41,7 @@ namespace ui
                 top_left_pos *= view_space;
                 
                 // set the buffer's data
+                gfx::Vertex1P1C1UV *pbuffer = ui::g_vertex_buffer;
                 math::vec4 widget_color(1.0f);
                 pbuffer[0].m_col = widget_color;
                 pbuffer[0].m_pos = math::vec3(bottom_left_pos.x, bottom_left_pos.y, 0.0f);
@@ -63,6 +66,8 @@ namespace ui
                 pbuffer[5].m_col = widget_color;
                 pbuffer[5].m_pos = math::vec3(bottom_left_pos.x, bottom_left_pos.y, 0.0f);
                 pbuffer[5].m_uv = math::g_zero_vec2;
+
+                return std::make_pair(pbuffer, 6);
         }
 
 }
