@@ -75,7 +75,11 @@ void gfx::Sprite_atlas::load()
 
 			//loop trough all the sprite lines
             std::string sprite_name;
+
 			while (std::getline(in, line) && (line.find("<sprite") != std::string::npos)) { // for every sprite int the atlas
+                if (line.find("<!--") != std::string::npos) {
+                    continue;
+                }
 				float x, y, w, h;
 				//	std::cout << line << std::endl;
 				pos = line.find("x");
