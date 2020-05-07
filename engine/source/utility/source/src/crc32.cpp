@@ -61,3 +61,12 @@ std::uint32_t get_crc32(const char *pword)
 	
 	return(crc ^ 0xFFFFFFFF);
 }
+
+// get_crc32: generates the crc32 checksum for a single character
+std::uint32_t get_crc32(const int c) 
+{
+	std::uint32_t crc = 0xFFFFFFFF;
+    crc = ((crc >> 8) & 0x00FFFFFF) ^ crc_table[(crc^c) & 0xFF];
+	
+	return(crc ^ 0xFFFFFFFF);
+}
