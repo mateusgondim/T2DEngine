@@ -129,7 +129,7 @@ Path::Path(Path && path) noexcept : m_separator(path.m_separator), m_strlen(path
 Path::~Path() 
 {
 	free(m_str);
-	m_str	 = nullptr;
+	m_str = nullptr;
 	m_strlen = 0;
 	m_capacity = 0;
 }
