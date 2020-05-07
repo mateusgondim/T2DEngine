@@ -7,6 +7,9 @@
 #include "Game_object_manager.hpp"
 #include "Event.hpp"
 #include "string_id.hpp"
+#include "Resource.hpp"
+#include "Sprite_atlas.hpp"
+#include "Sprite_atlas_manager.hpp"
 
 #include "runtime_memory_allocator.hpp"
 
@@ -43,6 +46,16 @@ namespace ui
                 m_dirty = true;
                 
                 return pwidget;
+        }
+
+
+        gfx::Sprite_atlas * Canvas::get_atlas()
+        {
+                rms::Resource * pres = gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_id);
+                if (pres) {
+                        return static_cast<gfx::Sprite_atlas*>(pres);
+                }
+                return nullptr;
         }
 
         void Canvas::render()

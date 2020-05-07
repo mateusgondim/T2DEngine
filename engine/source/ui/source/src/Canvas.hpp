@@ -8,6 +8,7 @@
 #include <cstdint>
 
 namespace ui { class Widget; class UI_manager; }
+namespace gfx { class Sprite_atlas; }
 class Event;
 
 namespace ui
@@ -20,6 +21,8 @@ namespace ui
                 virtual void                 update(float dt) override;
                 virtual void                 on_event(Event & event) override;
                                              ~Canvas();
+                gfx::Sprite_atlas *    get_atlas();
+
         private:
                 explicit                     Canvas(const math::Rect & rect,
                                                     const string_id atlas_id);
