@@ -8,7 +8,7 @@
  */
 #include <iostream>
 
-class Path {
+class Path final {
 friend std::ostream & operator<<(std::ostream & os, const Path & path);
 friend Path operator+(const char *lhs, const Path & rhs);
 public:
