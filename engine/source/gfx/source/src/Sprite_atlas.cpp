@@ -92,10 +92,9 @@ void gfx::Sprite_atlas::load()
 				h = std::stoi(line.substr(line.find_first_of(digits, pos)));
 
                 pos = line.find("n");
-                pos = line.find("\"", pos);
-                auto last_pos = line.find(".", pos);
-                last_pos = (last_pos == std::string::npos) ? (line.find("\"", pos + 1)) : (last_pos);
-
+                pos = line.find_first_of('\"', pos);
+                // closing comma
+                auto last_pos = line.find_first_of("\"", pos + 1);
                 sprite_name = line.substr(pos + 1, last_pos - (pos + 1));
 
                 // Calculate the normalized texture coordinates
