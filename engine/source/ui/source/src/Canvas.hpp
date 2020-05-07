@@ -27,9 +27,9 @@ namespace ui
                 explicit                     Canvas(const math::Rect & rect,
                                                     const string_id atlas_id);
                 void                         render();
-                // Maybe the canvas should have the Texture and shader program
+                // Maybe the canvas should have a shader program
                 static const std::uint8_t    s_max_num_widgets = 10;
-                static const std::uint8_t    s_vertices_per_widget = 6;
+                static const std::uint8_t    s_max_num_vertices_per_widget = 48; 
                 std::uint8_t                 m_num_widgets;
                 bool                         m_dirty;
                 string_id                    m_atlas_id;
