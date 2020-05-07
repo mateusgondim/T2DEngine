@@ -6,6 +6,7 @@
 #include "Game_object_handle.hpp"
 #include "Game_object_manager.hpp"
 #include "Event.hpp"
+#include "string_id.hpp"
 
 #include "runtime_memory_allocator.hpp"
 
@@ -20,10 +21,10 @@ namespace ui
         const std::uint8_t    Canvas::s_vertices_per_widget;
 
 
-        Canvas::Canvas(const math::Rect & rect) :
+        Canvas::Canvas(const math::Rect & rect, const string_id atlas_id) :
                 gom::Game_object(sizeof(Canvas), math::g_zero_vec3), m_num_widgets(0),
-                m_dirty(true), m_rect(rect),
-                m_vertex_batch(s_vertices_per_widget * s_max_num_widgets, true) {}
+                m_dirty(true), m_atlas_id(atlas_id), m_rect(rect),
+                m_vertex_batch(s_max_num_vertices_per_widget * s_max_num_widgets, true) {}
 
         void Canvas::update(const float dt) {}
         void Canvas::on_event(Event & event) {}
