@@ -7,6 +7,8 @@
 #include "Game_object_handle.hpp"
 #include "Game_object_manager.hpp"
 #include "Shader.hpp"
+#include "Texture_2d.hpp"
+#include "Sprite_atlas.hpp"
 
 #include <cstdint>
 
@@ -24,14 +26,14 @@ namespace ui
                 m_num_canvases = 0;
         }
 
-        Canvas * UI_manager::create_canvas(const math::Rect & rect)
+        Canvas * UI_manager::create_canvas(const math::Rect & rect, gfx::Sprite_atlas & atlas)
         {
                 if (m_num_canvases >= s_max_num_canvases) {
                         return nullptr;
                 }
 
                 void *pmem = mem::allocate(sizeof(Canvas));
-                Canvas *pcanvas = new (pmem) Canvas(rect);
+                Canvas *pcanvas = new (pmem) Canvas(rect, atlas.get_id());
                 m_pcanvases[m_num_canvases++] = pcanvas;
 
                 return pcanvas;
@@ -47,9 +49,9 @@ namespace ui
         // bottom and top values, to initialize the Canvas's rect
         // TODO: set the Rect to be the size of the screen!!!!!
 
-        Canvas * UI_manager::create_canvas()
+        Canvas * UI_manager::create_canvas(gfx::Sprite_atlas & atlas)
         {
-                return create_canvas(math::Rect());
+                return create_canvas(math::Rect(), atlas);
         }
 
         void UI_manager::render()
