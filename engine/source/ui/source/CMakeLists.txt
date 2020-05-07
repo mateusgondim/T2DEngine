@@ -9,9 +9,9 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(source_dir src)
 
-set(include_files src/Widget.hpp src/Canvas.hpp src/UI_manager.hpp)
+set(include_files src/Widget.hpp src/Canvas.hpp src/Text.hpp src/UI_manager.hpp)
 
-set(unprocessed_source_files Widget.cpp Canvas.cpp UI_manager.cpp)
+set(unprocessed_source_files Widget.cpp Canvas.cpp Text.cpp UI_manager.cpp)
 
 set(preprocessed_files "")
 preprocess_source_files("${unprocessed_source_files}" preprocessed_files

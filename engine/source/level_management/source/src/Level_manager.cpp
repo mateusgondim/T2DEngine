@@ -56,21 +56,36 @@ namespace level_management
                 m_presources_path = new Path(resources_path);
                 m_ptile_map = ptile_map;
 
-                // load atlas needed for the player and enemies sprite
-                gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.load("player", (*m_presources_path +  "/sprite sheets/characters.xml").c_str(), &gfx::g_texture_2d_mgr));
+                // load atlas needed for the player and enemies sprites
+                Path sprites_path = *m_presources_path + "/sprite sheets/";
+                gfx::g_sprite_atlas_mgr.load("player",
+                                             (sprites_path + "characters.xml").c_str(),
+                                             &gfx::g_texture_2d_mgr);
+
+                // load atlas needed for UI
+                gfx::g_sprite_atlas_mgr.load("ui",
+                                             (sprites_path + "c64.xml").c_str(),
+                                             &gfx::g_texture_2d_mgr);
 
                 //load tile map shader  
-                m_pmap_shader = static_cast<gfx::Shader*>(gfx::g_shader_mgr.load("tile_map_shader", (*m_presources_path + "/shaders/vertex.vert").c_str(), (*m_presources_path + "/shaders/fragment.frag").c_str()));
+                Path shaders_path = *m_presources_path + "/shaders/";
+                rms::Resource *pmap_shader_res = gfx::g_shader_mgr.load("tile_map_shader",
+                                                                        (shaders_path + "vertex.vert").c_str(),
+                                                                        (shaders_path + "fragment.frag").c_str());
+                m_pmap_shader = static_cast<gfx::Shader*>(pmap_shader_res);
 
                 //load sprite shader
-                m_psprite_shader = static_cast<gfx::Shader*>(gfx::g_shader_mgr.load("sprite_shader", (*m_presources_path + "/shaders/sprite.vert").c_str(), (*m_presources_path + "/shaders/sprite.frag").c_str()));
+                rms::Resource *psprite_shader_res = gfx::g_shader_mgr.load("sprites_shader",
+                                                                           (shaders_path + "sprite.vert").c_str(),
+                                                                           (shaders_path + "sprite.frag").c_str());
+                m_psprite_shader = static_cast<gfx::Shader*>(psprite_shader_res);
 
-                // load default widget shader
-                rms::Resource * pshader_res = gfx::g_shader_mgr.load("widget_shader",
-                                                                     (*m_presources_path + "/shaders/test_ui.vert").c_str(),
-                                                                     (*m_presources_path + "/shaders/test_ui.frag").c_str());
-
-                ui::g_ui_mgr.set_widgets_shader(*static_cast<gfx::Shader*>(pshader_res));
+                //---------------------Test for UI---------------------------------------------//
+                rms::Resource * pui_shader_res = gfx::g_shader_mgr.load("ui_shader",
+                                                                        (shaders_path + "ui.vert").c_str(),
+                                                                        (shaders_path + "ui.frag").c_str());
+                
+                ui::g_ui_mgr.set_widgets_shader(*(static_cast<gfx::Shader*>(pui_shader_res)));
 
                 //load the data necessary to instantiate the level's game objects 
                 load_level_objects();
@@ -130,7 +145,10 @@ namespace level_management
 
                 // WIDGET TEST
                 math::Rect screen_rect = plevel_camera->get_screen_rect();
-                ui::Canvas *pcanvas = ui::g_ui_mgr.create_canvas(screen_rect);
+                rms::Resource * pres = gfx::g_sprite_atlas_mgr.get_by_name("ui");
+                gfx::Sprite_atlas * patlas = static_cast<gfx::Sprite_atlas*>(pres);
+                static_cast<gfx::Sprite_atlas*>(pres);
+                ui::Canvas *pcanvas = ui::g_ui_mgr.create_canvas(screen_rect, *patlas);
 
                 math::Rect widget_rect(screen_rect.x, screen_rect.y,
                                        screen_rect.width / 4.0f, screen_rect.height / 6.0f);

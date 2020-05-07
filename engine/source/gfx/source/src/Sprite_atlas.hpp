@@ -5,7 +5,7 @@
 #include "Sprite_atlas_manager.hpp"
 #include "Rect.hpp"
 #include "string_id.hpp"
-#include <vector>
+#include <map>
 
 /*Sprite_atlas: this class stores all the data associated with
  * a sprite atlas necessary for rendering it, including the texture_2d  
@@ -16,8 +16,17 @@ namespace rms { class Resource_manager; }
 namespace gfx { class Texture_2d; class Texture_2d_manager; }
 
 namespace gfx {
+
+        // Struct containig data regarding a single image on the atlas
+        struct Atlas_image {
+                math::Rect      m_texture_coordinates;
+                int             m_width; // in pixels
+                int             m_height; // in pixels
+        };
+
 	class Sprite_atlas : public rms::Resource {
-	friend rms::Resource *gfx::Sprite_atlas_manager::load(const char *name, const char *file_path, gfx::Texture_2d_manager *texture_manager);
+	friend rms::Resource *gfx::Sprite_atlas_manager::load(const char *name, const char *file_path,
+                                                          gfx::Texture_2d_manager *texture_manager);
 	public:
 		Sprite_atlas(rms::Resource_manager *pcreator, const char *name);
 
@@ -30,22 +39,16 @@ namespace gfx {
 
 		//Sprite_atlas(const std::string & file_name, const string_id id);
 		
-		//Texture_2d &      get_texture()		    { return m_texture; }
-		
-		//string_id			get_string_id()		   const { return m_id; }
 		gfx::Texture_2d *get_texture();
-		void get_text_coord(const int sprite_no, math::Rect * prect, float * px_width, float *px_height) const;
+		const Atlas_image & get_image_data(const string_id image_id) const;
 		
-		//~Sprite_atlas();
 	private:
-		//string_id				m_id;					// size 4 bytes | alignment 4 bytes
-		
 		gfx::Texture_2d   *m_ptexture;				// size 16 bytes | alignment 4 bytes
 	    char			  *m_atlas_file_path;
 		char			  *m_texture_file_path;
 
-	// pixel coordinates of each sprite on the texture atlas
-		std::vector<math::Rect>	m_vrec;					// 12 bytes size 4 byte aligment 
+        // Data for each sprite on the texture atlas
+        std::map<string_id, Atlas_image>  m_images;
 
 	  //TODO: SCALE THE VERTICES IN THE POSITION VECTOR WHEN CHANGING THE CURRENT VERTEX UV COORDINATES			
 	};

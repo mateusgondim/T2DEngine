@@ -3,18 +3,19 @@
 
 #include <cstdint>
 #include "Rect.hpp"
+#include "Vertex1P1C1UV.hpp"
 
 namespace ui { class Canvas; }
 namespace math { struct Rect; }
-namespace gfx { class Shader; }
+namespace gfx { class Shader; class Sprite_atlas; }
 
 namespace ui
 {
         class UI_manager final {
         public:
                 UI_manager() = default;
-                Canvas *        create_canvas(const math::Rect & rect);
-                Canvas *        create_canvas();
+                Canvas *        create_canvas(const math::Rect & rect, gfx::Sprite_atlas & atlas);
+                Canvas *        create_canvas(gfx::Sprite_atlas & atlas);
                 UI_manager(const UI_manager &) = delete;
 
                 UI_manager & operator=(const UI_manager &) = delete;
@@ -32,5 +33,10 @@ namespace ui
         };
 
         extern UI_manager g_ui_mgr;
+
+        // this buffer should be temporarily! the idea is to implement a stack allocator
+        // and use it for the UI module as a hole
+        extern const std::size_t        g_vertex_buffer_sz;
+        extern gfx::Vertex1P1C1UV       g_vertex_buffer[];
 }
 #endif // !_UI_MANAGER_HPP

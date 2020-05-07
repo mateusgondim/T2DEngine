@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<TextureAtlas imagePath="ui_text.png" width="256" height="128">
+ <sprite n=" " x="1" y="15" w="0" h="0"/>
+ <sprite n="!" x="2" y="1" w="4" h="14"/>
+ <!--<sprite n=".png" rect="7 1 12 6" code="&quot;"/>-->
+ <sprite n="#" x="20" y="1" w="16" h="14"/>
+ <sprite n="$" x="37" y="1" w="12" h="14"/>
+ <!--<sprite n="" rect="50 1 12 14" code="%"/>-->
+ <!--<sprite n="" rect="63 1 14 14" code="&amp;"/>-->
+ <!--<sprite n="" rect="78 1 8 6" code="'"/>-->
+ <!--<sprite n="" rect="87 1 8 14" code="("/>-->
+ <!--<sprite n="" rect="96 1 8 14" code=")"/>-->
+ <!--<sprite n=""  rect="105 3 16 10" code="*"/>-->
+ <!--<sprite n=""  rect="122 3 12 10" code="+"/>-->
+ <sprite n="," x="135" y="11" w="6" h="6" />
+ <sprite n="-" x="142" y="7" w="12" h="2" />
+ <sprite n="." x="155" y="11" w="4" h="4"/>
+ <!--<sprite n="" offset="0 10" rect="160 3 14 12" code="/"/>-->
+ <sprite n="0" x="175" y="1" w="12" h="14"/>
+ <sprite n="1" x="188" y="1" w="12" h="14"/>
+ <sprite n="2" x="201" y="1" w="12" h="14"/>
+ <sprite n="3" x="214" y="1" w="12" h="14"/>
+ <sprite n="4" x="227" y="1" w="14" h="14"/>
+ <sprite n="5" x="242" y="1" w="12" h="14"/>
+ <sprite n="6" x="1" y="18" w="12" h="14"/>
+ <sprite n="7" x="14" y="18" w="12" h="14"/>
+ <sprite n="8" x="27" y="18" w="12" h="14" />
+ <sprite n="9" x="40" y="18" w="12" h="14"/>
+ <sprite n=":" x="53" y="22" w="4" h="8"/>
+ <sprite n=";" x="58" y="22" w="6" h="12"/>
+ <!--<sprite n="" offset="0 8" rect="65 18 12 14" code="&lt;"/>-->
+ <sprite n="=" x="78" y="22" w="12" h="6"/>
+ <!--<sprite n="" offset="0 8" rect="91 18 12 14" code=">"/>-->
+ <sprite n="?" x="104" y="18" w="12" h="14"/>
+ <sprite n="@" x="117" y="18" w="12" h="14"/>
+ <sprite n="A" x="130" y="18" w="12" h="14"/>
+ <sprite n="B" x="143" y="18" w="12" h="14"/>
+ <sprite n="C" x="156" y="18" w="12" h="14"/>
+ <sprite n="D" x="169" y="18" w="12" h="14"/>
+ <sprite n="E" x="182" y="18" w="12" h="14"/>
+ <sprite n="F" x="195" y="18" w="12" h="14"/>
+ <sprite n="G" x="208" y="18" w="12" h="14"/>
+ <sprite n="H" x="221" y="18" w="12" h="14"/>
+ <sprite n="I" x="234" y="18" w="8" h="14"/>
+ <sprite n="J" x="1" y="35" w="12" h="14"/>
+ <sprite n="K" x="14" y="35" w="12" h="14"/>
+ <sprite n="L" x="27" y="35" w="12" h="14"/>
+ <sprite n="M" x="40" y="35" w="14" h="14" />
+ <sprite n="N" x="55" y="35" w="12" h="14"/>
+ <sprite n="O" x="68" y="35" w="12" h="14"/>
+ <sprite n="P" x="81" y="35" w="12" h="14"/>
+ <sprite n="Q" x="94" y="35" w="12" h="14"/>
+ <sprite n="R" x="107" y="35" w="12" h="14"/>
+ <sprite n="S" x="120" y="35" w="12" h="14"/>
+ <sprite n="T" x="133" y="35" w="12" h="14"/>
+ <sprite n="U" x="146" y="35" w="12" h="14"/>
+ <sprite n="V" x="159" y="35" w="12" h="14"/>
+ <sprite n="W" x="172" y="35" w="14" h="14"/>
+ <sprite n="X" x="187" y="35" w="12" h="14"/>
+ <sprite n="Y" x="200" y="35" w="12" h="14"/>
+ <sprite n="Z" x="213" y="35" w="12" h="14"/>
+ <!--<sprite n="" offset="0 8" rect="226 35 8 14" code="["/>-->
+ <!--<sprite n="" offset="0 10" rect="235 37 14 12" code="\"/>-->
+ <!--<sprite n="" offset="0 8" rect="1 50 8 14" code="]"/>-->
+ <!--<sprite n="" offset="0 10" rect="10 52 12 6" code="^"/>-->
+ <sprite n="_" x="23" y="62" w="16" h="4"/>
+ <!--<sprite n="" offset="0 8" rect="40 50 8 6" code="`"/>-->
+ <!--<sprite n="" offset="0 12" rect="49 54 12 10" code="a"/>-->
+ <!--<sprite n="" offset="0 10" rect="62 52 12 12" code="b"/>-->
+ <!--<sprite n="" offset="0 12" rect="75 54 10 10" code="c"/>-->
+ <!--<sprite n="" offset="0 10" rect="86 52 12 12" code="d"/>-->
+ <!--<sprite n="" offset="0 12" rect="99 54 12 10" code="e"/>-->
+ <!--<sprite n="" offset="0 10" rect="112 52 10 12" code="f"/>-->
+ <!--<sprite n="" offset="0 12" rect="123 54 12 12" code="g"/>-->
+ <!--<sprite n="" offset="0 10" rect="136 52 12 12" code="h"/>-->
+ <!--<sprite n="" offset="0 10" rect="149 52 8 12" code="i"/>-->
+ <!--<sprite n="" offset="0 10" rect="158 52 10 14" code="j"/>-->
+ <!--<sprite n="" offset="0 10" rect="169 52 12 12" code="k"/>-->
+ <!--<sprite n="" offset="0 10" rect="182 52 8 12" code="l"/>-->
+ <!--<sprite n="" offset="0 12" rect="191 54 14 10" code="m"/>-->
+ <!--<sprite n="" offset="0 12" rect="206 54 12 10" code="n"/>-->
+ <!--<sprite n="" offset="0 12" rect="219 54 12 10" code="o"/>-->
+ <!--<sprite n="" offset="0 12" rect="232 54 12 12" code="p"/>-->
+ <!--<sprite n="" offset="0 12" rect="1 71 12 12" code="q"/>-->
+ <!--<sprite n="" offset="0 12" rect="14 71 12 10" code="r"/>-->
+ <!--<sprite n="" offset="0 12" rect="27 71 12 10" code="s"/>-->
+ <!--<sprite n="" offset="0 10" rect="40 69 12 12" code="t"/>-->
+ <!--<sprite n="" offset="0 12" rect="53 71 12 10" code="u"/>-->
+ <!--<sprite n="" offset="0 12" rect="66 71 12 10" code="v"/>-->
+ <!--<sprite n="" offset="0 12" rect="79 71 14 10" code="w"/>-->
+ <!--<sprite n="" offset="0 12" rect="94 71 12 10" code="x"/>-->
+ <!--<sprite n="" offset="0 12" rect="107 71 12 12" code="y"/>-->
+ <!--<sprite n="" offset="0 12" rect="120 71 12 10" code="z"/>-->
+ <!--<sprite n="" offset="0 8" rect="133 67 12 14" code="{"/>-->
+ <!--<sprite n=" offset="0 8" rect="146 67 4 16" code="|"/>-->
+ <!--<sprite n="" offset="0 8" rect="151 67 12 14" code="}"/>-->
+ <!--<sprite n="" offset="0 8" rect="164 67 14 4" code="~"/>-->
+</TextureAtlas>

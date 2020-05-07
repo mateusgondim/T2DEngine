@@ -1,29 +1,35 @@
 #include "Canvas.hpp"
 #include "Game_object.hpp"
 #include "Widget.hpp"
+#include "Text.hpp"
 #include "Vertex1P1C1UV.hpp"
 #include "Sprite_batch.hpp"
 #include "Game_object_handle.hpp"
 #include "Game_object_manager.hpp"
 #include "Event.hpp"
+#include "string_id.hpp"
+#include "Resource.hpp"
+#include "Sprite_atlas.hpp"
+#include "Sprite_atlas_manager.hpp"
 
 #include "runtime_memory_allocator.hpp"
 
 #include "vec3.hpp"
 #include "Rect.hpp"
 #include <cstdint>
+#include <utility>
 
 
 namespace ui
 {
         const std::uint8_t    Canvas::s_max_num_widgets;
-        const std::uint8_t    Canvas::s_vertices_per_widget;
+        const std::uint8_t    Canvas::s_max_num_vertices_per_widget;
 
 
-        Canvas::Canvas(const math::Rect & rect) :
+        Canvas::Canvas(const math::Rect & rect, const string_id atlas_id) :
                 gom::Game_object(sizeof(Canvas), math::g_zero_vec3), m_num_widgets(0),
-                m_dirty(true), m_rect(rect),
-                m_vertex_batch(s_vertices_per_widget * s_max_num_widgets, true) {}
+                m_dirty(true), m_atlas_id(atlas_id), m_rect(rect),
+                m_vertex_batch(s_max_num_vertices_per_widget * s_max_num_widgets, true) {}
 
         void Canvas::update(const float dt) {}
         void Canvas::on_event(Event & event) {}
@@ -44,6 +50,31 @@ namespace ui
                 return pwidget;
         }
 
+        Text * Canvas::create_text(const math::Rect & rect, const std::string & msg,
+                                   const float scale_factor)
+        {
+                if (m_num_widgets >= s_max_num_widgets) {
+                        return nullptr;
+                }
+
+                void *pmem = mem::allocate(sizeof(Text));
+                Text *ptext = new (pmem) Text(*this, rect, msg, scale_factor);
+
+                m_pwidgets[m_num_widgets++] = ptext;
+                m_dirty = true;
+
+                return ptext;
+        }
+
+        gfx::Sprite_atlas * Canvas::get_atlas()
+        {
+                rms::Resource * pres = gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_id);
+                if (pres) {
+                        return static_cast<gfx::Sprite_atlas*>(pres);
+                }
+                return nullptr;
+        }
+
         void Canvas::render()
         {
                 if (m_dirty) {
@@ -51,11 +82,15 @@ namespace ui
                         m_vertex_batch.reset();
 
                         // recalculate the widgets vertices
-                        gfx::Vertex1P1C1UV vertices_buffer[s_vertices_per_widget];
                         std::uint8_t index = 0;
+                        Widget::vertex_data rendering_data;
                         for (index; index != m_num_widgets; ++index) {
-                                m_pwidgets[index]->get_view_space_vertices(vertices_buffer);
-                                m_vertex_batch.add(vertices_buffer, s_vertices_per_widget);
+                                rendering_data = m_pwidgets[index]->get_view_space_vertices();
+                                if (rendering_data.first == nullptr || rendering_data.second == 0) {
+                                        continue;
+                                }
+
+                                m_vertex_batch.add(rendering_data.first, rendering_data.second);
                         }
                         m_dirty = false;
                 }

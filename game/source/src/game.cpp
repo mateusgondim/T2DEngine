@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 
         // set the player projectile anim_controller
         gfx::Animator_controller *pcontroller(new gfx::Animator_controller());
-        gfx::Animation_player knife_idle_anim(gfx::Animation({ 19 }, 5));
+        gfx::Animation_player knife_idle_anim(gfx::Animation({ SID('fireball') }, 5));
         pcontroller->add_state("knife_idle_state", knife_idle_anim);
 
         //create a type id for the object
