@@ -6,8 +6,9 @@
 #include "Sprite_batch.hpp"
 #include "string_id.hpp"
 #include <cstdint>
+#include <string>
 
-namespace ui { class Widget; class UI_manager; }
+namespace ui { class Widget; class Text; class UI_manager; }
 namespace gfx { class Sprite_atlas; }
 class Event;
 
@@ -17,6 +18,8 @@ namespace ui
                 friend class UI_manager;
         public:
                 Widget * create_widget(const math::Rect & rect);
+                Text * create_text(const math::Rect & rect, const std::string & msg,
+                                   const float scale_factor = 1.0f);
 
                 virtual void                 update(float dt) override;
                 virtual void                 on_event(Event & event) override;

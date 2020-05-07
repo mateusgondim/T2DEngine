@@ -1,6 +1,7 @@
 #include "Canvas.hpp"
 #include "Game_object.hpp"
 #include "Widget.hpp"
+#include "Text.hpp"
 #include "Vertex1P1C1UV.hpp"
 #include "Sprite_batch.hpp"
 #include "Game_object_handle.hpp"
@@ -48,6 +49,21 @@ namespace ui
                 return pwidget;
         }
 
+        Text * Canvas::create_text(const math::Rect & rect, const std::string & msg,
+                                   const float scale_factor)
+        {
+                if (m_num_widgets >= s_max_num_widgets) {
+                        return nullptr;
+                }
+
+                void *pmem = mem::allocate(sizeof(Text));
+                Text *ptext = new (pmem) Text(*this, rect, msg, scale_factor);
+
+                m_pwidgets[m_num_widgets++] = ptext;
+                m_dirty = true;
+
+                return ptext;
+        }
 
         gfx::Sprite_atlas * Canvas::get_atlas()
         {
