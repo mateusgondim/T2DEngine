@@ -7,12 +7,14 @@
 #include "mat4.hpp"
 #include "Rect.hpp"
 
+#include <utility>
+
 namespace ui
 {
         Widget::Widget(Canvas & parent_canvas) : Widget(parent_canvas, math::Rect()) {}
 
-        Widget::Widget(Canvas & parent_canvas, const math::Rect & rect) :
-                gom::Game_object(sizeof(Widget), math::g_zero_vec3),
+        Widget::Widget(Canvas & parent_canvas, const math::Rect & rect, const std::size_t obj_sz) :
+                gom::Game_object(obj_sz, math::g_zero_vec3),
                 m_pparent_canvas(&parent_canvas), m_rect(rect) {}
 
         void Widget::update(const float dt) {}
