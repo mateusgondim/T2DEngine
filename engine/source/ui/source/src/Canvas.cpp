@@ -17,6 +17,7 @@
 #include "vec3.hpp"
 #include "Rect.hpp"
 #include <cstdint>
+#include <utility>
 
 
 namespace ui
@@ -81,11 +82,15 @@ namespace ui
                         m_vertex_batch.reset();
 
                         // recalculate the widgets vertices
-                        gfx::Vertex1P1C1UV vertices_buffer[s_vertices_per_widget];
                         std::uint8_t index = 0;
+                        Widget::vertex_data rendering_data;
                         for (index; index != m_num_widgets; ++index) {
-                                m_pwidgets[index]->get_view_space_vertices(vertices_buffer);
-                                m_vertex_batch.add(vertices_buffer, s_vertices_per_widget);
+                                rendering_data = m_pwidgets[index]->get_view_space_vertices();
+                                if (rendering_data.first == nullptr || rendering_data.second == 0) {
+                                        continue;
+                                }
+
+                                m_vertex_batch.add(rendering_data.first, rendering_data.second);
                         }
                         m_dirty = false;
                 }
