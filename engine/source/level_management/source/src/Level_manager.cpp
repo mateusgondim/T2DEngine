@@ -145,7 +145,10 @@ namespace level_management
 
                 // WIDGET TEST
                 math::Rect screen_rect = plevel_camera->get_screen_rect();
-                ui::Canvas *pcanvas = ui::g_ui_mgr.create_canvas(screen_rect);
+                rms::Resource * pres = gfx::g_sprite_atlas_mgr.get_by_name("ui");
+                gfx::Sprite_atlas * patlas = static_cast<gfx::Sprite_atlas*>(pres);
+                static_cast<gfx::Sprite_atlas*>(pres);
+                ui::Canvas *pcanvas = ui::g_ui_mgr.create_canvas(screen_rect, *patlas);
 
                 math::Rect widget_rect(screen_rect.x, screen_rect.y,
                                        screen_rect.width / 4.0f, screen_rect.height / 6.0f);
