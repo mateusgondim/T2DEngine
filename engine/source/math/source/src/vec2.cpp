@@ -75,6 +75,15 @@ math::vec2 math::operator/(const float k, const vec2 & rhs)
 	return r;
 }
 
+math::vec2 math::operator/(const vec2 & lhs, const float k)
+{
+        vec2 r = lhs;
+        r /= k;
+
+        return r;
+}
+
+
 float math::operator*(const vec2 & lhs, const vec2 & rhs)
 {
 	return lhs.x * rhs.x + lhs.y * rhs.y;
