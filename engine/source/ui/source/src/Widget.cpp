@@ -16,7 +16,7 @@ namespace ui
 
         Widget::Widget(Canvas & parent_canvas, const math::Rect & rect, const std::size_t obj_sz) :
                 gom::Game_object(obj_sz, math::g_zero_vec3),
-                m_pparent_canvas(&parent_canvas), m_rect(rect) {}
+                m_pparent_canvas(parent_canvas.add_widget(*this)), m_rect(rect) {}
 
         void Widget::update(const float dt) {}
 

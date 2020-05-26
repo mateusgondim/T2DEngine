@@ -20,7 +20,6 @@ namespace ui
 
                 virtual void            update(const float dt) override;
                 virtual void            on_event(Event & event) override;
-        protected:
                 explicit Widget(Canvas & parent_canvas);
                          Widget(Canvas & parent_canvas, const math::Rect & rect,
                                 const std::size_t obj_sz = sizeof(Widget));
