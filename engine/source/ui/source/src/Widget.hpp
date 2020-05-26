@@ -20,10 +20,14 @@ namespace ui
 
                 virtual void            update(const float dt) override;
                 virtual void            on_event(Event & event) override;
-        protected:
                 explicit Widget(Canvas & parent_canvas);
                          Widget(Canvas & parent_canvas, const math::Rect & rect,
                                 const std::size_t obj_sz = sizeof(Widget));
+                         bool has_parent() const 
+                         {
+                                 return (m_pparent_canvas) ? (true) : (false);
+                         }
+        protected:
                 virtual vertex_data     get_view_space_vertices() const;
                 // Button * pbutton_component;
                 Canvas *         m_pparent_canvas;

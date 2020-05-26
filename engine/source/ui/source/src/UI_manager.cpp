@@ -35,7 +35,7 @@ namespace ui
 
                 void *pmem = mem::allocate(sizeof(Canvas));
                 Canvas *pcanvas = new (pmem) Canvas(rect, atlas.get_id());
-                m_pcanvases[m_num_canvases++] = pcanvas;
+                m_canvases[m_num_canvases++].bind(*pcanvas);
 
                 return pcanvas;
         }
@@ -62,11 +62,19 @@ namespace ui
                 m_pwidgets_shader->uniform_matrix4fv(p_location, 1, false,
                                                      plevel_camera->projection().value_ptr());
 
+                gom::Game_object *pgame_object = nullptr;
+                Canvas *pcanvas = nullptr;
                 for (std::uint8_t i = 0; i != m_num_canvases; ++i) {
-                        if (m_pcanvases[i]->is_active()) {
-                                gfx::Sprite_atlas * patlas = m_pcanvases[i]->get_atlas();
+                        pgame_object = gom::g_game_object_mgr.get_by_handle(m_canvases[i]);
+                        if (!pgame_object) {
+                                continue;
+                        }
+
+                        pcanvas = static_cast<Canvas*>(pgame_object);
+                        if (pcanvas->is_active()) {
+                                gfx::Sprite_atlas * patlas = pcanvas->get_atlas();
                                 patlas->get_texture()->use();
-                                m_pcanvases[i]->render();
+                                pcanvas->render();
                         }
                 }
         }
@@ -74,9 +82,7 @@ namespace ui
         void UI_manager::shut_down()
         {
                 for (std::uint8_t i = 0; i != m_num_canvases; ++i) {
-                        gom::Game_object_handle handle(m_pcanvases[i]->get_unique_id(),
-                                                       m_pcanvases[i]->get_handle_index());
-                        gom::g_game_object_mgr.request_destruction(handle);
+                        gom::g_game_object_mgr.request_destruction(m_canvases[i]);
                 }
         }
 

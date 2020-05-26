@@ -48,6 +48,12 @@
 #include "Window.hpp"
 #include "Graphics_manager.hpp"
 
+// UI
+#include "UI_manager.hpp"
+#include "Canvas.hpp"
+#include "Widget.hpp"
+#include "Text.hpp"
+
 //gom
 #include "Game_object_handle.hpp"
 #include "Game_object_manager.hpp"
@@ -63,10 +69,14 @@
 //memory
 #include "runtime_memory_allocator.hpp"
 
+// UI creators
+#include "Level_ui_creator.hpp"
+
 //utility
 #include "crc32.hpp"
 #include "string_id.hpp"
 #include "Path.hpp"
+#include "Event.hpp"
 
 #include "engine.hpp"
 
@@ -129,6 +139,10 @@ int main(int argc, char *argv[])
         //register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
         gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator, SID('Enemy'));
 
+        // register UI Creators
+        Level_ui_creator * level_ui_creator = new Level_ui_creator(SID('ui'));
+        gom::g_game_object_mgr.register_creator(SID('level_ui'), level_ui_creator, SID('canvas'));
+
         std::cout << " TILE MAP WIDTH = " << tile_map.width() << "| TILE MAP HEIGHT = "
                   << tile_map.height() << std::endl;
 
@@ -157,8 +171,25 @@ int main(int argc, char *argv[])
         pmain_camera->track(player_type_id);
 
         gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
+
+
+
+        bool just_paused = false;
+        Event paused_event = Event(SID('GAME_PAUSED'));
+        Event running_event = Event(SID('GAME_RUNNING'));
+
         while (!prender_window->should_close()) {
                 level_management::g_level_mgr.tick();
+
+                if (just_paused != level_management::g_level_mgr.is_game_clock_paused()) {
+                        just_paused = !just_paused;
+                        if (just_paused) {
+                                gom::g_game_object_mgr.broadcast_event(paused_event);
+                        }
+                        else {
+                                gom::g_game_object_mgr.broadcast_event(running_event);
+                        }
+                }
         }
         engine_shut_down();
         return 0;

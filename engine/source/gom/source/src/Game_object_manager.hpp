@@ -14,6 +14,7 @@
  */
 namespace math { struct vec3; }
 namespace gom {class Creator; class Game_object_handle; class Camera_2d; }
+class Event;
 
 namespace gom {
 
@@ -50,6 +51,8 @@ namespace gom {
 
                 Game_object			        *get_by_handle(const Game_object_handle & handle);
                 vgame_object_handles        find_game_objects_with_type(uint32_t type);
+
+                void                        broadcast_event(Event & event);
 
                 void                        set_main_camera(Camera_2d * pmain_camera);
                 Camera_2d *                 get_main_camera();

@@ -33,10 +33,12 @@
 
 #include "mat4.hpp"
 #include "crc32.hpp"
+#include "runtime_memory_allocator.hpp"
 
 #include "Widget.hpp"
 #include "Canvas.hpp"
 #include "UI_manager.hpp"
+#include "Text.hpp"
 
 #include <vector>
 #include <utility>
@@ -142,18 +144,6 @@ namespace level_management
                 control_scheme.map_action_to_button(SID('pause'), io::Abstract_keyboard_index::KEY_P);
                 control_scheme.map_action_to_button(SID('reset_level'), 
                                                     io::Abstract_keyboard_index::KEY_R);
-
-                // WIDGET TEST
-                math::Rect screen_rect = plevel_camera->get_screen_rect();
-                rms::Resource * pres = gfx::g_sprite_atlas_mgr.get_by_name("ui");
-                gfx::Sprite_atlas * patlas = static_cast<gfx::Sprite_atlas*>(pres);
-                static_cast<gfx::Sprite_atlas*>(pres);
-                ui::Canvas *pcanvas = ui::g_ui_mgr.create_canvas(screen_rect, *patlas);
-
-                math::Rect widget_rect(screen_rect.x, screen_rect.y,
-                                       screen_rect.width / 4.0f, screen_rect.height / 6.0f);
-                ui::Widget *pwidget = pcanvas->create_widget(widget_rect);
-                
 
                 instantiate_level_objects();
 
@@ -279,10 +269,13 @@ namespace level_management
                 m_should_restart = false;
                 std::cout << "RESETING LEVEL...." << std::endl;
 
-                //restart projectile manager
+                // reset U_manager
+                ui::g_ui_mgr.reset();
+
+                //reset projectile manager
                 gom::g_projectile_mgr.reset();
 
-                //1. reset Game_object_manager
+                // reset Game_object_manager
                 gom::g_game_object_mgr.reset();
 
                 //RESET TIMER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -12,6 +12,8 @@
 #include "Physics_manager.hpp"
 #include "Body_2d.hpp"
 
+#include "Event.hpp"
+
 #include <map>
 #include <algorithm>
 #include <cassert>
@@ -123,9 +125,6 @@ namespace gom
                 //add it to the vector of game objects to be added to the main vector
                 m_game_objects_to_add.push_back(pgame_object);
 
-                //set to be inactive, is not yet on the game
-                pgame_object->set_active(false);
-
                 //return the handle for the registered game object
                 return Game_object_handle(unique_id, handle_index);
         }
@@ -196,7 +195,6 @@ namespace gom
         //destroy all the game objects in the world	
         void Game_object_manager::reset()
         {
-                m_game_objects_to_destroy.clear();
                 //check if there are objects that were added in the previous frame
                 if (!m_game_objects_to_add.empty()) {
                         vpgame_objects::iterator it = m_game_objects_to_add.begin();
@@ -243,6 +241,7 @@ namespace gom
                         //clear vector
                         m_game_objects.clear();
                 }
+                m_game_objects_to_destroy.clear();
                 //reset guid counter
                 m_next_guid = 1;
         }
@@ -273,6 +272,14 @@ namespace gom
                 return handles;
         }
 
+        void Game_object_manager::broadcast_event(Event & event)
+        {
+                vpgame_objects::iterator beg = m_game_objects.begin();
+                for (; beg != m_game_objects.end(); ++beg) {
+                        (*beg)->on_event(event);
+                }
+        }
+
         void Game_object_manager::update_game_objects(const float dt)
         {
                 vpgame_objects::iterator b;
@@ -280,8 +287,9 @@ namespace gom
                         // update the world's game object vector by adding the objects that were created on previous frame
                         b = m_game_objects_to_add.begin();
                         for (; b != m_game_objects_to_add.end(); ++b) {
-                                (*b)->set_active(true);
-                                m_game_objects.insert(std::upper_bound(m_game_objects.begin(), m_game_objects.end(), *b, sort_by_guid), *b);
+                                m_game_objects.insert(std::upper_bound(m_game_objects.begin(),
+                                                                       m_game_objects.end(),
+                                                                      *b, sort_by_guid), *b);
                         }
                         m_game_objects_to_add.clear();
                 }

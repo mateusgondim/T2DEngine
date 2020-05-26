@@ -32,6 +32,7 @@ namespace math {
 	vec2   operator-(const vec2 & lhs, const vec2 & rhs);
 	vec2   operator*(const float k,    const vec2 & rhs);
 	vec2   operator/(const float k,    const vec2 & rhs);
+    vec2   operator/(const vec2 & lhs, const float k);
 
 
 	//dot product
