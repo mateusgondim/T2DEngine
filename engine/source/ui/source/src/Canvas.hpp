@@ -15,7 +15,7 @@ class Event;
 
 namespace ui
 {
-        class Canvas : public gom::Game_object {
+        class Canvas final : public gom::Game_object {
                 friend class UI_manager;
         public:
                 Canvas * add_widget(const Widget & widget);
