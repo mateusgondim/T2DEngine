@@ -17,9 +17,9 @@
 namespace ui
 {
         Text::Text(Canvas & parent_canvas, const math::Rect & rect, const std::string & msg,
-                   const float scale_factor, const int characters_space,
+                   const std::size_t obj_sz, const float scale_factor, const int characters_space,
                    const int space_character_sz) :
-                Widget(parent_canvas, rect, sizeof(Text)), m_scale_factor(scale_factor),
+                Widget(parent_canvas, rect, obj_sz), m_scale_factor(scale_factor),
                 m_characters_space(characters_space), m_space_character_sz(space_character_sz),
                 m_characters_ids(msg.size()), m_msg(msg)
         {
