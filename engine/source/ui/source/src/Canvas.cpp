@@ -34,36 +34,14 @@ namespace ui
         void Canvas::update(const float dt) {}
         void Canvas::on_event(Event & event) {}
 
-
-        Widget * Canvas::create_widget(const math::Rect & rect)
+        Canvas * Canvas::add_widget(const Widget & widget)
         {
                 if (m_num_widgets >= s_max_num_widgets) {
                         return nullptr;
                 }
 
-                void *pmem = mem::allocate(sizeof(Widget));
-                Widget *pwidget = new (pmem) Widget(*this, rect);
-
-                m_pwidgets[m_num_widgets++] = pwidget;
-                m_dirty = true;
-                
-                return pwidget;
-        }
-
-        Text * Canvas::create_text(const math::Rect & rect, const std::string & msg,
-                                   const float scale_factor)
-        {
-                if (m_num_widgets >= s_max_num_widgets) {
-                        return nullptr;
-                }
-
-                void *pmem = mem::allocate(sizeof(Text));
-                Text *ptext = new (pmem) Text(*this, rect, msg, scale_factor);
-
-                m_pwidgets[m_num_widgets++] = ptext;
-                m_dirty = true;
-
-                return ptext;
+                m_widgets[m_num_widgets++].bind(widget);
+                return this;
         }
 
         gfx::Sprite_atlas * Canvas::get_atlas()

@@ -18,9 +18,7 @@ namespace ui
         class Canvas : public gom::Game_object {
                 friend class UI_manager;
         public:
-                Widget * create_widget(const math::Rect & rect);
-                Text * create_text(const math::Rect & rect, const std::string & msg,
-                                   const float scale_factor = 1.0f);
+                Canvas * add_widget(const Widget & widget);
 
                 virtual void                 update(float dt) override;
                 virtual void                 on_event(Event & event) override;
