@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "Rect.hpp"
 #include "Vertex1P1C1UV.hpp"
+#include "Game_object_handle.hpp"
 
 namespace ui { class Canvas; }
 namespace math { struct Rect; }
@@ -28,7 +29,7 @@ namespace ui
         private:
                 static const std::uint8_t       s_max_num_canvases = 8;
                 std::uint8_t                    m_num_canvases;
-                Canvas *                        m_pcanvases[s_max_num_canvases];
+                gom::Game_object_handle         m_canvases[s_max_num_canvases];
                 gfx::Shader *                   m_pwidgets_shader;
         };
 
