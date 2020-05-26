@@ -193,7 +193,6 @@ namespace gom
         //destroy all the game objects in the world	
         void Game_object_manager::reset()
         {
-                m_game_objects_to_destroy.clear();
                 //check if there are objects that were added in the previous frame
                 if (!m_game_objects_to_add.empty()) {
                         vpgame_objects::iterator it = m_game_objects_to_add.begin();
@@ -240,6 +239,7 @@ namespace gom
                         //clear vector
                         m_game_objects.clear();
                 }
+                m_game_objects_to_destroy.clear();
                 //reset guid counter
                 m_next_guid = 1;
         }
