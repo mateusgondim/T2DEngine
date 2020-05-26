@@ -123,9 +123,6 @@ namespace gom
                 //add it to the vector of game objects to be added to the main vector
                 m_game_objects_to_add.push_back(pgame_object);
 
-                //set to be inactive, is not yet on the game
-                pgame_object->set_active(false);
-
                 //return the handle for the registered game object
                 return Game_object_handle(unique_id, handle_index);
         }
@@ -280,8 +277,9 @@ namespace gom
                         // update the world's game object vector by adding the objects that were created on previous frame
                         b = m_game_objects_to_add.begin();
                         for (; b != m_game_objects_to_add.end(); ++b) {
-                                (*b)->set_active(true);
-                                m_game_objects.insert(std::upper_bound(m_game_objects.begin(), m_game_objects.end(), *b, sort_by_guid), *b);
+                                m_game_objects.insert(std::upper_bound(m_game_objects.begin(),
+                                                                       m_game_objects.end(),
+                                                                      *b, sort_by_guid), *b);
                         }
                         m_game_objects_to_add.clear();
                 }
