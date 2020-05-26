@@ -19,6 +19,8 @@ namespace ui
                 friend class UI_manager;
         public:
                 Canvas * add_widget(const Widget & widget);
+                bool is_dirty() const { return m_dirty; }
+                void set_dirty_flag(const bool is_dirty) { m_dirty = is_dirty; }
 
                 virtual void                 update(float dt) override;
                 virtual void                 on_event(Event & event) override;
