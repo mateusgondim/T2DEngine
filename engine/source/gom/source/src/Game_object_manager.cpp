@@ -12,6 +12,8 @@
 #include "Physics_manager.hpp"
 #include "Body_2d.hpp"
 
+#include "Event.hpp"
+
 #include <map>
 #include <algorithm>
 #include <cassert>
@@ -268,6 +270,14 @@ namespace gom
                         }
                 }
                 return handles;
+        }
+
+        void Game_object_manager::broadcast_event(Event & event)
+        {
+                vpgame_objects::iterator beg = m_game_objects.begin();
+                for (; beg != m_game_objects.end(); ++beg) {
+                        (*beg)->on_event(event);
+                }
         }
 
         void Game_object_manager::update_game_objects(const float dt)
