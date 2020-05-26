@@ -2,6 +2,7 @@
 #define _CANVAS_HPP
 
 #include "Game_object.hpp"
+#include "Game_object_handle.hpp"
 #include "Rect.hpp"
 #include "Sprite_batch.hpp"
 #include "string_id.hpp"
@@ -38,7 +39,7 @@ namespace ui
                 string_id                    m_atlas_id;
                 math::Rect                   m_rect;
                 gfx::Sprite_batch            m_vertex_batch;
-                Widget *                     m_pwidgets[s_max_num_widgets];
+                gom::Game_object_handle      m_widgets[s_max_num_widgets];
         };
 }
 

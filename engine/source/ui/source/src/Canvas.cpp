@@ -82,10 +82,23 @@ namespace ui
                         m_vertex_batch.reset();
 
                         // recalculate the widgets vertices
-                        std::uint8_t index = 0;
+                        std::uint8_t i = 0;
                         Widget::vertex_data rendering_data;
-                        for (index; index != m_num_widgets; ++index) {
-                                rendering_data = m_pwidgets[index]->get_view_space_vertices();
+                        gom::Game_object *pgame_object = nullptr;
+                        Widget *pwidget = nullptr;
+                        for (i; i != m_num_widgets; ++i) {
+                                pgame_object = gom::g_game_object_mgr.get_by_handle(m_widgets[i]);
+                                // We need to find a way to remove this handle if the object was destroyed!
+                                // Perhaps the best solution is indeed to use a std::vector
+                                if (!pgame_object) {
+                                        continue;
+                                }
+                                if (!pgame_object->is_active()) {
+                                        continue;
+                                }
+
+                                pwidget = static_cast<Widget*>(pgame_object);
+                                rendering_data = pwidget->get_view_space_vertices();
                                 if (rendering_data.first == nullptr || rendering_data.second == 0) {
                                         continue;
                                 }
@@ -100,9 +113,7 @@ namespace ui
         Canvas::~Canvas()
         {
                 for (std::uint8_t i = 0; i != m_num_widgets; ++i) {
-                        gom::Game_object_handle handle(m_pwidgets[i]->get_unique_id(),
-                                                       m_pwidgets[i]->get_handle_index());
-                        gom::g_game_object_mgr.request_destruction(handle);
+                        gom::g_game_object_mgr.request_destruction(m_widgets[i]);
                 }
         }
 }
