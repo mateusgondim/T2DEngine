@@ -33,10 +33,12 @@
 
 #include "mat4.hpp"
 #include "crc32.hpp"
+#include "runtime_memory_allocator.hpp"
 
 #include "Widget.hpp"
 #include "Canvas.hpp"
 #include "UI_manager.hpp"
+#include "Text.hpp"
 
 #include <vector>
 #include <utility>
@@ -267,10 +269,13 @@ namespace level_management
                 m_should_restart = false;
                 std::cout << "RESETING LEVEL...." << std::endl;
 
-                //restart projectile manager
+                // reset U_manager
+                ui::g_ui_mgr.reset();
+
+                //reset projectile manager
                 gom::g_projectile_mgr.reset();
 
-                //1. reset Game_object_manager
+                // reset Game_object_manager
                 gom::g_game_object_mgr.reset();
 
                 //RESET TIMER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
