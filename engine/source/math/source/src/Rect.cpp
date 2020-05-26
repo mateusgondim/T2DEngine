@@ -16,7 +16,7 @@ namespace math
 
         vec2 Rect::center() const
         {
-                return vec2((x + width) / 2, (y - height) / 2);
+                return (min() + max()) / 2.0f;
         }
 
         vec2 Rect::max() const
