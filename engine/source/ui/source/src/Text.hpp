@@ -13,7 +13,7 @@ namespace math { struct Rect; }
 
 namespace ui
 {
-        class Text final : public Widget {
+        class Text : public Widget {
                 friend class Canvas;
         public:
                 Text(Canvas & parent_canvas, const math::Rect & rect, const std::string & msg,
