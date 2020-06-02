@@ -23,7 +23,7 @@ namespace level_management
                 bool is_game_clock_paused() const { return m_timer.is_paused(); }
                 //void next_level();
         private:
-                void            load_level_objects();
+                void            load_objects_data();
                 void            instantiate_level_objects();
                 Path*                                           m_presources_path = nullptr;
                 std::vector<Game_object_data>                   m_level_data;

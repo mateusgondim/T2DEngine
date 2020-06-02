@@ -233,7 +233,7 @@ namespace level_management
                 }
         }
 
-        void Level_manager::load_level_objects()
+        void Level_manager::load_objects_data()
         {
                 const Object_group *pgroup = m_ptile_map->get_object_group("Game_objects");
                 if (pgroup) {
