@@ -62,7 +62,7 @@ namespace gfx {
 		//Tile map operations
 		void		set_tile_map(Tile_map *ptile_map);
 
-		void	    set_tiles_per_screen_width(const float width)  { m_tiles_per_screen_width = width; }
+        void	    set_tiles_per_screen_width(const float width) { m_tiles_per_screen_width = width; }
 		void		set_tiles_per_screen_height(const float height) { m_tiles_per_screen_height = height; }
         float       get_pixels_per_wld_unit() const { return m_pixels_per_unit; }
         float       get_tiles_per_screen_width() const { return m_tiles_per_screen_width; }
@@ -72,27 +72,28 @@ namespace gfx {
         void         swap_and_poll() const;
 		
 	private:
-		void        set_tile_map_renderer();
-		void		check_error(const char *pfile_name, std::int32_t line) const;
+            void        set_tile_map_renderer();
+            void		check_error(const char *pfile_name, std::int32_t line) const;
 
-		std::vector<Sprite_batch*>					m_batches;
-		std::vector<Sprite*>						m_sprites;
+            std::vector<Sprite_batch*>					m_batches;
+            std::vector<Sprite*>						m_sprites;
 
-		mem::Pool_allocator                              m_batch_pool;
+            // memory allocators
+            mem::Pool_allocator                              m_batch_pool;
 
-		// Data members to render Tile_map
-		Tile_map								   *m_ptile_map; // pointer to tile_map data object to render
-		Sprite_batch							   *m_pmap_batch; // pointer to batch contaning the map's vertices 
+            // Data members to render Tile_map
+            Tile_map								   *m_ptile_map; // pointer to tile_map data object to render
+            Sprite_batch							   *m_pmap_batch; // pointer to batch contaning the map's vertices 
 
-		gfx::Shader									*m_psprite_shader; // the id for the shader used to render the sprites
-		gfx::Shader									*m_ptile_map_shader; // the id for the shader used to render the Tile map
+            gfx::Shader									*m_psprite_shader; // the id for the shader used to render the sprites
+            gfx::Shader									*m_ptile_map_shader; // the id for the shader used to render the Tile map
 
-        Window *m_prender_window;
+            Window *m_prender_window;
 
-		float			m_pixels_per_unit;
-		float           m_tiles_per_screen_width;
-		float           m_tiles_per_screen_height;
-		bool			m_is_initialized;
+            float			m_pixels_per_unit;
+            float           m_tiles_per_screen_width;
+            float           m_tiles_per_screen_height;
+            bool			m_is_initialized;
 	};
 
 	extern  Graphics_manager g_graphics_mgr;
