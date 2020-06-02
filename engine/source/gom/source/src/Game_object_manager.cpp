@@ -27,6 +27,8 @@ namespace gom
 
         void Game_object_manager::init()
         {
+                m_pmain_camera = nullptr;
+
                 //set up the handle table
                 m_next_free_index = 0;
                 for (size_t i = 0; i < m_MAX_GAME_OBJECTS - 1; ++i) {
