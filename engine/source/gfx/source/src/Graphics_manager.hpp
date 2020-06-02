@@ -61,6 +61,7 @@ namespace gfx {
 
 		//Tile map operations
 		void		set_tile_map(Tile_map *ptile_map);
+        void        unload_map_rendering_data();
 
         void	    set_tiles_per_screen_width(const float width) { m_tiles_per_screen_width = width; }
 		void		set_tiles_per_screen_height(const float height) { m_tiles_per_screen_height = height; }

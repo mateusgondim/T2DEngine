@@ -316,6 +316,23 @@ void gfx::Graphics_manager::swap_and_poll() const
         Glfw_manager::poll_events();
 }
 
+void gfx::Graphics_manager::unload_map_rendering_data()
+{
+        if (!m_ptile_map) {
+                return;
+        }
+        // unload textures used by the tilesets
+        for (auto & tileset : m_ptile_map->get_tilesets()) {
+                g_texture_2d_mgr.unload(tileset->get_texture_id());
+        }
+
+        // destroy the tile_map batch and, give the memory back to the pool
+        m_pmap_batch->~Sprite_batch();
+        m_batch_pool.free_element(static_cast<void*>(m_pmap_batch));
+
+        m_ptile_map = nullptr;
+}
+
 
 /*Set_tile_map_renderer: Set up the Opengl's buffers to render the tile_map and,
  * allocates textures used by the map's tilesets.
