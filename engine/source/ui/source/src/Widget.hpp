@@ -34,6 +34,7 @@ namespace ui
                 // Button * pbutton_component;
                 Canvas *         m_pparent_canvas;
                 math::Rect       m_obj_space_aabb;
+                math::vec2       m_obj_to_canvas_translation;
         };
 }
 #endif // !_WIDGET_HPP
