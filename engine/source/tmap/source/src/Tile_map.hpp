@@ -69,7 +69,6 @@ public:
 
 	void            set_background_color(const math::vec3 & color) { m_background_color = color; }
 private:
-	//.void            setup_map(const std::vector<std::vector<std::vector<int>>> & layers);
         void            parse_map_element_variables(const std::string & line);
         void            parse_tileset(const std::string & tmx_file_path, const std::string & first_line);
 
