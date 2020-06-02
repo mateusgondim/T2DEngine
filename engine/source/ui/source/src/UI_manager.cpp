@@ -15,7 +15,7 @@
 
 namespace ui
 {
-        const std::size_t        g_vertex_buffer_sz = 96;
+        const std::size_t        g_vertex_buffer_sz = 156;
         gfx::Vertex1P1C1UV       g_vertex_buffer[g_vertex_buffer_sz];
 
         UI_manager g_ui_mgr;
