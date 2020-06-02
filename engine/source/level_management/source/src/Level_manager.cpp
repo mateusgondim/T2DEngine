@@ -159,24 +159,34 @@ namespace level_management
         }
 
 
-        /* Level_manager::init - This function makes some configurations necessary to play the current level, such as
-         * setting shader values, initalizing the Camera and so on. It's also in this function that all
-         * the game object in the level are instantiated.
+        /* Level_manager::init - This function makes some configurations necessary to play the
+         * current level, such as setting shader values, initalizing the Camera and so on.
          */
         void Level_manager::init()
         {
-                //initialize camera
+                // initialize camera
                 float tile_wld_width = m_ptile_map->tile_width() / gfx::g_graphics_mgr.get_pixels_per_wld_unit();
                 float tile_wld_height = m_ptile_map->tile_height() / gfx::g_graphics_mgr.get_pixels_per_wld_unit();
                 math::vec2 map_origin = math::vec2(m_ptile_map->get_position().x, m_ptile_map->get_position().y);
 
-                gom::Camera_2d *plevel_camera = new gom::Camera_2d(tile_wld_width, tile_wld_height,
-                                                                   gfx::g_graphics_mgr.get_tiles_per_screen_width(),
-                                                                   gfx::g_graphics_mgr.get_tiles_per_screen_height(), 
-                                                                   m_ptile_map->width(),
-                                                                   m_ptile_map->height(), map_origin);
+                gom::Camera_2d *plevel_camera = gom::g_game_object_mgr.get_main_camera();
+                if (plevel_camera) {
+                        plevel_camera->init(tile_wld_width, tile_wld_height,
+                                            gfx::g_graphics_mgr.get_tiles_per_screen_width(),
+                                            gfx::g_graphics_mgr.get_tiles_per_screen_height(), 
+                                            m_ptile_map->width(),
+                                            m_ptile_map->height(), map_origin);
 
-                m_tile_map_view_loc = m_pmap_shader->get_uniform_location("V");
+                }
+                else {
+                        plevel_camera = new gom::Camera_2d(tile_wld_width, tile_wld_height,
+                                                           gfx::g_graphics_mgr.get_tiles_per_screen_width(),
+                                                           gfx::g_graphics_mgr.get_tiles_per_screen_height(), 
+                                                           m_ptile_map->width(),
+                                                           m_ptile_map->height(), map_origin);
+                        // set as the main camera
+                        gom::g_game_object_mgr.set_main_camera(plevel_camera);
+                }
 
                 m_pmap_shader->uniform_matrix4fv(m_tile_map_view_loc, 1, false,
                                                  plevel_camera->get_view().value_ptr());
@@ -187,7 +197,6 @@ namespace level_management
                 m_pmap_shader->uniform_1f(m_pmap_shader->get_uniform_location("tileset1"), 0);
                 gfx::g_graphics_mgr.set_tile_map_shader(m_pmap_shader);
 
-                m_sprites_view_loc = m_psprite_shader->get_uniform_location("V");
 
                 m_psprite_shader->uniform_matrix4fv(m_sprites_view_loc, 1, false,
                                                     plevel_camera->get_view().value_ptr());
@@ -198,19 +207,15 @@ namespace level_management
                 m_psprite_shader->uniform_1f(m_psprite_shader->get_uniform_location("tileset"), 0);
                 gfx::g_graphics_mgr.set_sprite_shader(m_psprite_shader);
 
-                // set as the main camera
-                gom::g_game_object_mgr.set_main_camera(plevel_camera);
-
                 gfx::g_graphics_mgr.set_tile_map(m_ptile_map);
 
+                // move this code to the CLIENT'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 // Initialize the default control scheme
                 io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
 
                 control_scheme.map_action_to_button(SID('pause'), io::Abstract_keyboard_index::KEY_P);
                 control_scheme.map_action_to_button(SID('reset_level'), 
                                                     io::Abstract_keyboard_index::KEY_R);
-
-                instantiate_level_objects();
 
                 //initialize timers
                 Timer::init();
@@ -343,7 +348,6 @@ namespace level_management
                 // reset Game_object_manager
                 gom::g_game_object_mgr.reset();
 
-                //RESET TIMER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //instantiate the game objects of the level
                 instantiate_level_objects();
         }
