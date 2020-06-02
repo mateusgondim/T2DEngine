@@ -433,13 +433,12 @@ void gfx::Graphics_manager::set_tile_map_renderer()
 //shut_down
 void gfx::Graphics_manager::shut_down() 
 {
-	
-	//destruct the batch objects 
-	//destroy the tile_map batch and, give the memory back to the pool
+	// destruct the batch objects 
+	// destroy the tile_map batch and, give the memory back to the pool
 	m_pmap_batch->~Sprite_batch();
 	m_batch_pool.free_element(static_cast<void*>(m_pmap_batch));
 
-	//destroy the sprite Batches and deallocate the pool 
+	// destroy the sprite Batches and deallocate the pool 
 	for (std::vector<Sprite_batch*>::iterator it = m_batches.begin(); it != m_batches.end(); ++it) {
 		Sprite_batch *pbatch = *it;
 		pbatch->~Sprite_batch();
@@ -447,8 +446,6 @@ void gfx::Graphics_manager::shut_down()
 		//release the pool memory block
 		m_batch_pool.free_element(static_cast<void*>(pbatch));
 	}
-	//deallocate Sprite batch pool
-	//m_batch_pool.realease_pool_mem();
 	
     delete m_prender_window;
     m_prender_window = nullptr;
