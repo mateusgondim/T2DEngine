@@ -27,6 +27,8 @@ namespace ui
                          {
                                  return (m_pparent_canvas) ? (true) : (false);
                          }
+
+                         math::Rect get_obj_space_rect() const { return m_obj_space_aabb; }
         protected:
                 virtual vertex_data     get_view_space_vertices() const;
                 // Button * pbutton_component;
