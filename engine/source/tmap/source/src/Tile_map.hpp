@@ -72,21 +72,18 @@ private:
         void            parse_map_element_variables(const std::string & line);
         void            parse_tileset(const std::string & tmx_file_path, const std::string & first_line);
 
-	std::vector<Tileset*> m_tilesets;
+        std::vector<Tileset*> m_tilesets;
         std::vector<Tile_layer*> m_layers;
-	std::vector<Object_group*> m_object_layer;
+        std::vector<Object_group*> m_object_layer;
 	
-        //std::vector<std::vector<std::vector<unsigned>>>  m_map; // 3D array, i.e layers of 2d arrays	 
-	
-	//int             m_layer_count; // number of layers
-	int             m_width;
-	int             m_height;
-	int             m_tile_width;
-	int             m_tile_height;
+        int             m_width;
+        int             m_height;
+        int             m_tile_width;
+        int             m_tile_height;
 
-	math::vec3      m_position;  // tile map origin, i.e, the coordinates of the top left tile in world space
-	math::vec3      m_background_color;
-	float           m_pixels_per_word_unit; // how many pixels are equal to 1 world unit, used in scaling
+        math::vec3      m_position;  // tile map origin, i.e, the coordinates of the top left tile in world space
+        math::vec3      m_background_color;
+        float           m_pixels_per_word_unit; // how many pixels are equal to 1 world unit, used in scaling
 };
 
 
