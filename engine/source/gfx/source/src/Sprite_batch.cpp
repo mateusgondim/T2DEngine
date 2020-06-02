@@ -139,13 +139,13 @@ void gfx::Sprite_batch::render()
 	
 	//m_texture.use();
 
-	glDrawArrays(GL_TRIANGLES, 0, m_num_used_vertices);
-	glBindVertexArray(0);
+        glDrawArrays(GL_TRIANGLES, 0, m_num_used_vertices);
+        glBindVertexArray(0);
 
-	//reset buffer if it is dynamic
-	if (!m_is_static) {
-		m_num_used_vertices = 0;
-	}
+        // reset buffer if it is dynamic
+        if (!m_is_static) {
+                m_num_used_vertices = 0;
+        }
 }
 
 
