@@ -14,9 +14,11 @@ namespace ui
 {
         Widget::Widget(Canvas & parent_canvas) : Widget(parent_canvas, math::Rect()) {}
 
-        Widget::Widget(Canvas & parent_canvas, const math::Rect & rect, const std::size_t obj_sz) :
+        Widget::Widget(Canvas & parent_canvas, const math::Rect & obj_space_aabb,
+                       const std::size_t obj_sz) :
                 gom::Game_object(obj_sz, math::g_zero_vec3),
-                m_pparent_canvas(parent_canvas.add_widget(*this)), m_rect(rect) {}
+                m_pparent_canvas(parent_canvas.add_widget(*this)),
+                m_obj_space_aabb(obj_space_aabb) {}
 
         void Widget::update(const float dt) {}
 
@@ -25,11 +27,11 @@ namespace ui
         // TODO: Use a stack allocator instead of the static global g_vertex_buffer
         Widget::vertex_data Widget::get_view_space_vertices() const
         {
-                math::vec4  bottom_left_pos(m_rect.min());
-                math::vec4  bottom_right_pos(bottom_left_pos.x + m_rect.width,
+                math::vec4  bottom_left_pos(m_obj_space_aabb.min());
+                math::vec4  bottom_right_pos(bottom_left_pos.x + m_obj_space_aabb.width,
                                                    bottom_left_pos.y);
-                math::vec4  top_right_pos(m_rect.max());
-                math::vec4  top_left_pos(m_rect.x, m_rect.y);
+                math::vec4  top_right_pos(m_obj_space_aabb.max());
+                math::vec4  top_left_pos(m_obj_space_aabb.x, m_obj_space_aabb.y);
 
                 const math::mat4 & view_space = m_pparent_canvas->get_transform_component()
                                                                   .get_object_to_world();

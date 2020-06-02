@@ -21,7 +21,7 @@ namespace ui
                 virtual void            update(const float dt) override;
                 virtual void            on_event(Event & event) override;
                 explicit Widget(Canvas & parent_canvas);
-                         Widget(Canvas & parent_canvas, const math::Rect & rect,
+                         Widget(Canvas & parent_canvas, const math::Rect & obj_space_aabb,
                                 const std::size_t obj_sz = sizeof(Widget));
                          bool has_parent() const 
                          {
@@ -31,7 +31,7 @@ namespace ui
                 virtual vertex_data     get_view_space_vertices() const;
                 // Button * pbutton_component;
                 Canvas *         m_pparent_canvas;
-                math::Rect       m_rect;
+                math::Rect       m_obj_space_aabb;
         };
 }
 #endif // !_WIDGET_HPP
