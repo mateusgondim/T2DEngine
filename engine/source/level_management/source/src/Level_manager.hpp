@@ -1,6 +1,7 @@
 #ifndef _LEVEL_MANAGER_HPP
 #define _LEVEL_MANAGER_HPP
 #include <vector>
+#include <string>
 #include <stdint.h>
 #include "Path.hpp"
 #include "Timer.hpp"
@@ -14,13 +15,15 @@ namespace level_management
         class Level_manager final {
         public:
                 Level_manager() = default;
-                ~Level_manager();
-              //  void shut_down();
+                ~Level_manager() = default;
+               
                 void            load_resident_data(const char * pplevels[],
                                                    const uint32_t num_levels,
                                                    Path & resources_path);
                 void load_next_level();
                 void load_level(const uint32_t level_index);
+
+                void shut_down();
                 void tick();
                 void restart();
                 bool is_game_clock_paused() const { return m_timer.is_paused(); }

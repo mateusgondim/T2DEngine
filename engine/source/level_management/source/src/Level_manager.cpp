@@ -351,9 +351,14 @@ namespace level_management
                 //instantiate the game objects of the level
                 instantiate_level_objects();
         }
-// REMEMBER THAT WE ARE NOT CALLING THIS DESTRUCTOR ANYHWERE!!!! MAYBE WE SHOULD MOVE THIS CODE TO THE SHUTDOWN FUNCTION.....
-        Level_manager::~Level_manager()
+
+        void Level_manager::shut_down()
         {
+                if (m_ptile_map) {
+                        m_ptile_map->~Tile_map();
+                        mem::free(m_ptile_map, sizeof(Tile_map));
+                        m_ptile_map = nullptr;
+                }
                 delete m_presources_path;
         }
 }
