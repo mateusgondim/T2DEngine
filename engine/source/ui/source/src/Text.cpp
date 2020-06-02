@@ -73,7 +73,7 @@ namespace ui
         // to alert about the missing texture atlas.
         Widget::vertex_data Text::get_view_space_vertices() const
         {
-                if (m_characters_ids.size() == 0) {
+                if (m_characters_ids.empty()) {
                         return std::make_pair(nullptr, 0);
                 }
 
