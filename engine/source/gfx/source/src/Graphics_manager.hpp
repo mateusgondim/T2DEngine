@@ -39,6 +39,10 @@ namespace gfx {
 		
 		void        set_viewport(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height);
 
+        void        set_pixels_per_wld_unit(const float px_per_wld_unit)
+        { 
+                m_pixels_per_unit = px_per_wld_unit; 
+        }
 		void		set_clear_color(const math::vec4 & color);
 		void		set_blend_func(); // CHANGE THIS!! PASS PARAMETERS
 		void        graphics_enable(const GFX_ENUMS & gfx_enum);// GRAPHICS_ENUM
