@@ -34,7 +34,7 @@ namespace gfx {
             ~Graphics_manager() = default;
 		//initialization functions
             bool		init(int window_width, int window_height, float viewport_scale,
-                             const char * ptitle, float pixels_per_unit);
+                             const char * ptitle);
             Window  *   get_render_window();
 		
 		void        set_viewport(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height);

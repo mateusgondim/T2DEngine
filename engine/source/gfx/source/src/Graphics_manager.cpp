@@ -27,17 +27,17 @@
 #include <string>
 #include <algorithm>
 
-
 gfx::Graphics_manager gfx::g_graphics_mgr;
 
 gfx::Graphics_manager::Graphics_manager() : m_is_initialized(false) {}
 
 bool gfx::Graphics_manager::init(int window_width, int window_height, float viewport_scale,
-                                 const char * ptitle, float pixels_per_unit)
+                                 const char * ptitle)
 {
-	m_pixels_per_unit = pixels_per_unit;
+	m_pixels_per_unit = 0.0f;
 	m_tiles_per_screen_width = 16;
 	m_tiles_per_screen_height = 15;
+    m_ptile_map = nullptr;
 
 	m_batch_pool.alloc_pool(sizeof(Sprite_batch), 3, 4);
 
