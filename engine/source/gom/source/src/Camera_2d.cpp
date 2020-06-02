@@ -107,7 +107,7 @@ namespace gom
 
                 m_projection = math::ortho(m_screen_p_min.x, m_screen_p_max.x, m_screen_p_min.y, m_screen_p_max.y, -1.0, 1.0f);
         }
-        //STILL NEEDS TO ADAPT IF THE OBJECT WAS DESTROYED
+
         void Camera_2d::update(const float dt)
         {
                 if (m_is_tracking) {
@@ -135,10 +135,9 @@ namespace gom
                                                 follow(pgame_object->get_transform_component().get_translation());
                                         }
                                 }
-                                else {
-                                        m_is_tracking = false;
-                                        std::cerr << __FUNCTION__ << ": Unable to find object with type id '" << m_tracking_obj_type_id << "' to track" << std::endl;
-                                }
+                                // else {
+                                //         std::cerr << __FUNCTION__ << ": Unable to find object with type id '" << m_tracking_obj_type_id << "' to track" << std::endl;
+                                // }
                         }
                 }
         }
