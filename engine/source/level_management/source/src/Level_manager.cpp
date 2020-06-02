@@ -49,15 +49,81 @@ namespace level_management
 
         const float Level_manager::m_dt = 1.0F / 60.0F;
 
-        /* Level_manager::load- This function is responsable to load all the necessary data to play
-         * the current level. The main entry point to get all the data is the TMX file, this file stores not only the position and id of all the game objects in the level,
-         * but also the location of all the resources necessary to play level, such as textures, animator controllers, sprite atlases, shaders and so on.
+        /* Level_manager::load_level - This function is responsable to load all the necessary data
+         * to play * the current level. The main entry point to get all the data is the TMX file,
+         * this file stores not only the position and id of all the game objects in the level,
+         * but also the location of all the resources necessary to play level, such as textures,
+         * animator controllers, sprite atlases, shaders and so on.
          */
-        void Level_manager::load(Path & resources_path, Tile_map *ptile_map)
+        void Level_manager::load_level(const std::uint32_t level_index)
         {
-                m_presources_path = new Path(resources_path);
-                m_ptile_map = ptile_map;
+                if (level_index > m_levels.size() - 1) {
+                        return;
+                }
 
+                unload_current_level();
+
+                m_current_level = level_index;
+                // Load .TMX file containg the map and it's data
+                std::string level("/maps/" + m_levels[m_current_level]);
+
+                void *pmem = mem::allocate(sizeof(Tile_map));
+                if (!pmem) {
+                        std::cerr << "ERROR: Unable to allocate memory for Tile Map" << std::endl;
+                }
+                m_ptile_map = new (pmem) Tile_map((*m_presources_path + level.c_str()).c_str());
+                print_tile_map(std::cout, *m_ptile_map) << std::endl;
+
+                gfx::g_graphics_mgr.set_pixels_per_wld_unit(m_ptile_map->pixels_per_world_unit());
+                physics_2d::g_physics_mgr.get_world()->set_tile_map(m_ptile_map);
+
+                //load the data necessary to instantiate the level's game objects 
+                load_objects_data();
+
+                // initialize 
+                init();
+
+                // instantiate game objects
+                instantiate_level_objects();
+        }
+
+        void Level_manager::unload_current_level()
+        {
+                if (m_ptile_map) {
+                        // destroy level objects
+                        ui::g_ui_mgr.reset();
+                        gom::g_projectile_mgr.reset();
+                        gom::g_game_object_mgr.reset();
+
+                        m_level_data.clear();
+
+                        // unload current level rendering data
+                        gfx::g_graphics_mgr.unload_map_rendering_data();
+
+                        m_ptile_map->~Tile_map();
+                        mem::free(m_ptile_map, sizeof(Tile_map));
+                        m_ptile_map = nullptr;
+                }
+        }
+
+        void Level_manager::load_next_level()
+        {
+                load_level(m_current_level + 1);
+        }
+
+        void Level_manager::load_resident_data(const char * pplevels[], const uint32_t num_levels,
+                Path & resources_path)
+        {
+                m_ptile_map = nullptr;
+                m_level_data.reserve(30); // Remove magic number
+
+                m_current_level = 0;
+                m_levels.reserve(num_levels);
+                for (std::uint32_t i = 0; i != num_levels; ++i) {
+                        m_levels.push_back(pplevels[i]);
+                }
+
+                m_presources_path = new Path(resources_path);
                 // load atlas needed for the player and enemies sprites
                 Path sprites_path = *m_presources_path + "/sprite sheets/";
                 gfx::g_sprite_atlas_mgr.load("player",
@@ -66,7 +132,7 @@ namespace level_management
 
                 // load atlas needed for UI
                 gfx::g_sprite_atlas_mgr.load("ui",
-                                             (sprites_path + "c64.xml").c_str(),
+                                             (sprites_path + "gravitybold.xml").c_str(),
                                              &gfx::g_texture_2d_mgr);
 
                 //load tile map shader  
@@ -75,22 +141,21 @@ namespace level_management
                                                                         (shaders_path + "vertex.vert").c_str(),
                                                                         (shaders_path + "fragment.frag").c_str());
                 m_pmap_shader = static_cast<gfx::Shader*>(pmap_shader_res);
+                m_tile_map_view_loc = m_pmap_shader->get_uniform_location("V");
 
                 //load sprite shader
                 rms::Resource *psprite_shader_res = gfx::g_shader_mgr.load("sprites_shader",
                                                                            (shaders_path + "sprite.vert").c_str(),
                                                                            (shaders_path + "sprite.frag").c_str());
                 m_psprite_shader = static_cast<gfx::Shader*>(psprite_shader_res);
+                m_sprites_view_loc = m_psprite_shader->get_uniform_location("V");
 
-                //---------------------Test for UI---------------------------------------------//
+                // load UI shader
                 rms::Resource * pui_shader_res = gfx::g_shader_mgr.load("ui_shader",
                                                                         (shaders_path + "ui.vert").c_str(),
                                                                         (shaders_path + "ui.frag").c_str());
                 
                 ui::g_ui_mgr.set_widgets_shader(*(static_cast<gfx::Shader*>(pui_shader_res)));
-
-                //load the data necessary to instantiate the level's game objects 
-                load_level_objects();
         }
 
 
