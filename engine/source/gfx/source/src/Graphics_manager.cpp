@@ -130,19 +130,12 @@ void gfx::Graphics_manager::set_viewport(std::int32_t x, std::int32_t y, std::in
 
 void gfx::Graphics_manager::set_tile_map(Tile_map *ptile_map) 
 {
-	m_ptile_map = ptile_map;
-
-//	//initialize camera
-//	float tile_wld_width = m_ptile_map->tile_width() / m_pixels_per_unit;
-//	float tile_wld_height = m_ptile_map->tile_height() / m_pixels_per_unit;
-//	math::vec2 map_origin = math::vec2(m_ptile_map->get_position().x, m_ptile_map->get_position().y);
-
-//	m_camera.init(tile_wld_width, tile_wld_height, m_tiles_per_screen_width, m_tiles_per_screen_height, m_ptile_map->width(), m_ptile_map->height(), map_origin);
+        m_ptile_map = ptile_map;
 	
-	//set background color
-	math::vec3 color = m_ptile_map->get_background_color();
-	set_clear_color(math::vec4(color.x, color.y, color.z, 1.0f));
-	set_tile_map_renderer();
+        //set background color
+        math::vec3 color = m_ptile_map->get_background_color();
+        set_clear_color(math::vec4(color.x, color.y, color.z, 1.0f));
+        set_tile_map_renderer();
 }
 
 
