@@ -83,9 +83,6 @@
 int main(int argc, char *argv[])
 {
         Path resources_path("../resources", Path::FORWARD_SLASH);
-        // Load tile map. OBS: WE NEED TO CHANGE THIS LATTER... THE MAP LOADING SHOULD BE DONE ON ENGINE.INIT 
-        Tile_map tile_map((resources_path + "/maps/level01.tmx").c_str());
-        print_tile_map(std::cout, tile_map) << std::endl;
         
         engine_init(3, 2, &tile_map);
 
