@@ -71,6 +71,7 @@
 
 // UI creators
 #include "Level_ui_creator.hpp"
+#include "Main_menu_creator.hpp"
 
 //utility
 #include "crc32.hpp"
@@ -141,6 +142,8 @@ int main(int argc, char *argv[])
         Level_ui_creator * level_ui_creator = new Level_ui_creator(SID('ui'));
         gom::g_game_object_mgr.register_creator(SID('level_ui'), level_ui_creator, SID('canvas'));
 
+        Main_menu_creator * main_menu_creator = new Main_menu_creator(SID('ui'));
+        gom::g_game_object_mgr.register_creator(SID('main_menu'), main_menu_creator, SID('canvas'));
 
         //Set up the game's control scheme
         io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
