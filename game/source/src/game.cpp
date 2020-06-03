@@ -141,10 +141,6 @@ int main(int argc, char *argv[])
         Level_ui_creator * level_ui_creator = new Level_ui_creator(SID('ui'));
         gom::g_game_object_mgr.register_creator(SID('level_ui'), level_ui_creator, SID('canvas'));
 
-        std::cout << " TILE MAP WIDTH = " << tile_map.width() << "| TILE MAP HEIGHT = "
-                  << tile_map.height() << std::endl;
-
-        level_management::g_level_mgr.init();
 
         //Set up the game's control scheme
         io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
