@@ -9,7 +9,7 @@ class Event;
 
 class Pause_text final : public ui::Text {
 public:
-        Pause_text(ui::Canvas & parent_canvas, const math::Rect & rect);
+        Pause_text(ui::Canvas & parent_canvas);
 
         virtual void on_event(Event & event) override;
 };
