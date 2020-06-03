@@ -1,8 +1,8 @@
 # T2DEngine
 A 2d tile based game engine, with a sample platformer game constructed using the engine. Still in development.
 # Motivation
-The main reason behind the construction of the engine, was to have a first hand learning experience on how to contruct a component based 2d game engine. Its still in its early stages but, it already have some core feattures, as memory management, that can already be used on a game project, as can be shown by the sample game. 
-# Sample game screenshots
+The main reason behind the construction of the engine, was to have a first hand learning experience on how to contruct a component based 2D game engine. Its still in its early stages but, it already has some nice core features, such as memory management, that can already be used on a game project, as can be shown on the DEMO. 
+# DEMO screenshots
 ![alt text](screenshots/screenshot01.png)
 # Tech/Framework used
   - [OpenGL/GLFW](http://www.glfw.org/) and [GLEW](http://glew.sourceforge.net/) for rendering. 
