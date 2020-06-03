@@ -76,12 +76,15 @@ namespace ui
                 if (m_characters_ids.empty()) {
                         return std::make_pair(nullptr, 0);
                 }
+                math::Rect canvas_space_bb(m_obj_space_aabb);
+                canvas_space_bb.x += m_obj_to_canvas_translation.x;
+                canvas_space_bb.y += m_obj_to_canvas_translation.y;
 
-                math::vec4  bottom_left_pos(m_rect.min());
-                math::vec4  bottom_right_pos(bottom_left_pos.x + m_rect.width,
+                math::vec4  bottom_left_pos(canvas_space_bb.min());
+                math::vec4  bottom_right_pos(bottom_left_pos.x + canvas_space_bb.width,
                                              bottom_left_pos.y);
-                math::vec4  top_right_pos(m_rect.max());
-                math::vec4  top_left_pos(m_rect.x, m_rect.y);
+                math::vec4  top_right_pos(canvas_space_bb.max());
+                math::vec4  top_left_pos(canvas_space_bb.x, canvas_space_bb.y);
 
                 const math::mat4 & view_space = m_pparent_canvas->get_transform_component()
                                                                   .get_object_to_world();
