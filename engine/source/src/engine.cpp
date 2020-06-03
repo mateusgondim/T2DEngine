@@ -50,7 +50,9 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
                 io::Input_abstraction_layer::keyboard_callback);
 
         Path resources_path("../resources", Path::FORWARD_SLASH);
-        level_management::g_level_mgr.load(resources_path, ptile_map);
+        // this should be load_resilient_data
+        level_management::g_level_mgr.load_resident_data(pplevels, num_levels, resources_path);
+        //level_management::g_level_mgr.load(resources_path, ptile_map);
 
         // set Engine's default collision listener
         pcollision_listener = new Engine_collision_listener;
