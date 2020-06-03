@@ -111,6 +111,13 @@ namespace ui
                         float char_height_wld_units = (image.m_height * m_scale_factor) / pixels_per_wld_unit;
                         const math::Rect & tcoordinates = image.m_texture_coordinates;
 
+                        // check if there is space on buffer for text
+                        if ((vertex_sz * i + vertex_sz - 1) > ui::g_vertex_buffer_sz - 1) {
+                                std::cerr << "ERRROR: ATTEMPTING TO ACESS OUT OF ARRAY MEMORY!!" << std::endl;
+                                break;
+                        }
+
+
                         // check if it is a a space character
                         if (image.m_width == 0 && image.m_height == 0) {
                                 char_bottom_left.x += space_char_sz;
