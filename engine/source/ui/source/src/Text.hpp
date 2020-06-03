@@ -9,7 +9,6 @@
 #include <cstddef>
 
 namespace ui { class Canvas; }
-namespace math { struct Rect; }
 
 namespace ui
 {
