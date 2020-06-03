@@ -4,6 +4,7 @@
 #include "Canvas.hpp"
 #include "UI_manager.hpp"
 #include "Rect.hpp"
+#include "vec2.hpp"
 #include "vec4.hpp"
 #include "mat4.hpp"
 #include "crc32.hpp"
@@ -16,16 +17,54 @@
 
 namespace ui
 {
-        Text::Text(Canvas & parent_canvas, const math::Rect & rect, const std::string & msg,
-                   const std::size_t obj_sz, const float scale_factor, const int characters_space,
+        Text::Text(Canvas & parent_canvas, const std::string & msg, const std::size_t obj_sz,
+                   const float scale_factor, const int characters_space,
                    const int space_character_sz) :
-                Widget(parent_canvas, rect, obj_sz), m_scale_factor(scale_factor),
+                Widget(parent_canvas, math::Rect(), obj_sz), m_scale_factor(scale_factor),
                 m_characters_space(characters_space), m_space_character_sz(space_character_sz),
                 m_characters_ids(msg.size()), m_msg(msg)
         {
                 for (unsigned i = 0; i != msg.size(); ++i) {
                         m_characters_ids[i] = get_crc32(m_msg[i]);
                 }
+                set_obj_space_rect();
+        }
+
+        void Text::set_obj_space_rect()
+        {
+                if (m_characters_ids.empty()) {
+                        return;
+                }
+
+                const float pixels_per_wld_unit = gfx::g_graphics_mgr.get_pixels_per_wld_unit();
+                const float space_char_sz = (m_space_character_sz / pixels_per_wld_unit * m_scale_factor);
+                const float space_between_chars = (m_characters_space / pixels_per_wld_unit * m_scale_factor);
+
+                float height = 0.0f;
+                float width = 0.0f;
+
+                const gfx::Sprite_atlas * atlas = m_pparent_canvas->get_atlas();
+                for (std::size_t i = 0; i != m_characters_ids.size(); ++i) {
+                        const gfx::Atlas_image & image = atlas->get_image_data(m_characters_ids[i]);
+                        float char_width_wld_units = (image.m_width * m_scale_factor) / pixels_per_wld_unit;
+                        float char_height_wld_units = (image.m_height * m_scale_factor) / pixels_per_wld_unit;
+
+                        // check if it is a a space character
+                        if (image.m_width == 0 && image.m_height == 0) {
+                                width += space_char_sz;;
+                                continue;
+                        }
+
+                        width += char_width_wld_units + space_between_chars; 
+                        if (height < char_height_wld_units) {
+                                height = char_height_wld_units;
+                        }
+                }
+                width -= space_between_chars;
+
+                // account for floating point error
+                width += (1 * m_scale_factor) / pixels_per_wld_unit;
+                m_obj_space_aabb =  math::Rect(-width / 2.0f, height / 2.0f, width, height);
         }
 
         // TODO: We need to handle the case of the get_tlas function returning a null pointer
@@ -34,15 +73,18 @@ namespace ui
         // to alert about the missing texture atlas.
         Widget::vertex_data Text::get_view_space_vertices() const
         {
-                if (m_characters_ids.size() == 0) {
+                if (m_characters_ids.empty()) {
                         return std::make_pair(nullptr, 0);
                 }
+                math::Rect canvas_space_bb(m_obj_space_aabb);
+                canvas_space_bb.x += m_obj_to_canvas_translation.x;
+                canvas_space_bb.y += m_obj_to_canvas_translation.y;
 
-                math::vec4  bottom_left_pos(m_rect.min());
-                math::vec4  bottom_right_pos(bottom_left_pos.x + m_rect.width,
+                math::vec4  bottom_left_pos(canvas_space_bb.min());
+                math::vec4  bottom_right_pos(bottom_left_pos.x + canvas_space_bb.width,
                                              bottom_left_pos.y);
-                math::vec4  top_right_pos(m_rect.max());
-                math::vec4  top_left_pos(m_rect.x, m_rect.y);
+                math::vec4  top_right_pos(canvas_space_bb.max());
+                math::vec4  top_left_pos(canvas_space_bb.x, canvas_space_bb.y);
 
                 const math::mat4 & view_space = m_pparent_canvas->get_transform_component()
                                                                   .get_object_to_world();
@@ -56,18 +98,25 @@ namespace ui
                 math::vec3 char_bottom_left(bottom_left_pos.x, bottom_left_pos.y, 0.0f);
                 const float pixels_per_wld_unit = gfx::g_graphics_mgr.get_pixels_per_wld_unit();
                 const int vertex_sz = 6;
-                std::size_t i = 0;
 
                 const float space_char_sz = (m_space_character_sz / pixels_per_wld_unit * m_scale_factor);
                 const float space_between_chars = (m_characters_space / pixels_per_wld_unit * m_scale_factor);
 
                 const gfx::Sprite_atlas * atlas = m_pparent_canvas->get_atlas();
                 gfx::Vertex1P1C1UV *pbuffer = ui::g_vertex_buffer;
+                std::size_t i = 0;
                 for (; i != m_characters_ids.size(); ++i) {
                         const gfx::Atlas_image & image = atlas->get_image_data(m_characters_ids[i]);
                         float char_width_wld_units = (image.m_width * m_scale_factor) / pixels_per_wld_unit;
                         float char_height_wld_units = (image.m_height * m_scale_factor) / pixels_per_wld_unit;
                         const math::Rect & tcoordinates = image.m_texture_coordinates;
+
+                        // check if there is space on buffer for text
+                        if ((vertex_sz * i + vertex_sz - 1) > ui::g_vertex_buffer_sz - 1) {
+                                std::cerr << "ERRROR: ATTEMPTING TO ACESS OUT OF ARRAY MEMORY!!" << std::endl;
+                                break;
+                        }
+
 
                         // check if it is a a space character
                         if (image.m_width == 0 && image.m_height == 0) {

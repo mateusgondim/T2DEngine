@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<TextureAtlas imagePath="gravitybold.png" width="512" height="512">
+	<sprite n=" " x="1" y="43" w="0" h="0"/>
+	<!--<sprite n="" rect="2 6 10 37" code="!"/>-->
+	<!--<sprite n="" rect="13 6 24 14" code="&quot;"/>-->
+	<!--<sprite n="" rect="38 6 37 37" code="#"/>-->
+	<!--<sprite n="" rect="76 1 28 47" code="$"/>-->
+	<!--<sprite n="" rect="105 6 37 37" code="%"/>-->
+	<!--<sprite n="" rect="143 6 33 37" code="&amp;"/>-->
+	<!--<sprite n="" rect="177 6 10 14" code="'"/>-->
+	<!--<sprite n="" rect="188 6 19 37" code="("/>-->
+	<!--<sprite n="" rect="208 6 19 37" code=")"/>-->
+	<!--<sprite n="" rect="228 6 37 37" code="*"/>-->
+	<!--<sprite n="" rect="266 10 28 29" code="+"/>-->
+	<!--<sprite n=""  rect="295 33 14 20" code=","/>-->
+	<!--<sprite n=""  rect="310 19 28 11" code="-"/>-->
+	<sprite n="." x="339" y="33" w="10" h="10"/>
+	<!--<sprite n="" rect="350 6 37 37" code="/"/>-->
+	<sprite n="0" x="388" y="6" w="28" h="37"/>
+	<sprite n="1" x="417" y="6" w="28" h="37"/>
+	<sprite n="2" x="446" y="6" w="28" h="37"/>
+	<sprite n="3" x="475" y="6" w="28" h="37"/>
+	<sprite n="4" x="1" y="54" w="28" h="37"/>
+	<sprite n="5" x="30" y="54" w="28" h="37"/>
+	<sprite n="6" x="59" y="54" w="28" h="37"/>
+	<sprite n="7" x="88" y="54" w="28" h="37"/>
+	<sprite n="8" x="117" y="54" w="28" h="37"/>
+	<sprite n="9" x="146" y="54" w="28" h="37"/>
+	<sprite n=":" x="175" y="63" w="10" h="24"/>
+	<!--<sprite n="" rect="186 63 14 33" code=";"/>-->
+	<!--<sprite n="" rect="201 54 24 37" code="&lt;"/>-->
+	<!--<sprite n="" rect="226 63 28 24" code="="/>-->
+	<!--<sprite n="" rect="255 54 24 37" code=">-->"/>-->
+	<!--<sprite n="" rect="280 54 28 37" code="?"/>-->
+	<sprite n="@" x="309" y="54" w="37" h="37"/>
+	<!--<sprite n="" rect="347 54 28 37" code="A"/>-->
+	<sprite n="B" x="376" y="54" w="28" h="37"/>
+	<!--<sprite n="" rect="405 54 28 37" code="C"/>-->
+	<sprite n="D" x="434" y="54" w="28" h="37"/>
+	<sprite n="E" x="463" y="54" w="28" h="37"/>
+	<!--<sprite n="" rect="1 97 28 37" code="F"/>-->
+	<sprite n="G" x="30" y="97" w="28" h="37"/>
+	<!--<sprite n="" rect="59 97 28 37" code="H"/>-->
+	<sprite n="I" x="88" y="97" w="19" h="37"/>
+	<!--<sprite n="" rect="108 97 28 37" code="J"/>-->
+	<!--<sprite n="" rect="137 97 28 37" code="K"/>-->
+	<!--<sprite n="" rect="166 97 28 37" code="L"/>-->
+	<sprite n="M" x="195" y="97" w="37" h="37"/>
+	<sprite n="N" x="233" y="97" w="28" h="37"/>
+	<sprite n="O" x="262" y="97" w="37" h="37"/>
+	<!--<sprite n="" rect="300 97 28 37" code="P"/>-->
+	<!--<sprite n="" rect="329 97 37 47" code="Q"/>-->
+	<!--<sprite n="" rect="367 97 28 37" code="R"/>-->
+	<!--<sprite n="" rect="396 97 28 37" code="S"/>-->
+	<sprite n="T" x="425" y="97" w="28" h="37"/>
+	<!--<sprite n="" rect="454 97 28 37" code="U"/>-->
+	<!--<sprite n="" rect="1 145 28 37" code="V"/>-->
+	<!--<sprite n="" rect="30 145 37 37" code="W"/>-->
+	<!--<sprite n="" rect="68 145 37 37" code="X"/>-->
+	<sprite n="Y" x="106" y="145" w="28" h="37"/>
+	<!--<sprite n="" rect="135 145 33 37" code="Z"/>-->
+	<!--<sprite n="" rect="169 145 14 37" code="["/>-->
+	<!--<sprite n="" rect="184 145 37 37" code="\"/>-->
+	<!--<sprite n="" rect="222 145 14 37" code="]"/>-->
+	<!--<sprite n="" rect="237 145 28 19" code="^"/>-->
+	<!--<sprite n=""  rect="266 182 28 10" code="_"/>-->
+	<!--<sprite n="" rect="295 145 14 19" code="`"/>-->
+	<sprite n="a" x="310" y="145" w="28" h="37"/>
+	<sprite n="b" x="339" y="145" w="28" h="37"/>
+	<sprite n="c" x="368" y="145" w="28" h="37"/>
+	<sprite n="d" x="397" y="145" w="28" h="37"/>
+	<sprite n="e" x="426" y="145" w="28" h="37"/>
+	<!--<sprite n="" rect="455 145 28 37" code="f"/>-->
+	<sprite n="g" x="1" y="193" w="28" h="37"/>
+	<!--<sprite n="" rect="30 193 28 37" code="h"/>-->
+	<sprite n="i" x="59" y="193" w="19" h="37"/>
+	<!--<sprite n="" rect="79 193 28 37" code="j"/>-->
+	<!--<sprite n="" rect="108 193 28 37" code="k"/>-->
+	<sprite n="l" x="137" y="193" w="28" h="37"/>
+	<sprite n="m" x="166" y="193" w="37" h="37"/>
+	<sprite n="n" x="204" y="193" w="28" h="37"/>
+	<sprite n="o" x="233" y="193" w="37" h="37"/>
+	<sprite n="p" x="271" y="193" w="28" h="37"/>
+	<!--<sprite n="" rect="300 193 37 47" code="q"/>-->
+	<sprite n="r" x="338" y="193" w="28" h="37"/>
+	<sprite n="s" x="367" y="193" w="28" h="37"/>
+	<sprite n="t" x="396" y="193" w="28" h="37"/>
+	<sprite n="u" x="425" y="193" w="28" h="37"/>
+	<!--<sprite n="" rect="454 193 28 37" code="v"/>-->
+	<!--<sprite n="" rect="1 241 37 37" code="w"/>-->
+	<!--<sprite n="" rect="39 241 37 37" code="x"/>-->
+	<sprite n="y" x="77" y="241" w="28" h="37"/>
+	<!--<sprite n="" rect="106 241 33 37" code="z"/>-->
+	<!--<sprite n="" rect="140 241 19 37" code="{"/>-->
+	<!--<sprite n="" rect="160 241 10 37" code="|"/>-->
+	<!--<sprite n="" rect="171 241 19 37" code="}"/>-->
+	<!--<sprite n=""  rect="191 254 29 15" code="~"/>-->
+</TextureAtlas>

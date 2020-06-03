@@ -6,8 +6,8 @@
 
 #include "crc32.hpp"
 
-Pause_text::Pause_text(ui::Canvas & parent_canvas, const math::Rect & rect) :
-        ui::Text(parent_canvas, rect, "PAUSED", sizeof(Pause_text), 0.5f) {}
+Pause_text::Pause_text(ui::Canvas & parent_canvas) :
+        ui::Text(parent_canvas, "paused", sizeof(Pause_text), 0.2f, 5) {}
 
 void Pause_text::on_event(Event & event)
 {

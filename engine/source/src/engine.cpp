@@ -27,9 +27,10 @@ static void error_callback(int error, const char * descr)
         std::cerr << "GLFW ERROR: " << descr << std::endl;
 }
 
+
 // We need to Deal with error conditions!!!!!
 void engine_init(const uint32_t context_version_major, const uint32_t context_version_minor,
-                 Tile_map *ptile_map)
+                 const char * pplevels[], const int num_levels)
 {
         /* Shader_manager, texture_2d_manager and Sprite_atlas_manager dont need to be explicitly
          * initialized
@@ -38,9 +39,8 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
         // Initalize GLFW library
         gfx::Glfw_manager::init(context_version_major, context_version_minor);
         // Initialize the  engine global managers
-        gfx::g_graphics_mgr.init(256, 240, 2.0f, "2D Game Project",
-                                 ptile_map->pixels_per_world_unit());
-        physics_2d::g_physics_mgr.init(ptile_map);
+        gfx::g_graphics_mgr.init(256, 240, 2.0f, "T2DEngine Demo");
+        physics_2d::g_physics_mgr.init();
         gom::g_game_object_mgr.init();
         gom::g_projectile_mgr.init();
         ui::g_ui_mgr.init();
@@ -50,7 +50,9 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
                 io::Input_abstraction_layer::keyboard_callback);
 
         Path resources_path("../resources", Path::FORWARD_SLASH);
-        level_management::g_level_mgr.load(resources_path, ptile_map);
+        // this should be load_resilient_data
+        level_management::g_level_mgr.load_resident_data(pplevels, num_levels, resources_path);
+        //level_management::g_level_mgr.load(resources_path, ptile_map);
 
         // set Engine's default collision listener
         pcollision_listener = new Engine_collision_listener;
@@ -60,6 +62,7 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
 
 void engine_shut_down() 
 {
+        level_management::g_level_mgr.shut_down();
         ui::g_ui_mgr.shut_down();
         gom::g_projectile_mgr.shut_down();
         gom::g_game_object_mgr.shut_down();

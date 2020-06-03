@@ -83,6 +83,10 @@ void gfx::Sprite_batch::add(const gfx::Vertex1P1C1UV * pvertex_buffer, const std
 //add(): add vertices to the buffer 
 void gfx::Sprite_batch::add(const std::vector<gfx::Vertex1P1C1UV> & vertices) 
 {
+        if (vertices.empty()) {
+                return;
+        }
+
 	if ((m_max_num_vertices - m_num_used_vertices) < vertices.size() ) {
 		std::cout << __FUNCTION__ << " there is not enough room for " << vertices.size() << " vertices in this batch. This batch already have " 
 			      << m_num_used_vertices << " vertices and can only store "    << m_max_num_vertices << std::endl;
@@ -135,17 +139,18 @@ void gfx::Sprite_batch::add(const gfx::Sprite  *psprite)
 //maybe we pass the set of texture here...
 void gfx::Sprite_batch::render()
 {
-	glBindVertexArray(m_vao);
-	
-	//m_texture.use();
+        if (m_num_used_vertices == 0) {
+                return;
+        }
+        glBindVertexArray(m_vao);
 
-	glDrawArrays(GL_TRIANGLES, 0, m_num_used_vertices);
-	glBindVertexArray(0);
+        glDrawArrays(GL_TRIANGLES, 0, m_num_used_vertices);
+        glBindVertexArray(0);
 
-	//reset buffer if it is dynamic
-	if (!m_is_static) {
-		m_num_used_vertices = 0;
-	}
+        // reset buffer if it is dynamic
+        if (!m_is_static) {
+                m_num_used_vertices = 0;
+        }
 }
 
 

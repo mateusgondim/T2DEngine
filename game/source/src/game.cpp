@@ -71,6 +71,7 @@
 
 // UI creators
 #include "Level_ui_creator.hpp"
+#include "Main_menu_creator.hpp"
 
 //utility
 #include "crc32.hpp"
@@ -83,11 +84,9 @@
 int main(int argc, char *argv[])
 {
         Path resources_path("../resources", Path::FORWARD_SLASH);
-        // Load tile map. OBS: WE NEED TO CHANGE THIS LATTER... THE MAP LOADING SHOULD BE DONE ON ENGINE.INIT 
-        Tile_map tile_map((resources_path + "/maps/level01.tmx").c_str());
-        print_tile_map(std::cout, tile_map) << std::endl;
         
-        engine_init(3, 2, &tile_map);
+        const char * pplevels[] = { "main_menu.tmx", "level01.tmx", "level02.tmx" };
+        engine_init(3, 2, pplevels, 3);
 
        /// Player setup
 
@@ -143,10 +142,8 @@ int main(int argc, char *argv[])
         Level_ui_creator * level_ui_creator = new Level_ui_creator(SID('ui'));
         gom::g_game_object_mgr.register_creator(SID('level_ui'), level_ui_creator, SID('canvas'));
 
-        std::cout << " TILE MAP WIDTH = " << tile_map.width() << "| TILE MAP HEIGHT = "
-                  << tile_map.height() << std::endl;
-
-        level_management::g_level_mgr.init();
+        Main_menu_creator * main_menu_creator = new Main_menu_creator(SID('ui'));
+        gom::g_game_object_mgr.register_creator(SID('main_menu'), main_menu_creator, SID('canvas'));
 
         //Set up the game's control scheme
         io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
@@ -167,12 +164,20 @@ int main(int argc, char *argv[])
         control_scheme.map_action_to_button(SID('attack_01'),
                                             io::Abstract_keyboard_index::KEY_S);
 
+        // Load next Level - FOR DEBUGGING
+        control_scheme.map_action_to_button(SID('next_level'),
+                                            io::Abstract_keyboard_index::KEY_N);
+        control_scheme.map_action_to_button(SID('previous_level'),
+                                            io::Abstract_keyboard_index::KEY_P);
+
+
+        level_management::g_level_mgr.load_level(0);
+
+
         gom::Camera_2d *pmain_camera = gom::g_game_object_mgr.get_main_camera();
         pmain_camera->track(player_type_id);
 
         gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
-
-
 
         bool just_paused = false;
         Event paused_event = Event(SID('GAME_PAUSED'));
@@ -188,6 +193,13 @@ int main(int argc, char *argv[])
                         }
                         else {
                                 gom::g_game_object_mgr.broadcast_event(running_event);
+                        }
+                }
+                else {
+                        bool next_level_pressed = io::g_input_mgr.get_button_down(SID('next_level'));
+                        bool prev_level_pressed = io::g_input_mgr.get_button_down(SID('previous_level'));
+                        if (next_level_pressed) {
+                                level_management::g_level_mgr.load_next_level();
                         }
                 }
         }
