@@ -62,6 +62,7 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
 
 void engine_shut_down() 
 {
+        level_management::g_level_mgr.shut_down();
         ui::g_ui_mgr.shut_down();
         gom::g_projectile_mgr.shut_down();
         gom::g_game_object_mgr.shut_down();
