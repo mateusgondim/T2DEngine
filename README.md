@@ -10,7 +10,7 @@ The main reason behind the construction of the engine, was to have a first hand 
   - [CMake](https://cmake.org/) for generating the build files.
   - [Tiled](https://www.mapeditor.org/) for creating the maps used by the engine, i.e, the tmx files.
   - [TexturePacker](https://www.codeandweb.com/texturepacker) for generating the sprite atlases and the corresponding xml files used by the engine.
-# Feattures
+# Features
 The T2DEngine is comprised of a group of modules, each one implementing a core functionality of the engine, those modules are:
   - Math, which implements all the 2d vector and matrix math used by the engine and game.
   - Mem provides a function to allocate aligned memory blocks, defines a pool data structure to manage memory blocks of the same size and, a generic memory allocator.
