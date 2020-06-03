@@ -27,9 +27,10 @@ static void error_callback(int error, const char * descr)
         std::cerr << "GLFW ERROR: " << descr << std::endl;
 }
 
+
 // We need to Deal with error conditions!!!!!
 void engine_init(const uint32_t context_version_major, const uint32_t context_version_minor,
-                 Tile_map *ptile_map)
+                 const char * pplevels[], const int num_levels)
 {
         /* Shader_manager, texture_2d_manager and Sprite_atlas_manager dont need to be explicitly
          * initialized
