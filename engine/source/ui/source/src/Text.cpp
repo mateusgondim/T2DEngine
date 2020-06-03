@@ -98,13 +98,13 @@ namespace ui
                 math::vec3 char_bottom_left(bottom_left_pos.x, bottom_left_pos.y, 0.0f);
                 const float pixels_per_wld_unit = gfx::g_graphics_mgr.get_pixels_per_wld_unit();
                 const int vertex_sz = 6;
-                std::size_t i = 0;
 
                 const float space_char_sz = (m_space_character_sz / pixels_per_wld_unit * m_scale_factor);
                 const float space_between_chars = (m_characters_space / pixels_per_wld_unit * m_scale_factor);
 
                 const gfx::Sprite_atlas * atlas = m_pparent_canvas->get_atlas();
                 gfx::Vertex1P1C1UV *pbuffer = ui::g_vertex_buffer;
+                std::size_t i = 0;
                 for (; i != m_characters_ids.size(); ++i) {
                         const gfx::Atlas_image & image = atlas->get_image_data(m_characters_ids[i]);
                         float char_width_wld_units = (image.m_width * m_scale_factor) / pixels_per_wld_unit;
