@@ -164,6 +164,7 @@ int main(int argc, char *argv[])
         control_scheme.map_action_to_button(SID('attack_01'),
                                             io::Abstract_keyboard_index::KEY_S);
 
+        level_management::g_level_mgr.load_level(0);
         gom::Camera_2d *pmain_camera = gom::g_game_object_mgr.get_main_camera();
         pmain_camera->track(player_type_id);
 
