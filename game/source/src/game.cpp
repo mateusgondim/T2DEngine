@@ -84,7 +84,8 @@ int main(int argc, char *argv[])
 {
         Path resources_path("../resources", Path::FORWARD_SLASH);
         
-        engine_init(3, 2, &tile_map);
+        const char * pplevels[] = { "main_menu.tmx", "level01.tmx", "level02.tmx" };
+        engine_init(3, 2, pplevels, 3);
 
        /// Player setup
 
