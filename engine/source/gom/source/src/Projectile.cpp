@@ -100,8 +100,8 @@ namespace gom {
 
 	void Projectile::update(const float dt) 
 	{
-            Camera_2d *plevel_camera = g_game_object_mgr.get_main_camera();
-		if (plevel_camera->is_off_camera(m_pbody_2d->get_position(), 1.0F, 1.0F)) {
+            Camera_2d & level_camera = g_game_object_mgr.get_main_camera();
+		if (level_camera.is_off_camera(m_pbody_2d->get_position(), 1.0F, 1.0F)) {
 			set_active(false);
 			return;
 		}
