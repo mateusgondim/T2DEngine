@@ -2,7 +2,6 @@
 #include "Canvas.hpp"
 #include "UI_manager.hpp"
 #include "Event.hpp"
-#include "Game_object.hpp"
 #include "Vertex1P1C1UV.hpp"
 #include "vec4.hpp"
 #include "mat4.hpp"
