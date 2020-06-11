@@ -54,7 +54,6 @@ namespace gom {
 
                 void                        broadcast_event(Event & event);
 
-                void                        set_main_camera(Camera_2d * pmain_camera);
                 Camera_2d *                 get_main_camera();
         private:
                 Game_object_handle          register_game_object(Game_object *pgame_object,

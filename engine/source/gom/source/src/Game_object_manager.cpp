@@ -311,11 +311,6 @@ namespace gom
                 return lhs->get_unique_id() < rhs->get_unique_id();
         }
 
-        void Game_object_manager::set_main_camera(gom::Camera_2d * pmain_camera)
-        {
-                m_pmain_camera = pmain_camera;
-        }
-
         gom::Camera_2d * Game_object_manager::get_main_camera()
         {
                 return m_pmain_camera;
