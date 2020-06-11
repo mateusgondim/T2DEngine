@@ -28,9 +28,9 @@ namespace ui
                 void            reset() { m_num_canvases = 0; }
                 void            set_widgets_shader(gfx::Shader & widgets_shader);
         private:
-                static const std::uint8_t       s_max_num_canvases = 8;
+                static const std::uint8_t       s_MAX_NUM_CANVASES = 8;
                 std::uint8_t                    m_num_canvases;
-                gom::Game_object_handle         m_canvases[s_max_num_canvases];
+                gom::Game_object_handle         m_canvases[s_MAX_NUM_CANVASES];
                 gfx::Shader *                   m_pwidgets_shader;
         };
 
@@ -38,7 +38,7 @@ namespace ui
 
         // this buffer should be temporarily! the idea is to implement a stack allocator
         // and use it for the UI module as a hole
-        extern const std::size_t        g_vertex_buffer_sz;
+        extern const std::size_t        g_VERTEX_BUFFER_SZ;
         extern gfx::Vertex1P1C1UV       g_vertex_buffer[];
 }
 #endif // !_UI_MANAGER_HPP
