@@ -22,8 +22,8 @@
 
 namespace ui
 {
-        const std::uint8_t    Canvas::s_max_num_widgets;
-        const std::uint8_t    Canvas::s_max_num_vertices_per_widget;
+    const std::uint8_t    Canvas::s_MAX_NUM_WIDGETS;
+    const std::uint8_t    Canvas::s_MAX_NUM_VERTICES_PER_WIDGET;
 
 
         Canvas::Canvas(const math::Rect & rect, const string_id atlas_id) :
