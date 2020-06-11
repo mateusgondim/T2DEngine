@@ -20,13 +20,12 @@ namespace ui
 
                 UI_manager & operator=(const UI_manager &) = delete;
 
-                void            init();
-                void            shut_down();
-                void            render();
+                void    init();
+                void    shut_down();
+                void    render();
 
                 // Warning: This does not destory the canvas objects
                 void            reset() { m_num_canvases = 0; }
-
                 void            set_widgets_shader(gfx::Shader & widgets_shader);
         private:
                 static const std::uint8_t       s_max_num_canvases = 8;
