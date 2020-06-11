@@ -4,12 +4,12 @@
 
 #include "Game_object.hpp"
 #include "Rect.hpp"
-#include "Vertex1P1C1UV.hpp"
 #include "vec2.hpp"
 #include <cstddef>
 #include <utility>
 
 class Event;
+namespace gfx { struct Vertex1P1C1UV; }
 namespace ui { class Canvas; }
 
 namespace ui
