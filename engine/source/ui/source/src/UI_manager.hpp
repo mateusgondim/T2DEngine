@@ -16,6 +16,7 @@ namespace ui
         public:
                 UI_manager() = default;
                 UI_manager(const UI_manager &) = delete;
+                ~UI_manager() = default;
 
                 UI_manager & operator=(const UI_manager &) = delete;
 
