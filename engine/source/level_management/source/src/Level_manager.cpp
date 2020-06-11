@@ -179,40 +179,30 @@ namespace level_management
                 float tile_wld_height = m_ptile_map->tile_height() / gfx::g_graphics_mgr.get_pixels_per_wld_unit();
                 math::vec2 map_origin = math::vec2(m_ptile_map->get_position().x, m_ptile_map->get_position().y);
 
-                gom::Camera_2d *plevel_camera = gom::g_game_object_mgr.get_main_camera();
-                if (plevel_camera) {
-                        plevel_camera->init(tile_wld_width, tile_wld_height,
-                                            gfx::g_graphics_mgr.get_tiles_per_screen_width(),
-                                            gfx::g_graphics_mgr.get_tiles_per_screen_height(), 
-                                            m_ptile_map->width(),
-                                            m_ptile_map->height(), map_origin);
+                // configure the camera for this level
+                gom::Camera_2d & level_camera = gom::g_game_object_mgr.get_main_camera();
+                level_camera.init(tile_wld_width, tile_wld_height,
+                                  gfx::g_graphics_mgr.get_tiles_per_screen_width(),
+                                  gfx::g_graphics_mgr.get_tiles_per_screen_height(), 
+                                  m_ptile_map->width(),
+                                  m_ptile_map->height(), map_origin);
 
-                }
-                else {
-                        plevel_camera = new gom::Camera_2d(tile_wld_width, tile_wld_height,
-                                                           gfx::g_graphics_mgr.get_tiles_per_screen_width(),
-                                                           gfx::g_graphics_mgr.get_tiles_per_screen_height(), 
-                                                           m_ptile_map->width(),
-                                                           m_ptile_map->height(), map_origin);
-                        // set as the main camera
-                        gom::g_game_object_mgr.set_main_camera(plevel_camera);
-                }
 
                 m_pmap_shader->uniform_matrix4fv(m_tile_map_view_loc, 1, false,
-                                                 plevel_camera->get_view().value_ptr());
+                                                 level_camera.get_view().value_ptr());
 
                 m_pmap_shader->uniform_matrix4fv(m_pmap_shader->get_uniform_location("P"), 1, false,
-                                                 plevel_camera->projection().value_ptr());
+                                                 level_camera.projection().value_ptr());
 
                 m_pmap_shader->uniform_1f(m_pmap_shader->get_uniform_location("tileset1"), 0);
                 gfx::g_graphics_mgr.set_tile_map_shader(m_pmap_shader);
 
 
                 m_psprite_shader->uniform_matrix4fv(m_sprites_view_loc, 1, false,
-                                                    plevel_camera->get_view().value_ptr());
+                                                    level_camera.get_view().value_ptr());
 
                 m_psprite_shader->uniform_matrix4fv(m_psprite_shader->get_uniform_location("P"), 1,
-                                                    false, plevel_camera->projection().value_ptr());
+                                                    false, level_camera.projection().value_ptr());
 
                 m_psprite_shader->uniform_1f(m_psprite_shader->get_uniform_location("tileset"), 0);
                 gfx::g_graphics_mgr.set_sprite_shader(m_psprite_shader);
@@ -295,18 +285,18 @@ namespace level_management
                 gom::g_projectile_mgr.update(game_delta_time_seconds);
 
                 //update the level's camera
-                gom::Camera_2d * plevel_camera = gom::g_game_object_mgr.get_main_camera();
+                gom::Camera_2d & level_camera = gom::g_game_object_mgr.get_main_camera();
                 
-                plevel_camera->update(game_delta_time_seconds);
+                level_camera.update(game_delta_time_seconds);
                 
                 m_pmap_shader->uniform_matrix4fv(m_tile_map_view_loc, 1, false,
-                                                 plevel_camera->get_view().value_ptr());
+                                                 level_camera.get_view().value_ptr());
 
                 gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
                 prender_window->update_viewport();
 
                 m_psprite_shader->uniform_matrix4fv(m_sprites_view_loc, 1, false,
-                                                    plevel_camera->get_view().value_ptr());
+                                                    level_camera.get_view().value_ptr());
 
                 gfx::g_graphics_mgr.render();
 
