@@ -24,8 +24,9 @@ namespace ui
                 const std::string &     get_message() const { return m_msg; }
                 float get_scale_factor() const { return m_scale_factor; }
         protected:
-                void set_obj_space_rect();
                 virtual vertex_data     get_view_space_vertices() const override;
+        private:
+                void generate_obj_space_rect();
                 const float m_scale_factor;
                 const int   m_characters_space; // the space in pixels between two caracters on the text
                 const int   m_space_character_sz; // the size in pixels of the 'space' character
