@@ -55,15 +55,10 @@ namespace level_management
          * but also the location of all the resources necessary to play level, such as textures,
          * animator controllers, sprite atlases, shaders and so on.
          */
-        void Level_manager::load_level(const std::uint32_t level_index)
+        void Level_manager::load_requested_level()
         {
-                if (level_index > m_levels.size() - 1) {
-                        return;
-                }
-
                 unload_current_level();
 
-                m_current_level = level_index;
                 // Load .TMX file containg the map and it's data
                 std::string level("/maps/" + m_levels[m_current_level]);
 
