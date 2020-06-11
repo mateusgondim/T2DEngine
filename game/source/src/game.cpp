@@ -176,8 +176,8 @@ int main(int argc, char *argv[])
         level_management::g_level_mgr.request_level(0);
 
 
-        gom::Camera_2d *pmain_camera = gom::g_game_object_mgr.get_main_camera();
-        pmain_camera->track(player_type_id);
+        gom::Camera_2d & main_camera = gom::g_game_object_mgr.get_main_camera();
+        main_camera.track(player_type_id);
 
         gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
 
