@@ -104,6 +104,18 @@ namespace level_management
         void Level_manager::load_next_level()
         {
                 load_level(m_current_level + 1);
+        void Level_manager::request_level(const std::uint32_t level_index)
+        {
+            if (level_index > m_levels.size() - 1) {
+                return;
+            }
+
+            if (m_should_load_next_level) {
+                return;
+            }
+
+            m_current_level = level_index;
+            m_should_load_next_level = true;
         }
 
         void Level_manager::load_resident_data(const char * pplevels[], const uint32_t num_levels,

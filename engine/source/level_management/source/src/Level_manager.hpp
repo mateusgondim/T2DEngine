@@ -21,7 +21,7 @@ namespace level_management
                                                    const uint32_t num_levels,
                                                    Path & resources_path);
                 void load_next_level();
-                void load_level(const uint32_t level_index);
+                void request_level(const uint32_t level_index);
 
                 void shut_down();
                 void tick();
