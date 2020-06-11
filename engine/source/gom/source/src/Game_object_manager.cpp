@@ -27,8 +27,6 @@ namespace gom
 
         void Game_object_manager::init()
         {
-                m_pmain_camera = nullptr;
-
                 //set up the handle table
                 m_next_free_index = 0;
                 for (size_t i = 0; i < m_MAX_GAME_OBJECTS - 1; ++i) {
@@ -61,11 +59,6 @@ namespace gom
                 //delete creators
                 for (creator_map::iterator it = m_creators.begin(); it != m_creators.end(); ++it) {
                         delete (it->second);
-                }
-
-                // deallocate main camera
-                if (m_pmain_camera) {
-                        delete m_pmain_camera;
                 }
         }
 
@@ -311,8 +304,8 @@ namespace gom
                 return lhs->get_unique_id() < rhs->get_unique_id();
         }
 
-        gom::Camera_2d * Game_object_manager::get_main_camera()
+        gom::Camera_2d & Game_object_manager::get_main_camera()
         {
-                return m_pmain_camera;
+                return m_main_camera;
         }
 }

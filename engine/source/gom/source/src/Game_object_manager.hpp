@@ -5,6 +5,7 @@
 #include <stdint.h>
 
 #include "Game_object.hpp"
+#include "Camera_2d.hpp"
 
 /* Game_object_manager: class responsable to instantiate and store all the game objects
    in the world. All the objects are stored in a handle table and should only be accessed by
@@ -13,7 +14,7 @@
    is able to create a Game_object of the specific type.
  */
 namespace math { struct vec3; }
-namespace gom {class Creator; class Game_object_handle; class Camera_2d; }
+namespace gom {class Creator; class Game_object_handle; }
 class Event;
 
 namespace gom {
@@ -54,7 +55,7 @@ namespace gom {
 
                 void                        broadcast_event(Event & event);
 
-                Camera_2d *                 get_main_camera();
+                Camera_2d &                 get_main_camera();
         private:
                 Game_object_handle          register_game_object(Game_object *pgame_object,
                                                                  std::size_t object_sz);
@@ -72,7 +73,7 @@ namespace gom {
                 vgame_object_handles	   m_game_objects_to_destroy;
 
 
-                Camera_2d               *m_pmain_camera;
+                Camera_2d               m_main_camera;
         };
         extern Game_object_manager g_game_object_mgr;
 
