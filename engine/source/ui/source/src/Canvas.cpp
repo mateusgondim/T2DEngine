@@ -11,6 +11,7 @@
 #include "Resource.hpp"
 #include "Sprite_atlas.hpp"
 #include "Sprite_atlas_manager.hpp"
+#include "UI_manager.hpp"
 
 #include "runtime_memory_allocator.hpp"
 
@@ -26,10 +27,17 @@ namespace ui
     const std::uint8_t    Canvas::s_MAX_NUM_VERTICES_PER_WIDGET;
 
 
-        Canvas::Canvas(const math::Rect & rect, const string_id atlas_id) :
-                gom::Game_object(sizeof(Canvas), math::g_zero_vec3), m_num_widgets(0),
-                m_dirty(true), m_atlas_id(atlas_id), m_rect(rect),
-                m_vertex_batch(s_max_num_vertices_per_widget * s_max_num_widgets, true) {}
+    Canvas::Canvas(const math::Rect & rect, const string_id atlas_id, const std::size_t obj_size) :
+        gom::Game_object(obj_size, math::g_zero_vec3), m_num_widgets(0), m_dirty(true),
+        m_atlas_id(atlas_id), m_rect(rect),
+        m_vertex_batch(s_MAX_NUM_VERTICES_PER_WIDGET * s_MAX_NUM_WIDGETS, true)
+    {
+        if (!g_ui_mgr.add_canvas(*this)) {
+#ifndef NDEBUG
+            std::cerr << "ERROR: Unable to add canvas to UI_MANAGER" << std::endl;
+#endif // !NDEBUG
+        }
+    }
 
         void Canvas::update(const float dt) {}
         void Canvas::on_event(Event & event) {}
