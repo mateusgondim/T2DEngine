@@ -101,9 +101,11 @@ namespace level_management
                 }
         }
 
-        void Level_manager::load_next_level()
+        void Level_manager::request_next_level()
         {
-                load_level(m_current_level + 1);
+                request_level(m_current_level + 1);
+        }
+
         void Level_manager::request_level(const std::uint32_t level_index)
         {
             if (level_index > m_levels.size() - 1) {

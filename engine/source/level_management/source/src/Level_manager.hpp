@@ -20,7 +20,7 @@ namespace level_management
                 void            load_resident_data(const char * pplevels[],
                                                    const uint32_t num_levels,
                                                    Path & resources_path);
-                void load_next_level();
+                void request_next_level();
                 void request_level(const uint32_t level_index);
 
                 void shut_down();
