@@ -173,7 +173,7 @@ int main(int argc, char *argv[])
                                             io::Abstract_keyboard_index::KEY_P);
 
 
-        level_management::g_level_mgr.load_level(0);
+        level_management::g_level_mgr.request_level(0);
 
 
         gom::Camera_2d *pmain_camera = gom::g_game_object_mgr.get_main_camera();
@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
                         bool next_level_pressed = io::g_input_mgr.get_button_down(SID('next_level'));
                         bool prev_level_pressed = io::g_input_mgr.get_button_down(SID('previous_level'));
                         if (next_level_pressed) {
-                                level_management::g_level_mgr.load_next_level();
+                                level_management::g_level_mgr.request_next_level();
                         }
                 }
         }
