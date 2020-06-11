@@ -18,22 +18,24 @@ namespace ui
                 friend class Canvas;
         public:
                 typedef std::pair<gfx::Vertex1P1C1UV *, std::size_t> vertex_data;
+                
+                explicit Widget(Canvas & parent_canvas);
+                Widget(Canvas & parent_canvas, const math::Rect & obj_space_aabb,
+                       const std::size_t obj_sz = sizeof(Widget));
+                Widget(const Widget &) = delete;
+                         
+                Widget & operator=(const Widget &) = delete;
+
+                bool has_parent() const { return (m_pparent_canvas) ? (true) : (false); }
+
+                math::Rect get_obj_space_rect() const { return m_obj_space_aabb; }
 
                 virtual void            update(const float dt) override;
                 virtual void            on_event(Event & event) override;
-                explicit Widget(Canvas & parent_canvas);
-                         Widget(Canvas & parent_canvas, const math::Rect & obj_space_aabb,
-                                const std::size_t obj_sz = sizeof(Widget));
-                         bool has_parent() const 
-                         {
-                                 return (m_pparent_canvas) ? (true) : (false);
-                         }
-
-                         math::Rect get_obj_space_rect() const { return m_obj_space_aabb; }
-                         void       set_obj_to_canvas_translation(const math::vec2 & t)
-                         {
-                                 m_obj_to_canvas_translation = t;
-                         }
+                void       set_obj_to_canvas_translation(const math::vec2 & t)
+                {
+                        m_obj_to_canvas_translation = t;
+                }
         protected:
                 virtual vertex_data     get_view_space_vertices() const;
                 // Button * pbutton_component;
