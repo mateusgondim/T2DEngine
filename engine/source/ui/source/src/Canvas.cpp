@@ -1,5 +1,4 @@
 #include "Canvas.hpp"
-#include "Game_object.hpp"
 #include "Widget.hpp"
 #include "Text.hpp"
 #include "Vertex1P1C1UV.hpp"
@@ -8,7 +7,6 @@
 #include "Game_object_manager.hpp"
 #include "Event.hpp"
 #include "string_id.hpp"
-#include "Resource.hpp"
 #include "Sprite_atlas.hpp"
 #include "Sprite_atlas_manager.hpp"
 #include "UI_manager.hpp"
