@@ -22,13 +22,11 @@ Level_ui_creator::Level_ui_creator(const string_id canvas_atlas_id) :
 
 gom::Game_object * Level_ui_creator::create(const math::vec3 & wld_pos)
 {
-        math::Rect screen_rect = gom::g_game_object_mgr.get_main_camera()->get_screen_rect();
-        rms::Resource * pres = gfx::g_sprite_atlas_mgr.get_by_id(m_canvas_atlas_id);
-        gfx::Sprite_atlas * pui_atlas = static_cast<gfx::Sprite_atlas*>(pres);
+        math::Rect screen_rect = gom::g_game_object_mgr.get_main_camera().get_screen_rect();
+        void *pmem = mem::allocate(sizeof(ui::Canvas));
+        ui::Canvas *pcanvas = new (pmem) ui::Canvas(screen_rect, m_canvas_atlas_id);
 
-        ui::Canvas *pcanvas = ui::g_ui_mgr.create_canvas(screen_rect, *pui_atlas);
-
-        void * pmem = mem::allocate(sizeof(ui::Text));
+        pmem = mem::allocate(sizeof(ui::Text));
         Pause_text *ptext = new (pmem) Pause_text(*pcanvas);
         ptext->set_obj_to_canvas_translation(screen_rect.center());
         ptext->set_active(false);

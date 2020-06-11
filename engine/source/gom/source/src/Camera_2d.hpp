@@ -34,12 +34,11 @@ namespace gom {
         math::Rect     get_screen_rect() const;
 
         void update(const float dt);
-
-		void           set_screen_dim(const float tiles_per_screen_width,
-                                      const float tiles_per_screen_height);
-
 		void		   scale(const float device_aspect_ratio);
+
 	private:
+            void                set_screen_dim(const float tiles_per_screen_width,
+                                               const float tiles_per_screen_height);
             void                update_view();
             void		        follow(const math::vec3 & p);
             math::Transform     m_transform;

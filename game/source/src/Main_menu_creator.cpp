@@ -6,7 +6,7 @@
 #include "Rect.hpp"
 #include "Camera_2d.hpp"
 #include "Text.hpp"
-#include "Canvas.hpp"
+#include "Main_menu_canvas.hpp"
 #include "UI_manager.hpp"
 
 #include "Game_object.hpp"
@@ -20,13 +20,13 @@ Main_menu_creator::Main_menu_creator(const string_id canvas_atlas_id) :
 
 gom::Game_object * Main_menu_creator::create(const math::vec3 & wld_pos)
 {
-        math::Rect screen_rect = gom::g_game_object_mgr.get_main_camera()->get_screen_rect();
-        rms::Resource * pres = gfx::g_sprite_atlas_mgr.get_by_id(m_canvas_atlas_id);
-        gfx::Sprite_atlas * pui_atlas = static_cast<gfx::Sprite_atlas*>(pres);
-        ui::Canvas *pcanvas = ui::g_ui_mgr.create_canvas(screen_rect, *pui_atlas);
+        math::Rect screen_rect = gom::g_game_object_mgr.get_main_camera().get_screen_rect();
+
+        void *pmem = mem::allocate(sizeof(Main_menu_canvas));
+        Main_menu_canvas *pcanvas = new (pmem) Main_menu_canvas(screen_rect, m_canvas_atlas_id);
 
         
-        void * pmem = mem::allocate(sizeof(ui::Text));
+        pmem = mem::allocate(sizeof(ui::Text));
         ui::Text *ptitle = new (pmem) ui::Text(*pcanvas, "T2D ENGINE", sizeof(ui::Text), 0.5f, 5);
 
         pmem = mem::allocate(sizeof(ui::Text));

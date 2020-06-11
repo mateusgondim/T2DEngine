@@ -20,8 +20,8 @@ namespace level_management
                 void            load_resident_data(const char * pplevels[],
                                                    const uint32_t num_levels,
                                                    Path & resources_path);
-                void load_next_level();
-                void load_level(const uint32_t level_index);
+                void request_next_level();
+                void request_level(const uint32_t level_index);
 
                 void shut_down();
                 void tick();
@@ -32,6 +32,7 @@ namespace level_management
                 void            init();
                 void            instantiate_level_objects();
                 void            unload_current_level();
+                void            load_requested_level();
                 Path*                                           m_presources_path = nullptr;
                 std::vector<Game_object_data>                   m_level_data;
                 Tile_map*                                       m_ptile_map;
@@ -48,6 +49,7 @@ namespace level_management
                 std::vector<std::string>                        m_levels;
                 std::vector<std::string>::size_type             m_current_level;
                 bool                                            m_should_restart;
+                bool                                            m_should_load_next_level;
 
         };
         extern Level_manager g_level_mgr;

@@ -47,12 +47,10 @@ void engine_init(const uint32_t context_version_major, const uint32_t context_ve
 
         gfx::Glfw_manager::set_error_callback(error_callback);
         gfx::Glfw_manager::set_key_callback(gfx::g_graphics_mgr.get_render_window(),
-                io::Input_abstraction_layer::keyboard_callback);
+                                            io::Input_abstraction_layer::keyboard_callback);
 
         Path resources_path("../resources", Path::FORWARD_SLASH);
-        // this should be load_resilient_data
         level_management::g_level_mgr.load_resident_data(pplevels, num_levels, resources_path);
-        //level_management::g_level_mgr.load(resources_path, ptile_map);
 
         // set Engine's default collision listener
         pcollision_listener = new Engine_collision_listener;

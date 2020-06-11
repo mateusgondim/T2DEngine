@@ -163,6 +163,8 @@ int main(int argc, char *argv[])
                                             io::Abstract_keyboard_index::KEY_A);
         control_scheme.map_action_to_button(SID('attack_01'),
                                             io::Abstract_keyboard_index::KEY_S);
+        control_scheme.map_action_to_button(SID('action'),
+                                            io::Abstract_keyboard_index::KEY_ENTER);
 
         // Load next Level - FOR DEBUGGING
         control_scheme.map_action_to_button(SID('next_level'),
@@ -171,11 +173,11 @@ int main(int argc, char *argv[])
                                             io::Abstract_keyboard_index::KEY_P);
 
 
-        level_management::g_level_mgr.load_level(0);
+        level_management::g_level_mgr.request_level(0);
 
 
-        gom::Camera_2d *pmain_camera = gom::g_game_object_mgr.get_main_camera();
-        pmain_camera->track(player_type_id);
+        gom::Camera_2d & main_camera = gom::g_game_object_mgr.get_main_camera();
+        main_camera.track(player_type_id);
 
         gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
 
@@ -199,7 +201,7 @@ int main(int argc, char *argv[])
                         bool next_level_pressed = io::g_input_mgr.get_button_down(SID('next_level'));
                         bool prev_level_pressed = io::g_input_mgr.get_button_down(SID('previous_level'));
                         if (next_level_pressed) {
-                                level_management::g_level_mgr.load_next_level();
+                                level_management::g_level_mgr.request_next_level();
                         }
                 }
         }
