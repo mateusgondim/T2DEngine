@@ -43,6 +43,10 @@ namespace ui
         void UI_manager::set_widgets_shader(gfx::Shader & widgets_shader)
         {
                 m_pwidgets_shader = &widgets_shader;
+    bool UI_manager::add_canvas(const Canvas & canvas)
+    {
+        if (m_num_canvases >= s_MAX_NUM_CANVASES) {
+            return false;
         }
 
         // By the default, the canvas should ocupy the entire screen

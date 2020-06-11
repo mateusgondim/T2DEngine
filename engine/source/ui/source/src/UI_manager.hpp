@@ -23,6 +23,7 @@ namespace ui
                 void    init();
                 void    shut_down();
                 void    render();
+                bool    add_canvas(const Canvas & canvas);
 
                 // Warning: This does not destory the canvas objects
                 void            reset() { m_num_canvases = 0; }
