@@ -163,6 +163,8 @@ int main(int argc, char *argv[])
                                             io::Abstract_keyboard_index::KEY_A);
         control_scheme.map_action_to_button(SID('attack_01'),
                                             io::Abstract_keyboard_index::KEY_S);
+        control_scheme.map_action_to_button(SID('action'),
+                                            io::Abstract_keyboard_index::KEY_ENTER);
 
         // Load next Level - FOR DEBUGGING
         control_scheme.map_action_to_button(SID('next_level'),
