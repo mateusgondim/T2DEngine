@@ -236,6 +236,12 @@ namespace level_management
 
         void Level_manager::tick()
         {
+            if (m_should_load_next_level) {
+                load_requested_level();
+                // reset flag
+                m_should_load_next_level = false;
+            }
+
                 io::g_input_mgr.poll_events();
 
                 bool pause_pressed = io::g_input_mgr.get_button_down(SID('pause'));
