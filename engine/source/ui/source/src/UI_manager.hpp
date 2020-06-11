@@ -15,8 +15,6 @@ namespace ui
         class UI_manager final {
         public:
                 UI_manager() = default;
-                Canvas *        create_canvas(const math::Rect & rect, gfx::Sprite_atlas & atlas);
-                Canvas *        create_canvas(gfx::Sprite_atlas & atlas);
                 UI_manager(const UI_manager &) = delete;
 
                 UI_manager & operator=(const UI_manager &) = delete;
