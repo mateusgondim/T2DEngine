@@ -124,6 +124,7 @@ namespace level_management
                 Path & resources_path)
         {
                 m_ptile_map = nullptr;
+                m_should_load_next_level = false;
                 m_level_data.reserve(30); // Remove magic number
 
                 m_current_level = 0;
