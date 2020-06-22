@@ -11,6 +11,7 @@ namespace physics_2d {
 	class Collision_listener {
 	public:
 		virtual void begin_body_collision(Body_2d * pbody_a, Body_2d * pbody_b) const = 0;
+        virtual void in_body_collision(Body_2d * pbody_a, Body_2d * pbody_b) const = 0;
 		virtual void end_body_collision(Body_2d * pbody_a, Body_2d * pbody_b) const = 0;
 
 		//virtual void begin_tile_collision(Body_2d & b, const AABB_2d & tile_aabb) const = 0;
