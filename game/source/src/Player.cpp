@@ -22,6 +22,8 @@
 
 
 unsigned Player::s_NUM_SECONDS_TO_RESPAWN = 2;
+unsigned Player::s_NUM_SECONDS_IN_INVINCIBILIY_MODE = 1;
+
 Player::Player(std::size_t object_sz, atlas_n_layer & sprite_data,
                physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller,
                bool facing_left) :
