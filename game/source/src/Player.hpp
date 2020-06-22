@@ -24,6 +24,8 @@ private:
         bool            m_taking_hit;
         bool            m_is_player_dead;
 
+        // used to count time elapsed after important events
+        float           m_utility_timer;
 };
 
 

@@ -31,6 +31,7 @@ Player::Player(std::size_t object_sz, atlas_n_layer & sprite_data,
     m_health = 100;
     m_taking_hit = false;
     m_is_player_dead = false;
+    m_utility_timer = 0.0f;
 }
 
 
