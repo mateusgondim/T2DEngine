@@ -23,6 +23,7 @@ public:
 private:
         bool            m_taking_hit;
         bool            m_is_player_dead;
+        bool            m_is_in_invincibiliy_mode;
 
         // used to count time elapsed after important events
         float           m_utility_timer;
