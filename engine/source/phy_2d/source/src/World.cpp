@@ -897,8 +897,10 @@ void physics_2d::World::update(const float dt)
 		//check if bodies types allow collision, i.e, at least one should be dynamic
 		Body_2d *pbody_a = pcollider_proxy_a->pcollider->get_body();
 		Body_2d *pbody_b = pcollider_proxy_b->pcollider->get_body();
+        const Body_2d::Entity_types body_a_type = pbody_a->get_type();
+        const Body_2d::Entity_types body_b_type = pbody_b->get_type();
 
-		if (pbody_a->get_type() != Body_2d::DYNAMIC && pbody_b->get_type() != Body_2d::DYNAMIC) {
+		if (body_a_type != Body_2d::DYNAMIC && body_b_type != Body_2d::DYNAMIC) {
 			continue;
 		}
 
@@ -915,12 +917,21 @@ void physics_2d::World::update(const float dt)
 				break;
 			}
 		}
+        
 		if (!is_duplicate) {
 			// new pair of colliding Collider_2ds, add it to the contact list
 			add_to_contact_list(pcollider_proxy_a, pcollider_proxy_b);
 			// CALL BEGING CONTACT ON THE BODY_2DS !!! USE CONTACT LISTENER
-			m_pcoll_listener->begin_body_collision(pcollider_proxy_a->pcollider->get_body(), pcollider_proxy_b->pcollider->get_body());
+			m_pcoll_listener->begin_body_collision(pbody_a, pbody_b);
 		}
+        else if (pcollider_proxy_a->pcollider->is_trigger() || pcollider_proxy_b->pcollider->is_trigger()) {
+            m_pcoll_listener->in_body_collision(pbody_a, pbody_b);
+
+        }
+        else if ((body_a_type == Body_2d::DYNAMIC) && (body_b_type == Body_2d::DYNAMIC)) {
+            m_pcoll_listener->in_body_collision(pbody_a, pbody_b);
+        }
+
 	}
 
 	//-----------------------NARROWPHASE: SOLVE COLLISIONS---------------------------------------

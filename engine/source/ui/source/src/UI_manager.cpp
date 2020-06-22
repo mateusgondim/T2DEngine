@@ -40,14 +40,15 @@ namespace ui
     void UI_manager::set_widgets_shader(gfx::Shader & widgets_shader)
     {
         m_pwidgets_shader = &widgets_shader;
+        // TODO: Remove hardcoded value
+        m_projection_location = m_pwidgets_shader->get_uniform_location("P");
     }
 
     void UI_manager::render()
     {
-        std::int32_t p_location = m_pwidgets_shader->get_uniform_location("P");
         gom::Camera_2d & level_camera = gom::g_game_object_mgr.get_main_camera();
-        m_pwidgets_shader->uniform_matrix4fv(p_location, 1, false,
-            level_camera.projection().value_ptr());
+        m_pwidgets_shader->uniform_matrix4fv(m_projection_location, 1, false,
+                                             level_camera.projection().value_ptr());
 
         gom::Game_object *pgame_object = nullptr;
         Canvas *pcanvas = nullptr;

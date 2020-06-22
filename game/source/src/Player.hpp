@@ -19,9 +19,17 @@ public:
         bool            is_taking_hit() const { return m_taking_hit; }
         void            set_taking_hit(const bool taking_hit) { m_taking_hit = taking_hit; }
         void            on_event(Event & event) override;
+        bool            is_player_dead() const { return m_is_player_dead; }
+        void            start_invincibiliy_mode();
 private:
         bool            m_taking_hit;
+        bool            m_is_player_dead;
+        bool            m_is_in_invincibiliy_mode;
 
+        // used to count time elapsed after important events
+        float           m_utility_timer;
+        static  unsigned s_NUM_SECONDS_TO_RESPAWN;
+        static  unsigned s_NUM_SECONDS_IN_INVINCIBILIY_MODE;
 };
 
 

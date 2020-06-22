@@ -38,6 +38,7 @@ Hover_robot::Hover_robot(std::size_t object_sz, atlas_n_layer & sprite_data,
 void Hover_robot::on_event(Event & event)
 {
         switch (event.get_type()) {
+        case SID('EVENT_IN_COLLISION'):
         case SID('EVENT_BEGIN_COLLISION'): {
                 // Get colliding Game Object
                 const Variant *phandle_arg = event.get_arguments()

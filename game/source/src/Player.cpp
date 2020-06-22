@@ -21,6 +21,9 @@
 #include <iostream>
 
 
+unsigned Player::s_NUM_SECONDS_TO_RESPAWN = 2;
+unsigned Player::s_NUM_SECONDS_IN_INVINCIBILIY_MODE = 1;
+
 Player::Player(std::size_t object_sz, atlas_n_layer & sprite_data,
                physics_2d::Body_2d_def *pbody_def, const gfx::Animator_controller *pcontroller,
                bool facing_left) :
@@ -30,6 +33,9 @@ Player::Player(std::size_t object_sz, atlas_n_layer & sprite_data,
 	m_pstate = static_cast<gom::Gameplay_state*>(new (pmem) Player_idle_state());
     m_health = 100;
     m_taking_hit = false;
+    m_is_player_dead = false;
+    m_is_in_invincibiliy_mode = false;
+    m_utility_timer = 0.0f;
 }
 
 
@@ -46,28 +52,65 @@ void Player::handle_input()
 
 void Player::on_event(Event & event)
 {
-        switch (event.get_type()) {
-        case SID('EVENT_BEGIN_COLLISION'):
-                break;
-        case SID('EVENT_END_COLLISION') :
-                break;
-        case SID('EVENT_ATTACK'): {
-                const Variant * pattack_arg = event.get_arguments().find(SID('attack_points'));
-                m_health -= pattack_arg->m_as_integer;
-                m_taking_hit = true;
-                break;
+    if (m_is_player_dead || m_taking_hit) {
+        return;
+    }
+    switch (event.get_type()) {
+    case SID('EVENT_BEGIN_COLLISION'):
+        break;
+    case SID('EVENT_END_COLLISION'):
+        break;
+    case SID('EVENT_IN_COLLISION'):
+        break;
+    case SID('EVENT_ATTACK'): {
+        if (m_is_in_invincibiliy_mode) {
+            break;
         }
-        default:
-                break;
+        const Variant * pattack_arg = event.get_arguments().find(SID('attack_points'));
+        m_health -= pattack_arg->m_as_integer;
+        m_taking_hit = true;
+        if (m_health <= 0) {
+            std::cout << "PLAYER IS DEAD!" << std::endl;
+            m_is_player_dead = true;
+            m_utility_timer = 0.0f;
+        }
+        break;
+    }
+    default:
+        break;
 
-        }
+    }
+}
+
+void Player::start_invincibiliy_mode()
+{
+    if (!m_is_in_invincibiliy_mode) {
+        m_is_in_invincibiliy_mode = true;
+        m_utility_timer = 0.0f;
+    }
 }
 
 void Player::update(const float dt) 
 {
-        if (!level_management::g_level_mgr.is_game_clock_paused()) {
-                handle_input();
+    if (m_is_player_dead) {
+        m_utility_timer += dt;
+        if (m_utility_timer >= s_NUM_SECONDS_TO_RESPAWN) {
+            level_management::g_level_mgr.request_restart();
         }
+    }
+    else if (m_is_in_invincibiliy_mode) {
+        m_utility_timer += dt;
+        if (m_utility_timer >= s_NUM_SECONDS_IN_INVINCIBILIY_MODE) {
+            m_is_in_invincibiliy_mode = false;
+            m_utility_timer = 0.0f;
+        }
+    }
+
+
+    if (!level_management::g_level_mgr.is_game_clock_paused()) {
+        handle_input();
+    }
+
 	m_panimator_controller->update(dt);
 	gfx::Animator_state & curr_state = m_panimator_controller->get_current_state();
 	if (curr_state.changed_animation_frame()) {
