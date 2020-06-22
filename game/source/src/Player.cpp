@@ -80,6 +80,13 @@ void Player::on_event(Event & event)
 
     }
 }
+
+void Player::start_invincibiliy_mode()
+{
+    if (!m_is_in_invincibiliy_mode) {
+        m_is_in_invincibiliy_mode = true;
+        m_utility_timer = 0.0f;
+    }
 }
 
 void Player::update(const float dt) 

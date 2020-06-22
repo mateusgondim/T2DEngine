@@ -20,6 +20,7 @@ public:
         void            set_taking_hit(const bool taking_hit) { m_taking_hit = taking_hit; }
         void            on_event(Event & event) override;
         bool            is_player_dead() const { return m_is_player_dead; }
+        void            start_invincibiliy_mode();
 private:
         bool            m_taking_hit;
         bool            m_is_player_dead;
