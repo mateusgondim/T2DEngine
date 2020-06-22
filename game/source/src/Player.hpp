@@ -26,6 +26,7 @@ private:
 
         // used to count time elapsed after important events
         float           m_utility_timer;
+        static  unsigned s_NUM_SECONDS_TO_RESPAWN;
 };
 
 
