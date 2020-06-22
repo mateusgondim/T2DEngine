@@ -31,6 +31,7 @@ namespace ui
         private:
                 static const std::uint8_t       s_MAX_NUM_CANVASES = 8;
                 std::uint8_t                    m_num_canvases;
+                std::int32_t                    m_projection_location;
                 gom::Game_object_handle         m_canvases[s_MAX_NUM_CANVASES];
                 gfx::Shader *                   m_pwidgets_shader;
         };
