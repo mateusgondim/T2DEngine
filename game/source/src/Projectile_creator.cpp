@@ -51,7 +51,6 @@ gom::Game_object *Projectile_creator::create(const math::vec3 & wld_pos)
 
 	physics_2d::Collider_2d_def coll_def;
 	coll_def.m_aabb = m_pbody_def->m_aabb;
-	coll_def.m_is_trigger = true;
 
     std::size_t object_sz = sizeof(gom::Projectile);
     void *pmem = mem::allocate(object_sz);
