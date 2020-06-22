@@ -97,7 +97,13 @@ void Player::update(const float dt)
             level_management::g_level_mgr.request_restart();
         }
     }
+    else if (m_is_in_invincibiliy_mode) {
+        m_utility_timer += dt;
+        if (m_utility_timer >= s_NUM_SECONDS_IN_INVINCIBILIY_MODE) {
+            m_is_in_invincibiliy_mode = false;
+            m_utility_timer = 0.0f;
         }
+    }
 
 
     if (!level_management::g_level_mgr.is_game_clock_paused()) {
