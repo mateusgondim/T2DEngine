@@ -25,7 +25,6 @@ namespace level_management
 
                 void shut_down();
                 void tick();
-                void restart();
                 void request_restart();
                 bool is_game_clock_paused() const { return m_timer.is_paused(); }
         private:
@@ -34,6 +33,7 @@ namespace level_management
                 void            instantiate_level_objects();
                 void            unload_current_level();
                 void            load_requested_level();
+                void            restart_level();
                 Path*                                           m_presources_path = nullptr;
                 std::vector<Game_object_data>                   m_level_data;
                 Tile_map*                                       m_ptile_map;

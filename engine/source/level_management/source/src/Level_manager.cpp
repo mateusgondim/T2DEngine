@@ -108,6 +108,10 @@ namespace level_management
 
         void Level_manager::request_level(const std::uint32_t level_index)
         {
+            if (m_should_restart) {
+                return;
+            }
+
             if (level_index > m_levels.size() - 1) {
                 return;
             }
@@ -235,8 +239,9 @@ namespace level_management
         {
             if (m_should_load_next_level) {
                 load_requested_level();
-                // reset flag
+
                 m_should_load_next_level = false;
+                m_should_restart = false;
             }
 
                 io::g_input_mgr.poll_events();
@@ -312,7 +317,8 @@ namespace level_management
                 gfx::g_graphics_mgr.swap_and_poll();
 
                 if (m_should_restart) {
-                        restart();
+                        restart_level();
+                        m_should_restart = false;
                 }
         }
 
@@ -347,9 +353,8 @@ namespace level_management
                 }
         }
 
-        void Level_manager::restart()
+        void Level_manager::restart_level()
         {
-                m_should_restart = false;
                 std::cout << "RESETING LEVEL...." << std::endl;
 
                 // reset U_manager
