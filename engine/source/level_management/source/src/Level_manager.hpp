@@ -26,6 +26,7 @@ namespace level_management
                 void shut_down();
                 void tick();
                 void restart();
+                void request_restart();
                 bool is_game_clock_paused() const { return m_timer.is_paused(); }
         private:
                 void            load_objects_data();

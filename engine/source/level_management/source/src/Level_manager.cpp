@@ -120,6 +120,13 @@ namespace level_management
             m_should_load_next_level = true;
         }
 
+        void Level_manager::request_restart()
+        {
+            if (!m_should_load_next_level) {
+                m_should_restart = true;
+            }
+        }
+
         void Level_manager::load_resident_data(const char * pplevels[], const uint32_t num_levels,
                 Path & resources_path)
         {
