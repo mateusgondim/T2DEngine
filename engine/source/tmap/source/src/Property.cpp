@@ -157,12 +157,12 @@ void Property::set_value(const bool bvalue)
 
 bool operator<(const Property & lhs, const Property & rhs) 
 {
-	if (strcmp(lhs.m_pname, rhs.m_pname) < 0) {
-		return true;
-	}
-	else {
-		return false;
-	}
+    if (lhs.get_name_id() < rhs.get_name_id()) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 Property::~Property() 
