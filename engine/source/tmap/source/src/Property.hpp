@@ -8,7 +8,7 @@
 class Property final {
 friend bool operator<(const Property & lhs, const Property & rhs);
 public:
-	enum Type { STRING_PROPERTY, FLOAT_PROPERTY, INT_PROPERTY, BOOL_PROPERTY, FILE_PROPERTY, COLOR_PROPERTY, INVALID_PROPERTY };
+    enum Type { STRING, FLOAT, INT, BOOL, FILE, COLOR, INVALID };
 	Property(const char *pname, const Type type);
     explicit Property(const std::string & element);
 	Property(const Property & p);
