@@ -93,4 +93,9 @@ inline string_id Property::get_name_id() const
 {
     return m_name_id;
 }
+inline bool operator==(const Property & lhs, const Property & rhs)
+{
+    return lhs.get_name_id() == rhs.get_name_id();
+}
+
 #endif // !_PROPERTY_HPP
