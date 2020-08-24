@@ -1,8 +1,10 @@
 #include "Property.hpp"
+
 #include <cstring>
 #include <string>
 #include <iostream>
 
+#include "crc32.hpp"
 
 Property::Property(const char *pname, const Property::Type type) 
 {
