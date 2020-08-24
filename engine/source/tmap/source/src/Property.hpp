@@ -31,6 +31,7 @@ public:
 	bool		get_bool()   const;
 
 	~Property();
+    string_id get_name_id() const;
 
 private:
 	char *m_pname;
@@ -46,6 +47,8 @@ private:
 
 bool operator<(const Property & lhs, const Property & rhs);
 std::ostream & operator<<(std::ostream & os, const Property & p);
+
+
 
 inline const char *Property::get_str() const 
 {
@@ -90,4 +93,8 @@ inline const char *Property::get_name() const
 	return m_pname;
 }
 
+inline string_id Property::get_name_id() const
+{
+    return m_name_id;
+}
 #endif // !_PROPERTY_HPP
