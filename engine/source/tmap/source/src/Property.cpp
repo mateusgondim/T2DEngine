@@ -7,114 +7,119 @@ Property::Property() : m_pname(nullptr), m_type(Property::Type::INVALID_PROPERTY
 
 Property::Property(const char *pname, const Property::Type type) 
 {
-	m_pname  =  strdup(pname);
-	m_type   =  type;
+    m_pname = strdup(pname);
+    m_name_id = intern_string(pname);
+    m_type = type;
 }
 
 Property::Property(const std::string & element)  
 {
-        std::string name;
-        auto pos = element.find("name");
-        pos = element.find_first_of("\"", pos);
-        ++pos;
-        name = element.substr(pos, element.find_first_of("\"", pos) - pos);
-        m_pname = strdup(name.c_str());
+    std::string name;
+    auto pos = element.find("name");
+    pos = element.find_first_of("\"", pos);
+    ++pos;
+    name = element.substr(pos, element.find_first_of("\"", pos) - pos);
+    m_pname = strdup(name.c_str());
+    m_name_id = intern_string(m_pname);
 
-        std::string type;
-        pos = element.find("type");
-        pos = element.find_first_of("\"", pos);
-        ++pos;
-        type = element.substr(pos, element.find_first_of("\"", pos) - pos);
+    std::string type;
+    pos = element.find("type");
+    pos = element.find_first_of("\"", pos);
+    ++pos;
+    type = element.substr(pos, element.find_first_of("\"", pos) - pos);
 
-        std::string value;
-        pos = element.find("value");
-        pos = element.find_first_of("\"", pos);
-        ++pos;
-        value = element.substr(pos, element.find_first_of("\"", pos) - pos);
+    std::string value;
+    pos = element.find("value");
+    pos = element.find_first_of("\"", pos);
+    ++pos;
+    value = element.substr(pos, element.find_first_of("\"", pos) - pos);
 
-        if (type == "string") {
-                m_type = Type::STRING_PROPERTY;
-                m_strvalue = strdup(value.c_str());
-        }
-        else if (type == "float") {
-                m_type = Type::FLOAT_PROPERTY;
-                m_fvalue = std::stof(value);
-        }
-        else if (type == "int") {
-                m_type = Type::INT_PROPERTY;
-                m_ivalue = std::stoi(value.c_str());
-        }
-        else if (type == "bool") {
-                m_type = Type::BOOL_PROPERTY;
-                if (value == "true") {
-                        m_bvalue = true;
-                }
-                else {
-                        m_bvalue = false;
-                }
-        }
-        else if (type == "file") {
-                m_type = Type::FILE_PROPERTY;
-                m_strvalue = strdup(value.c_str());
+    if (type == "string") {
+        m_type = Type::STRING;
+        m_strvalue = strdup(value.c_str());
+    }
+    else if (type == "float") {
+        m_type = Type::FLOAT;
+        m_fvalue = std::stof(value);
+    }
+    else if (type == "int") {
+        m_type = Type::INT;
+        m_ivalue = std::stoi(value.c_str());
+    }
+    else if (type == "bool") {
+        m_type = Type::BOOL;
+        if (value == "true") {
+            m_bvalue = true;
         }
         else {
-                m_type = Type::INVALID_PROPERTY;
+            m_bvalue = false;
         }
+    }
+    else if (type == "file") {
+        m_type = Type::FILE;
+        m_strvalue = strdup(value.c_str());
+    }
+    else {
+        m_type = Type::INVALID;
+    }
 }
 
 Property::Property(const Property & p) 
 {
-	m_pname = strdup(p.m_pname);
-	m_type = p.m_type;
-	switch(p.m_type) {
-		case Type::STRING_PROPERTY:
-			m_strvalue = strdup(p.m_strvalue);
-			break;
-		case Type::FLOAT_PROPERTY:
-			m_fvalue = p.m_fvalue;
-			break;
-		case Type::INT_PROPERTY:
-			m_ivalue = p.m_ivalue;
-			break;
-		case Type::BOOL_PROPERTY:
-			m_bvalue = p.m_bvalue;
-			break;
-		case Type::FILE_PROPERTY:
-			m_strvalue = strdup(p.m_strvalue);
-			break;
-		default:
-			break;
-	}
+    m_pname = strdup(p.m_pname);
+    m_name_id = p.m_name_id;
+    m_type = p.m_type;
+    switch (p.m_type) {
+    case Type::STRING:
+        m_strvalue = strdup(p.m_strvalue);
+        break;
+    case Type::FLOAT:
+        m_fvalue = p.m_fvalue;
+        break;
+    case Type::INT:
+        m_ivalue = p.m_ivalue;
+        break;
+    case Type::BOOL:
+        m_bvalue = p.m_bvalue;
+        break;
+    case Type::FILE:
+        m_strvalue = strdup(p.m_strvalue);
+        break;
+    default:
+        break;
+    }
 }
 
 Property::Property(Property && p) noexcept
 {
-	m_pname = p.m_pname;
-	p.m_pname = nullptr;
+    m_pname = p.m_pname;
+    p.m_pname = nullptr;
 
-	m_type  = p.m_type;
+    m_name_id = p.m_name_id;
 
-	switch (p.m_type) {
-	case Type::STRING_PROPERTY:
-		m_strvalue = p.m_strvalue;
-		p.m_strvalue = nullptr;
-		break;
-	case Type::FLOAT_PROPERTY:
-		m_fvalue = p.m_fvalue;
-		break;
-	case Type::INT_PROPERTY:
-		m_ivalue = p.m_ivalue;
-		break;
-	case Type::BOOL_PROPERTY:
-		m_bvalue = p.m_bvalue;
-		break;
-	case Type::FILE_PROPERTY:
-		m_strvalue = p.m_strvalue;
-		p.m_strvalue = nullptr;
-		break;
-	default:
-		break;
-	}
+    m_type = p.m_type;
+
+    switch (p.m_type) {
+    case Type::STRING:
+        m_strvalue = p.m_strvalue;
+        p.m_strvalue = nullptr;
+        break;
+    case Type::FLOAT:
+        m_fvalue = p.m_fvalue;
+        break;
+    case Type::INT:
+        m_ivalue = p.m_ivalue;
+        break;
+    case Type::BOOL:
+        m_bvalue = p.m_bvalue;
+        break;
+    case Type::FILE:
+        m_strvalue = p.m_strvalue;
+        p.m_strvalue = nullptr;
+        break;
+    default:
+        break;
+    }
 }
 
 
