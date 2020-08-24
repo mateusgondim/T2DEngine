@@ -5,6 +5,8 @@
 
 #include <string>
 
+#include "string_id.hpp"
+
 class Property final {
 friend bool operator<(const Property & lhs, const Property & rhs);
 public:
@@ -31,13 +33,14 @@ public:
 	~Property();
 
 private:
-	char		*m_pname;
-	Type		m_type;   
-	union {
-		char		*m_strvalue;
-		float		m_fvalue;
-		int		m_ivalue;
-		bool		m_bvalue;
+	char *m_pname;
+    string_id m_name_id;
+	Type m_type;   
+    union {
+        char *m_strvalue;
+        float m_fvalue;
+		int m_ivalue;
+		bool m_bvalue;
 	};
 };
 
