@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 
-Property::Property() : m_pname(nullptr), m_type(Property::Type::INVALID_PROPERTY){}
 
 Property::Property(const char *pname, const Property::Type type) 
 {
