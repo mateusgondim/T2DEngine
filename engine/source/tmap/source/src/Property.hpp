@@ -93,6 +93,12 @@ inline string_id Property::get_name_id() const
 {
     return m_name_id;
 }
+
+inline size_t get_property_hash_code(const Property & property)
+{
+    return property.get_name_id();
+}
+
 inline bool operator==(const Property & lhs, const Property & rhs)
 {
     return lhs.get_name_id() == rhs.get_name_id();
