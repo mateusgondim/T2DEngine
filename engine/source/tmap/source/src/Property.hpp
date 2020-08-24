@@ -8,7 +8,6 @@
 #include "string_id.hpp"
 
 class Property final {
-friend bool operator<(const Property & lhs, const Property & rhs);
 public:
     enum Type { STRING, FLOAT, INT, BOOL, FILE, COLOR, INVALID };
 	Property(const char *pname, const Type type);
