@@ -10,7 +10,7 @@ friend bool operator<(const Property & lhs, const Property & rhs);
 public:
 	enum Type { STRING_PROPERTY, FLOAT_PROPERTY, INT_PROPERTY, BOOL_PROPERTY, FILE_PROPERTY, COLOR_PROPERTY, INVALID_PROPERTY };
 	Property(const char *pname, const Type type);
-        Property(const std::string & element);
+    explicit Property(const std::string & element);
 	Property(const Property & p);
 	Property(Property && p) noexcept;
 	~Property();
