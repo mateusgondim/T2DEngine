@@ -6,6 +6,9 @@
 
 #include "crc32.hpp"
 
+Property::Property(const string_id name_id)
+    : m_pname(nullptr), m_name_id(name_id), m_type(Type::INVALID) {}
+
 Property::Property(const char *pname, const Property::Type type) 
 {
     m_pname = strdup(pname);

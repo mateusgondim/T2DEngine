@@ -10,6 +10,7 @@
 class Property final {
 public:
     enum Type { STRING, FLOAT, INT, BOOL, FILE, COLOR, INVALID };
+    Property(const string_id name_id);
 	Property(const char *pname, const Type type);
     explicit Property(const std::string & element);
 	Property(const Property & p);
