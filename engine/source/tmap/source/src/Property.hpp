@@ -22,16 +22,13 @@ public:
 	void set_value(const int ivalue);
 	void set_value(const bool bvalue);
 	
-	Type		get_type() const;
-	const char *	get_name() const;
-
-	const  char *	get_str()    const;
-	float		get_float()  const;
-	int		get_int()    const;
-	bool		get_bool()   const;
-
-	~Property();
+    Type get_type() const;
+	const char * get_name() const;
     string_id get_name_id() const;
+	const char * get_str() const;
+	float get_float() const;
+	int get_int() const;
+	bool get_bool() const;
 
 private:
 	char *m_pname;
