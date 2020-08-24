@@ -121,7 +121,7 @@ Property::Property(Property && p) noexcept
 
 void Property::set_value(const char *str) 
 {
-	if (m_type == Type::STRING_PROPERTY || m_type == Type::FILE_PROPERTY) {
+	if (m_type == Type::STRING || m_type == Type::FILE) {
 		if (m_strvalue != nullptr) {
 			free(m_strvalue);
 		}
@@ -131,21 +131,21 @@ void Property::set_value(const char *str)
 
 void Property::set_value(const float fvalue) 
 {
-	if (m_type == Type::FLOAT_PROPERTY) {
+	if (m_type == Type::FLOAT) {
 		m_fvalue = fvalue;
 	}
 }
 
 void Property::set_value(const int ivalue) 
 {
-	if (m_type == Type::INT_PROPERTY) {
+	if (m_type == Type::INT) {
 		m_ivalue == ivalue;
 	}
 }
 
 void Property::set_value(const bool bvalue) 
 {
-	if (m_type == Type::BOOL_PROPERTY) {
+	if (m_type == Type::BOOL) {
 		m_bvalue = bvalue;
 	}
 }
@@ -162,41 +162,41 @@ bool operator<(const Property & lhs, const Property & rhs)
 
 Property::~Property() 
 {
-	if (m_type == Type::FILE_PROPERTY || m_type == Type::STRING_PROPERTY) {
-		if (m_strvalue != nullptr) {
-			free(m_strvalue);
-		}
-	}
+    if (m_type == Type::FILE || m_type == Type::STRING) {
+        if (m_strvalue != nullptr) {
+            free(m_strvalue);
+        }
+    }
 
-	free(m_pname);
+    free(m_pname);
 }
 
 std::ostream & operator<<(std::ostream & os, const Property & p) 
 {
-	os << "<property name=\"" << p.get_name() << "\" type=\"";
-	Property::Type t = p.get_type();
-	switch (t) {
-	case Property::Type::STRING_PROPERTY:
-		os << "string\" value=\"" << p.get_str() << "\"/>";
-		break;
-	case Property::Type::FLOAT_PROPERTY:
-		os << "float\" value=\"" << p.get_float() << "\"/>";
-		break;
-	case Property::Type::INT_PROPERTY:
-		os << "int\" value=\"" << p.get_int() << "\"/>";
-		break;
-	case Property::Type::BOOL_PROPERTY:
-		os << "bool\" value=\"" << p.get_bool() << "\"/>";
-		break;
-	case Property::Type::FILE_PROPERTY:
-		os << "file\" value=\"" << p.get_str() << "\"/>";
-			break;
-	case Property::Type::COLOR_PROPERTY:
-		os << "color\" value=\"" << "\"/>";
-		break;
-	case Property::Type::INVALID_PROPERTY:
-		os << "invalid\" />";
-		break;
-	}
-	return os;
+    os << "<property name=\"" << p.get_name() << "\" type=\"";
+    Property::Type t = p.get_type();
+    switch (t) {
+    case Property::Type::STRING:
+        os << "string\" value=\"" << p.get_str() << "\"/>";
+        break;
+    case Property::Type::FLOAT:
+        os << "float\" value=\"" << p.get_float() << "\"/>";
+        break;
+    case Property::Type::INT:
+        os << "int\" value=\"" << p.get_int() << "\"/>";
+        break;
+    case Property::Type::BOOL:
+        os << "bool\" value=\"" << p.get_bool() << "\"/>";
+        break;
+    case Property::Type::FILE:
+        os << "file\" value=\"" << p.get_str() << "\"/>";
+        break;
+    case Property::Type::COLOR:
+        os << "color\" value=\"" << "\"/>";
+        break;
+    case Property::Type::INVALID:
+        os << "invalid\" />";
+        break;
+    }
+    return os;
 }

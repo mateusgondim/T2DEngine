@@ -46,7 +46,7 @@ std::ostream & operator<<(std::ostream & os, const Property & p);
 
 inline const char *Property::get_str() const 
 {
-	if (m_type == Type::STRING_PROPERTY || m_type == Type::FILE_PROPERTY) {
+	if (m_type == Type::STRING || m_type == Type::FILE) {
 		return m_strvalue;
 	}
 	return nullptr;
@@ -54,7 +54,7 @@ inline const char *Property::get_str() const
 
 inline float Property::get_float() const 
 {
-	if (m_type == Type::FLOAT_PROPERTY) {
+	if (m_type == Type::FLOAT) {
 		return m_fvalue;
 	}
 	return -1;
@@ -62,7 +62,7 @@ inline float Property::get_float() const
 
 inline int Property::get_int() const 
 {
-	if (m_type == Type::INT_PROPERTY) {
+	if (m_type == Type::INT) {
 		return m_ivalue;
 	}
 	return -1;
@@ -70,7 +70,7 @@ inline int Property::get_int() const
 
 inline bool Property::get_bool() const 
 {
-	if (m_type == Type::BOOL_PROPERTY) {
+	if (m_type == Type::BOOL) {
 		return m_bvalue;
 	}
 
