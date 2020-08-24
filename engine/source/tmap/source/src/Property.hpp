@@ -1,6 +1,8 @@
 #ifndef _PROPERTY_HPP
 #define _PROPERTY_HPP
 
+#include <cstddef>
+
 #include <string>
 
 class Property final {
@@ -11,12 +13,12 @@ public:
         Property(const std::string & element);
 	Property(const Property & p);
 	Property(Property && p) noexcept;
-	Property();
+	~Property();
 
-	void		set_value(const char *str);
-	void		set_value(const float fvalue);
-	void		set_value(const int ivalue);
-	void		set_value(const bool bvalue);
+	void set_value(const char *str);
+	void set_value(const float fvalue);
+	void set_value(const int ivalue);
+	void set_value(const bool bvalue);
 	
 	Type		get_type() const;
 	const char *	get_name() const;
