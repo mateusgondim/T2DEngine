@@ -5,6 +5,8 @@
 namespace gom {
 	Creator::~Creator() 
 	{
-		mem::free(static_cast<void*>(m_pbody_def), sizeof(physics_2d::Body_2d_def));
+        if (m_pbody_def) {
+            mem::free(static_cast<void*>(m_pbody_def), sizeof(physics_2d::Body_2d_def));
+        }
 	}
 }
