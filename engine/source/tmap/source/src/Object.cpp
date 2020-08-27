@@ -55,6 +55,27 @@ void Object::set_name(const char * pname)
 	m_name = strdup(pname);
 }
 
+void Object::set_name_id(const string_id name_id)
+{
+    m_name_id = name_id;
+}
+
+void Object::set_type_id(const string_id type_id)
+{
+    m_type_id = type_id;
+}
+
+void Object::set_width(const float width)
+{
+    m_width = width;
+}
+
+void Object::set_height(const float heigth)
+{
+    m_height = heigth;
+}
+
+
 void Object::set_type(const char * ptype) 
 {
 	if (m_type) {

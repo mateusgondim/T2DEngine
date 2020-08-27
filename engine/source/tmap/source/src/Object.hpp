@@ -24,6 +24,9 @@ public:
     void set_name_id(const string_id name_id);
 	void set_type(const char * ptype);
     void set_type_id(const string_id type_id);
+    void set_wld_position(const float x, const float y);
+    void set_width(const float width);
+    void set_height(const float heigth);
 
 	const property_set & get_properties() const;
 
@@ -52,6 +55,12 @@ private:
 };
 
 std::ostream & operator<<(std::ostream & os, const Object & object);
+
+inline void Object::set_wld_position(const float x, const float y)
+{
+    m_x = x;
+    m_y = y;
+}
 
 inline const char * Object::get_name() const 
 {
