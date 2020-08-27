@@ -149,7 +149,8 @@ std::ostream & operator<<(std::ostream & os, const Object & object)
 	if (!object.m_properties.empty()) {
 		os << ">" << std::endl;
 		os << "  <properties>" << std::endl;
-		for (Object::property_set::iterator it = object.m_properties.cbegin(); it != object.m_properties.cend(); ++it) {
+        Object::Property_unordered_set::const_iterator it = object.m_properties.cbegin();
+		for (; it != object.m_properties.cend(); ++it) {
 			os << "\t" << *it << std::endl;
 		}
 		os << "  </properties>" << std::endl;
