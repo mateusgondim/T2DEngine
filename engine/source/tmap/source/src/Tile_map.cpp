@@ -13,6 +13,7 @@
 #include "Object.hpp"
 #include "Object_group.hpp"
 #include "Rect.hpp"
+#include "vec2.hpp"
 #include "string_id.hpp"
 
 /*
@@ -154,18 +155,25 @@ Tile_map::Tile_map(const std::string & tmx_file_path)
 						pobj->m_gid = std::stoi(line.substr(line.find_first_of(digits, pos)));
 					}
 
+                    math::vec2 object_position;
 					pos = line.find("x=");
-					pobj->m_x = std::stof(line.substr(line.find_first_of(digits, pos)));
+					object_position.x = std::stof(line.substr(line.find_first_of(digits, pos)));
 
 					pos = line.find("y=");
-					pobj->m_y = std::stof(line.substr(line.find_first_of(digits, pos)));
+                    object_position.y = std::stof(line.substr(line.find_first_of(digits, pos)));
+
+                    object_position = pixels_to_wld_coord(object_position.x, object_position.y);
+                    pobj->m_x = object_position.x;
+                    pobj->m_y = object_position.y;
 
 					pos = line.find("width=");
 					if (pos != std::string::npos) {
 						pobj->m_width = std::stof(line.substr(line.find_first_of(digits, pos)));
+                        pobj->m_width = pobj->m_width / m_pixels_per_word_unit;
 
 						pos = line.find("height=");
 						pobj->m_height = std::stof(line.substr(line.find_first_of(digits, pos)));
+                        pobj->m_height = pobj->m_height / m_pixels_per_word_unit;
 					}
 
 					pos = line.find("rotation=");
