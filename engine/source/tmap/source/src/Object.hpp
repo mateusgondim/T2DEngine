@@ -17,25 +17,25 @@ public:
 	typedef std::set<Property> property_set;
 	Object();
 	Object(const Object & obj);
-	Object & operator=(const Object & rhs);
 	~Object();
 
+	Object & operator=(const Object & rhs);
 	void set_name(const char * pname);
     void set_name_id(const string_id name_id);
 	void set_type(const char * ptype);
     void set_type_id(const string_id type_id);
 
-	const char *	get_name() const;
-	const char *	get_type() const;
-	float		get_x() const;
-	float		get_y() const;
-	float		get_width() const;
-	float		get_height() const;
-	float		get_rotation() const;
 	const property_set & get_properties() const;
 
+	const char * get_name() const;
     string_id get_name_id() const;
+	const char * get_type() const;
     string_id get_type_id() const;
+	float get_x() const;
+	float get_y() const;
+	float get_width() const;
+	float get_height() const;
+	float get_rotation() const;
 private:
 	uint32_t	m_id;
 	float		m_x;
