@@ -13,6 +13,7 @@
 #include "Body_2d.hpp"
 
 #include "Event.hpp"
+#include "Object.hpp"
 
 #include <map>
 #include <algorithm>
@@ -82,7 +83,8 @@ namespace gom
                 return true;
         }
 
-        Game_object_handle Game_object_manager::instantiate(const type_id obj_type, const math::vec3 & wld_pos)
+        Game_object_handle Game_object_manager::instantiate(const type_id obj_type,
+                                                            const Object & pobj_description)
         {
                 //find the creator associated with this type's id
                 creator_map::iterator it = m_creators.find(obj_type);
@@ -97,8 +99,8 @@ namespace gom
                         return Game_object_handle();
                 }
 
-                Game_object *pgame_object = it->second->create(wld_pos);
                 return  Game_object_handle(*pgame_object);
+            Game_object *pgame_object = it->second->create(pobj_description);
         }
 
         Game_object_handle Game_object_manager::register_game_object(Game_object * pgame_object,
