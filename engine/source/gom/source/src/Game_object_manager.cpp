@@ -86,21 +86,21 @@ namespace gom
         Game_object_handle Game_object_manager::instantiate(const type_id obj_type,
                                                             const Object & pobj_description)
         {
-                //find the creator associated with this type's id
-                creator_map::iterator it = m_creators.find(obj_type);
-                if (it == m_creators.end()) {
-                        std::cerr << "ERROR(" << __FUNCTION__ << "): invalid type_id = " << obj_type << std::endl;
-                        return Game_object_handle();
-                }
+            //find the creator associated with this type's id
+            creator_map::iterator it = m_creators.find(obj_type);
+            if (it == m_creators.end()) {
+                std::cerr << "ERROR(" << __FUNCTION__ << "): invalid type_id = " << obj_type << std::endl;
+                return Game_object_handle();
+            }
 
-                //check if there is space in the table 
-                if (m_next_free_index == m_MAX_GAME_OBJECTS - 1) {
-                        std::cerr << "ERROR(" << __FUNCTION__ << "): Handle table is full" << std::endl;
-                        return Game_object_handle();
-                }
+            //check if there is space in the table 
+            if (m_next_free_index == m_MAX_GAME_OBJECTS - 1) {
+                std::cerr << "ERROR(" << __FUNCTION__ << "): Handle table is full" << std::endl;
+                return Game_object_handle();
+            }
 
-                return  Game_object_handle(*pgame_object);
             Game_object *pgame_object = it->second->create(pobj_description);
+            return  Game_object_handle(*pgame_object);
         }
 
         Game_object_handle Game_object_manager::register_game_object(Game_object * pgame_object,
