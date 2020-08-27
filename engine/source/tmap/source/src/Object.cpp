@@ -94,6 +94,13 @@ Object::~Object()
 	}
 }
 
+const Property * Object::get_property(const string_id name_id) const
+{
+    Property p(name_id);
+    Property_unordered_set::const_iterator iter = m_properties.find(p);
+    return (iter == m_properties.cend()) ? (nullptr) : (&(*iter));
+}
+
 std::ostream & operator<<(std::ostream & os, const Object & object) 
 {
 	os << "<object id=\"" << object.m_id << "\"";

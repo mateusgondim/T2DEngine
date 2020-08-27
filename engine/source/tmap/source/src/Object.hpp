@@ -1,7 +1,9 @@
 #ifndef _OBJECT_HPP
 #define _OBJECT_HPP
-#include <stdint.h>
-#include <set>
+
+#include <cstdint> 
+
+#include <unordered_set>
 #include <iostream>
 
 #include "Property.hpp"
@@ -14,7 +16,7 @@ friend class Tile_map;
 friend std::ostream & operator<<(std::ostream & os, const Object & object);
 
 public:
-	typedef std::set<Property> property_set;
+    typedef std::unordered_set<Property, decltype(get_property_hash_code) *> Property_unordered_set;
 	Object();
 	Object(const Object & obj);
 	~Object();
@@ -28,7 +30,6 @@ public:
     void set_width(const float width);
     void set_height(const float heigth);
 
-	const property_set & get_properties() const;
 
 	const char * get_name() const;
     string_id get_name_id() const;
@@ -39,6 +40,8 @@ public:
 	float get_width() const;
 	float get_height() const;
 	float get_rotation() const;
+    const Property * get_property(const string_id name_id) const;
+	const Property_unordered_set & get_properties() const;
 private:
 	uint32_t	m_id;
 	float		m_x;
@@ -47,11 +50,11 @@ private:
 	float		m_height;
 	uint32_t	m_gid;
 	float		m_rotation;
-	property_set	m_properties;
     string_id   m_name_id;
     string_id   m_type_id;
 	char *		m_name;
 	char *		m_type;
+	Property_unordered_set m_properties;
 };
 
 std::ostream & operator<<(std::ostream & os, const Object & object);
@@ -108,7 +111,7 @@ inline float Object::get_rotation() const
 	return m_rotation;
 }
 
-inline const Object::property_set & Object::get_properties() const 
+inline const Object::Property_unordered_set & Object::get_properties() const 
 {
 	return m_properties;
 }
