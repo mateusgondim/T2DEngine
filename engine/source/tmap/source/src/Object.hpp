@@ -3,7 +3,9 @@
 #include <stdint.h>
 #include <set>
 #include <iostream>
+
 #include "Property.hpp"
+#include "string_id.hpp"
 
 class Tile_map;
 
@@ -19,7 +21,9 @@ public:
 	~Object();
 
 	void set_name(const char * pname);
+    void set_name_id(const string_id name_id);
 	void set_type(const char * ptype);
+    void set_type_id(const string_id type_id);
 
 	const char *	get_name() const;
 	const char *	get_type() const;
@@ -30,6 +34,8 @@ public:
 	float		get_rotation() const;
 	const property_set & get_properties() const;
 
+    string_id get_name_id() const;
+    string_id get_type_id() const;
 private:
 	uint32_t	m_id;
 	float		m_x;
@@ -39,6 +45,8 @@ private:
 	uint32_t	m_gid;
 	float		m_rotation;
 	property_set	m_properties;
+    string_id   m_name_id;
+    string_id   m_type_id;
 	char *		m_name;
 	char *		m_type;
 };
@@ -50,9 +58,20 @@ inline const char * Object::get_name() const
 	return m_name;
 }
 
+inline string_id Object::get_name_id() const
+{
+    return m_name_id;
+}
+
 inline const char * Object::get_type() const 
 {
 	return m_type;
+}
+
+
+inline string_id Object::get_type_id() const
+{
+    return m_type_id;
 }
 
 inline float Object::get_x() const
