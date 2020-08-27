@@ -46,6 +46,7 @@ Object & Object::operator=(const Object & rhs)
 	m_height = rhs.m_height;
 	m_gid = rhs.m_gid;
 	m_rotation = rhs.m_rotation;
+    m_properties = rhs.m_properties;
 
 	if (m_name) {
 		free(m_name);
