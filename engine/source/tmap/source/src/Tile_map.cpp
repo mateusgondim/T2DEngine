@@ -1,5 +1,11 @@
 #include "Tile_map.hpp"
 
+#include <stdint.h>
+#include <utility>
+#include <string>
+#include <fstream>
+#include <algorithm>
+
 #include "Property.hpp"
 #include "Tile.hpp"
 #include "Tileset.hpp"
@@ -7,12 +13,6 @@
 #include "Object.hpp"
 #include "Object_group.hpp"
 #include "Rect.hpp"
-
-#include <stdint.h>
-#include <utility>
-#include <string>
-#include <fstream>
-#include <algorithm>
 
 /*
 parse map header/element
