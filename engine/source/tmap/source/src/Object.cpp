@@ -1,14 +1,33 @@
 #include "Object.hpp"
-#include "Tile_map.hpp"
-#include <iostream>
+
 #include <cstdlib>
 #include <cstring>
 
-Object::Object() : 
-	m_id(0), m_x(0), m_y(0), m_width(0), m_height(0), m_gid(0), m_rotation(0.0f), m_name(nullptr), m_type(nullptr) {}
+#include <iostream>
 
-Object::Object(const Object & obj) : 
-	m_id(obj.m_id), m_x(obj.m_x), m_y(obj.m_y), m_width(obj.m_width), m_height(obj.m_height), m_gid(obj.m_gid), m_rotation(obj.m_rotation)
+#include "Tile_map.hpp"
+
+Object::Object()
+    : m_id(0),
+      m_x(0),
+      m_y(0),
+      m_width(0),
+      m_height(0),
+      m_gid(0),
+      m_rotation(0.0f),
+      m_name(nullptr),
+      m_type(nullptr),
+      m_properties(1, get_property_hash_code){}
+
+Object::Object(const Object & obj)
+    : m_id(obj.m_id),
+      m_x(obj.m_x),
+      m_y(obj.m_y),
+      m_width(obj.m_width),
+      m_height(obj.m_height),
+      m_gid(obj.m_gid),
+      m_rotation(obj.m_rotation),
+      m_properties(obj.m_properties)
 {
 	if (obj.m_name) {
 		m_name = strdup(obj.m_name);
