@@ -13,6 +13,7 @@
 #include "Object.hpp"
 #include "Object_group.hpp"
 #include "Rect.hpp"
+#include "string_id.hpp"
 
 /*
 parse map header/element
@@ -133,6 +134,8 @@ Tile_map::Tile_map(const std::string & tmx_file_path)
 						++pos;
 						std::string obj_name = line.substr(pos, line.find_first_of("\"", pos) - pos);
 						pobj->set_name(obj_name.c_str());
+
+                        pobj->m_name_id = intern_string(obj_name.c_str());
 					}
 
 					//type
@@ -142,6 +145,8 @@ Tile_map::Tile_map(const std::string & tmx_file_path)
 						++pos;
 						std::string obj_type = line.substr(pos, line.find_first_of("\"", pos) - pos);
 						pobj->set_type(obj_type.c_str());
+
+                        pobj->m_type_id = intern_string(obj_type.c_str());
 					}
 
 					pos = line.find("gid=");
