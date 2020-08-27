@@ -16,7 +16,7 @@ class Object;
 namespace gom {
 	class Creator {
 	public:
-		Creator() : m_pbody_def(nullptr) {}
+        Creator() : m_pbody_def(nullptr) {}
 		virtual ~Creator();
 
         virtual Game_object *create(const Object & pobj_description) = 0;
