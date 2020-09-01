@@ -91,6 +91,10 @@ int main(int argc, char *argv[])
 
        /// Player setup
 
+         // TODO: Is right here that you should load all the Game's resident data! this does not 
+         // concern THE ENGINE, it should not be done there. Here you should call a load_resident_data
+        // function, that will load all the Game's specific resources!
+
         // Get atlas needed for the player sprite
         gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_name("player"));
 
