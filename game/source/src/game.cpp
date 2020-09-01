@@ -72,6 +72,7 @@
 // UI creators
 #include "Level_ui_creator.hpp"
 #include "Main_menu_creator.hpp"
+#include "Damage_region_creator.hpp"
 
 //utility
 #include "crc32.hpp"
@@ -137,6 +138,11 @@ int main(int argc, char *argv[])
 
         //register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
         gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator, SID('Enemy'));
+
+        // Register Damage_region creator
+        Damage_region_creator * damage_region_creator = new Damage_region_creator();
+        gom::g_game_object_mgr.register_creator(SID('damage_region'), damage_region_creator,
+                                                SID('damage_region'));
 
         // register UI Creators
         Level_ui_creator * level_ui_creator = new Level_ui_creator(SID('ui'));
