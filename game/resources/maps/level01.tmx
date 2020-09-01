@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="48" height="45" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#1d212d" nextobjectid="31">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="48" height="45" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#1d212d" nextobjectid="37">
  <tileset firstgid="1" source="../tilesets/level01_tileset.tsx"/>
  <layer name="Tile Layer 1" width="48" height="45" locked="1">
   <data encoding="csv">
@@ -50,33 +50,53 @@
 46,21,69,21,21,45,21,21,21,69,21,46,21,21,69,21,21,95,21,63,46,21,21,0,90,0,184,0,19,20,85,46,63,69,63,46,21,93,94,21,46,83,69,83,93,94,83,84
 </data>
  </layer>
- <objectgroup name="Game_objects" locked="1">
-  <object id="18" type="Player" x="72.333" y="201">
+ <objectgroup name="Game_objects">
+  <object id="18" name="Robot" type="Player" x="72.333" y="201">
    <point/>
   </object>
-  <object id="19" type="hover_robot" x="127.5" y="426.834">
+  <object id="19" name="Robot" type="hover_robot" x="127.5" y="426.834">
    <point/>
   </object>
-  <object id="21" type="hover_robot" x="149.5" y="699.334">
+  <object id="21" name="Robot" type="hover_robot" x="149.5" y="699.334">
    <point/>
   </object>
-  <object id="22" type="hover_robot" x="224" y="193.834">
+  <object id="22" name="Robot" type="hover_robot" x="224" y="193.834">
    <point/>
   </object>
-  <object id="23" type="hover_robot" x="695" y="218.834">
+  <object id="23" name="Robot" type="hover_robot" x="695" y="218.834">
    <point/>
   </object>
-  <object id="24" type="hover_robot" x="405" y="395.834">
+  <object id="24" name="Robot" type="hover_robot" x="405" y="395.834">
    <point/>
   </object>
-  <object id="25" type="hover_robot" x="318.5" y="699.334">
+  <object id="25" name="Robot" type="hover_robot" x="318.5" y="699.334">
    <point/>
   </object>
-  <object id="26" type="hover_robot" x="624" y="699.834">
+  <object id="26" name="Robot" type="hover_robot" x="624" y="699.834">
    <point/>
   </object>
   <object id="27" type="level_ui" x="182.5" y="500">
    <point/>
+  </object>
+  <object id="31" name="Spikes" type="damage_region" x="113.476" y="525.298" width="62.035" height="2.77991">
+   <properties>
+    <property name="DAMAGE" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="34" name="Spikes" type="damage_region" x="82.1237" y="221.684" width="92.41" height="2.77991">
+   <properties>
+    <property name="DAMAGE" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="35" name="Spikes" type="damage_region" x="498.003" y="237.775" width="156.592" height="2.77991">
+   <properties>
+    <property name="DAMAGE" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="36" name="Spikes" type="damage_region" x="481.912" y="445.593" width="188.683" height="2.77991">
+   <properties>
+    <property name="DAMAGE" type="int" value="20"/>
+   </properties>
   </object>
  </objectgroup>
 </map>
