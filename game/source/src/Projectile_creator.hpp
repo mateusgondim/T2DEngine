@@ -8,11 +8,12 @@ namespace gom  { class Game_object; }
 namespace math { struct vec3; }
 namespace gfx { class Animator_controller; }
 namespace physics_2d { struct Body_2d_def; }
+class Object;
 
 class Projectile_creator : public gom::Creator {
 public:
 	Projectile_creator(const string_id atlas_id, const physics_2d::Body_2d_def & body_def, const gfx::Animator_controller *panim_controller);
-	gom::Game_object *create(const math::vec3 & wld_pos) override;
+    gom::Game_object * create(const Object & obj_description) override;
 
 	~Projectile_creator() override;
 private:

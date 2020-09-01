@@ -18,6 +18,7 @@
 #include "Body_2d_def.hpp"
 
 #include "runtime_memory_allocator.hpp"
+#include "Object.hpp"
 
 #include <utility>
 
@@ -37,12 +38,13 @@ Projectile_creator::Projectile_creator(const string_id atlas_id,
 	m_pcontroller = static_cast<gfx::Animator_controller*>(new (pmem) gfx::Animator_controller(*panim_controller));
 }
 
-gom::Game_object *Projectile_creator::create(const math::vec3 & wld_pos) 
+gom::Game_object *Projectile_creator::create(const Object & obj_description) 
 {
 	//get the data to create sprite component
 	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
 	gom::Projectile::atlas_n_layer data(patlas, 1);
 
+    math::vec3 wld_pos(obj_description.get_x(), obj_description.get_y());
 	math::vec2 translation = math::vec2(wld_pos.x, wld_pos.y) - m_pbody_def->m_position;
 
 	m_pbody_def->m_position   += translation;
@@ -54,14 +56,15 @@ gom::Game_object *Projectile_creator::create(const math::vec3 & wld_pos)
 
     std::size_t object_sz = sizeof(gom::Projectile);
     void *pmem = mem::allocate(object_sz);
-    gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) gom::Projectile(object_sz, wld_pos, data, m_pbody_def, m_pcontroller));
+    gom::Game_object *pgame_object = static_cast<gom::Game_object*>(
+        new (pmem) gom::Projectile(object_sz, wld_pos, data, m_pbody_def, m_pcontroller));
+
 	pgame_object->get_body_2d_component()->create_collider_2d(coll_def);
 	pgame_object->set_type(m_obj_type);
     pgame_object->set_tag(m_obj_tag);
 
 	return pgame_object;
 }
-
 
 Projectile_creator::~Projectile_creator() 
 {
