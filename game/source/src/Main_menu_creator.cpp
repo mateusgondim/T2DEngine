@@ -12,13 +12,14 @@
 #include "Game_object.hpp"
 #include "Game_object_manager.hpp"
 #include "runtime_memory_allocator.hpp"
+#include "Object.hpp"
 
 
 Main_menu_creator::Main_menu_creator(const string_id canvas_atlas_id) :
         m_canvas_atlas_id(canvas_atlas_id) {}
 
 
-gom::Game_object * Main_menu_creator::create(const math::vec3 & wld_pos)
+gom::Game_object * Main_menu_creator::create(const Object & obj_description)
 {
         math::Rect screen_rect = gom::g_game_object_mgr.get_main_camera().get_screen_rect();
 

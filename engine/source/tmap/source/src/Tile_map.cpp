@@ -1,5 +1,11 @@
 #include "Tile_map.hpp"
 
+#include <stdint.h>
+#include <utility>
+#include <string>
+#include <fstream>
+#include <algorithm>
+
 #include "Property.hpp"
 #include "Tile.hpp"
 #include "Tileset.hpp"
@@ -7,12 +13,8 @@
 #include "Object.hpp"
 #include "Object_group.hpp"
 #include "Rect.hpp"
-
-#include <stdint.h>
-#include <utility>
-#include <string>
-#include <fstream>
-#include <algorithm>
+#include "vec2.hpp"
+#include "string_id.hpp"
 
 /*
 parse map header/element
@@ -133,6 +135,8 @@ Tile_map::Tile_map(const std::string & tmx_file_path)
 						++pos;
 						std::string obj_name = line.substr(pos, line.find_first_of("\"", pos) - pos);
 						pobj->set_name(obj_name.c_str());
+
+                        pobj->m_name_id = intern_string(obj_name.c_str());
 					}
 
 					//type
@@ -142,6 +146,8 @@ Tile_map::Tile_map(const std::string & tmx_file_path)
 						++pos;
 						std::string obj_type = line.substr(pos, line.find_first_of("\"", pos) - pos);
 						pobj->set_type(obj_type.c_str());
+
+                        pobj->m_type_id = intern_string(obj_type.c_str());
 					}
 
 					pos = line.find("gid=");
@@ -149,18 +155,25 @@ Tile_map::Tile_map(const std::string & tmx_file_path)
 						pobj->m_gid = std::stoi(line.substr(line.find_first_of(digits, pos)));
 					}
 
+                    math::vec2 object_position;
 					pos = line.find("x=");
-					pobj->m_x = std::stof(line.substr(line.find_first_of(digits, pos)));
+					object_position.x = std::stof(line.substr(line.find_first_of(digits, pos)));
 
 					pos = line.find("y=");
-					pobj->m_y = std::stof(line.substr(line.find_first_of(digits, pos)));
+                    object_position.y = std::stof(line.substr(line.find_first_of(digits, pos)));
+
+                    object_position = pixels_to_wld_coord(object_position.x, object_position.y);
+                    pobj->m_x = object_position.x;
+                    pobj->m_y = object_position.y;
 
 					pos = line.find("width=");
 					if (pos != std::string::npos) {
 						pobj->m_width = std::stof(line.substr(line.find_first_of(digits, pos)));
+                        pobj->m_width = pobj->m_width / m_pixels_per_word_unit;
 
 						pos = line.find("height=");
 						pobj->m_height = std::stof(line.substr(line.find_first_of(digits, pos)));
+                        pobj->m_height = pobj->m_height / m_pixels_per_word_unit;
 					}
 
 					pos = line.find("rotation=");

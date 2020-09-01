@@ -15,6 +15,7 @@
  */
 namespace math { struct vec3; }
 namespace gom {class Creator; class Game_object_handle; }
+class Object;
 class Event;
 
 namespace gom {
@@ -44,7 +45,7 @@ namespace gom {
                                                              const uint32_t obj_tag = -1);
 
                 Game_object_handle          instantiate(const type_id obj_type,
-                                                        const math::vec3 & wld_pos);
+                                                        const Object & pobj_description);
 
                 void				        request_destruction(const Game_object_handle & handle);
                 void				        update_game_objects(const float dt);

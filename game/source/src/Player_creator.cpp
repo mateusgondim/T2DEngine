@@ -19,6 +19,7 @@
 #include "string_id.hpp"
 #include "crc32.hpp"
 #include "runtime_memory_allocator.hpp"
+#include "Object.hpp"
 #include <stdint.h>
 
 Player_creator::Player_creator(const string_id atlas_id, const string_id anim_controller_id) :
@@ -46,14 +47,14 @@ Player_creator::Player_creator(const string_id atlas_id, const string_id anim_co
 	create_anim_controller();
 }
 
-gom::Game_object *Player_creator::create(const math::vec3 & wld_pos)
+gom::Game_object *Player_creator::create(const Object & obj_description)
 {
 	//get the sprite_atlas resource 
 	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
 	gom::Actor::atlas_n_layer sprite_data(patlas, 1);
 
-    math::vec2	tr = math::vec2(wld_pos.x - m_pbody_def->m_position.x,
-                                wld_pos.y - m_pbody_def->m_position.y);
+    math::vec2	tr = math::vec2(obj_description.get_x()- m_pbody_def->m_position.x,
+                                obj_description.get_y()- m_pbody_def->m_position.y);
 	m_pbody_def->m_position += tr;
 	m_pbody_def->m_aabb.p_max += tr;
 	m_pbody_def->m_aabb.p_min += tr;

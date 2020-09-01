@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(source_dir src)
 
-set(include_files src/Game_object_data.hpp src/Level_manager.hpp)
+set(include_files src/Level_manager.hpp)
 
 set(unprocessed_source_files Level_manager.cpp)
 

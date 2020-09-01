@@ -72,6 +72,7 @@
 // UI creators
 #include "Level_ui_creator.hpp"
 #include "Main_menu_creator.hpp"
+#include "Damage_region_creator.hpp"
 
 //utility
 #include "crc32.hpp"
@@ -89,6 +90,10 @@ int main(int argc, char *argv[])
         engine_init(3, 2, pplevels, 3);
 
        /// Player setup
+
+         // TODO: Is right here that you should load all the Game's resident data! this does not 
+         // concern THE ENGINE, it should not be done there. Here you should call a load_resident_data
+        // function, that will load all the Game's specific resources!
 
         // Get atlas needed for the player sprite
         gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_name("player"));
@@ -137,6 +142,11 @@ int main(int argc, char *argv[])
 
         //register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
         gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator, SID('Enemy'));
+
+        // Register Damage_region creator
+        Damage_region_creator * damage_region_creator = new Damage_region_creator();
+        gom::g_game_object_mgr.register_creator(SID('damage_region'), damage_region_creator,
+                                                SID('damage_region'));
 
         // register UI Creators
         Level_ui_creator * level_ui_creator = new Level_ui_creator(SID('ui'));

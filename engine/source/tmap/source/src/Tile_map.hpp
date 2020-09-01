@@ -31,18 +31,6 @@ class Tile_map {
 friend std::ostream & print_tile_map(std::ostream & os, const Tile_map & map);
 public:
         Tile_map(const std::string & tmx_file_path);
-        //Tile_map() = default;
-	
-        /*Tile_map(const std::vector<Tileset> & tilesets, const std::vector<std::vector<std::vector<int>>> & layers ,const int layer_count, const int width, const int height, const int tile_width, const int tile_height) : m_pixels_per_word_unit(16)
-	{
-		m_tilesets      =  tilesets;
-		m_layer_count   =  layer_count;
-		m_width         =  width;
-		m_height        =  height;
-		m_tile_width    =  tile_width;
-		m_tile_height   =  tile_height;
-		//setup_map(layers);
-	}*/
         ~Tile_map();
 
 //	int             layer_count()  const { return m_layer_count; }

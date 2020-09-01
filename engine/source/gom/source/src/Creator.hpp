@@ -11,14 +11,15 @@
 namespace math { struct vec3; }
 namespace gom  { class Game_object; }
 namespace physics_2d {struct Body_2d_def; }
+class Object;
 
 namespace gom {
 	class Creator {
 	public:
-		Creator() : m_pbody_def(nullptr) {}
+        Creator() : m_pbody_def(nullptr) {}
 		virtual ~Creator();
 
-		virtual Game_object *create(const math::vec3 & wld_pos) = 0;
+        virtual Game_object *create(const Object & pobj_description) = 0;
 		
 		void		 set_obj_type(const uint32_t type) { m_obj_type = type; }
 		uint32_t     get_obj_type() const { return m_obj_type; }

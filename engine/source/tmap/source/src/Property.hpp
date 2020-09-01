@@ -1,50 +1,55 @@
 #ifndef _PROPERTY_HPP
 #define _PROPERTY_HPP
 
+#include <cstddef>
+
 #include <string>
 
+#include "string_id.hpp"
+
 class Property final {
-friend bool operator<(const Property & lhs, const Property & rhs);
 public:
-	enum Type { STRING_PROPERTY, FLOAT_PROPERTY, INT_PROPERTY, BOOL_PROPERTY, FILE_PROPERTY, COLOR_PROPERTY, INVALID_PROPERTY };
+    enum Type { STRING, FLOAT, INT, BOOL, FILE, COLOR, INVALID };
+    Property(const string_id name_id);
 	Property(const char *pname, const Type type);
-        Property(const std::string & element);
+    explicit Property(const std::string & element);
 	Property(const Property & p);
 	Property(Property && p) noexcept;
-	Property();
-
-	void		set_value(const char *str);
-	void		set_value(const float fvalue);
-	void		set_value(const int ivalue);
-	void		set_value(const bool bvalue);
-	
-	Type		get_type() const;
-	const char *	get_name() const;
-
-	const  char *	get_str()    const;
-	float		get_float()  const;
-	int		get_int()    const;
-	bool		get_bool()   const;
-
 	~Property();
 
+	void set_value(const char *str);
+	void set_value(const float fvalue);
+	void set_value(const int ivalue);
+	void set_value(const bool bvalue);
+	
+    Type get_type() const;
+	const char * get_name() const;
+    string_id get_name_id() const;
+	const char * get_str() const;
+	float get_float() const;
+	int get_int() const;
+	bool get_bool() const;
+
 private:
-	char		*m_pname;
-	Type		m_type;   
-	union {
-		char		*m_strvalue;
-		float		m_fvalue;
-		int		m_ivalue;
-		bool		m_bvalue;
+	char *m_pname;
+    string_id m_name_id;
+	Type m_type;   
+    union {
+        char *m_strvalue;
+        float m_fvalue;
+		int m_ivalue;
+		bool m_bvalue;
 	};
 };
 
 bool operator<(const Property & lhs, const Property & rhs);
 std::ostream & operator<<(std::ostream & os, const Property & p);
 
+
+
 inline const char *Property::get_str() const 
 {
-	if (m_type == Type::STRING_PROPERTY || m_type == Type::FILE_PROPERTY) {
+	if (m_type == Type::STRING || m_type == Type::FILE) {
 		return m_strvalue;
 	}
 	return nullptr;
@@ -52,7 +57,7 @@ inline const char *Property::get_str() const
 
 inline float Property::get_float() const 
 {
-	if (m_type == Type::FLOAT_PROPERTY) {
+	if (m_type == Type::FLOAT) {
 		return m_fvalue;
 	}
 	return -1;
@@ -60,7 +65,7 @@ inline float Property::get_float() const
 
 inline int Property::get_int() const 
 {
-	if (m_type == Type::INT_PROPERTY) {
+	if (m_type == Type::INT) {
 		return m_ivalue;
 	}
 	return -1;
@@ -68,7 +73,7 @@ inline int Property::get_int() const
 
 inline bool Property::get_bool() const 
 {
-	if (m_type == Type::BOOL_PROPERTY) {
+	if (m_type == Type::BOOL) {
 		return m_bvalue;
 	}
 
@@ -83,6 +88,21 @@ inline Property::Type Property::get_type() const
 inline const char *Property::get_name() const 
 {
 	return m_pname;
+}
+
+inline string_id Property::get_name_id() const
+{
+    return m_name_id;
+}
+
+inline size_t get_property_hash_code(const Property & property)
+{
+    return property.get_name_id();
+}
+
+inline bool operator==(const Property & lhs, const Property & rhs)
+{
+    return lhs.get_name_id() == rhs.get_name_id();
 }
 
 #endif // !_PROPERTY_HPP

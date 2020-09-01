@@ -8,11 +8,12 @@
 namespace math { struct vec3; }
 namespace gom { class Game_object; }
 namespace gfx { class Animator_controller; }
+class Object;
 
 class Hover_robot_creator : public gom::Creator {
 public:
 	Hover_robot_creator(const string_id atlas_res_id, const string_id anim_controll_id);
-	gom::Game_object * create(const math::vec3 & wld_pos) override;
+	gom::Game_object * create(const Object & obj_description) override;
 
 	~Hover_robot_creator() override;
 private:

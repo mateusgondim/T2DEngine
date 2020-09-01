@@ -1,11 +1,13 @@
 #include "Projectile_manager.hpp"
 
+#include <iostream>
+
+#include "vec2.hpp"
 #include "vec3.hpp"
 
 #include "Game_object_handle.hpp"
 #include "Game_object_manager.hpp"
 
-#include <iostream>
 
 namespace gom {
 	Projectile_manager g_projectile_mgr;
@@ -30,7 +32,8 @@ namespace gom {
 	Game_object_handle Projectile_manager::spawn_projectile(const type_id id, const math::vec3 & pos, const math::vec2 & projectile_dir) 
 	{
 		if (m_vpinactive_projectiles.empty()) {
-			Game_object_handle handle = g_game_object_mgr.instantiate(id, pos);
+            m_projectile_properties.set_wld_position(pos.x, pos.y);
+			Game_object_handle handle = g_game_object_mgr.instantiate(id, m_projectile_properties);
 
 			Projectile * pprojectile = static_cast<Projectile*>(g_game_object_mgr.get_by_handle(handle));
 			pprojectile->set_direction(projectile_dir);

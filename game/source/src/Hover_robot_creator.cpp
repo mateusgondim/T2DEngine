@@ -20,6 +20,7 @@
 #include "Body_2d.hpp"
 #include "Collider_2d_def.hpp"
 #include "AABB_2d.hpp"
+#include "Object.hpp"
 
 #include "runtime_memory_allocator.hpp"
 
@@ -29,7 +30,7 @@ Hover_robot_creator::Hover_robot_creator(const string_id atlas_res_id,
 {
 	void *pmem = mem::allocate(sizeof(physics_2d::Body_2d_def));
 	if (pmem) {
-		m_pbody_def = static_cast<physics_2d::Body_2d_def*>( new (pmem) physics_2d::Body_2d_def());
+		m_pbody_def = static_cast<physics_2d::Body_2d_def*>(new (pmem) physics_2d::Body_2d_def());
 		math::vec2 pos(8.0f, 35.0f);
 
 		physics_2d::AABB_2d p_aabb(math::vec2(-0.32f, -0.44f), math::vec2(0.32f, 0.44f));
@@ -45,7 +46,8 @@ Hover_robot_creator::Hover_robot_creator(const string_id atlas_res_id,
 		m_pbody_def->m_aabb = p_aabb;
 	}
 	else {
-		std::cerr << "ERROR(" << __FUNCTION__ << "): Unable to allocate memory for Body_2d_def" << std::endl;
+		std::cerr << "ERROR(" << __FUNCTION__ << "): Unable to allocate memory for Body_2d_def" 
+                  << std::endl;
 	}
 
 	create_anim_controller();
@@ -76,13 +78,18 @@ Hover_robot_creator::~Hover_robot_creator()
 	mem::free(static_cast<void*>(m_panim_controller), sizeof(gfx::Animator_controller));
 }
 
-gom::Game_object * Hover_robot_creator::create(const math::vec3 & wld_pos) 
+
+gom::Game_object * Hover_robot_creator::create(const Object & obj_description) 
 {
 	// get the data for creating the sprite componenent
-	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
+	gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(
+        gfx::g_sprite_atlas_mgr.get_by_id(m_atlas_res_id));
+
 	gom::Actor::atlas_n_layer sprite_data(patlas, 1);
 
-	math::vec2	tr = math::vec2(wld_pos.x - m_pbody_def->m_position.x, wld_pos.y - m_pbody_def->m_position.y);
+	math::vec2	tr = math::vec2(obj_description.get_x() - m_pbody_def->m_position.x,
+                                obj_description.get_y() - m_pbody_def->m_position.y);
+
 	m_pbody_def->m_position += tr;
 	m_pbody_def->m_aabb.p_max += tr;
 	m_pbody_def->m_aabb.p_min += tr;
@@ -91,11 +98,11 @@ gom::Game_object * Hover_robot_creator::create(const math::vec3 & wld_pos)
 	coll_def.m_aabb = m_pbody_def->m_aabb;
 	coll_def.m_is_trigger = true;
 
-
-
     std::size_t object_sz = sizeof(Hover_robot);
     void *pmem = mem::allocate(object_sz);
-	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(new (pmem) Hover_robot(object_sz, sprite_data, m_pbody_def, m_panim_controller));
+	gom::Game_object *pgame_object = static_cast<gom::Game_object*>(
+        new (pmem) Hover_robot(object_sz, sprite_data, m_pbody_def, m_panim_controller));
+
 	pgame_object->get_body_2d_component()->create_collider_2d(coll_def);
 	pgame_object->set_type(m_obj_type);
     pgame_object->set_tag(m_obj_tag);
