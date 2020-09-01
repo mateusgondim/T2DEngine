@@ -1,9 +1,12 @@
 #ifndef _PROJECTILE_MANAGER_HPP
 #define _PROJECTILE_MANAGER_HPP	
 
-#include "Projectile.hpp"
 #include <vector>
 #include <cstdint>
+
+
+#include "Projectile.hpp"
+#include "Object.hpp"
 
 namespace math { struct vec2; struct vec3; }
 namespace gom { class Game_object_handle; }
@@ -25,6 +28,7 @@ namespace gom {
 	private:
 		std::vector<Projectile*> m_vpactive_projectiles;
 		std::vector<Projectile*> m_vpinactive_projectiles;
+        Object m_projectile_properties;
 	};
 	extern Projectile_manager g_projectile_mgr;
 }
