@@ -23,7 +23,6 @@
 
 #include "Game_object.hpp"
 #include "Game_object_handle.hpp"
-#include "Game_object_data.hpp"
 #include "Camera_2d.hpp"
 #include "Game_object_manager.hpp"
 #include "Projectile_manager.hpp"
@@ -72,9 +71,6 @@ namespace level_management
                 gfx::g_graphics_mgr.set_pixels_per_wld_unit(m_ptile_map->pixels_per_world_unit());
                 physics_2d::g_physics_mgr.get_world()->set_tile_map(m_ptile_map);
 
-                //load the data necessary to instantiate the level's game objects 
-                load_objects_data();
-
                 // initialize 
                 init();
 
@@ -89,8 +85,6 @@ namespace level_management
                         ui::g_ui_mgr.reset();
                         gom::g_projectile_mgr.reset();
                         gom::g_game_object_mgr.reset();
-
-                        m_level_data.clear();
 
                         // unload current level rendering data
                         gfx::g_graphics_mgr.unload_map_rendering_data();
@@ -136,8 +130,6 @@ namespace level_management
         {
                 m_ptile_map = nullptr;
                 m_should_load_next_level = false;
-                m_level_data.reserve(30); // Remove magic number
-
                 m_current_level = 0;
                 m_levels.reserve(num_levels);
                 for (std::uint32_t i = 0; i != num_levels; ++i) {
@@ -322,35 +314,18 @@ namespace level_management
                 }
         }
 
-        void Level_manager::load_objects_data()
+        void Level_manager::instantiate_level_objects()
         {
                 const Object_group *pgroup = m_ptile_map->get_object_group("Game_objects");
                 if (pgroup) {
-                        Game_object_data data;
-                        math::vec2	pos;
-
-                        const std::vector<Object*> & objects = pgroup->get_objects();
-                        std::vector<Object*>::const_iterator it;
-                        for (it = objects.cbegin(); it != objects.cend(); ++it) {
-                                const char *	 pobj_type = (*it)->get_type();
-                                pos = m_ptile_map->pixels_to_wld_coord((*it)->get_x(), (*it)->get_y());
-                                data.object_type_id = intern_string(pobj_type);
-                                data.position = math::vec3(pos);
-                                m_level_data.push_back(data);
-                                std::cout << "Object  type \'" << pobj_type << "\' = " << data.object_type_id
-                                        << "position = " << data.position << std::endl;
-                        }
+                    const std::vector<Object*> & objects = pgroup->get_objects();
+                    std::vector<Object*>::const_iterator it;
+                    for (it = objects.cbegin(); it != objects.cend(); ++it) {
+                        string_id type_id = (*it)->get_type_id();
+                        gom::g_game_object_mgr.instantiate(type_id, **it);
+                    }
                 }
-        }
 
-        void Level_manager::instantiate_level_objects()
-        {
-                //create the level's objects
-                std::vector<Game_object_data>::const_iterator	game_obj_iter = m_level_data.cbegin();
-                //gom::g_game_object_mgr.instantiate(game_obj_iter->object_type_id, game_obj_iter);
-                for (; game_obj_iter != m_level_data.cend(); ++game_obj_iter) {
-                        gom::g_game_object_mgr.instantiate(game_obj_iter->object_type_id, game_obj_iter->position);
-                }
         }
 
         void Level_manager::restart_level()
