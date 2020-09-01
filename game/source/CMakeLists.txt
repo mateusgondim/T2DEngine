@@ -94,14 +94,16 @@ set(include_files src/Hover_robot.hpp src/Hover_robot_creator.hpp
 		  src/Player_idle_state.hpp src/Player_ducking_state.hpp src/Player_running_state.hpp
 		  src/Player_jumping_state.hpp src/Player_climbing_state.hpp 
 		  src/Player_taking_hit_state.hpp src/Level_ui_creator.hpp src/Pause_text.hpp
-		  src/Main_menu_creator.hpp src/Main_menu_canvas.hpp src/game.hpp)
+		  src/Main_menu_creator.hpp src/Main_menu_canvas.hpp src/Damage_region.hpp
+		  src/Damage_region_creator.hpp src/game.hpp)
 
 set(unprocessed_source_files Hover_robot.cpp  Hover_robot_creator.cpp Player.cpp
                              Player_creator.cpp Projectile_creator.cpp Player_idle_state.cpp
 		             Player_ducking_state.cpp Player_running_state.cpp 
 			     Player_jumping_state.cpp Player_climbing_state.cpp 
 			     Player_taking_hit_state.cpp Level_ui_creator.cpp Pause_text.cpp 
-			     Main_menu_creator.cpp Main_menu_canvas.cpp game.cpp)
+			     Main_menu_creator.cpp Main_menu_canvas.cpp Damage_region.cpp
+			     Damage_region_creator.cpp game.cpp)
 
 set(preprocessed_files "")
 preprocess_source_files("${unprocessed_source_files}" preprocessed_files
