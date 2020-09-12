@@ -98,135 +98,112 @@ void load_resident_data()
 
 int main(int argc, char *argv[])
 {
-        Path resources_path("../resources", Path::FORWARD_SLASH);
-        
-        const char * pplevels[] = { "main_menu.tmx", "level01.tmx", "level02.tmx" };
-        engine_init(3, 2, pplevels, 3);
+    const char * pplevels[] = { "main_menu.tmx", "level01.tmx", "level02.tmx" };
+    engine_init(3, 2, pplevels, 3);
 
-        load_resident_data();
+    load_resident_data();
 
-       /// Player setup
+    /// Player setup
 
-        // Get atlas needed for the player sprite
-        gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_name("player"));
+     // Get atlas needed for the player sprite
+    gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_name("player"));
 
-        //get the atlas resource id
-        string_id atlas_id = patlas->get_id();
+    string_id atlas_id = patlas->get_id();
 
-        // Create the Player Creator class
-        Player_creator *pplayer_creator = new Player_creator(atlas_id, 0);
+    Player_creator *pplayer_creator = new Player_creator(atlas_id, 0);
 
-        //create a type id for the player object. THIS SHOULD BE READ FROM A FILE. MUST BE THE SAME ID THAT IS STORED ON THE TMX FILE
-        string_id player_type_id = intern_string("Player");
+    string_id player_type_id = intern_string("Player");
 
-        //register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
-        gom::g_game_object_mgr.register_creator(player_type_id, pplayer_creator, SID('Player'));
+    // register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
+    gom::g_game_object_mgr.register_creator(player_type_id, pplayer_creator, SID('Player'));
 
-        // set the player projectile creator
-        physics_2d::Body_2d_def body_def;
-        body_def.m_position = math::vec2();
-        body_def.m_aabb = physics_2d::AABB_2d(math::vec2(-0.20f, -0.1f),
-                                              math::vec2(0.20f, 0.1f));
+    // set the player projectile creator
+    physics_2d::Body_2d_def body_def;
+    body_def.m_position = math::vec2();
+    body_def.m_aabb = physics_2d::AABB_2d(math::vec2(-0.20f, -0.1f), math::vec2(0.20f, 0.1f));
 
-        body_def.m_type = physics_2d::Body_2d::DYNAMIC;
-        body_def.m_linear_velocity = math::vec2(11.0f, 0.0f);
-        body_def.m_gravity_scale = 0.0f;
-        body_def.m_map_collision = false;
+    body_def.m_type = physics_2d::Body_2d::DYNAMIC;
+    body_def.m_linear_velocity = math::vec2(11.0f, 0.0f);
+    body_def.m_gravity_scale = 0.0f;
+    body_def.m_map_collision = false;
 
-        // set the player projectile anim_controller
-        gfx::Animator_controller *pcontroller(new gfx::Animator_controller());
-        gfx::Animation_player knife_idle_anim(gfx::Animation({ SID('fireball') }, 5));
-        pcontroller->add_state("knife_idle_state", knife_idle_anim);
+    // set the player projectile anim_controller
+    gfx::Animator_controller *pcontroller(new gfx::Animator_controller());
+    gfx::Animation_player knife_idle_anim(gfx::Animation({ SID('fireball') }, 5));
+    pcontroller->add_state("knife_idle_state", knife_idle_anim);
 
-        //create a type id for the object
-        string_id knife_type_id = intern_string("knife_obj");
-        //creator
-        Projectile_creator *knife_projectile = new Projectile_creator(atlas_id,
-                                                                      body_def, pcontroller);
-        gom::g_game_object_mgr.register_creator(knife_type_id, knife_projectile, 
-                                                SID('p_projectile'));
+    string_id knife_type_id = intern_string("knife_obj");
+    Projectile_creator *knife_projectile = new Projectile_creator(atlas_id, body_def, pcontroller);
+    gom::g_game_object_mgr.register_creator(knife_type_id, knife_projectile, SID('p_projectile'));
 
-        // Set the Hover Robor creator
-        Hover_robot_creator * phover_robot_creator = new Hover_robot_creator(atlas_id, 0);
+    // Set the Hover Robor creator
+    Hover_robot_creator * phover_robot_creator = new Hover_robot_creator(atlas_id, 0);
 
-        //create a type id for the Hover_object. THIS SHOULD BE READ FROM A FILE
-        string_id hover_robot_id = intern_string("hover_robot");
+    //create a type id for the Hover_object. THIS SHOULD BE READ FROM A FILE
+    string_id hover_robot_id = intern_string("hover_robot");
 
-        //register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
-        gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator, SID('Enemy'));
+    //register the creator. CAREFULL PASSING UINT32_T , SHOULD BE A UINT16_T, FIX IT!
+    gom::g_game_object_mgr.register_creator(hover_robot_id, phover_robot_creator, SID('Enemy'));
 
-        // Register Damage_region creator
-        Damage_region_creator * damage_region_creator = new Damage_region_creator();
-        gom::g_game_object_mgr.register_creator(SID('damage_region'), damage_region_creator,
-                                                SID('damage_region'));
+    // Register Damage_region creator
+    Damage_region_creator * damage_region_creator = new Damage_region_creator();
+    gom::g_game_object_mgr.register_creator(SID('damage_region'), damage_region_creator,
+                                            SID('damage_region'));
 
-        // register UI Creators
-        Level_ui_creator * level_ui_creator = new Level_ui_creator(SID('ui'));
-        gom::g_game_object_mgr.register_creator(SID('level_ui'), level_ui_creator, SID('canvas'));
+    // register UI Creators
+    Level_ui_creator * level_ui_creator = new Level_ui_creator(SID('ui'));
+    gom::g_game_object_mgr.register_creator(SID('level_ui'), level_ui_creator, SID('canvas'));
 
-        Main_menu_creator * main_menu_creator = new Main_menu_creator(SID('ui'));
-        gom::g_game_object_mgr.register_creator(SID('main_menu'), main_menu_creator, SID('canvas'));
+    Main_menu_creator * main_menu_creator = new Main_menu_creator(SID('ui'));
+    gom::g_game_object_mgr.register_creator(SID('main_menu'), main_menu_creator, SID('canvas'));
 
-        //Set up the game's control scheme
-        io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
-        control_scheme.map_action_to_button(SID('move_left'),
-                                            io::Abstract_keyboard_index::KEY_LEFT);
-        control_scheme.map_action_to_button(SID('move_right'), 
-                                            io::Abstract_keyboard_index::KEY_RIGHT);
-        control_scheme.map_action_to_button(SID('move_down'),
-                                            io::Abstract_keyboard_index::KEY_DOWN);
-        control_scheme.map_action_to_button(SID('climb_down'),
-                                            io::Abstract_keyboard_index::KEY_DOWN);
-        control_scheme.map_action_to_button(SID('move_up'),
-                                            io::Abstract_keyboard_index::KEY_UP);
-        control_scheme.map_action_to_button(SID('climb_up'),
-                                            io::Abstract_keyboard_index::KEY_UP);
-        control_scheme.map_action_to_button(SID('jump'),
-                                            io::Abstract_keyboard_index::KEY_A);
-        control_scheme.map_action_to_button(SID('attack_01'),
-                                            io::Abstract_keyboard_index::KEY_S);
-        control_scheme.map_action_to_button(SID('action'),
-                                            io::Abstract_keyboard_index::KEY_ENTER);
+    // Set up the game's control scheme
+    io::Keyboard_button_mapper & control_scheme = io::g_input_mgr.get_keyboard_control_scheme();
+    control_scheme.map_action_to_button(SID('move_left'), io::Abstract_keyboard_index::KEY_LEFT);
+    control_scheme.map_action_to_button(SID('move_right'), io::Abstract_keyboard_index::KEY_RIGHT);
+    control_scheme.map_action_to_button(SID('move_down'), io::Abstract_keyboard_index::KEY_DOWN);
+    control_scheme.map_action_to_button(SID('climb_down'), io::Abstract_keyboard_index::KEY_DOWN);
+    control_scheme.map_action_to_button(SID('move_up'), io::Abstract_keyboard_index::KEY_UP);
+    control_scheme.map_action_to_button(SID('climb_up'), io::Abstract_keyboard_index::KEY_UP);
+    control_scheme.map_action_to_button(SID('jump'), io::Abstract_keyboard_index::KEY_A);
+    control_scheme.map_action_to_button(SID('attack_01'), io::Abstract_keyboard_index::KEY_S);
+    control_scheme.map_action_to_button(SID('action'), io::Abstract_keyboard_index::KEY_ENTER);
 
-        // Load next Level - FOR DEBUGGING
-        control_scheme.map_action_to_button(SID('next_level'),
-                                            io::Abstract_keyboard_index::KEY_N);
-        control_scheme.map_action_to_button(SID('previous_level'),
-                                            io::Abstract_keyboard_index::KEY_P);
+    // Load next Level - FOR DEBUGGING
+    control_scheme.map_action_to_button(SID('next_level'), io::Abstract_keyboard_index::KEY_N);
+    control_scheme.map_action_to_button(SID('previous_level'), io::Abstract_keyboard_index::KEY_P);
 
+    level_management::g_level_mgr.request_level(0);
 
-        level_management::g_level_mgr.request_level(0);
+    gom::Camera_2d & main_camera = gom::g_game_object_mgr.get_main_camera();
+    main_camera.track(player_type_id);
 
+    gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
 
-        gom::Camera_2d & main_camera = gom::g_game_object_mgr.get_main_camera();
-        main_camera.track(player_type_id);
+    bool just_paused = false;
+    Event paused_event = Event(SID('GAME_PAUSED'));
+    Event running_event = Event(SID('GAME_RUNNING'));
 
-        gfx::Window * prender_window = gfx::g_graphics_mgr.get_render_window();
+    while (!prender_window->should_close()) {
+        level_management::g_level_mgr.tick();
 
-        bool just_paused = false;
-        Event paused_event = Event(SID('GAME_PAUSED'));
-        Event running_event = Event(SID('GAME_RUNNING'));
-
-        while (!prender_window->should_close()) {
-                level_management::g_level_mgr.tick();
-
-                if (just_paused != level_management::g_level_mgr.is_game_clock_paused()) {
-                        just_paused = !just_paused;
-                        if (just_paused) {
-                                gom::g_game_object_mgr.broadcast_event(paused_event);
-                        }
-                        else {
-                                gom::g_game_object_mgr.broadcast_event(running_event);
-                        }
-                }
-                else {
-                        bool next_level_pressed = io::g_input_mgr.get_button_down(SID('next_level'));
-                        bool prev_level_pressed = io::g_input_mgr.get_button_down(SID('previous_level'));
-                        if (next_level_pressed) {
-                                level_management::g_level_mgr.request_next_level();
-                        }
-                }
+        if (just_paused != level_management::g_level_mgr.is_game_clock_paused()) {
+            just_paused = !just_paused;
+            if (just_paused) {
+                gom::g_game_object_mgr.broadcast_event(paused_event);
+            }
+            else {
+                gom::g_game_object_mgr.broadcast_event(running_event);
+            }
         }
-        engine_shut_down();
-        return 0;
+        else {
+            bool next_level_pressed = io::g_input_mgr.get_button_down(SID('next_level'));
+            bool prev_level_pressed = io::g_input_mgr.get_button_down(SID('previous_level'));
+            if (next_level_pressed) {
+                level_management::g_level_mgr.request_next_level();
+            }
+        }
+    }
+    engine_shut_down();
+    return 0;
 }
