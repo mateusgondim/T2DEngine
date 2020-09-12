@@ -17,8 +17,7 @@ namespace level_management
                 ~Level_manager() = default;
                
                 void            load_resident_data(const char * pplevels[],
-                                                   const uint32_t num_levels,
-                                                   Path & resources_path);
+                                                   const uint32_t num_levels);
                 void request_next_level();
                 void request_level(const uint32_t level_index);
 
@@ -32,7 +31,6 @@ namespace level_management
                 void            unload_current_level();
                 void            load_requested_level();
                 void            restart_level();
-                Path*                                           m_presources_path = nullptr;
                 Tile_map*                                       m_ptile_map;
                 gfx::Shader*                                    m_psprite_shader;
                 gfx::Shader*                                    m_pmap_shader;

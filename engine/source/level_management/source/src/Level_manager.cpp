@@ -59,13 +59,13 @@ namespace level_management
                 unload_current_level();
 
                 // Load .TMX file containg the map and it's data
-                std::string level("/maps/" + m_levels[m_current_level]);
+                std::string level("resources/maps/" + m_levels[m_current_level]);
 
                 void *pmem = mem::allocate(sizeof(Tile_map));
                 if (!pmem) {
                         std::cerr << "ERROR: Unable to allocate memory for Tile Map" << std::endl;
                 }
-                m_ptile_map = new (pmem) Tile_map((*m_presources_path + level.c_str()).c_str());
+                m_ptile_map = new (pmem) Tile_map(level.c_str());
                 print_tile_map(std::cout, *m_ptile_map) << std::endl;
 
                 gfx::g_graphics_mgr.set_pixels_per_wld_unit(m_ptile_map->pixels_per_world_unit());
@@ -125,8 +125,7 @@ namespace level_management
             }
         }
 
-        void Level_manager::load_resident_data(const char * pplevels[], const uint32_t num_levels,
-                Path & resources_path)
+        void Level_manager::load_resident_data(const char * pplevels[], const uint32_t num_levels)
         {
                 m_ptile_map = nullptr;
                 m_should_load_next_level = false;
@@ -135,35 +134,25 @@ namespace level_management
                 for (std::uint32_t i = 0; i != num_levels; ++i) {
                         m_levels.push_back(pplevels[i]);
                 }
+                
+                // Load the Engine's default shaders
 
-                m_presources_path = new Path(resources_path);
-                // load atlas needed for the player and enemies sprites
-                Path sprites_path = *m_presources_path + "/sprite sheets/";
-                gfx::g_sprite_atlas_mgr.load("player",
-                                             (sprites_path + "characters.xml").c_str(),
-                                             &gfx::g_texture_2d_mgr);
-
-                // load atlas needed for UI
-                gfx::g_sprite_atlas_mgr.load("ui",
-                                             (sprites_path + "gravitybold.xml").c_str(),
-                                             &gfx::g_texture_2d_mgr);
-
-                //load tile map shader  
-                Path shaders_path = *m_presources_path + "/shaders/";
+                // tile map shader
+                Path shaders_path("resources/shaders/");
                 rms::Resource *pmap_shader_res = gfx::g_shader_mgr.load("tile_map_shader",
                                                                         (shaders_path + "vertex.vert").c_str(),
                                                                         (shaders_path + "fragment.frag").c_str());
                 m_pmap_shader = static_cast<gfx::Shader*>(pmap_shader_res);
                 m_tile_map_view_loc = m_pmap_shader->get_uniform_location("V");
 
-                //load sprite shader
+                // sprites shader
                 rms::Resource *psprite_shader_res = gfx::g_shader_mgr.load("sprites_shader",
                                                                            (shaders_path + "sprite.vert").c_str(),
                                                                            (shaders_path + "sprite.frag").c_str());
                 m_psprite_shader = static_cast<gfx::Shader*>(psprite_shader_res);
                 m_sprites_view_loc = m_psprite_shader->get_uniform_location("V");
 
-                // load UI shader
+                // UI shader
                 rms::Resource * pui_shader_res = gfx::g_shader_mgr.load("ui_shader",
                                                                         (shaders_path + "ui.vert").c_str(),
                                                                         (shaders_path + "ui.frag").c_str());
@@ -352,6 +341,5 @@ namespace level_management
                         mem::free(m_ptile_map, sizeof(Tile_map));
                         m_ptile_map = nullptr;
                 }
-                delete m_presources_path;
         }
 }
