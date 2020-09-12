@@ -124,10 +124,15 @@ set_source_files_properties(${full_unprocessed_sources_name} PROPERTIES HEADER_F
 add_executable(game ${include_files} ${preprocessed_files} 
                     ${full_unprocessed_sources_name})
 
-#Copy the resources folder to the executable folder
+#Copy the Game's resources folder to the executable folder
 add_custom_command(TARGET game 
                    POST_BUILD 
 		   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/../resources $<TARGET_FILE_DIR:game>/resources)
+
+#Copy the Engine's resources folder to the executable folder
+add_custom_command(TARGET game 
+                   POST_BUILD 
+		   COMMAND ${CMAKE_COMMAND} -E copy_directory ${ENGINE_INCLUDE_DIR}/../../resources $<TARGET_FILE_DIR:game>/resources)
 
 if(APPLE)
 	target_link_libraries(game ${ENGINE_LIBRARY} ${GLFW3_LIBRARY} ${OPENGL_gl_LIBRARY} 
