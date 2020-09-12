@@ -82,6 +82,20 @@
 
 #include "engine.hpp"
 
+void load_resident_data()
+{
+    // load atlas needed for the player and enemies sprites
+    Path sprites_path("resources/sprite sheets/");
+    gfx::g_sprite_atlas_mgr.load("player",
+                                 (sprites_path + "characters.xml").c_str(),
+                                 &gfx::g_texture_2d_mgr);
+
+    // load atlas needed for UI
+    gfx::g_sprite_atlas_mgr.load("ui",
+                                 (sprites_path + "gravitybold.xml").c_str(),
+                                 &gfx::g_texture_2d_mgr);
+}
+
 int main(int argc, char *argv[])
 {
         Path resources_path("../resources", Path::FORWARD_SLASH);
@@ -89,11 +103,9 @@ int main(int argc, char *argv[])
         const char * pplevels[] = { "main_menu.tmx", "level01.tmx", "level02.tmx" };
         engine_init(3, 2, pplevels, 3);
 
-       /// Player setup
+        load_resident_data();
 
-         // TODO: Is right here that you should load all the Game's resident data! this does not 
-         // concern THE ENGINE, it should not be done there. Here you should call a load_resident_data
-        // function, that will load all the Game's specific resources!
+       /// Player setup
 
         // Get atlas needed for the player sprite
         gfx::Sprite_atlas *patlas = static_cast<gfx::Sprite_atlas*>(gfx::g_sprite_atlas_mgr.get_by_name("player"));
