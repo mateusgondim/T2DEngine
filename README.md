@@ -39,7 +39,7 @@ and implement features that are necessary in most game projects. Therefore, they
   - The flexible Event System, that allow us to create and send custom messages between Game Objects.
   - The Resource Management System.
 
-  # Code Example of some key features
+  ## Code Example of some key features
   - Pool data structure usage
   ```c++
   //creates a memory pool of 4 elements, each with a size of 5 bytes and with a 4-byte aligment requirement 
