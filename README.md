@@ -1,20 +1,20 @@
 # T2DEngine
 A 2D tile based game engine, with a companion DEMO showcasing some its features.
 
-# Motivation
-The main reason behind the construction of the engine, was to have a first hand learning experience on how to construct a component based 2D game engine. 
+## Motivation
+The main reason behind the construction of the engine, was to have a first hand learning experience on how to build a component based 2D game engine. 
 
-# DEMO 
+## DEMO 
 ![alt text](gifs/demoGif01.gif)
 
-# Tech/Framework used
+## Tech/Framework used
   - [OpenGL/GLFW](http://www.glfw.org/) and [GLEW](http://glew.sourceforge.net/) for rendering. 
   - [stb_image](https://github.com/nothings/stb) for image loading. 
   - [CMake](https://cmake.org/) for generating the build files.
   - [Tiled Level Editor](https://www.mapeditor.org/) for creating the maps used by the engine, i.e, the tmx files.
   - [TexturePacker](https://www.codeandweb.com/texturepacker) for generating the sprite atlases and the corresponding xml files used by the engine.
 
-# Some core features
+## Some core features
 T2DEngine is comprised of a group of modules, each one implementing a core functionality. Some of them are:
   - Math, which implements all the 2D vector and matrix math used by the engine and DEMO.
   - Mem, which provides a function to allocate aligned memory blocks and defines both a pool data structure to manage memory blocks of the same size and a generic memory allocator.
@@ -23,12 +23,12 @@ T2DEngine is comprised of a group of modules, each one implementing a core funct
   - Rms defines a generic interface to create resources and resource managers.
   - Tmap defines all the data structures necessary to integrate the Engine with the Tiled Level Editor tool. Allowing us to
     to load .tmx files and, not only render the Tile Map, but also load data regarding collision geometry,
-    ìdamage areasî and objects spawn positions.
-  - Gfx is responsible with integrating the Engine with OpenGL/GLFW. Providing an interface for rendering -- sprites and tiles, using a batching technique
+    ‚Äúdamage areas‚Äù and objects spawn positions.
+  - Gfx is responsible for integrating the Engine with OpenGL/GLFW. Providing an interface for rendering -- sprites and tiles, using a batching technique
     -- and defining the Engine's Animation System.
 
-Some modules in T2D can be used as they are, or with some very minor modifications, on most game projects. The classes defined in these modules are, in most cases, decoupled from the rest of the engine
-and implement features that are necessary in most game projects. Therefore, they could be extracted from T2D and used on other games. A few of them are.
+Some modules in T2DEngine can be used as they are, or with some very minor modifications, on most game projects. The classes defined in these modules are, in most cases, decoupled from the rest of the engine
+and implement features that are necessary in most game projects. Therefore, they could be extracted from T2DEngine and used in other games. A few of them are.
   - The [pool data structure](https://github.com/mateusgondim/T2DEngine/blob/master/engine/source/mem/source/src/Pool_allocator.hpp), which manages a collection of memory blocks of the same size. 
   - The powerful Sprite Animation system, used to construct and control Animation State Machines from sprite atlases.
   - The implementation of a [string_id type](https://github.com/mateusgondim/T2DEngine/blob/master/engine/source/utility/source/src/string_id.hpp), which uses the crc-32 algorithm to
@@ -37,6 +37,7 @@ and implement features that are necessary in most game projects. Therefore, they
     Using SID, we can program in terms of string constants knowing that, before building the game, these strings will be replaced by their hashed values,
     which can be compared in constant time and have a smaller memory footprint.
   - The flexible Event System, that allow us to create and send custom messages between Game Objects.
+  - The Resource Management System.
 
   # Code Example of some key features
   - Pool data structure usage
@@ -53,7 +54,7 @@ and implement features that are necessary in most game projects. Therefore, they
   pool.free_element(chunk_02);  
   
   ```
-  - Constructing a Animator controller's state machine
+  - Constructing an Animator controller's state machine
   ```c++
   gfx::Animator_controller *pcontroller(new gfx::Animator_controller());
   
@@ -95,7 +96,7 @@ and implement features that are necessary in most game projects. Therefore, they
   //the other parameters are used for scrolling
   m_camera.init(tile_wld_width, tile_wld_height, tiles_per_screen_width, tiles_per_screen_height, tile_map_width, tile_map_height, map_origin);
   ```
-  # Building the Engine/game
+  ## Building the Engine/game
  T2DEngine uses CMake to generate all the necessary build files, so you need to first download and install [it](https://cmake.org/).
  After installing CMake, you need to install the [GLFW](http://www.glfw.org/) and [GLEW](http://glew.sourceforge.net/) libraries. Having installed both libraries, follow the next steps:
   - Create a build folder inside the T2DEngine/engine directory and run CMake, using T2DEngine/engine/source has its source directory and the newly created directory as the build directory.
@@ -103,5 +104,5 @@ and implement features that are necessary in most game projects. Therefore, they
     up the libraries' file and include directories(i recommend using the CMake GUI for this).
     After this process, you should have all the necessary files to build the engine, i.e, the Visual studio solution if running on Windows or, the makefiles if running on a Unix system.
   - Finally, repeat the same previous step to build the game application.
-  # API Reference
+  ## API Reference
   Being developed
