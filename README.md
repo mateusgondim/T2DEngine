@@ -21,7 +21,7 @@ T2DEngine is comprised of a group of modules, each one implementing a core funct
   - Utility defines types and data structures that are used by different parts of the engine, such as: a timer class and an implementation of the crc32 algorithm.
   - Io implements all the input handling.
   - Rms defines a generic interface to create resources and resource managers.
-  - Tmap defines all the data structures necessary to integrate the Engine with the Tiled Level Editor tool. Allowing us to
+  - Tmap defines all the data structures necessary to integrate the Engine with the Tiled Level Editor tool. Allowing us
     to load .tmx files and, not only render the Tile Map, but also load data regarding collision geometry,
     “damage areas” and objects spawn positions.
   - Gfx is responsible for integrating the Engine with OpenGL/GLFW. Providing an interface for rendering -- sprites and tiles, using a batching technique
@@ -64,7 +64,7 @@ and implement features that are necessary in most game projects. Therefore, they
   // their hashed integer values BEFORE building the application
   gfx::Animation_player player_idle_anim(gfx::Animation({ SID('hero_idle01'),
                                                           SID('hero_idle02'),
-							  SID('hero_idle03'),
+					                        SID('hero_idle03'),
                                                           SID('hero_idle04') }, 4));
 
   gfx::Animation_player player_running_anim(gfx::Animation({ SID('hero_running01'),
